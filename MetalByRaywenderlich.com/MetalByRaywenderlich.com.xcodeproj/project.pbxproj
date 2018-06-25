@@ -1,0 +1,367 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3820E1992000DE2EEC /* AppDelegate.swift */; };
+		C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3A20E1992000DE2EEC /* ViewController.swift */; };
+		C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB3C20E1992000DE2EEC /* Main.storyboard */; };
+		C75FDB4020E1992100DE2EEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB3F20E1992100DE2EEC /* Assets.xcassets */; };
+		C75FDB4320E1992100DE2EEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB4120E1992100DE2EEC /* LaunchScreen.storyboard */; };
+		C75FDBCC20E1A71A00DE2EEC /* AppCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C75FDBC720E1A4B000DE2EEC /* AppCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C75FDBCE20E1A72100DE2EEC /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75FDBC720E1A4B000DE2EEC /* AppCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C75FDBCD20E1A71A00DE2EEC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C75FDBCC20E1A71A00DE2EEC /* AppCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C75FDB3520E1992000DE2EEC /* MetalByRaywenderlich.com.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalByRaywenderlich.com.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C75FDB3820E1992000DE2EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C75FDB3A20E1992000DE2EEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C75FDB3D20E1992000DE2EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C75FDB3F20E1992100DE2EEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C75FDB4220E1992100DE2EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C75FDB4420E1992100DE2EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C75FDBC720E1A4B000DE2EEC /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C75FDB3220E1992000DE2EEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C75FDBCE20E1A72100DE2EEC /* AppCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C75FDB2C20E1992000DE2EEC = {
+			isa = PBXGroup;
+			children = (
+				C75FDB3720E1992000DE2EEC /* MetalByRaywenderlich.com */,
+				C75FDB3620E1992000DE2EEC /* Products */,
+				C75FDBB820E1A22300DE2EEC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C75FDB3620E1992000DE2EEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C75FDB3520E1992000DE2EEC /* MetalByRaywenderlich.com.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C75FDB3720E1992000DE2EEC /* MetalByRaywenderlich.com */ = {
+			isa = PBXGroup;
+			children = (
+				C75FDB3820E1992000DE2EEC /* AppDelegate.swift */,
+				C75FDB3A20E1992000DE2EEC /* ViewController.swift */,
+				C75FDB3C20E1992000DE2EEC /* Main.storyboard */,
+				C75FDB3F20E1992100DE2EEC /* Assets.xcassets */,
+				C75FDB4120E1992100DE2EEC /* LaunchScreen.storyboard */,
+				C75FDB4420E1992100DE2EEC /* Info.plist */,
+			);
+			path = MetalByRaywenderlich.com;
+			sourceTree = "<group>";
+		};
+		C75FDBB820E1A22300DE2EEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C75FDBC720E1A4B000DE2EEC /* AppCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C75FDB3420E1992000DE2EEC /* MetalByRaywenderlich.com */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C75FDB4720E1992100DE2EEC /* Build configuration list for PBXNativeTarget "MetalByRaywenderlich.com" */;
+			buildPhases = (
+				C75FDB3120E1992000DE2EEC /* Sources */,
+				C75FDB3220E1992000DE2EEC /* Frameworks */,
+				C75FDB3320E1992000DE2EEC /* Resources */,
+				C75FDBCD20E1A71A00DE2EEC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetalByRaywenderlich.com;
+			productName = MetalByRaywenderlich.com;
+			productReference = C75FDB3520E1992000DE2EEC /* MetalByRaywenderlich.com.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C75FDB2D20E1992000DE2EEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Geo Games";
+				TargetAttributes = {
+					C75FDB3420E1992000DE2EEC = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = C75FDB3020E1992000DE2EEC /* Build configuration list for PBXProject "MetalByRaywenderlich.com" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C75FDB2C20E1992000DE2EEC;
+			productRefGroup = C75FDB3620E1992000DE2EEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C75FDB3420E1992000DE2EEC /* MetalByRaywenderlich.com */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C75FDB3320E1992000DE2EEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C75FDB4320E1992100DE2EEC /* LaunchScreen.storyboard in Resources */,
+				C75FDB4020E1992100DE2EEC /* Assets.xcassets in Resources */,
+				C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C75FDB3120E1992000DE2EEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */,
+				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C75FDB3C20E1992000DE2EEC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C75FDB3D20E1992000DE2EEC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C75FDB4120E1992100DE2EEC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C75FDB4220E1992100DE2EEC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C75FDB4520E1992100DE2EEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C75FDB4620E1992100DE2EEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C75FDB4820E1992100DE2EEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FDAK5XPRG7;
+				INFOPLIST_FILE = MetalByRaywenderlich.com/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.MetalByRaywenderlich-com";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C75FDB4920E1992100DE2EEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FDAK5XPRG7;
+				INFOPLIST_FILE = MetalByRaywenderlich.com/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.MetalByRaywenderlich-com";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C75FDB3020E1992000DE2EEC /* Build configuration list for PBXProject "MetalByRaywenderlich.com" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C75FDB4520E1992100DE2EEC /* Debug */,
+				C75FDB4620E1992100DE2EEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C75FDB4720E1992100DE2EEC /* Build configuration list for PBXNativeTarget "MetalByRaywenderlich.com" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C75FDB4820E1992100DE2EEC /* Debug */,
+				C75FDB4920E1992100DE2EEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C75FDB2D20E1992000DE2EEC /* Project object */;
+}
