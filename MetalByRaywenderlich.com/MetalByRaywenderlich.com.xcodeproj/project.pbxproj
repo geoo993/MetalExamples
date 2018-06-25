@@ -14,6 +14,7 @@
 		C75FDB4320E1992100DE2EEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB4120E1992100DE2EEC /* LaunchScreen.storyboard */; };
 		C75FDBCC20E1A71A00DE2EEC /* AppCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C75FDBC720E1A4B000DE2EEC /* AppCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C75FDBCE20E1A72100DE2EEC /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75FDBC720E1A4B000DE2EEC /* AppCore.framework */; };
+		C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		C75FDB4220E1992100DE2EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C75FDB4420E1992100DE2EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C75FDBC720E1A4B000DE2EEC /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,11 +75,9 @@
 		C75FDB3720E1992000DE2EEC /* MetalByRaywenderlich.com */ = {
 			isa = PBXGroup;
 			children = (
-				C75FDB3820E1992000DE2EEC /* AppDelegate.swift */,
-				C75FDB3A20E1992000DE2EEC /* ViewController.swift */,
-				C75FDB3C20E1992000DE2EEC /* Main.storyboard */,
-				C75FDB3F20E1992100DE2EEC /* Assets.xcassets */,
-				C75FDB4120E1992100DE2EEC /* LaunchScreen.storyboard */,
+				C75FDBCF20E1AB2900DE2EEC /* Models */,
+				C75FDBD020E1AB3400DE2EEC /* Controllers */,
+				C75FDBD120E1AB4300DE2EEC /* Supporting Files */,
 				C75FDB4420E1992100DE2EEC /* Info.plist */,
 			);
 			path = MetalByRaywenderlich.com;
@@ -89,6 +89,33 @@
 				C75FDBC720E1A4B000DE2EEC /* AppCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C75FDBCF20E1AB2900DE2EEC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C75FDBD020E1AB3400DE2EEC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C75FDB3A20E1992000DE2EEC /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C75FDBD120E1AB4300DE2EEC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C75FDB3820E1992000DE2EEC /* AppDelegate.swift */,
+				C75FDB3C20E1992000DE2EEC /* Main.storyboard */,
+				C75FDB3F20E1992100DE2EEC /* Assets.xcassets */,
+				C75FDB4120E1992100DE2EEC /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */,
+				C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
