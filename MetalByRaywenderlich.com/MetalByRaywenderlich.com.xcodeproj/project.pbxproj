@@ -16,6 +16,10 @@
 		C75FDBCE20E1A72100DE2EEC /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75FDBC720E1A4B000DE2EEC /* AppCore.framework */; };
 		C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */; };
 		C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* Shader.metal */; };
+		C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F420E2F5B600BCEB30 /* Scene.swift */; };
+		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
+		C7BFB9FD20E2F5B700BCEB30 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F720E2F5B600BCEB30 /* GameScene.swift */; };
+		C7BFB9FE20E2F5B700BCEB30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F820E2F5B600BCEB30 /* Node.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +47,10 @@
 		C75FDBC720E1A4B000DE2EEC /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C7BFB9F120E2E1B100BCEB30 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
+		C7BFB9F420E2F5B600BCEB30 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		C7BFB9F720E2F5B600BCEB30 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		C7BFB9F820E2F5B600BCEB30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +85,7 @@
 		C75FDB3720E1992000DE2EEC /* MetalByRaywenderlich.com */ = {
 			isa = PBXGroup;
 			children = (
-				C7BFB9F020E2E19F00BCEB30 /* Shader */,
+				C7BFB9F320E2F5B600BCEB30 /* Metal */,
 				C75FDBCF20E1AB2900DE2EEC /* Models */,
 				C75FDBD020E1AB3400DE2EEC /* Controllers */,
 				C75FDBD120E1AB4300DE2EEC /* Supporting Files */,
@@ -127,6 +135,34 @@
 				C7BFB9F120E2E1B100BCEB30 /* Shader.metal */,
 			);
 			path = Shader;
+			sourceTree = "<group>";
+		};
+		C7BFB9F320E2F5B600BCEB30 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				C7BFBA0120E2F5D900BCEB30 /* Scenes */,
+				C7BFBA0020E2F5BF00BCEB30 /* Node */,
+				C7BFB9F020E2E19F00BCEB30 /* Shader */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
+		C7BFBA0020E2F5BF00BCEB30 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				C7BFB9F620E2F5B600BCEB30 /* Plane.swift */,
+				C7BFB9F820E2F5B600BCEB30 /* Node.swift */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		C7BFBA0120E2F5D900BCEB30 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C7BFB9F420E2F5B600BCEB30 /* Scene.swift */,
+				C7BFB9F720E2F5B600BCEB30 /* GameScene.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,9 +238,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */,
+				C7BFB9FD20E2F5B700BCEB30 /* GameScene.swift in Sources */,
+				C7BFB9FE20E2F5B700BCEB30 /* Node.swift in Sources */,
 				C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */,
+				C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */,
 				C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
+				C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

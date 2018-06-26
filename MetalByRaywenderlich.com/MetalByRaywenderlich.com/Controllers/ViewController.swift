@@ -61,7 +61,12 @@ class ViewController: UIViewController {
         guard let device = metalView.device else {
             fatalError("Device not created. Run on a physical device")
         }
+
+        // create renderer
         renderer = Renderer(device: device)
+
+        // set scene
+        renderer?.scene = GameScene(device: device, size: view.bounds.size)
 
         // Setup MTKView and delegate
         metalView.clearColor = UIColor.wenderlichGreen.toMTLClearColor
