@@ -15,6 +15,7 @@
 		C75FDBCC20E1A71A00DE2EEC /* AppCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C75FDBC720E1A4B000DE2EEC /* AppCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C75FDBCE20E1A72100DE2EEC /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75FDBC720E1A4B000DE2EEC /* AppCore.framework */; };
 		C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */; };
+		C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* Shader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,7 @@
 		C75FDB4420E1992100DE2EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C75FDBC720E1A4B000DE2EEC /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		C7BFB9F120E2E1B100BCEB30 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		C75FDB3720E1992000DE2EEC /* MetalByRaywenderlich.com */ = {
 			isa = PBXGroup;
 			children = (
+				C7BFB9F020E2E19F00BCEB30 /* Shader */,
 				C75FDBCF20E1AB2900DE2EEC /* Models */,
 				C75FDBD020E1AB3400DE2EEC /* Controllers */,
 				C75FDBD120E1AB4300DE2EEC /* Supporting Files */,
@@ -116,6 +119,14 @@
 				C75FDB4120E1992100DE2EEC /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C7BFB9F020E2E19F00BCEB30 /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				C7BFB9F120E2E1B100BCEB30 /* Shader.metal */,
+			);
+			path = Shader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */,
 				C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */,
 				C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,

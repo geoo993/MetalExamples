@@ -29,6 +29,17 @@
 // you have complete control, however (Primitive Assembly -> Rasterisation -> Present) happen on the GPU automatically.
 //
 
+// -------- The Metal Coordinates -------
+// metal coordinates are a squashed queue, with 2 units width,
+// 2 units height and 1 unit depth.
+// The top left in 2D is (-1, 1), the bottom right is (1, -1),
+// the center is (0, 0).
+// before drawing object we have to setup a structure before drawing the vertices,
+// each vertex need 3 floats to describe it.
+// we then create a metal buffer with these vertices where we specify
+// how much bytes the vertices array with the length of the number of items in the array,
+// multiplied by the size of the float.
+//
 
 import UIKit
 import MetalKit
@@ -40,58 +51,21 @@ class ViewController: UIViewController {
         return view as! MTKView
     }
 
-    var device: MTLDevice!
-    var commandQueue: MTLCommandQueue!
+    var renderer: Renderer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //1) Create a reference to the GPU, which is the Device
         metalView.device = MTLCreateSystemDefaultDevice()
-        device = metalView.device
+        guard let device = metalView.device else {
+            fatalError("Device not created. Run on a physical device")
+        }
+        renderer = Renderer(device: device)
 
         // Setup MTKView and delegate
         metalView.clearColor = UIColor.wenderlichGreen.toMTLClearColor
-        metalView.delegate = self
-
-        //2) Create a command Queue
-        commandQueue = device.makeCommandQueue()
-
-        //⚠️ there should only be one device and one command queue per application
+        metalView.delegate = renderer
 
     }
 }
-
-
-extension ViewController: MTKViewDelegate {
-    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-
-    }
-
-    // called every frame
-    func draw(in view: MTKView) {
-
-        // The MTKView view has a drawable, whihc is not an object that is displayed in the screen and
-        // we issue how drawing command to this drawable
-        // The MTKView also has a render pass descriptor, whihc describes how the buffers are to be rendered,
-        // we use this descriptor to create the command encoder
-        guard let drawable = view.currentDrawable,
-            let descriptor = view.currentRenderPassDescriptor else { return }
-
-        //3) Create a command buffer to hold the command encoder
-        let commandBuffer = commandQueue.makeCommandBuffer()
-
-        //4) Encode all the commands
-        let commandEncoder = commandBuffer?
-            .makeRenderCommandEncoder(descriptor: descriptor)
-        commandEncoder?.endEncoding()
-        commandBuffer?.present(drawable)
-
-        //5) send command buffer to the GPU when you finish encoding all the commands
-        commandBuffer?.commit()
-    }
-
-
-}
-
-
