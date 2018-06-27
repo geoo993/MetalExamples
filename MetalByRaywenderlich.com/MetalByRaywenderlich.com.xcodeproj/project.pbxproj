@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C712B54120E44E2A004CDFA3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C712B54020E44E2A004CDFA3 /* Types.swift */; };
+		C712B54520E45459004CDFA3 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C712B54420E45459004CDFA3 /* Renderable.swift */; };
 		C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3820E1992000DE2EEC /* AppDelegate.swift */; };
 		C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3A20E1992000DE2EEC /* ViewController.swift */; };
 		C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB3C20E1992000DE2EEC /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C712B54020E44E2A004CDFA3 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		C712B54420E45459004CDFA3 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		C75FDB3520E1992000DE2EEC /* MetalByRaywenderlich.com.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalByRaywenderlich.com.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75FDB3820E1992000DE2EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C75FDB3A20E1992000DE2EEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +69,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C712B54220E44E2F004CDFA3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C712B54020E44E2A004CDFA3 /* Types.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C712B54320E45445004CDFA3 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */,
+				C712B54420E45459004CDFA3 /* Renderable.swift */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
 		C75FDB2C20E1992000DE2EEC = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				C7BFB9F320E2F5B600BCEB30 /* Metal */,
-				C75FDBCF20E1AB2900DE2EEC /* Models */,
 				C75FDBD020E1AB3400DE2EEC /* Controllers */,
 				C75FDBD120E1AB4300DE2EEC /* Supporting Files */,
 				C75FDB4420E1992100DE2EEC /* Info.plist */,
@@ -100,14 +120,6 @@
 				C75FDBC720E1A4B000DE2EEC /* AppCore.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C75FDBCF20E1AB2900DE2EEC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C75FDBD220E1AB5D00DE2EEC /* Renderer.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		C75FDBD020E1AB3400DE2EEC /* Controllers */ = {
@@ -143,6 +155,8 @@
 				C7BFBA0120E2F5D900BCEB30 /* Scenes */,
 				C7BFBA0020E2F5BF00BCEB30 /* Node */,
 				C7BFB9F020E2E19F00BCEB30 /* Shader */,
+				C712B54220E44E2F004CDFA3 /* Utilities */,
+				C712B54320E45445004CDFA3 /* Renderer */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -240,9 +254,11 @@
 				C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */,
 				C7BFB9FD20E2F5B700BCEB30 /* GameScene.swift in Sources */,
 				C7BFB9FE20E2F5B700BCEB30 /* Node.swift in Sources */,
+				C712B54520E45459004CDFA3 /* Renderable.swift in Sources */,
 				C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */,
 				C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */,
 				C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */,
+				C712B54120E44E2A004CDFA3 /* Types.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
 				C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */,
 			);

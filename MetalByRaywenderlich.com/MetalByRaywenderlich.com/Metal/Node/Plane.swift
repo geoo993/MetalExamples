@@ -2,13 +2,15 @@ import MetalKit
 
 class Plane: Node {
     // vertices drawn anti-clockwise
-    var vertices: [Float] = [
-        -1,  1, 0,   // V0  top left
-        -1, -1, 0,   // V1  bottom left
-        1, -1, 0,   // V2   bottom right
-        //1, -1, 0,   // V2   bottom right
-        1,  1, 0,   // V3   top right
-        //-1,  1, 0    // V0  top left
+    var vertices: [Vertex] = [
+        Vertex(position: float3( -1, 1, 0), // V0  top left
+            color: float4(1, 0, 0, 1)),
+        Vertex(position: float3( -1, -1, 0), // V1  bottom left
+            color: float4(0, 1, 0, 1)),
+        Vertex(position: float3( 1, -1, 0), // V2   bottom right
+            color: float4(0, 0, 1, 1)),
+        Vertex(position: float3( 1, 1, 0), // V3   top right
+            color: float4(1, 0, 1, 1))
     ]
 
     // the indices describe the two triangles and the order that we want to render the vertice
@@ -33,16 +35,40 @@ class Plane: Node {
     var constants = Constants()
     var time: Float = 0
 
+    // Renderable
+    var pipelineState: MTLRenderPipelineState!
+    var fragmentFunctionName: String = "fragment_shader"
+    var vertexFunctionName: String = "vertex_shader"
+
+    var vertexDescriptor: MTLVertexDescriptor {
+        let vertexDescriptor = MTLVertexDescriptor()
+        // describe the position data from Vertex struct
+        vertexDescriptor.attributes[0].format = .float3
+        vertexDescriptor.attributes[0].offset = 0
+        vertexDescriptor.attributes[0].bufferIndex = 0 // buffer index of vertex array
+
+        // describe the color data from Vertex struct
+        vertexDescriptor.attributes[1].format = .float4
+        vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.stride // float3 offset from the first attribute as we are striding, this was the size of the position attribute
+        vertexDescriptor.attributes[1].bufferIndex = 0 // buffer index of vertex array
+
+        // tell the vertex descriptor the size of the information held for each vertex
+        vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
+
+        return vertexDescriptor
+    }
+
     //MARK: - initialise the Renderer with a device
     init(device: MTLDevice) {
         super.init()
         buildBuffers(device: device)
+        pipelineState = buildPipelineState(device: device)
     }
 
     // MARK: - create metal buffer that holds the vertices and indices from the vertices and indices array
    private func buildBuffers(device: MTLDevice) {
         vertexBuffer = device.makeBuffer(bytes: vertices,
-                                         length: vertices.count * MemoryLayout<Float>.size,
+                                         length: vertices.count * MemoryLayout<Vertex>.size,
                                          options: [])
         indexBuffer = device.makeBuffer(bytes: indices,
                                         length: indices.count * MemoryLayout<UInt16>.size,
@@ -55,6 +81,13 @@ class Plane: Node {
                  deltaTime: deltaTime)
     guard let indexBuffer = indexBuffer else { return }
 
+    //4) setup the state and send the vertex buffer to the GPU and the the GPU to draw those vertices
+    // The pipeline state will tell the GPU what shader function to use.
+    // It is possible that you will need to use different shader functions for different objects that you render,
+    // so you may need to setup multiple pipelines, which will mean that you will need to send the GPU
+    // multiple commands each with its own command encoder.
+    commandEncoder.setRenderPipelineState(pipelineState)
+    
 
     //5) we then tell the GPU to use our vertex buffer, the offset is the starting byte.
     // you can see that if we had more complex buffers, we can tell the offset to start somewhere else in the buffer.
@@ -92,7 +125,9 @@ class Plane: Node {
                                          indexBufferOffset: 0)
   }
 
-  
-
 }
+
+extension Plane: Renderable {
+}
+
 

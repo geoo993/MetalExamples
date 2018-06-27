@@ -51,6 +51,23 @@ class Renderer: NSObject {
         pipelineDescriptor.fragmentFunction = fragmentFunction
         pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
 
+        let vertexDescriptor = MTLVertexDescriptor()
+        // describe the position data from Vertex struct
+        vertexDescriptor.attributes[0].format = .float3
+        vertexDescriptor.attributes[0].offset = 0
+        vertexDescriptor.attributes[0].bufferIndex = 0 // buffer index of vertex array
+
+        // describe the color data from Vertex struct
+        vertexDescriptor.attributes[1].format = .float4
+        vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.stride // float3 offset from the first attribute as we are striding, this was the size of the position attribute
+        vertexDescriptor.attributes[1].bufferIndex = 0 // buffer index of vertex array
+
+        // tell the vertex descriptor the size of the information held for each vertex
+        vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
+
+        pipelineDescriptor.vertexDescriptor = vertexDescriptor
+
+
         do {
             pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
         } catch let error as NSError {
@@ -76,8 +93,8 @@ extension Renderer: MTKViewDelegate {
         // then you createyour object from that descriptor, if you subsequently change the desciptor properties,
         // you're only changing the list and not the original object.
         guard let drawable = view.currentDrawable,
-            let descriptor = view.currentRenderPassDescriptor,
-            let pipelineState = self.pipelineState
+            let descriptor = view.currentRenderPassDescriptor
+           // let pipelineState = self.pipelineState
             //let indexBuffer = self.indexBuffer
             else { return }
 
@@ -87,24 +104,17 @@ extension Renderer: MTKViewDelegate {
         //3) Encode all the commands
         let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor)!
 
-        //4) setup the state and send the vertex buffer to the GPU and the the GPU to draw those vertices
-        // The pipeline state will tell the GPU what shader function to use.
-        // It is possible that you will need to use different shader functions for different objects that you render,
-        // so you may need to setup multiple pipelines, which will mean that you will need to send the GPU
-        // multiple commands each with its own command encoder.
-        commandEncoder.setRenderPipelineState(pipelineState)
 
         let deltaTime = 1 / Float(view.preferredFramesPerSecond)
 
         // set the scene
-        scene?.render(commandEncoder: commandEncoder,
-                      deltaTime: deltaTime)
+        scene?.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
         
         
         commandEncoder.endEncoding()
         commandBuffer.present(drawable)
 
-        //7) send command buffer to the GPU when you finish encoding all the commands
+        //4) send command buffer to the GPU when you finish encoding all the commands
         commandBuffer.commit()
 
     }
