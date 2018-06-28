@@ -61,6 +61,7 @@ class Plane: Node {
 
     //MARK: - Texturable
     var texture: MTLTexture?
+    var maskTexture: MTLTexture?
 
     //MARK: - initialise the Renderer with a device
     init(device: MTLDevice) {
@@ -79,6 +80,21 @@ class Plane: Node {
 
         buildBuffers(device: device)
         pipelineState = buildPipelineState(device: device)
+    }
+
+    init(device: MTLDevice, imageName: String, maskImageName: String) {
+        super.init()
+        if let texture = setTexture(device: device, imageName: imageName) {
+            self.texture = texture
+            fragmentFunctionName = "textured_fragment"
+        }
+        if let maskTexture = setTexture(device: device, imageName: maskImageName) {
+            self.maskTexture = maskTexture
+            fragmentFunctionName = "textured_mask_fragment"
+        }
+        buildBuffers(device: device)
+        pipelineState = buildPipelineState(device: device)
+
     }
 
     // MARK: - create metal buffer that holds the vertices and indices from the vertices and indices array
@@ -142,6 +158,9 @@ class Plane: Node {
 
     // tell the command encoder to set the fragment texture at the fragment index buffer 0
     commandEncoder.setFragmentTexture(texture, index: 0)
+
+    // set the mask texture's fragment buffer to buffer index 1:
+    commandEncoder.setFragmentTexture(maskTexture, index: 1)
 
     //6b) we change the draw command to teel the GPU that we are now using the index order
     commandEncoder.drawIndexedPrimitives(type: .triangle, indexCount: indices.count,

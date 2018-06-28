@@ -11,8 +11,12 @@
 		C712B54520E45459004CDFA3 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C712B54420E45459004CDFA3 /* Renderable.swift */; };
 		C71F1D0620E58AC00095F6A6 /* picture-frame-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0120E58AC00095F6A6 /* picture-frame-mask.png */; };
 		C71F1D0720E58AC00095F6A6 /* picture-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0220E58AC00095F6A6 /* picture-frame.png */; };
-		C71F1D0820E58AC00095F6A6 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0320E58AC00095F6A6 /* picture.png */; };
 		C71F1D0920E58AC00095F6A6 /* Texturable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71F1D0520E58AC00095F6A6 /* Texturable.swift */; };
+		C71F1D0E20E5A4060095F6A6 /* colors-paint.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0A20E5A4060095F6A6 /* colors-paint.jpg */; };
+		C71F1D0F20E5A4060095F6A6 /* colors-world.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0B20E5A4060095F6A6 /* colors-world.jpg */; };
+		C71F1D1020E5A4060095F6A6 /* colors-explosion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0C20E5A4060095F6A6 /* colors-explosion.jpg */; };
+		C71F1D1120E5A4060095F6A6 /* abstract-color.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0D20E5A4060095F6A6 /* abstract-color.jpg */; };
+		C71F1D1320E5A6F90095F6A6 /* stewe-griffin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D1220E5A6F90095F6A6 /* stewe-griffin.jpg */; };
 		C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3820E1992000DE2EEC /* AppDelegate.swift */; };
 		C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3A20E1992000DE2EEC /* ViewController.swift */; };
 		C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB3C20E1992000DE2EEC /* Main.storyboard */; };
@@ -47,8 +51,12 @@
 		C712B54420E45459004CDFA3 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		C71F1D0120E58AC00095F6A6 /* picture-frame-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture-frame-mask.png"; sourceTree = "<group>"; };
 		C71F1D0220E58AC00095F6A6 /* picture-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture-frame.png"; sourceTree = "<group>"; };
-		C71F1D0320E58AC00095F6A6 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
 		C71F1D0520E58AC00095F6A6 /* Texturable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texturable.swift; sourceTree = "<group>"; };
+		C71F1D0A20E5A4060095F6A6 /* colors-paint.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "colors-paint.jpg"; sourceTree = "<group>"; };
+		C71F1D0B20E5A4060095F6A6 /* colors-world.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "colors-world.jpg"; sourceTree = "<group>"; };
+		C71F1D0C20E5A4060095F6A6 /* colors-explosion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "colors-explosion.jpg"; sourceTree = "<group>"; };
+		C71F1D0D20E5A4060095F6A6 /* abstract-color.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "abstract-color.jpg"; sourceTree = "<group>"; };
+		C71F1D1220E5A6F90095F6A6 /* stewe-griffin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "stewe-griffin.jpg"; sourceTree = "<group>"; };
 		C75FDB3520E1992000DE2EEC /* MetalByRaywenderlich.com.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalByRaywenderlich.com.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75FDB3820E1992000DE2EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C75FDB3A20E1992000DE2EEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,9 +113,13 @@
 		C71F1D0020E58AC00095F6A6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C71F1D1220E5A6F90095F6A6 /* stewe-griffin.jpg */,
+				C71F1D0D20E5A4060095F6A6 /* abstract-color.jpg */,
+				C71F1D0C20E5A4060095F6A6 /* colors-explosion.jpg */,
+				C71F1D0A20E5A4060095F6A6 /* colors-paint.jpg */,
+				C71F1D0B20E5A4060095F6A6 /* colors-world.jpg */,
 				C71F1D0120E58AC00095F6A6 /* picture-frame-mask.png */,
 				C71F1D0220E58AC00095F6A6 /* picture-frame.png */,
-				C71F1D0320E58AC00095F6A6 /* picture.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -275,10 +287,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C75FDB4320E1992100DE2EEC /* LaunchScreen.storyboard in Resources */,
+				C71F1D1120E5A4060095F6A6 /* abstract-color.jpg in Resources */,
 				C71F1D0720E58AC00095F6A6 /* picture-frame.png in Resources */,
-				C71F1D0820E58AC00095F6A6 /* picture.png in Resources */,
+				C71F1D0E20E5A4060095F6A6 /* colors-paint.jpg in Resources */,
+				C71F1D1020E5A4060095F6A6 /* colors-explosion.jpg in Resources */,
 				C75FDB4020E1992100DE2EEC /* Assets.xcassets in Resources */,
 				C71F1D0620E58AC00095F6A6 /* picture-frame-mask.png in Resources */,
+				C71F1D0F20E5A4060095F6A6 /* colors-world.jpg in Resources */,
+				C71F1D1320E5A6F90095F6A6 /* stewe-griffin.jpg in Resources */,
 				C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
