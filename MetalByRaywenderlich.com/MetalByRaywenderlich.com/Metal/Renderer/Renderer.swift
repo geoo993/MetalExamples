@@ -18,6 +18,9 @@ class Renderer: NSObject {
     // pipeline descriptor state for referencing shader
     var pipelineState: MTLRenderPipelineState?
 
+    // sampler state for texture
+    var samplerState: MTLSamplerState?
+
     //MARK: - initialise the Renderer with a device
     init(device: MTLDevice) {
         //⚠️ there should only be one device and one command queue per application
@@ -30,7 +33,8 @@ class Renderer: NSObject {
         super.init()
 
         //3) setup model and pipeline
-        buildPipelineState()
+        //buildPipelineState()
+        buildSamplerState()
     }
 
     // MARK: - Setup pipeline state
@@ -62,6 +66,10 @@ class Renderer: NSObject {
         vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.stride // float3 offset from the first attribute as we are striding, this was the size of the position attribute
         vertexDescriptor.attributes[1].bufferIndex = 0 // buffer index of vertex array
 
+        vertexDescriptor.attributes[2].format = .float2
+        vertexDescriptor.attributes[2].offset = MemoryLayout<float3>.stride + MemoryLayout<float4>.stride // float3 and float4 offset from the second attribute as we are striding, this is the size of the position and color attribute
+        vertexDescriptor.attributes[2].bufferIndex = 0 // buffer index of vertex array still at 0
+
         // tell the vertex descriptor the size of the information held for each vertex
         vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
 
@@ -73,6 +81,14 @@ class Renderer: NSObject {
         } catch let error as NSError {
             print("error: \(error.localizedDescription)")
         }
+    }
+
+    // MARK: - Setup sampler state
+    private func buildSamplerState() {
+        let descriptor = MTLSamplerDescriptor()
+        descriptor.minFilter = .linear
+        descriptor.magFilter = .linear
+        samplerState = device.makeSamplerState(descriptor: descriptor)
     }
 
 }
@@ -103,6 +119,8 @@ extension Renderer: MTKViewDelegate {
 
         //3) Encode all the commands
         let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor)!
+
+        commandEncoder.setFragmentSamplerState(samplerState, index: 0)
 
 
         let deltaTime = 1 / Float(view.preferredFramesPerSecond)

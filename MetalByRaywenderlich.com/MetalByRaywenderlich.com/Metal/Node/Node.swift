@@ -11,8 +11,7 @@ class Node {
   
   func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float) {
     for child in children {
-      child.render(commandEncoder: commandEncoder,
-                   deltaTime: deltaTime)
+      child.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
     }
   }
 }

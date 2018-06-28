@@ -35,12 +35,14 @@ struct Constants {
 struct VertexIn {
     float4 position [[ attribute(0) ]];
     float4 color [[ attribute(1) ]];
+    float2 textureCoordinates [[ attribute(2) ]];
 };
 
 // this tells the rasterisor, which of these data items contains, contains the vertex position or color value
 struct VertexOut {
     float4 position [[ position ]];
     float4 color;
+    float2 textureCoordinates;
 };
 
 
@@ -80,6 +82,7 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]]) {
     VertexOut vertexOut;
     vertexOut.position = vertexIn.position;
     vertexOut.color = vertexIn.color;
+    vertexOut.textureCoordinates = vertexIn.textureCoordinates;
 
     return vertexOut;
 }
@@ -104,4 +107,20 @@ fragment half4 fragment_shader() {
 // rather than one constant value for all fragments.
 fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]]) {
     return half4(vertexIn.color);
+}
+
+// the second parameter here is the texture in fragment buffer 0
+fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
+                                 sampler sampler2d [[ sampler(0) ]],
+                                 texture2d<float> texture [[ texture(0) ]] ) {
+    // use a default sampler state
+   // constexpr sampler defaultSampler;
+
+
+    // extract color from current fragmnet coordinates
+    float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
+    //float4 vOutColor = textcolor * vertexIn.color;
+
+    return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+
 }

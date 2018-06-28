@@ -34,7 +34,6 @@ extension Renderable {
         pipelineDescriptor.vertexFunction = vertexFunction
         pipelineDescriptor.fragmentFunction = fragmentFunction
         pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
-
         pipelineDescriptor.vertexDescriptor = vertexDescriptor
 
         let pipelineState: MTLRenderPipelineState
