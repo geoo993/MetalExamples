@@ -34,9 +34,10 @@ class Renderer: NSObject {
 
         //3) setup model and pipeline
         //buildPipelineState()
-        buildSamplerState()
+        //buildSamplerState()
     }
 
+    /*
     // MARK: - Setup pipeline state
     private func buildPipelineState() {
         //1) all our shader functions will be stored in a library
@@ -83,6 +84,8 @@ class Renderer: NSObject {
         }
     }
 
+    */
+
     // MARK: - Setup sampler state
     private func buildSamplerState() {
         let descriptor = MTLSamplerDescriptor()
@@ -119,8 +122,6 @@ extension Renderer: MTKViewDelegate {
 
         //3) Encode all the commands
         let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor)!
-
-        commandEncoder.setFragmentSamplerState(samplerState, index: 0)
 
 
         let deltaTime = 1 / Float(view.preferredFramesPerSecond)

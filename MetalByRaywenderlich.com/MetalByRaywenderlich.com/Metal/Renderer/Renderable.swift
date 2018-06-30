@@ -10,6 +10,7 @@ import MetalKit
 
 protocol Renderable {
     var pipelineState: MTLRenderPipelineState! { get set }
+    var samplerState: MTLSamplerState! { get set }
     var vertexFunctionName: String { get }
     var fragmentFunctionName: String { get }
     var vertexDescriptor: MTLVertexDescriptor { get }
@@ -43,6 +44,14 @@ extension Renderable {
             fatalError("error: \(error.localizedDescription)")
         }
         return pipelineState
+    }
+
+    // MARK: - Setup sampler state
+    func buildSamplerState(device: MTLDevice) -> MTLSamplerState {
+        let descriptor = MTLSamplerDescriptor()
+        descriptor.minFilter = .linear
+        descriptor.magFilter = .linear
+        return device.makeSamplerState(descriptor: descriptor)!
     }
 
 }

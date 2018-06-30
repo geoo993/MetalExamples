@@ -34,6 +34,7 @@ class Plane: Node {
 
     //MARK: - Renderable
     var pipelineState: MTLRenderPipelineState!
+    var samplerState: MTLSamplerState!
     var fragmentFunctionName: String = "fragment_shader"
     var vertexFunctionName: String = "vertex_shader"
 
@@ -68,6 +69,7 @@ class Plane: Node {
         super.init()
         buildBuffers(device: device)
         pipelineState = buildPipelineState(device: device)
+        samplerState = buildSamplerState(device: device)
     }
 
     init(device: MTLDevice, imageName: String) {
@@ -80,6 +82,7 @@ class Plane: Node {
 
         buildBuffers(device: device)
         pipelineState = buildPipelineState(device: device)
+        samplerState = buildSamplerState(device: device)
     }
 
     init(device: MTLDevice, imageName: String, maskImageName: String) {
@@ -94,6 +97,7 @@ class Plane: Node {
         }
         buildBuffers(device: device)
         pipelineState = buildPipelineState(device: device)
+        samplerState = buildSamplerState(device: device)
 
     }
 
@@ -124,6 +128,8 @@ class Plane: Node {
     // so you may need to setup multiple pipelines, which will mean that you will need to send the GPU
     // multiple commands each with its own command encoder.
     commandEncoder.setRenderPipelineState(pipelineState)
+
+    commandEncoder.setFragmentSamplerState(samplerState, index: 0)
     
 
     //5) we then tell the GPU to use our vertex buffer, the offset is the starting byte.
@@ -163,8 +169,10 @@ class Plane: Node {
     commandEncoder.setFragmentTexture(maskTexture, index: 1)
 
     //6b) we change the draw command to teel the GPU that we are now using the index order
-    commandEncoder.drawIndexedPrimitives(type: .triangle, indexCount: indices.count,
-                                         indexType: .uint16, indexBuffer: indexBuffer,
+    commandEncoder.drawIndexedPrimitives(type: .triangle,
+                                         indexCount: indices.count,
+                                         indexType: .uint16,
+                                         indexBuffer: indexBuffer,
                                          indexBufferOffset: 0)
   }
 
