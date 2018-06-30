@@ -1,4 +1,5 @@
 import MetalKit
+import AppCore
 
 class Plane: Node {
 
@@ -26,10 +27,8 @@ class Plane: Node {
     // there will be a lot of occasion when you want to pass data to the GPU,
     // you might want to send constant values to the GPU, to do this we can create a struct to hold
     // the values that the GPU will then apply to all the vertices.
-    struct Constants {
-        var animateBy: Float = 0
-    }
-    var constants = Constants()
+    var matrices = Matrices()
+
     var time: Float = 0
 
     //MARK: - Renderable
@@ -116,9 +115,9 @@ class Plane: Node {
                                         options: [])
     }
 
-  override func render(commandEncoder: MTLRenderCommandEncoder,
+    override func render(commandEncoder: MTLRenderCommandEncoder, screen: CGSize,
                        deltaTime: Float) {
-    super.render(commandEncoder: commandEncoder,
+        super.render(commandEncoder: commandEncoder, screen: screen,
                  deltaTime: deltaTime)
     guard let indexBuffer = indexBuffer else { return }
 
@@ -152,8 +151,28 @@ class Plane: Node {
     // the metal vertex buffer.
     time += deltaTime
     let animateBy = abs(sin(time)/2 + 0.5) // sin values are between 1 and -1
-    constants.animateBy = animateBy
-    commandEncoder.setVertexBytes(&constants, length: MemoryLayout<Constants>.stride, index: 1)
+
+    // setting the matrices attributes
+    // projection matrix
+    // the projecttion matrix will project all the vertices back into clipping space
+        let aspectRatio: Float = Float(screen.width / screen.height)
+        let FOV: Float = radians(degrees: 45.0)
+    let projectionMatrix = matrix_float4x4(projectionFov: FOV, aspect: aspectRatio,
+                                           nearZ: 0.1, farZ: 1000)
+    matrices.projectionMatrix = projectionMatrix
+
+    // view matrix
+    let viewMatrix = matrix_float4x4(translationX: 0, y: 0, z: -5)
+    matrices.viewMatrix = viewMatrix
+    commandEncoder.setVertexBytes(&matrices,
+                                  length: MemoryLayout<Matrices>.stride,
+                                  index: 1)
+
+    // model matrix
+    var modelMatrix = matrix_float4x4(scaleX: 0.5, y: 0.5, z: 0.5)
+    let rotationMatrix = matrix_float4x4(rotationAngle: animateBy, x: 0, y: 0, z: 1)
+    modelMatrix = matrix_multiply(rotationMatrix, modelMatrix)
+    matrices.modelMatrix = modelMatrix
 
 
     //6a) finally we setup to draw, we specify that we are drawing a triangle primitive rather than a point or a line.

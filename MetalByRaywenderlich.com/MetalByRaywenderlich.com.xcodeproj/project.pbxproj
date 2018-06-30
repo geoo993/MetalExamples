@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C702D54620E7880D00991288 /* Matrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C702D54520E7880D00991288 /* Matrices.swift */; };
 		C702D54C20E78AF600991288 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C702D54B20E78A0500991288 /* Transform.swift */; };
 		C712B54120E44E2A004CDFA3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C712B54020E44E2A004CDFA3 /* Types.swift */; };
 		C712B54520E45459004CDFA3 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C712B54420E45459004CDFA3 /* Renderable.swift */; };
@@ -36,6 +35,7 @@
 		C76341D720E7ACD800E41737 /* Trigonometric.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341CE20E7ACD800E41737 /* Trigonometric.swift */; };
 		C76341D820E7ACD800E41737 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341CF20E7ACD800E41737 /* Matrix.swift */; };
 		C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341D020E7ACD800E41737 /* Quaternion.swift */; };
+		C76341DE20E7D39900E41737 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341DD20E7D39900E41737 /* Camera.swift */; };
 		C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* Shader.metal */; };
 		C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F420E2F5B600BCEB30 /* Scene.swift */; };
 		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
@@ -58,7 +58,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C702D54520E7880D00991288 /* Matrices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrices.swift; sourceTree = "<group>"; };
 		C702D54B20E78A0500991288 /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		C712B54020E44E2A004CDFA3 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		C712B54420E45459004CDFA3 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		C76341CE20E7ACD800E41737 /* Trigonometric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trigonometric.swift; sourceTree = "<group>"; };
 		C76341CF20E7ACD800E41737 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		C76341D020E7ACD800E41737 /* Quaternion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
+		C76341DD20E7D39900E41737 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		C7BFB9F120E2E1B100BCEB30 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
 		C7BFB9F420E2F5B600BCEB30 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
@@ -119,7 +119,6 @@
 				C76341CF20E7ACD800E41737 /* Matrix.swift */,
 				C76341D020E7ACD800E41737 /* Quaternion.swift */,
 				C702D54B20E78A0500991288 /* Transform.swift */,
-				C702D54520E7880D00991288 /* Matrices.swift */,
 				C712B54020E44E2A004CDFA3 /* Types.swift */,
 			);
 			path = Utilities;
@@ -244,6 +243,7 @@
 		C7BFBA0020E2F5BF00BCEB30 /* Node */ = {
 			isa = PBXGroup;
 			children = (
+				C76341DD20E7D39900E41737 /* Camera.swift */,
 				C76341C520E7A2A700E41737 /* Cube.swift */,
 				C7BFB9F620E2F5B600BCEB30 /* Plane.swift */,
 				C7BFB9F820E2F5B600BCEB30 /* Node.swift */,
@@ -347,7 +347,6 @@
 				C76341D220E7ACD800E41737 /* Exponential.swift in Sources */,
 				C702D54C20E78AF600991288 /* Transform.swift in Sources */,
 				C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */,
-				C702D54620E7880D00991288 /* Matrices.swift in Sources */,
 				C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */,
 				C76341D320E7ACD800E41737 /* Geometric.swift in Sources */,
 				C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */,
@@ -357,6 +356,7 @@
 				C76341D820E7ACD800E41737 /* Matrix.swift in Sources */,
 				C76341D420E7ACD800E41737 /* Matrix_Transform.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
+				C76341DE20E7D39900E41737 /* Camera.swift in Sources */,
 				C76341D620E7ACD800E41737 /* Vector.swift in Sources */,
 				C71F1D0920E58AC00095F6A6 /* Texturable.swift in Sources */,
 				C76341C620E7A2A700E41737 /* Cube.swift in Sources */,

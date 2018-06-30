@@ -18,7 +18,9 @@ struct Vertex {
 // to transform all the vertices of the model into camera space.
 // An identiy matrix is sort of a neutral marix, multiply an identity matrix and you get the
 // same matrix back
-struct ModelConstants {
+struct Matrices {
+    var projectionMatrix = matrix_identity_float4x4
     var modelMatrix = matrix_identity_float4x4
     var viewMatrix = matrix_identity_float4x4
+    var normalMatrix = matrix_identity_float4x4
 }

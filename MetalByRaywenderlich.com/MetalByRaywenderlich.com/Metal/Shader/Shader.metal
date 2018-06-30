@@ -25,10 +25,18 @@
 using namespace metal;
 
 // --------- Attributes --------
-
 struct Constants {
     float animateBy;
 };
+
+// 3D atributes of model
+struct Matrices {
+    float4x4 projectionMatrix;
+    float4x4 modelMatrix;
+    float4x4 viewMatrix;
+    float4x4 normalMatrix;
+};
+
 
 // input information to the shader
 // note that each item in the struct has been given an attribute number
@@ -78,9 +86,13 @@ vertex float4 vertex_shader(const device packed_float3 *vertices [[ buffer(0) ]]
 }
 */
 
-vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]]) {
+vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
+                               constant Matrices &matrices [[ buffer(1) ]]) {
     VertexOut vertexOut;
-    vertexOut.position = vertexIn.position;
+
+    // Transform the vertex spatial position using
+    vertexOut.position = matrices.projectionMatrix * matrices.viewMatrix * matrices.modelMatrix * vertexIn.position;
+
     vertexOut.color = vertexIn.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
 

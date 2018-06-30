@@ -11,7 +11,7 @@ import Foundation
 public extension UIDevice {
     
     /// pares the deveice name as the standard name
-    var modelName: DeviceType {
+    public var modelName: DeviceType {
         
         #if targetEnvironment(simulator)
             let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"]!

@@ -11,6 +11,7 @@ import MetalKit
 class Renderer: NSObject {
     let device: MTLDevice
     let commandQueue: MTLCommandQueue
+    let screen: CGSize
 
     // create device scene
     var scene: Scene?
@@ -22,11 +23,12 @@ class Renderer: NSObject {
     var samplerState: MTLSamplerState?
 
     //MARK: - initialise the Renderer with a device
-    init(device: MTLDevice) {
+    init(device: MTLDevice, screen: CGSize) {
         //⚠️ there should only be one device and one command queue per application
 
         //1) Create a reference to the GPU, which is the Device
         self.device = device
+        self.screen = screen
 
         //2) Create a command Queue
         self.commandQueue = device.makeCommandQueue()!
@@ -127,7 +129,7 @@ extension Renderer: MTKViewDelegate {
         let deltaTime = 1 / Float(view.preferredFramesPerSecond)
 
         // set the scene
-        scene?.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
+        scene?.render(commandEncoder: commandEncoder, screen: screen, deltaTime: deltaTime)
         
         
         commandEncoder.endEncoding()
