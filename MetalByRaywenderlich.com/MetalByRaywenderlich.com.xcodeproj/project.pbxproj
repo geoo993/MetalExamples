@@ -19,7 +19,7 @@
 		C71F1D1120E5A4060095F6A6 /* abstract-color.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0D20E5A4060095F6A6 /* abstract-color.jpg */; };
 		C71F1D1320E5A6F90095F6A6 /* stewe-griffin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D1220E5A6F90095F6A6 /* stewe-griffin.jpg */; };
 		C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3820E1992000DE2EEC /* AppDelegate.swift */; };
-		C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3A20E1992000DE2EEC /* ViewController.swift */; };
+		C75FDB3B20E1992000DE2EEC /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB3A20E1992000DE2EEC /* MetalViewController.swift */; };
 		C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB3C20E1992000DE2EEC /* Main.storyboard */; };
 		C75FDB4020E1992100DE2EEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB3F20E1992100DE2EEC /* Assets.xcassets */; };
 		C75FDB4320E1992100DE2EEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75FDB4120E1992100DE2EEC /* LaunchScreen.storyboard */; };
@@ -36,6 +36,7 @@
 		C76341D820E7ACD800E41737 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341CF20E7ACD800E41737 /* Matrix.swift */; };
 		C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341D020E7ACD800E41737 /* Quaternion.swift */; };
 		C76341DE20E7D39900E41737 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341DD20E7D39900E41737 /* Camera.swift */; };
+		C76341E020E8010500E41737 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341DF20E8010500E41737 /* Primitive.swift */; };
 		C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* Shader.metal */; };
 		C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F420E2F5B600BCEB30 /* Scene.swift */; };
 		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
@@ -71,7 +72,7 @@
 		C71F1D1220E5A6F90095F6A6 /* stewe-griffin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "stewe-griffin.jpg"; sourceTree = "<group>"; };
 		C75FDB3520E1992000DE2EEC /* MetalByRaywenderlich.com.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalByRaywenderlich.com.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75FDB3820E1992000DE2EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C75FDB3A20E1992000DE2EEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C75FDB3A20E1992000DE2EEC /* MetalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
 		C75FDB3D20E1992000DE2EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C75FDB3F20E1992100DE2EEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C75FDB4220E1992100DE2EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 		C76341CF20E7ACD800E41737 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		C76341D020E7ACD800E41737 /* Quaternion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
 		C76341DD20E7D39900E41737 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		C76341DF20E8010500E41737 /* Primitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primitive.swift; sourceTree = "<group>"; };
 		C7BFB9F120E2E1B100BCEB30 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
 		C7BFB9F420E2F5B600BCEB30 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
@@ -202,7 +204,7 @@
 		C75FDBD020E1AB3400DE2EEC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C75FDB3A20E1992000DE2EEC /* ViewController.swift */,
+				C75FDB3A20E1992000DE2EEC /* MetalViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -247,6 +249,7 @@
 				C76341C520E7A2A700E41737 /* Cube.swift */,
 				C7BFB9F620E2F5B600BCEB30 /* Plane.swift */,
 				C7BFB9F820E2F5B600BCEB30 /* Node.swift */,
+				C76341DF20E8010500E41737 /* Primitive.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -346,7 +349,8 @@
 				C76341D520E7ACD800E41737 /* Common.swift in Sources */,
 				C76341D220E7ACD800E41737 /* Exponential.swift in Sources */,
 				C702D54C20E78AF600991288 /* Transform.swift in Sources */,
-				C75FDB3B20E1992000DE2EEC /* ViewController.swift in Sources */,
+				C75FDB3B20E1992000DE2EEC /* MetalViewController.swift in Sources */,
+				C76341E020E8010500E41737 /* Primitive.swift in Sources */,
 				C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */,
 				C76341D320E7ACD800E41737 /* Geometric.swift in Sources */,
 				C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */,

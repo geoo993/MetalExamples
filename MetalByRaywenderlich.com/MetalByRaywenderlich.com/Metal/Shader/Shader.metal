@@ -42,15 +42,15 @@ struct Matrices {
 // note that each item in the struct has been given an attribute number
 struct VertexIn {
     float4 position [[ attribute(0) ]];
-    float4 color [[ attribute(1) ]];
-    float2 textureCoordinates [[ attribute(2) ]];
+    float2 textureCoordinates [[ attribute(1) ]];
+    float4 color [[ attribute(2) ]];
 };
 
 // this tells the rasterisor, which of these data items contains, contains the vertex position or color value
 struct VertexOut {
     float4 position [[ position ]];
-    float4 color;
     float2 textureCoordinates;
+    float4 color;
 };
 
 

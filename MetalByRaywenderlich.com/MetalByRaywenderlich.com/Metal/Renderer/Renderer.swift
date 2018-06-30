@@ -11,89 +11,24 @@ import MetalKit
 class Renderer: NSObject {
     let device: MTLDevice
     let commandQueue: MTLCommandQueue
-    let screen: CGSize
 
     // create device scene
-    var scene: Scene?
-
-    // pipeline descriptor state for referencing shader
-    var pipelineState: MTLRenderPipelineState?
-
-    // sampler state for texture
-    var samplerState: MTLSamplerState?
+    let scene: Scene
 
     //MARK: - initialise the Renderer with a device
-    init(device: MTLDevice, screen: CGSize) {
+    init(device: MTLDevice, scene: Scene) {
         //⚠️ there should only be one device and one command queue per application
 
         //1) Create a reference to the GPU, which is the Device
         self.device = device
-        self.screen = screen
 
         //2) Create a command Queue
         self.commandQueue = device.makeCommandQueue()!
+
+        // set the scene
+        self.scene = scene
         super.init()
 
-        //3) setup model and pipeline
-        //buildPipelineState()
-        //buildSamplerState()
-    }
-
-    /*
-    // MARK: - Setup pipeline state
-    private func buildPipelineState() {
-        //1) all our shader functions will be stored in a library
-        // so we setup a new library and set the vertex and fragment shader created
-        let library = device.makeDefaultLibrary()
-
-        //2) xcode will compile these function when we complie the project
-        let vertexFunction = library?.makeFunction(name: "vertex_shader")
-        let fragmentFunction = library?.makeFunction(name: "fragment_shader")
-
-        //3) create pipeline descriptor
-        // the descriptor contains the reference to the shader functions and
-        // we could create the pipeline state from the descriptor
-        let pipelineDescriptor = MTLRenderPipelineDescriptor()
-        pipelineDescriptor.vertexFunction = vertexFunction
-        pipelineDescriptor.fragmentFunction = fragmentFunction
-        pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
-
-        let vertexDescriptor = MTLVertexDescriptor()
-        // describe the position data from Vertex struct
-        vertexDescriptor.attributes[0].format = .float3
-        vertexDescriptor.attributes[0].offset = 0
-        vertexDescriptor.attributes[0].bufferIndex = 0 // buffer index of vertex array
-
-        // describe the color data from Vertex struct
-        vertexDescriptor.attributes[1].format = .float4
-        vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.stride // float3 offset from the first attribute as we are striding, this was the size of the position attribute
-        vertexDescriptor.attributes[1].bufferIndex = 0 // buffer index of vertex array
-
-        vertexDescriptor.attributes[2].format = .float2
-        vertexDescriptor.attributes[2].offset = MemoryLayout<float3>.stride + MemoryLayout<float4>.stride // float3 and float4 offset from the second attribute as we are striding, this is the size of the position and color attribute
-        vertexDescriptor.attributes[2].bufferIndex = 0 // buffer index of vertex array still at 0
-
-        // tell the vertex descriptor the size of the information held for each vertex
-        vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
-
-        pipelineDescriptor.vertexDescriptor = vertexDescriptor
-
-
-        do {
-            pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-        } catch let error as NSError {
-            print("error: \(error.localizedDescription)")
-        }
-    }
-
-    */
-
-    // MARK: - Setup sampler state
-    private func buildSamplerState() {
-        let descriptor = MTLSamplerDescriptor()
-        descriptor.minFilter = .linear
-        descriptor.magFilter = .linear
-        samplerState = device.makeSamplerState(descriptor: descriptor)
     }
 
 }
@@ -129,7 +64,7 @@ extension Renderer: MTKViewDelegate {
         let deltaTime = 1 / Float(view.preferredFramesPerSecond)
 
         // set the scene
-        scene?.render(commandEncoder: commandEncoder, screen: screen, deltaTime: deltaTime)
+        scene.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
         
         
         commandEncoder.endEncoding()

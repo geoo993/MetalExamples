@@ -415,6 +415,16 @@ extension matrix_float4x4 {
         )))
     }
 
+    public func transpose() -> matrix_float4x4 {
+        return (matrix_float4x4(columns: (
+            float4(columns.0.x, columns.1.x, columns.2.x, columns.3.x),
+            float4(columns.0.y, columns.1.y, columns.2.y, columns.3.y),
+            float4(columns.0.z, columns.1.z, columns.2.z, columns.3.z),
+            float4(columns.0.w, columns.1.w, columns.3.w, columns.3.w)
+        )))
+    }
+
+
     // https://stackoverflow.com/questions/45463627/how-do-i-rotate-an-arkit-4x4-matrix-around-y-using-apples-simd-library
     func makeRotationYMatrix(angle: Float) -> simd_float3x3 {
         let rows = [

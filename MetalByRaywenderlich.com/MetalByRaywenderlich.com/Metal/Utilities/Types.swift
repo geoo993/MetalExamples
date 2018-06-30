@@ -10,8 +10,8 @@ import simd
 
 struct Vertex {
     var position: float3
-    var color: float4
     var texture: float2
+    var color: float4
 }
 
 // each model will declare a model constant struct and this matrix will be sent to the GPU

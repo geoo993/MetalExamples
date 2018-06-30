@@ -45,7 +45,7 @@ import UIKit
 import MetalKit
 import AppCore
 
-class ViewController: UIViewController {
+class MetalViewController: UIViewController {
 
     var metalView: MTKView {
         return view as! MTKView
@@ -66,46 +66,22 @@ class ViewController: UIViewController {
         let currentDevice = UIDevice.current.modelName
         let width = CGFloat.width(ofDevice: currentDevice).width
         let height = CGFloat.height(ofDevice: currentDevice).height
-        let screen = CGSize(width: width, height: height)
-        renderer = Renderer(device: device, screen: screen)
+        let screenSize = CGSize(width: width, height: height)
+        let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 1000)
 
-        // set scene
-        renderer?.scene = GameScene(device: device, size: view.bounds.size)
+        let scene = GameScene(device: device, camera: camera)
+        renderer = Renderer(device: device, scene: scene)
 
         // Setup MTKView and delegate
+        metalView.depthStencilPixelFormat = .depth32Float
         metalView.clearColor = UIColor.wenderlichGreen.toMTLClearColor
         metalView.delegate = renderer
 
-        /*
-        NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
- */
     }
 
     deinit {
-        /*
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
- */
-        print("🗑")
-    }
 
-    @objc func deviceOrientationDidChange() {
-        //2
-        switch UIDevice.current.orientation {
-        case .faceDown:
-            print("Face down")
-        case .faceUp:
-            print("Face up")
-        case .unknown:
-            print("Unknown")
-        case .landscapeLeft:
-            print("Landscape left")
-        case .landscapeRight:
-            print("Landscape right")
-        case .portrait:
-            print("Portrait")
-        case .portraitUpsideDown:
-            print("Portrait upside down")
-        }
+        print("🗑")
     }
 
 }
