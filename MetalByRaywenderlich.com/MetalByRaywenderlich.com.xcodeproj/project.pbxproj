@@ -94,7 +94,7 @@
 		C7E0440A20E9444A00138FC0 /* bunny.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E720E9444A00138FC0 /* bunny.obj */; };
 		C7E0440B20E9444A00138FC0 /* bunny.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E820E9444A00138FC0 /* bunny.mtl */; };
 		C7E0440D20E9461F00138FC0 /* InstanceScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0440C20E9461F00138FC0 /* InstanceScene.swift */; };
-		C7E0440F20E9465D00138FC0 /* TorusKnotScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0440E20E9465D00138FC0 /* TorusKnotScene.swift */; };
+		C7E0440F20E9465D00138FC0 /* LightingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0440E20E9465D00138FC0 /* LightingScene.swift */; };
 		C7E0441120E94D7B00138FC0 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0441020E94D7B00138FC0 /* Instance.swift */; };
 		C7E0441320E95F0200138FC0 /* LandscapeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0441220E95F0200138FC0 /* LandscapeScene.swift */; };
 		C7E0441620E9611600138FC0 /* grass.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E0441520E9611600138FC0 /* grass.obj */; };
@@ -203,7 +203,7 @@
 		C7E043E720E9444A00138FC0 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
 		C7E043E820E9444A00138FC0 /* bunny.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.mtl; sourceTree = "<group>"; };
 		C7E0440C20E9461F00138FC0 /* InstanceScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceScene.swift; sourceTree = "<group>"; };
-		C7E0440E20E9465D00138FC0 /* TorusKnotScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusKnotScene.swift; sourceTree = "<group>"; };
+		C7E0440E20E9465D00138FC0 /* LightingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightingScene.swift; sourceTree = "<group>"; };
 		C7E0441020E94D7B00138FC0 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
 		C7E0441220E95F0200138FC0 /* LandscapeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeScene.swift; sourceTree = "<group>"; };
 		C7E0441520E9611600138FC0 /* grass.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grass.obj; sourceTree = "<group>"; };
@@ -426,7 +426,7 @@
 				C7BFB9F420E2F5B600BCEB30 /* Scene.swift */,
 				C7BFB9F720E2F5B600BCEB30 /* PrimitivesScene.swift */,
 				C7E0440C20E9461F00138FC0 /* InstanceScene.swift */,
-				C7E0440E20E9465D00138FC0 /* TorusKnotScene.swift */,
+				C7E0440E20E9465D00138FC0 /* LightingScene.swift */,
 				C7E0441220E95F0200138FC0 /* LandscapeScene.swift */,
 			);
 			path = Scenes;
@@ -648,7 +648,7 @@
 				C76341D320E7ACD800E41737 /* Geometric.swift in Sources */,
 				C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */,
 				C763420720E9086400E41737 /* TriangularPrism.swift in Sources */,
-				C7E0440F20E9465D00138FC0 /* TorusKnotScene.swift in Sources */,
+				C7E0440F20E9465D00138FC0 /* LightingScene.swift in Sources */,
 				C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */,
 				C76341D720E7ACD800E41737 /* Trigonometric.swift in Sources */,
 				C76341F720E8D52400E41737 /* Torus.swift in Sources */,

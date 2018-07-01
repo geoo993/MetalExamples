@@ -29,8 +29,7 @@ class Instance: Node {
     var vertexFunctionName: String = "vertex_instance_shader"
 
     var vertexDescriptor: MTLVertexDescriptor
-    var matrices = Matrices()
-    var materials = Materials()
+    var uniform = Uniform()
 
     var drawType: MTLPrimitiveType = .triangle
 
@@ -68,7 +67,7 @@ class Instance: Node {
 
 extension Instance: Renderable {
 
-    func doRender(commandEncoder: MTLRenderCommandEncoder, modelMatrix: matrix_float4x4, viewMatrix: matrix_float4x4, projectionMatrix: matrix_float4x4) {
+    func doRender(commandEncoder: MTLRenderCommandEncoder, modelMatrix: matrix_float4x4, camera: Camera) {
         guard let instanceBuffer = instanceBuffer, nodes.count > 0 else { return }
 
         commandEncoder.setRenderPipelineState(pipelineState)
@@ -84,10 +83,15 @@ extension Instance: Renderable {
 
         for node in nodes {
             // setup the matrices attributes
-            pointer.pointee.projectionMatrix = projectionMatrix
-            pointer.pointee.viewMatrix = viewMatrix
-            pointer.pointee.modelMatrix = matrix_multiply(modelMatrix, node.modelMatrix)
+            let modelMatrix = matrix_multiply(modelMatrix, node.modelMatrix)
+            pointer.pointee.projectionMatrix = camera.perspectiveProjectionMatrix
+            pointer.pointee.viewMatrix = camera.viewMatrix
+            pointer.pointee.modelMatrix = modelMatrix
+            pointer.pointee.normalMatrix = camera.computeNormalMatrix(modelMatrix: modelMatrix)
             pointer.pointee.materialColor = node.materialColor
+            pointer.pointee.specularIntensity = node.specularIntensity
+            pointer.pointee.shininess = node.shininess
+            pointer.pointee.useTexture = node.useTexture
             pointer = pointer.advanced(by: 1)
         }
 

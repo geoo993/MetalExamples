@@ -4,6 +4,7 @@ class Scene: Node {
     var device: MTLDevice
     var time: Float
     var camera: Camera
+    var light = Light()
 
     init(device: MTLDevice, camera: Camera) {
 
@@ -22,14 +23,20 @@ class Scene: Node {
         camera.setPerspectiveProjectionMatrix(screenSize: size)
     }
 
+    func touchesBegan(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {}
+    func touchesMoved(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {}
+    func touchesEnded(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {}
+    func touchesCancelled(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {}
+
     func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float) {
         update(deltaTime: deltaTime)
+
+        commandEncoder.setFragmentBytes(&light, length: MemoryLayout<Light>.stride, index: 3)
 
         for child in children {
             child.render(commandEncoder: commandEncoder,
                          parentModelMatrix: matrix_identity_float4x4,
-                         viewMatrix: camera.viewMatrix,
-                         projectionMatrix: camera.perspectiveProjectionMatrix)
+                         camera: camera)
         }
     }
 }

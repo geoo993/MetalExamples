@@ -64,7 +64,7 @@ class Camera {
         farPlane = zFar
         strafe = float3( 0.0, 0.0, 0.0)
         movementSpeed = 50
-        sensitivity = 0.25
+        sensitivity = 0.05
         screenSize = size
         position = float3(0)
 
@@ -142,7 +142,7 @@ class Camera {
 
     }
 
-    func PositionInFrontOfCamera(distance: Float) -> float3 {
+    func positionInFrontOfCamera(distance: Float) -> float3 {
         return position + front * distance
     }
 
@@ -170,7 +170,7 @@ class Camera {
     }
 
     // Update the camera to respond to mouse motion for rotations and keyboard for translation
-    func Update(deltaTime: Float)
+    func update(deltaTime: Float)
     {
         let vector = cross(view - position, up);
         strafe = normalize(vector);
@@ -210,7 +210,7 @@ class Camera {
 
 
     // The normal matrix is used to transform normals to eye coordinates -- part of lighting calculations
-    func ComputeNormalMatrix(modelMatrix: matrix_float4x4) -> matrix_float3x3
+    func computeNormalMatrix(modelMatrix: matrix_float4x4) -> matrix_float3x3
     {
         //return glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
         return matrix_float3x3(modelMatrix).inverse.transpose

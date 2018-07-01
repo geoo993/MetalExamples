@@ -61,8 +61,7 @@ class Model: Node {
         return vertexDescriptor
     }
 
-    var matrices = Matrices()
-    var materials = Materials()
+    var uniform = Uniform()
 
     var drawType: MTLPrimitiveType = .triangle
 
@@ -81,7 +80,7 @@ class Model: Node {
         let imageName = modelName + ".png"
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "textured_fragment"
+            fragmentFunctionName = "lit_textured_fragment"
         }
 
         pipelineState = buildPipelineState(device: device)
@@ -96,7 +95,7 @@ class Model: Node {
 
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "textured_fragment"
+            fragmentFunctionName = "lit_textured_fragment"
         }
 
         pipelineState = buildPipelineState(device: device)
@@ -155,8 +154,7 @@ class Model: Node {
 
 extension Model: Renderable {
 
-    func doRender(commandEncoder: MTLRenderCommandEncoder, modelMatrix: matrix_float4x4,
-                  viewMatrix: matrix_float4x4, projectionMatrix: matrix_float4x4) {
+    func doRender(commandEncoder: MTLRenderCommandEncoder, modelMatrix: matrix_float4x4, camera: Camera) {
 
         commandEncoder.setRenderPipelineState(pipelineState)
         commandEncoder.setFragmentSamplerState(samplerState, index: 0)
@@ -169,23 +167,26 @@ extension Model: Renderable {
         // setup the matrices attributes
         // projection matrix
         // the projecttion matrix will project all the vertices back into clipping space
-        matrices.projectionMatrix = projectionMatrix
+        uniform.projectionMatrix = camera.perspectiveProjectionMatrix
 
         // view matrix
-        matrices.viewMatrix = viewMatrix
+        uniform.viewMatrix = camera.viewMatrix
 
         // model matrix
-        matrices.modelMatrix = modelMatrix
+        uniform.modelMatrix = modelMatrix
 
-        commandEncoder.setVertexBytes(&matrices,
-                                      length: MemoryLayout<Matrices>.stride,
+        // normal matrix
+        uniform.normalMatrix = camera.computeNormalMatrix(modelMatrix: modelMatrix)
+
+        // materials
+        uniform.materialColor = materialColor
+        uniform.shininess = shininess
+        uniform.specularIntensity = specularIntensity
+        uniform.useTexture = useTexture
+
+        commandEncoder.setVertexBytes(&uniform,
+                                      length: MemoryLayout<Uniform>.stride,
                                       index: 1)
-
-        // setup materials atributes
-        materials.materialColor = materialColor
-        commandEncoder.setVertexBytes(&materials,
-                                      length: MemoryLayout<Materials>.stride,
-                                      index: 2)
 
         if texture != nil {
             commandEncoder.setFragmentTexture(texture, index: 0)

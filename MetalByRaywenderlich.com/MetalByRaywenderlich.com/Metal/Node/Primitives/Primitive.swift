@@ -21,8 +21,7 @@ class Primitive: Node {
     // there will be a lot of occasion when you want to pass data to the GPU,
     // you might want to send constant values to the GPU, to do this we can create a struct to hold
     // the values that the GPU will then apply to all the vertices.
-    var matrices = Matrices()
-    var materials = Materials()
+    var uniform = Uniform()
 
     // how to draw the object
     var drawType: MTLPrimitiveType = .triangle
@@ -84,7 +83,7 @@ class Primitive: Node {
         buildVertices()
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            self.fragmentFunctionName = "textured_fragment"
+            self.fragmentFunctionName = "lit_textured_fragment"
         }
 
         buildBuffers(device: device)
@@ -99,7 +98,7 @@ class Primitive: Node {
         buildVertices()
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "textured_fragment"
+            fragmentFunctionName = "lit_textured_fragment"
         }
         if let maskTexture = setTexture(device: device, imageName: maskImageName) {
             self.maskTexture = maskTexture
@@ -148,8 +147,7 @@ class Primitive: Node {
 extension Primitive: Renderable {
     func doRender(commandEncoder: MTLRenderCommandEncoder,
                   modelMatrix: matrix_float4x4,
-                  viewMatrix: matrix_float4x4,
-                  projectionMatrix: matrix_float4x4) {
+                  camera: Camera) {
 
         //4) setup the state and send the vertex buffer to the GPU and the the GPU to draw those vertices
         // The pipeline state will tell the GPU what shader function to use.
@@ -201,25 +199,26 @@ extension Primitive: Renderable {
         // setting the matrices attributes
         // projection matrix
         // the projecttion matrix will project all the vertices back into clipping space
-        matrices.projectionMatrix = projectionMatrix
+        uniform.projectionMatrix = camera.perspectiveProjectionMatrix
 
         // view matrix
-        matrices.viewMatrix = viewMatrix
+        uniform.viewMatrix = camera.viewMatrix
 
         // model matrix
-        matrices.modelMatrix = modelMatrix
+        uniform.modelMatrix = modelMatrix
 
+        // normal matrix
+        uniform.normalMatrix = camera.computeNormalMatrix(modelMatrix: modelMatrix)
 
-        commandEncoder.setVertexBytes(&matrices,
-                                      length: MemoryLayout<Matrices>.stride,
+        // materials
+        uniform.materialColor = materialColor
+        uniform.shininess = shininess
+        uniform.specularIntensity = specularIntensity
+        uniform.useTexture = useTexture
+
+        commandEncoder.setVertexBytes(&uniform,
+                                      length: MemoryLayout<Uniform>.stride,
                                       index: 1)
-
-        // setup materials atributes
-        materials.materialColor = materialColor
-        commandEncoder.setVertexBytes(&materials,
-                                      length: MemoryLayout<Materials>.stride,
-                                      index: 2)
-
 
         // tell the command encoder to set the fragment texture at the fragment index buffer 0
         if texture != nil {

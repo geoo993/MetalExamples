@@ -70,14 +70,14 @@ class MetalViewController: UIViewController {
         let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 1000)
 
         let primitivesScene = PrimitivesScene(device: device, camera: camera)
-        let torusKnotScene = TorusKnotScene(device: device, camera: camera)
+        let lightingScene = LightingScene(device: device, camera: camera)
         let instanceScene = InstanceScene(device: device, camera: camera)
         let landscapeScene = LandscapeScene(device: device, camera: camera)
-        renderer = Renderer(device: device, scene: landscapeScene)
+        renderer = Renderer(device: device, scene: lightingScene)
 
         // Setup MTKView and delegate
         metalView.depthStencilPixelFormat = .depth32Float
-        metalView.clearColor = UIColor.skyBlue.toMTLClearColor
+        metalView.clearColor = UIColor.darkKhaki.toMTLClearColor
         metalView.delegate = renderer
 
     }
@@ -86,4 +86,23 @@ class MetalViewController: UIViewController {
         print("🗑")
     }
 
+}
+
+// MARK: - Gestures
+extension MetalViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        renderer?.scene.touchesBegan(view, touches:touches, with: event)
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        renderer?.scene.touchesMoved(view, touches: touches, with: event)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        renderer?.scene.touchesEnded(view, touches: touches, with: event)
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        renderer?.scene.touchesCancelled(view, touches: touches, with: event)
+    }
 }

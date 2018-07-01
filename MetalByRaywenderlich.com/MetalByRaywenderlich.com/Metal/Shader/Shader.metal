@@ -25,31 +25,34 @@
 using namespace metal;
 
 // --------- Attributes --------
-struct Constants {
-    float animateBy;
-    bool useTexture;
-};
-
-// 3D attributes of model
-struct Matrices {
-    float4x4 projectionMatrix;
-    float4x4 modelMatrix;
-    float4x4 viewMatrix;
-    float4x4 normalMatrix;
-};
-
-// Materials attributes
-struct Materials {
-    float4 materialColor;
-};
-
 // uniform matrices and materials 3D attributes
 struct Uniform {
+
+    // Martices attributes
     float4x4 projectionMatrix;
     float4x4 modelMatrix;
     float4x4 viewMatrix;
-    float4x4 normalMatrix;
+    float3x3 normalMatrix;
+
+
+    // Materials attributes
     float4 materialColor;
+    float specularIntensity;
+    float shininess;
+
+    // texture
+    float useTexture;
+
+};
+
+
+// lighting attributes
+struct Light {
+    float3 position;
+    float3 color;
+    float3 direction;
+    float ambientIntensity;
+    float diffuseIntensity;
 };
 
 
@@ -69,6 +72,10 @@ struct VertexOut {
     float4 color;
     float3 normal;
     float4 materialColor;
+    float specularIntensity;
+    float shininess;
+    bool useTexture;
+    float3 eyePosition;
 };
 
 
@@ -105,17 +112,20 @@ vertex float4 vertex_shader(const device packed_float3 *vertices [[ buffer(0) ]]
 */
 
 vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
-                               constant Matrices &matrices [[ buffer(1) ]],
-                               constant Materials &materials [[ buffer(2) ]]) {
+                               constant Uniform &uniform [[ buffer(1) ]]) {
     VertexOut vertexOut;
 
     // Transform the vertex spatial position using
-    float4x4 matrix = matrices.projectionMatrix * matrices.viewMatrix * matrices.modelMatrix;
+    float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
     vertexOut.position = matrix * vertexIn.position;
+    vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
     vertexOut.color = vertexIn.color;
-    vertexOut.normal = vertexIn.normal;
-    vertexOut.materialColor = materials.materialColor;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
+
+    vertexOut.materialColor = uniform.materialColor;
+    vertexOut.shininess = uniform.shininess;
+    vertexOut.specularIntensity = uniform.specularIntensity;
+    vertexOut.useTexture = uniform.useTexture;
 
     return vertexOut;
 }
@@ -130,10 +140,16 @@ vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
     // Transform the vertex spatial position using
     float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
     vertexOut.position = matrix * vertexIn.position;
+    vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
     vertexOut.color = vertexIn.color;
-    vertexOut.normal = vertexIn.normal;
-    vertexOut.materialColor = uniform.materialColor;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
+
+    vertexOut.materialColor = uniform.materialColor;
+    vertexOut.shininess = uniform.shininess;
+    vertexOut.specularIntensity = uniform.specularIntensity;
+    vertexOut.useTexture = uniform.useTexture;
+    vertexOut.eyePosition = (uniform.viewMatrix * uniform.modelMatrix * vertexIn.position).xyz;
+
     return vertexOut;
 }
 
@@ -154,6 +170,7 @@ fragment half4 fragment_shader() {
 // notice the special qualifier 'stage_in', all the vertex information within this in-struct has been interpolated,
 // during this rasterisation process, in other words it is data that the rasterisor has generated per fragment,
 // rather than one constant value for all fragments.
+// fragment color are (r, g, b, a) per pixel, these rbg values are between 0 and 1
 fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]]) {
     return half4(vertexIn.materialColor);
 }
@@ -166,7 +183,7 @@ fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
     float4 color = vertexIn.color;
-    float3 normal = vertexIn.normal;
+    float3 normal = normalize(vertexIn.normal);
 
     //return half4(normal.x, normal.y, normal.z, 1);
     textcolor = textcolor * vertexIn.materialColor;
@@ -194,5 +211,49 @@ fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
         discard_fragment();
 
     // Return the fragment color for the fragments that aren't discarded:
+    return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+}
+
+fragment half4 lit_textured_fragment(VertexOut vertexIn [[ stage_in ]],
+                                     constant Light &light [[ buffer(3) ]],
+                                     texture2d<float> texture [[ texture(0) ]],
+                                     sampler sampler2d [[ sampler(0) ]]) {
+
+    // extract color from current fragmnet coordinates
+    float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
+    float4 color = vertexIn.color;
+
+    // Ambient
+    float3 ambientColor = light.color * light.ambientIntensity;
+
+    // Diffuse lighting
+    // normalize makes sure that the normal is a unit vector
+    float3 normal = normalize(vertexIn.normal);
+
+    // the dot function gives us the dot product between the normal and the light direction
+    // and this gives us the angle so that we know how much lighting the fragment should receive.
+    // its negative becuase when the normal is -1, the fragment should receive the most light, i.e.
+    // diffuseFactor would be 1.
+    // the saturate function clamps the returned value between 0 and 1
+    float3 lightDirection = normalize(light.position - vertexIn.eyePosition);
+    float diffuseFactor = saturate(-dot(normal, light.direction)); // change
+
+    // we can now calculate the diffuse color
+    float3 diffuseColor = light.color * light.diffuseIntensity * diffuseFactor;
+
+    // Specular
+    float3 eye = normalize(vertexIn.eyePosition);
+
+    float3 reflection = reflect(light.direction, normal); //change
+
+    float specularFactor = pow(saturate(-dot(reflection, eye)), vertexIn.shininess);
+
+    float3 specularColor = light.color * vertexIn.specularIntensity * specularFactor;
+
+    textcolor = textcolor * float4(ambientColor + diffuseColor + specularColor, 1);
+
+    if (textcolor.a == 0.0)
+        discard_fragment();
+
     return half4(textcolor.r, textcolor.g, textcolor.b, 1);
 }

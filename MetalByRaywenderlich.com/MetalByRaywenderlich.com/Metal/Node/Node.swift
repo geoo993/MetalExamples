@@ -8,6 +8,9 @@ class Node {
     var rotation = float3(0)
     var scale = float3(1)
     var materialColor = float4(1)
+    var specularIntensity: Float = 1
+    var shininess: Float = 1
+    var useTexture: Bool = true
 
     var modelMatrix: matrix_float4x4 {
         var matrix = matrix_float4x4(translationX: position.x,
@@ -28,22 +31,19 @@ class Node {
 
     func render(commandEncoder: MTLRenderCommandEncoder,
                 parentModelMatrix: matrix_float4x4,
-                viewMatrix: matrix_float4x4,
-                projectionMatrix: matrix_float4x4) {
+                camera: Camera) {
         let mMatrix = matrix_multiply(parentModelMatrix, modelMatrix)
         for child in children {
             child.render(commandEncoder: commandEncoder,
                          parentModelMatrix: mMatrix,
-                         viewMatrix: viewMatrix,
-                         projectionMatrix: projectionMatrix)
+                         camera: camera)
         }
 
         if let renderable = self as? Renderable {
             commandEncoder.pushDebugGroup(name)
             renderable.doRender(commandEncoder: commandEncoder,
                                 modelMatrix: mMatrix,
-                                viewMatrix: viewMatrix,
-                                projectionMatrix: projectionMatrix)
+                                camera: camera)
             commandEncoder.popDebugGroup()
         }
 
