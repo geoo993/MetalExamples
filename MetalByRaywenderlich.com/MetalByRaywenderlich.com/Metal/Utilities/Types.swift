@@ -30,7 +30,6 @@ struct Matrices {
     var modelMatrix = matrix_identity_float4x4
     var viewMatrix = matrix_identity_float4x4
     var normalMatrix = matrix_identity_float4x4
-    var materialColor = float4(1)
 }
 
 struct Materials
@@ -42,4 +41,12 @@ struct Materials
 //    sampler2D specularMap; // specular map
 //    sampler2D heightMap;   // heihgt Map, also known as depth map
 //    float shininess; // object material shininess
+}
+
+struct Uniform {
+    var projectionMatrix = matrix_identity_float4x4
+    var modelMatrix = matrix_identity_float4x4
+    var viewMatrix = matrix_identity_float4x4
+    var normalMatrix = matrix_identity_float4x4
+    var materialColor = float4(1)
 }

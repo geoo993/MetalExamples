@@ -29,6 +29,10 @@ public extension CGFloat {
         return Double(self)
     }
 
+    public var toFloat: Float {
+        return Float(self)
+    }
+
     public var toInt: Int {
         return Int(self)
     }

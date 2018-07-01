@@ -40,8 +40,8 @@ class TorusKnot: Primitive {
                 torusIndices[i * 2 + 0 + j * (aSteps + 1) * 2] = UInt16(j + 1 + i * (aFacets + 1))
                 torusIndices[i * 2 + 1 + j * (aSteps + 1) * 2] = UInt16(j + i * (aFacets + 1))
             }
-
         }
+        
         indices.append(contentsOf: Array(UnsafeBufferPointer(start: torusIndices, count: (aSteps + 1) * aFacets * 2)))
 
         for i in 0..<aSteps

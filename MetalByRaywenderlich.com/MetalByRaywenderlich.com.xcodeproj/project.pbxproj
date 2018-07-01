@@ -41,9 +41,6 @@
 		C76341ED20E8BC2400E41737 /* mushroom.png in Resources */ = {isa = PBXBuildFile; fileRef = C76341E520E8BC2400E41737 /* mushroom.png */; };
 		C76341EE20E8BC2400E41737 /* mushroom.obj in Resources */ = {isa = PBXBuildFile; fileRef = C76341E620E8BC2400E41737 /* mushroom.obj */; };
 		C76341EF20E8BC2400E41737 /* humanFigure.obj in Resources */ = {isa = PBXBuildFile; fileRef = C76341E820E8BC2400E41737 /* humanFigure.obj */; };
-		C76341F020E8BC2400E41737 /* texturedCube.blend in Resources */ = {isa = PBXBuildFile; fileRef = C76341EA20E8BC2400E41737 /* texturedCube.blend */; };
-		C76341F120E8BC2400E41737 /* texturedCube.png in Resources */ = {isa = PBXBuildFile; fileRef = C76341EB20E8BC2400E41737 /* texturedCube.png */; };
-		C76341F220E8BC2400E41737 /* texturedCube.obj in Resources */ = {isa = PBXBuildFile; fileRef = C76341EC20E8BC2400E41737 /* texturedCube.obj */; };
 		C76341F720E8D52400E41737 /* Torus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341F620E8D52400E41737 /* Torus.swift */; };
 		C76341F920E8E7AB00E41737 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341F820E8E7AB00E41737 /* Sphere.swift */; };
 		C76341FB20E8FC4100E41737 /* Pyramid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341FA20E8FC4100E41737 /* Pyramid.swift */; };
@@ -59,8 +56,46 @@
 		C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* Shader.metal */; };
 		C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F420E2F5B600BCEB30 /* Scene.swift */; };
 		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
-		C7BFB9FD20E2F5B700BCEB30 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F720E2F5B600BCEB30 /* GameScene.swift */; };
+		C7BFB9FD20E2F5B700BCEB30 /* PrimitivesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F720E2F5B600BCEB30 /* PrimitivesScene.swift */; };
 		C7BFB9FE20E2F5B700BCEB30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F820E2F5B600BCEB30 /* Node.swift */; };
+		C7E043E920E9444A00138FC0 /* GRANDECO.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C320E9444A00138FC0 /* GRANDECO.JPG */; };
+		C7E043EA20E9444A00138FC0 /* GRANDEB2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C420E9444A00138FC0 /* GRANDEB2.JPG */; };
+		C7E043EB20E9444A00138FC0 /* T-Rex Model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C520E9444A00138FC0 /* T-Rex Model.mtl */; };
+		C7E043EC20E9444A00138FC0 /* T-Rex Model.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C620E9444A00138FC0 /* T-Rex Model.obj */; };
+		C7E043ED20E9444A00138FC0 /* teapot.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C820E9444A00138FC0 /* teapot.mtl */; };
+		C7E043EE20E9444A00138FC0 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C920E9444A00138FC0 /* teapot.obj */; };
+		C7E043EF20E9444A00138FC0 /* teapot.blend in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CA20E9444A00138FC0 /* teapot.blend */; };
+		C7E043F020E9444A00138FC0 /* hand_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CC20E9444A00138FC0 /* hand_showroom_refl.png */; };
+		C7E043F120E9444A00138FC0 /* body_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CD20E9444A00138FC0 /* body_showroom_ddn.png */; };
+		C7E043F220E9444A00138FC0 /* helmet_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CE20E9444A00138FC0 /* helmet_showroom_ddn.png */; };
+		C7E043F320E9444A00138FC0 /* arm_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CF20E9444A00138FC0 /* arm_showroom_ddn.png */; };
+		C7E043F420E9444A00138FC0 /* arm_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D020E9444A00138FC0 /* arm_showroom_spec.png */; };
+		C7E043F520E9444A00138FC0 /* leg_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D120E9444A00138FC0 /* leg_dif.png */; };
+		C7E043F620E9444A00138FC0 /* arm_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D220E9444A00138FC0 /* arm_showroom_refl.png */; };
+		C7E043F720E9444A00138FC0 /* hand_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D320E9444A00138FC0 /* hand_showroom_spec.png */; };
+		C7E043F820E9444A00138FC0 /* glass_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D420E9444A00138FC0 /* glass_ddn.png */; };
+		C7E043F920E9444A00138FC0 /* glass_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D520E9444A00138FC0 /* glass_refl.png */; };
+		C7E043FA20E9444A00138FC0 /* nanosuit.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D620E9444A00138FC0 /* nanosuit.mtl */; };
+		C7E043FB20E9444A00138FC0 /* body_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D720E9444A00138FC0 /* body_dif.png */; };
+		C7E043FC20E9444A00138FC0 /* hand_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D820E9444A00138FC0 /* hand_showroom_ddn.png */; };
+		C7E043FD20E9444A00138FC0 /* body_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043D920E9444A00138FC0 /* body_showroom_refl.png */; };
+		C7E043FE20E9444A00138FC0 /* glass_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043DA20E9444A00138FC0 /* glass_dif.png */; };
+		C7E043FF20E9444A00138FC0 /* arm_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043DB20E9444A00138FC0 /* arm_dif.png */; };
+		C7E0440020E9444A00138FC0 /* nanosuit.blend in Resources */ = {isa = PBXBuildFile; fileRef = C7E043DC20E9444A00138FC0 /* nanosuit.blend */; };
+		C7E0440120E9444A00138FC0 /* helmet_diff.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043DD20E9444A00138FC0 /* helmet_diff.png */; };
+		C7E0440220E9444A00138FC0 /* nanosuit.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E043DE20E9444A00138FC0 /* nanosuit.obj */; };
+		C7E0440320E9444A00138FC0 /* leg_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043DF20E9444A00138FC0 /* leg_showroom_refl.png */; };
+		C7E0440420E9444A00138FC0 /* leg_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E020E9444A00138FC0 /* leg_showroom_ddn.png */; };
+		C7E0440520E9444A00138FC0 /* helmet_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E120E9444A00138FC0 /* helmet_showroom_refl.png */; };
+		C7E0440620E9444A00138FC0 /* helmet_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E220E9444A00138FC0 /* helmet_showroom_spec.png */; };
+		C7E0440720E9444A00138FC0 /* leg_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E320E9444A00138FC0 /* leg_showroom_spec.png */; };
+		C7E0440820E9444A00138FC0 /* body_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E420E9444A00138FC0 /* body_showroom_spec.png */; };
+		C7E0440920E9444A00138FC0 /* hand_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E520E9444A00138FC0 /* hand_dif.png */; };
+		C7E0440A20E9444A00138FC0 /* bunny.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E720E9444A00138FC0 /* bunny.obj */; };
+		C7E0440B20E9444A00138FC0 /* bunny.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7E043E820E9444A00138FC0 /* bunny.mtl */; };
+		C7E0440D20E9461F00138FC0 /* InstanceScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0440C20E9461F00138FC0 /* InstanceScene.swift */; };
+		C7E0440F20E9465D00138FC0 /* TorusKnotScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0440E20E9465D00138FC0 /* TorusKnotScene.swift */; };
+		C7E0441120E94D7B00138FC0 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0441020E94D7B00138FC0 /* Instance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -113,9 +148,6 @@
 		C76341E520E8BC2400E41737 /* mushroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mushroom.png; sourceTree = "<group>"; };
 		C76341E620E8BC2400E41737 /* mushroom.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mushroom.obj; sourceTree = "<group>"; };
 		C76341E820E8BC2400E41737 /* humanFigure.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = humanFigure.obj; sourceTree = "<group>"; };
-		C76341EA20E8BC2400E41737 /* texturedCube.blend */ = {isa = PBXFileReference; lastKnownFileType = file; path = texturedCube.blend; sourceTree = "<group>"; };
-		C76341EB20E8BC2400E41737 /* texturedCube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texturedCube.png; sourceTree = "<group>"; };
-		C76341EC20E8BC2400E41737 /* texturedCube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = texturedCube.obj; sourceTree = "<group>"; };
 		C76341F620E8D52400E41737 /* Torus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus.swift; sourceTree = "<group>"; };
 		C76341F820E8E7AB00E41737 /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
 		C76341FA20E8FC4100E41737 /* Pyramid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pyramid.swift; sourceTree = "<group>"; };
@@ -131,8 +163,46 @@
 		C7BFB9F120E2E1B100BCEB30 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
 		C7BFB9F420E2F5B600BCEB30 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
-		C7BFB9F720E2F5B600BCEB30 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		C7BFB9F720E2F5B600BCEB30 /* PrimitivesScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimitivesScene.swift; sourceTree = "<group>"; };
 		C7BFB9F820E2F5B600BCEB30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		C7E043C320E9444A00138FC0 /* GRANDECO.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GRANDECO.JPG; sourceTree = "<group>"; };
+		C7E043C420E9444A00138FC0 /* GRANDEB2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GRANDEB2.JPG; sourceTree = "<group>"; };
+		C7E043C520E9444A00138FC0 /* T-Rex Model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "T-Rex Model.mtl"; sourceTree = "<group>"; };
+		C7E043C620E9444A00138FC0 /* T-Rex Model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "T-Rex Model.obj"; sourceTree = "<group>"; };
+		C7E043C820E9444A00138FC0 /* teapot.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.mtl; sourceTree = "<group>"; };
+		C7E043C920E9444A00138FC0 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
+		C7E043CA20E9444A00138FC0 /* teapot.blend */ = {isa = PBXFileReference; lastKnownFileType = file; path = teapot.blend; sourceTree = "<group>"; };
+		C7E043CC20E9444A00138FC0 /* hand_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_showroom_refl.png; sourceTree = "<group>"; };
+		C7E043CD20E9444A00138FC0 /* body_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_ddn.png; sourceTree = "<group>"; };
+		C7E043CE20E9444A00138FC0 /* helmet_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_ddn.png; sourceTree = "<group>"; };
+		C7E043CF20E9444A00138FC0 /* arm_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm_showroom_ddn.png; sourceTree = "<group>"; };
+		C7E043D020E9444A00138FC0 /* arm_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm_showroom_spec.png; sourceTree = "<group>"; };
+		C7E043D120E9444A00138FC0 /* leg_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_dif.png; sourceTree = "<group>"; };
+		C7E043D220E9444A00138FC0 /* arm_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm_showroom_refl.png; sourceTree = "<group>"; };
+		C7E043D320E9444A00138FC0 /* hand_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_showroom_spec.png; sourceTree = "<group>"; };
+		C7E043D420E9444A00138FC0 /* glass_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass_ddn.png; sourceTree = "<group>"; };
+		C7E043D520E9444A00138FC0 /* glass_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass_refl.png; sourceTree = "<group>"; };
+		C7E043D620E9444A00138FC0 /* nanosuit.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nanosuit.mtl; sourceTree = "<group>"; };
+		C7E043D720E9444A00138FC0 /* body_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_dif.png; sourceTree = "<group>"; };
+		C7E043D820E9444A00138FC0 /* hand_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_showroom_ddn.png; sourceTree = "<group>"; };
+		C7E043D920E9444A00138FC0 /* body_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_refl.png; sourceTree = "<group>"; };
+		C7E043DA20E9444A00138FC0 /* glass_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass_dif.png; sourceTree = "<group>"; };
+		C7E043DB20E9444A00138FC0 /* arm_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm_dif.png; sourceTree = "<group>"; };
+		C7E043DC20E9444A00138FC0 /* nanosuit.blend */ = {isa = PBXFileReference; lastKnownFileType = file; path = nanosuit.blend; sourceTree = "<group>"; };
+		C7E043DD20E9444A00138FC0 /* helmet_diff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_diff.png; sourceTree = "<group>"; };
+		C7E043DE20E9444A00138FC0 /* nanosuit.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nanosuit.obj; sourceTree = "<group>"; };
+		C7E043DF20E9444A00138FC0 /* leg_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_showroom_refl.png; sourceTree = "<group>"; };
+		C7E043E020E9444A00138FC0 /* leg_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_showroom_ddn.png; sourceTree = "<group>"; };
+		C7E043E120E9444A00138FC0 /* helmet_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_refl.png; sourceTree = "<group>"; };
+		C7E043E220E9444A00138FC0 /* helmet_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_spec.png; sourceTree = "<group>"; };
+		C7E043E320E9444A00138FC0 /* leg_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_showroom_spec.png; sourceTree = "<group>"; };
+		C7E043E420E9444A00138FC0 /* body_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_spec.png; sourceTree = "<group>"; };
+		C7E043E520E9444A00138FC0 /* hand_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_dif.png; sourceTree = "<group>"; };
+		C7E043E720E9444A00138FC0 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
+		C7E043E820E9444A00138FC0 /* bunny.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.mtl; sourceTree = "<group>"; };
+		C7E0440C20E9461F00138FC0 /* InstanceScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceScene.swift; sourceTree = "<group>"; };
+		C7E0440E20E9465D00138FC0 /* TorusKnotScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusKnotScene.swift; sourceTree = "<group>"; };
+		C7E0441020E94D7B00138FC0 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,9 +335,12 @@
 		C76341E320E8BC2400E41737 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C7E043E620E9444A00138FC0 /* bunny */,
+				C7E043CB20E9444A00138FC0 /* Nanosuit */,
+				C7E043C720E9444A00138FC0 /* Teapot */,
+				C7E043C120E9444A00138FC0 /* TRex */,
 				C76341E420E8BC2400E41737 /* mushroom */,
 				C76341E720E8BC2400E41737 /* humanFigure */,
-				C76341E920E8BC2400E41737 /* texturedCube */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,16 +360,6 @@
 				C76341E820E8BC2400E41737 /* humanFigure.obj */,
 			);
 			path = humanFigure;
-			sourceTree = "<group>";
-		};
-		C76341E920E8BC2400E41737 /* texturedCube */ = {
-			isa = PBXGroup;
-			children = (
-				C76341EA20E8BC2400E41737 /* texturedCube.blend */,
-				C76341EB20E8BC2400E41737 /* texturedCube.png */,
-				C76341EC20E8BC2400E41737 /* texturedCube.obj */,
-			);
-			path = texturedCube;
 			sourceTree = "<group>";
 		};
 		C76341F520E8D50D00E41737 /* Primitives */ = {
@@ -347,6 +410,7 @@
 				C76341DD20E7D39900E41737 /* Camera.swift */,
 				C7BFB9F820E2F5B600BCEB30 /* Node.swift */,
 				C76341E120E8BA6100E41737 /* Model.swift */,
+				C7E0441020E94D7B00138FC0 /* Instance.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -355,9 +419,82 @@
 			isa = PBXGroup;
 			children = (
 				C7BFB9F420E2F5B600BCEB30 /* Scene.swift */,
-				C7BFB9F720E2F5B600BCEB30 /* GameScene.swift */,
+				C7BFB9F720E2F5B600BCEB30 /* PrimitivesScene.swift */,
+				C7E0440C20E9461F00138FC0 /* InstanceScene.swift */,
+				C7E0440E20E9465D00138FC0 /* TorusKnotScene.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C7E043C120E9444A00138FC0 /* TRex */ = {
+			isa = PBXGroup;
+			children = (
+				C7E043C220E9444A00138FC0 /* Textures */,
+				C7E043C520E9444A00138FC0 /* T-Rex Model.mtl */,
+				C7E043C620E9444A00138FC0 /* T-Rex Model.obj */,
+			);
+			path = TRex;
+			sourceTree = "<group>";
+		};
+		C7E043C220E9444A00138FC0 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				C7E043C320E9444A00138FC0 /* GRANDECO.JPG */,
+				C7E043C420E9444A00138FC0 /* GRANDEB2.JPG */,
+			);
+			path = Textures;
+			sourceTree = "<group>";
+		};
+		C7E043C720E9444A00138FC0 /* Teapot */ = {
+			isa = PBXGroup;
+			children = (
+				C7E043C820E9444A00138FC0 /* teapot.mtl */,
+				C7E043C920E9444A00138FC0 /* teapot.obj */,
+				C7E043CA20E9444A00138FC0 /* teapot.blend */,
+			);
+			path = Teapot;
+			sourceTree = "<group>";
+		};
+		C7E043CB20E9444A00138FC0 /* Nanosuit */ = {
+			isa = PBXGroup;
+			children = (
+				C7E043CC20E9444A00138FC0 /* hand_showroom_refl.png */,
+				C7E043CD20E9444A00138FC0 /* body_showroom_ddn.png */,
+				C7E043CE20E9444A00138FC0 /* helmet_showroom_ddn.png */,
+				C7E043CF20E9444A00138FC0 /* arm_showroom_ddn.png */,
+				C7E043D020E9444A00138FC0 /* arm_showroom_spec.png */,
+				C7E043D120E9444A00138FC0 /* leg_dif.png */,
+				C7E043D220E9444A00138FC0 /* arm_showroom_refl.png */,
+				C7E043D320E9444A00138FC0 /* hand_showroom_spec.png */,
+				C7E043D420E9444A00138FC0 /* glass_ddn.png */,
+				C7E043D520E9444A00138FC0 /* glass_refl.png */,
+				C7E043D620E9444A00138FC0 /* nanosuit.mtl */,
+				C7E043D720E9444A00138FC0 /* body_dif.png */,
+				C7E043D820E9444A00138FC0 /* hand_showroom_ddn.png */,
+				C7E043D920E9444A00138FC0 /* body_showroom_refl.png */,
+				C7E043DA20E9444A00138FC0 /* glass_dif.png */,
+				C7E043DB20E9444A00138FC0 /* arm_dif.png */,
+				C7E043DC20E9444A00138FC0 /* nanosuit.blend */,
+				C7E043DD20E9444A00138FC0 /* helmet_diff.png */,
+				C7E043DE20E9444A00138FC0 /* nanosuit.obj */,
+				C7E043DF20E9444A00138FC0 /* leg_showroom_refl.png */,
+				C7E043E020E9444A00138FC0 /* leg_showroom_ddn.png */,
+				C7E043E120E9444A00138FC0 /* helmet_showroom_refl.png */,
+				C7E043E220E9444A00138FC0 /* helmet_showroom_spec.png */,
+				C7E043E320E9444A00138FC0 /* leg_showroom_spec.png */,
+				C7E043E420E9444A00138FC0 /* body_showroom_spec.png */,
+				C7E043E520E9444A00138FC0 /* hand_dif.png */,
+			);
+			path = Nanosuit;
+			sourceTree = "<group>";
+		};
+		C7E043E620E9444A00138FC0 /* bunny */ = {
+			isa = PBXGroup;
+			children = (
+				C7E043E720E9444A00138FC0 /* bunny.obj */,
+				C7E043E820E9444A00138FC0 /* bunny.mtl */,
+			);
+			path = bunny;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,25 +556,57 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7E0440120E9444A00138FC0 /* helmet_diff.png in Resources */,
+				C7E043EA20E9444A00138FC0 /* GRANDEB2.JPG in Resources */,
+				C7E043F020E9444A00138FC0 /* hand_showroom_refl.png in Resources */,
+				C7E0440320E9444A00138FC0 /* leg_showroom_refl.png in Resources */,
+				C7E043F120E9444A00138FC0 /* body_showroom_ddn.png in Resources */,
 				C75FDB4320E1992100DE2EEC /* LaunchScreen.storyboard in Resources */,
 				C71F1D1120E5A4060095F6A6 /* abstract-color.jpg in Resources */,
+				C7E043FD20E9444A00138FC0 /* body_showroom_refl.png in Resources */,
+				C7E043F620E9444A00138FC0 /* arm_showroom_refl.png in Resources */,
+				C7E0440420E9444A00138FC0 /* leg_showroom_ddn.png in Resources */,
 				C71F1D0720E58AC00095F6A6 /* picture-frame.png in Resources */,
 				C71F1D0E20E5A4060095F6A6 /* colors-paint.jpg in Resources */,
+				C7E0440920E9444A00138FC0 /* hand_dif.png in Resources */,
+				C7E043EC20E9444A00138FC0 /* T-Rex Model.obj in Resources */,
 				C763420120E8FE5900E41737 /* spiralcolor.jpg in Resources */,
+				C7E0440820E9444A00138FC0 /* body_showroom_spec.png in Resources */,
+				C7E0440A20E9444A00138FC0 /* bunny.obj in Resources */,
+				C7E043FA20E9444A00138FC0 /* nanosuit.mtl in Resources */,
+				C7E043FE20E9444A00138FC0 /* glass_dif.png in Resources */,
 				C71F1D1020E5A4060095F6A6 /* colors-explosion.jpg in Resources */,
-				C76341F020E8BC2400E41737 /* texturedCube.blend in Resources */,
 				C763420020E8FE5900E41737 /* space_galaxy.jpg in Resources */,
 				C75FDB4020E1992100DE2EEC /* Assets.xcassets in Resources */,
+				C7E0440620E9444A00138FC0 /* helmet_showroom_spec.png in Resources */,
 				C71F1D0620E58AC00095F6A6 /* picture-frame-mask.png in Resources */,
+				C7E043F220E9444A00138FC0 /* helmet_showroom_ddn.png in Resources */,
+				C7E0440020E9444A00138FC0 /* nanosuit.blend in Resources */,
+				C7E043F820E9444A00138FC0 /* glass_ddn.png in Resources */,
+				C7E043ED20E9444A00138FC0 /* teapot.mtl in Resources */,
+				C7E043F420E9444A00138FC0 /* arm_showroom_spec.png in Resources */,
+				C7E043F920E9444A00138FC0 /* glass_refl.png in Resources */,
+				C7E043EE20E9444A00138FC0 /* teapot.obj in Resources */,
 				C76341FF20E8FE5900E41737 /* blue-frozen-water.jpg in Resources */,
+				C7E0440B20E9444A00138FC0 /* bunny.mtl in Resources */,
+				C7E043FF20E9444A00138FC0 /* arm_dif.png in Resources */,
 				C71F1D0F20E5A4060095F6A6 /* colors-world.jpg in Resources */,
 				C76341EF20E8BC2400E41737 /* humanFigure.obj in Resources */,
 				C71F1D1320E5A6F90095F6A6 /* stewe-griffin.jpg in Resources */,
-				C76341F120E8BC2400E41737 /* texturedCube.png in Resources */,
+				C7E043FC20E9444A00138FC0 /* hand_showroom_ddn.png in Resources */,
+				C7E043E920E9444A00138FC0 /* GRANDECO.JPG in Resources */,
+				C7E043EB20E9444A00138FC0 /* T-Rex Model.mtl in Resources */,
+				C7E043FB20E9444A00138FC0 /* body_dif.png in Resources */,
+				C7E0440220E9444A00138FC0 /* nanosuit.obj in Resources */,
+				C7E043F320E9444A00138FC0 /* arm_showroom_ddn.png in Resources */,
 				C76341ED20E8BC2400E41737 /* mushroom.png in Resources */,
-				C76341F220E8BC2400E41737 /* texturedCube.obj in Resources */,
+				C7E043F720E9444A00138FC0 /* hand_showroom_spec.png in Resources */,
+				C7E043F520E9444A00138FC0 /* leg_dif.png in Resources */,
 				C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */,
+				C7E0440720E9444A00138FC0 /* leg_showroom_spec.png in Resources */,
 				C76341EE20E8BC2400E41737 /* mushroom.obj in Resources */,
+				C7E043EF20E9444A00138FC0 /* teapot.blend in Resources */,
+				C7E0440520E9444A00138FC0 /* helmet_showroom_refl.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */,
-				C7BFB9FD20E2F5B700BCEB30 /* GameScene.swift in Sources */,
+				C7BFB9FD20E2F5B700BCEB30 /* PrimitivesScene.swift in Sources */,
 				C76341FB20E8FC4100E41737 /* Pyramid.swift in Sources */,
 				C763420B20E90A1900E41737 /* Cylinder.swift in Sources */,
 				C7BFB9FE20E2F5B700BCEB30 /* Node.swift in Sources */,
@@ -464,11 +633,13 @@
 				C76341D320E7ACD800E41737 /* Geometric.swift in Sources */,
 				C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */,
 				C763420720E9086400E41737 /* TriangularPrism.swift in Sources */,
+				C7E0440F20E9465D00138FC0 /* TorusKnotScene.swift in Sources */,
 				C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */,
 				C76341D720E7ACD800E41737 /* Trigonometric.swift in Sources */,
 				C76341F720E8D52400E41737 /* Torus.swift in Sources */,
 				C712B54120E44E2A004CDFA3 /* Types.swift in Sources */,
 				C763420D20E9117A00E41737 /* TorusKnot.swift in Sources */,
+				C7E0441120E94D7B00138FC0 /* Instance.swift in Sources */,
 				C76341E220E8BA6100E41737 /* Model.swift in Sources */,
 				C763420920E90A1000E41737 /* Cone.swift in Sources */,
 				C76341D820E7ACD800E41737 /* Matrix.swift in Sources */,
@@ -478,6 +649,7 @@
 				C76341DE20E7D39900E41737 /* Camera.swift in Sources */,
 				C76341D620E7ACD800E41737 /* Vector.swift in Sources */,
 				C763420320E8FF5F00E41737 /* Diamond.swift in Sources */,
+				C7E0440D20E9461F00138FC0 /* InstanceScene.swift in Sources */,
 				C71F1D0920E58AC00095F6A6 /* Texturable.swift in Sources */,
 				C76341C620E7A2A700E41737 /* Cube.swift in Sources */,
 				C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */,

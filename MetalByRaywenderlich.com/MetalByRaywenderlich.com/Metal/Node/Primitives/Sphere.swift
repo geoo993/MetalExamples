@@ -15,8 +15,6 @@ class Sphere: Primitive {
         super.setup()
         name = String(describing: Sphere.self)
         useIndicies = true
-        fragmentFunctionName = "fragment_color"
-
     }
 
     override func buildVertices() {

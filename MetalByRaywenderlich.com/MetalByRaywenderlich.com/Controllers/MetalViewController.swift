@@ -72,8 +72,10 @@ class MetalViewController: UIViewController {
             CGSize(width: height, height: width) : CGSize(width: width, height: height)
         let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 1000)
 
-        let scene = GameScene(device: device, camera: camera)
-        renderer = Renderer(device: device, scene: scene)
+        let primitivesScene = PrimitivesScene(device: device, camera: camera)
+        let torusKnotScene = TorusKnotScene(device: device, camera: camera)
+        let instanceScene = InstanceScene(device: device, camera: camera)
+        renderer = Renderer(device: device, scene: instanceScene)
 
         // Setup MTKView and delegate
         metalView.depthStencilPixelFormat = .depth32Float

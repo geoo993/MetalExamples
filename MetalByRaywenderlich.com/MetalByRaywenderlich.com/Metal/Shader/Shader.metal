@@ -43,6 +43,15 @@ struct Materials {
     float4 materialColor;
 };
 
+// uniform matrices and materials 3D attributes
+struct Uniform {
+    float4x4 projectionMatrix;
+    float4x4 modelMatrix;
+    float4x4 viewMatrix;
+    float4x4 normalMatrix;
+    float4 materialColor;
+};
+
 
 // input information to the shader
 // note that each item in the struct has been given an attribute number
@@ -111,6 +120,22 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
     return vertexOut;
 }
 
+// vertex function for instances
+vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
+                                        constant Uniform *instances [[ buffer(1) ]],
+                                        uint instanceId [[ instance_id ]]) {
+    Uniform uniform = instances[instanceId];
+    VertexOut vertexOut;
+
+    // Transform the vertex spatial position using
+    float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
+    vertexOut.position = matrix * vertexIn.position;
+    vertexOut.color = vertexIn.color;
+    vertexOut.normal = vertexIn.normal;
+    vertexOut.materialColor = uniform.materialColor;
+    vertexOut.textureCoordinates = vertexIn.textureCoordinates;
+    return vertexOut;
+}
 
 
 
@@ -130,7 +155,7 @@ fragment half4 fragment_shader() {
 // during this rasterisation process, in other words it is data that the rasterisor has generated per fragment,
 // rather than one constant value for all fragments.
 fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]]) {
-    return half4(vertexIn.color);
+    return half4(vertexIn.materialColor);
 }
 
 // the second parameter here is the texture in fragment buffer 0
@@ -143,14 +168,12 @@ fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
     float4 color = vertexIn.color;
     float3 normal = vertexIn.normal;
 
-    return half4(normal.x, normal.y, normal.z, 1);
-    /*
+    //return half4(normal.x, normal.y, normal.z, 1);
     textcolor = textcolor * vertexIn.materialColor;
     if (textcolor.a == 0.0)
         discard_fragment();
 
     return half4(textcolor.r, textcolor.g, textcolor.b, 1);
-     */
 }
 
 fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
@@ -172,8 +195,4 @@ fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
 
     // Return the fragment color for the fragments that aren't discarded:
     return half4(textcolor.r, textcolor.g, textcolor.b, 1);
-}
-
-fragment half4 fragment_color(VertexOut vertexIn [[ stage_in ]]) {
-    return half4(vertexIn.materialColor);
 }

@@ -3,6 +3,7 @@
 // https://stackoverflow.com/questions/24263007/how-to-use-hex-colour-values-in-swift-ios
 
 import UIKit
+import simd
 
 public struct ColorComponents {
     var r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat
@@ -292,6 +293,12 @@ public extension UIColor {
     public var toMTLClearColor: MTLClearColor {
         return MTLClearColor(red: redValue.toDouble, green: greenValue.toDouble,
                              blue: blueValue.toDouble, alpha: alphaValue.toDouble)
+    }
+    public var toFloat4: float4 {
+        return float4(redValue.toFloat,
+                      greenValue.toFloat,
+                      blueValue.toFloat,
+                      alphaValue.toFloat)
     }
     
     public  var redValue: CGFloat {
