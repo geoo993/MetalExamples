@@ -7,6 +7,7 @@ class Node {
     var position = float3(0)
     var rotation = float3(0)
     var scale = float3(1)
+    var materialColor = float4(1)
 
     var modelMatrix: matrix_float4x4 {
         var matrix = matrix_float4x4(translationX: position.x,

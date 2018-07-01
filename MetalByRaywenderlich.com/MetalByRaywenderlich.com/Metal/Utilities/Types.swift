@@ -8,10 +8,17 @@
 
 import simd
 
+struct Constants {
+    var animateBy: Float
+    var useTexture: Bool
+}
+
+
 struct Vertex {
     var position: float3
     var texture: float2
     var color: float4
+    var normal: float3
 }
 
 // each model will declare a model constant struct and this matrix will be sent to the GPU
@@ -23,4 +30,16 @@ struct Matrices {
     var modelMatrix = matrix_identity_float4x4
     var viewMatrix = matrix_identity_float4x4
     var normalMatrix = matrix_identity_float4x4
+    var materialColor = float4(1)
+}
+
+struct Materials
+{
+    var materialColor = float4(1)
+//    sampler2D ambientMap;  // ambient map
+//    sampler2D normalMap;   // normal map
+//    sampler2D diffuseMap;  // diffuse map
+//    sampler2D specularMap; // specular map
+//    sampler2D heightMap;   // heihgt Map, also known as depth map
+//    float shininess; // object material shininess
 }

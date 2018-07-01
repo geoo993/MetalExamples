@@ -52,6 +52,7 @@ class MetalViewController: UIViewController {
     }
 
     var renderer: Renderer!
+    var isLandscape = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +67,9 @@ class MetalViewController: UIViewController {
         let currentDevice = UIDevice.current.modelName
         let width = CGFloat.width(ofDevice: currentDevice).width
         let height = CGFloat.height(ofDevice: currentDevice).height
-        let screenSize = CGSize(width: width, height: height)
+
+        let screenSize = isLandscape ?
+            CGSize(width: height, height: width) : CGSize(width: width, height: height)
         let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 1000)
 
         let scene = GameScene(device: device, camera: camera)
@@ -74,13 +77,12 @@ class MetalViewController: UIViewController {
 
         // Setup MTKView and delegate
         metalView.depthStencilPixelFormat = .depth32Float
-        metalView.clearColor = UIColor.wenderlichGreen.toMTLClearColor
+        metalView.clearColor = UIColor.skyBlue.toMTLClearColor
         metalView.delegate = renderer
 
     }
 
     deinit {
-
         print("🗑")
     }
 

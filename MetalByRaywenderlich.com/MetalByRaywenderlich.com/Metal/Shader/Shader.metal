@@ -27,14 +27,20 @@ using namespace metal;
 // --------- Attributes --------
 struct Constants {
     float animateBy;
+    bool useTexture;
 };
 
-// 3D atributes of model
+// 3D attributes of model
 struct Matrices {
     float4x4 projectionMatrix;
     float4x4 modelMatrix;
     float4x4 viewMatrix;
     float4x4 normalMatrix;
+};
+
+// Materials attributes
+struct Materials {
+    float4 materialColor;
 };
 
 
@@ -44,6 +50,7 @@ struct VertexIn {
     float4 position [[ attribute(0) ]];
     float2 textureCoordinates [[ attribute(1) ]];
     float4 color [[ attribute(2) ]];
+    float3 normal [[ attribute(3) ]];
 };
 
 // this tells the rasterisor, which of these data items contains, contains the vertex position or color value
@@ -51,6 +58,8 @@ struct VertexOut {
     float4 position [[ position ]];
     float2 textureCoordinates;
     float4 color;
+    float3 normal;
+    float4 materialColor;
 };
 
 
@@ -87,13 +96,16 @@ vertex float4 vertex_shader(const device packed_float3 *vertices [[ buffer(0) ]]
 */
 
 vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
-                               constant Matrices &matrices [[ buffer(1) ]]) {
+                               constant Matrices &matrices [[ buffer(1) ]],
+                               constant Materials &materials [[ buffer(2) ]]) {
     VertexOut vertexOut;
 
     // Transform the vertex spatial position using
-    vertexOut.position = matrices.projectionMatrix * matrices.viewMatrix * matrices.modelMatrix * vertexIn.position;
-
+    float4x4 matrix = matrices.projectionMatrix * matrices.viewMatrix * matrices.modelMatrix;
+    vertexOut.position = matrix * vertexIn.position;
     vertexOut.color = vertexIn.color;
+    vertexOut.normal = vertexIn.normal;
+    vertexOut.materialColor = materials.materialColor;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
 
     return vertexOut;
@@ -125,15 +137,20 @@ fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]]) {
 fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
                                  texture2d<float> texture [[ texture(0) ]],
                                  sampler sampler2d [[ sampler(0) ]]) {
-    // use a default sampler state
-   // constexpr sampler defaultSampler;
-
 
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
-    //float4 vOutColor = textcolor * vertexIn.color;
+    float4 color = vertexIn.color;
+    float3 normal = vertexIn.normal;
+
+    return half4(normal.x, normal.y, normal.z, 1);
+    /*
+    textcolor = textcolor * vertexIn.materialColor;
+    if (textcolor.a == 0.0)
+        discard_fragment();
 
     return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+     */
 }
 
 fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
@@ -155,4 +172,8 @@ fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
 
     // Return the fragment color for the fragments that aren't discarded:
     return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+}
+
+fragment half4 fragment_color(VertexOut vertexIn [[ stage_in ]]) {
+    return half4(vertexIn.materialColor);
 }

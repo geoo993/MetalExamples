@@ -37,6 +37,25 @@
 		C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341D020E7ACD800E41737 /* Quaternion.swift */; };
 		C76341DE20E7D39900E41737 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341DD20E7D39900E41737 /* Camera.swift */; };
 		C76341E020E8010500E41737 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341DF20E8010500E41737 /* Primitive.swift */; };
+		C76341E220E8BA6100E41737 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341E120E8BA6100E41737 /* Model.swift */; };
+		C76341ED20E8BC2400E41737 /* mushroom.png in Resources */ = {isa = PBXBuildFile; fileRef = C76341E520E8BC2400E41737 /* mushroom.png */; };
+		C76341EE20E8BC2400E41737 /* mushroom.obj in Resources */ = {isa = PBXBuildFile; fileRef = C76341E620E8BC2400E41737 /* mushroom.obj */; };
+		C76341EF20E8BC2400E41737 /* humanFigure.obj in Resources */ = {isa = PBXBuildFile; fileRef = C76341E820E8BC2400E41737 /* humanFigure.obj */; };
+		C76341F020E8BC2400E41737 /* texturedCube.blend in Resources */ = {isa = PBXBuildFile; fileRef = C76341EA20E8BC2400E41737 /* texturedCube.blend */; };
+		C76341F120E8BC2400E41737 /* texturedCube.png in Resources */ = {isa = PBXBuildFile; fileRef = C76341EB20E8BC2400E41737 /* texturedCube.png */; };
+		C76341F220E8BC2400E41737 /* texturedCube.obj in Resources */ = {isa = PBXBuildFile; fileRef = C76341EC20E8BC2400E41737 /* texturedCube.obj */; };
+		C76341F720E8D52400E41737 /* Torus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341F620E8D52400E41737 /* Torus.swift */; };
+		C76341F920E8E7AB00E41737 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341F820E8E7AB00E41737 /* Sphere.swift */; };
+		C76341FB20E8FC4100E41737 /* Pyramid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76341FA20E8FC4100E41737 /* Pyramid.swift */; };
+		C76341FF20E8FE5900E41737 /* blue-frozen-water.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C76341FC20E8FE5800E41737 /* blue-frozen-water.jpg */; };
+		C763420020E8FE5900E41737 /* space_galaxy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C76341FD20E8FE5900E41737 /* space_galaxy.jpg */; };
+		C763420120E8FE5900E41737 /* spiralcolor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C76341FE20E8FE5900E41737 /* spiralcolor.jpg */; };
+		C763420320E8FF5F00E41737 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420220E8FF5F00E41737 /* Diamond.swift */; };
+		C763420520E901DE00E41737 /* Icosahedron.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420420E901DE00E41737 /* Icosahedron.swift */; };
+		C763420720E9086400E41737 /* TriangularPrism.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420620E9086400E41737 /* TriangularPrism.swift */; };
+		C763420920E90A1000E41737 /* Cone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420820E90A1000E41737 /* Cone.swift */; };
+		C763420B20E90A1900E41737 /* Cylinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420A20E90A1900E41737 /* Cylinder.swift */; };
+		C763420D20E9117A00E41737 /* TorusKnot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420C20E9117A00E41737 /* TorusKnot.swift */; };
 		C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* Shader.metal */; };
 		C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F420E2F5B600BCEB30 /* Scene.swift */; };
 		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
@@ -90,6 +109,25 @@
 		C76341D020E7ACD800E41737 /* Quaternion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
 		C76341DD20E7D39900E41737 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		C76341DF20E8010500E41737 /* Primitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primitive.swift; sourceTree = "<group>"; };
+		C76341E120E8BA6100E41737 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C76341E520E8BC2400E41737 /* mushroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mushroom.png; sourceTree = "<group>"; };
+		C76341E620E8BC2400E41737 /* mushroom.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mushroom.obj; sourceTree = "<group>"; };
+		C76341E820E8BC2400E41737 /* humanFigure.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = humanFigure.obj; sourceTree = "<group>"; };
+		C76341EA20E8BC2400E41737 /* texturedCube.blend */ = {isa = PBXFileReference; lastKnownFileType = file; path = texturedCube.blend; sourceTree = "<group>"; };
+		C76341EB20E8BC2400E41737 /* texturedCube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texturedCube.png; sourceTree = "<group>"; };
+		C76341EC20E8BC2400E41737 /* texturedCube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = texturedCube.obj; sourceTree = "<group>"; };
+		C76341F620E8D52400E41737 /* Torus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus.swift; sourceTree = "<group>"; };
+		C76341F820E8E7AB00E41737 /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
+		C76341FA20E8FC4100E41737 /* Pyramid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pyramid.swift; sourceTree = "<group>"; };
+		C76341FC20E8FE5800E41737 /* blue-frozen-water.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "blue-frozen-water.jpg"; sourceTree = "<group>"; };
+		C76341FD20E8FE5900E41737 /* space_galaxy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = space_galaxy.jpg; sourceTree = "<group>"; };
+		C76341FE20E8FE5900E41737 /* spiralcolor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spiralcolor.jpg; sourceTree = "<group>"; };
+		C763420220E8FF5F00E41737 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		C763420420E901DE00E41737 /* Icosahedron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icosahedron.swift; sourceTree = "<group>"; };
+		C763420620E9086400E41737 /* TriangularPrism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangularPrism.swift; sourceTree = "<group>"; };
+		C763420820E90A1000E41737 /* Cone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cone.swift; sourceTree = "<group>"; };
+		C763420A20E90A1900E41737 /* Cylinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cylinder.swift; sourceTree = "<group>"; };
+		C763420C20E9117A00E41737 /* TorusKnot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusKnot.swift; sourceTree = "<group>"; };
 		C7BFB9F120E2E1B100BCEB30 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
 		C7BFB9F420E2F5B600BCEB30 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
@@ -139,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				C71F1D0020E58AC00095F6A6 /* Images */,
+				C76341E320E8BC2400E41737 /* Models */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -146,6 +185,9 @@
 		C71F1D0020E58AC00095F6A6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C76341FC20E8FE5800E41737 /* blue-frozen-water.jpg */,
+				C76341FD20E8FE5900E41737 /* space_galaxy.jpg */,
+				C76341FE20E8FE5900E41737 /* spiralcolor.jpg */,
 				C71F1D1220E5A6F90095F6A6 /* stewe-griffin.jpg */,
 				C71F1D0D20E5A4060095F6A6 /* abstract-color.jpg */,
 				C71F1D0C20E5A4060095F6A6 /* colors-explosion.jpg */,
@@ -220,6 +262,62 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C76341E320E8BC2400E41737 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C76341E420E8BC2400E41737 /* mushroom */,
+				C76341E720E8BC2400E41737 /* humanFigure */,
+				C76341E920E8BC2400E41737 /* texturedCube */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C76341E420E8BC2400E41737 /* mushroom */ = {
+			isa = PBXGroup;
+			children = (
+				C76341E520E8BC2400E41737 /* mushroom.png */,
+				C76341E620E8BC2400E41737 /* mushroom.obj */,
+			);
+			path = mushroom;
+			sourceTree = "<group>";
+		};
+		C76341E720E8BC2400E41737 /* humanFigure */ = {
+			isa = PBXGroup;
+			children = (
+				C76341E820E8BC2400E41737 /* humanFigure.obj */,
+			);
+			path = humanFigure;
+			sourceTree = "<group>";
+		};
+		C76341E920E8BC2400E41737 /* texturedCube */ = {
+			isa = PBXGroup;
+			children = (
+				C76341EA20E8BC2400E41737 /* texturedCube.blend */,
+				C76341EB20E8BC2400E41737 /* texturedCube.png */,
+				C76341EC20E8BC2400E41737 /* texturedCube.obj */,
+			);
+			path = texturedCube;
+			sourceTree = "<group>";
+		};
+		C76341F520E8D50D00E41737 /* Primitives */ = {
+			isa = PBXGroup;
+			children = (
+				C76341F820E8E7AB00E41737 /* Sphere.swift */,
+				C76341C520E7A2A700E41737 /* Cube.swift */,
+				C7BFB9F620E2F5B600BCEB30 /* Plane.swift */,
+				C76341DF20E8010500E41737 /* Primitive.swift */,
+				C76341F620E8D52400E41737 /* Torus.swift */,
+				C763420C20E9117A00E41737 /* TorusKnot.swift */,
+				C76341FA20E8FC4100E41737 /* Pyramid.swift */,
+				C763420220E8FF5F00E41737 /* Diamond.swift */,
+				C763420420E901DE00E41737 /* Icosahedron.swift */,
+				C763420620E9086400E41737 /* TriangularPrism.swift */,
+				C763420820E90A1000E41737 /* Cone.swift */,
+				C763420A20E90A1900E41737 /* Cylinder.swift */,
+			);
+			path = Primitives;
+			sourceTree = "<group>";
+		};
 		C7BFB9F020E2E19F00BCEB30 /* Shader */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,11 +343,10 @@
 		C7BFBA0020E2F5BF00BCEB30 /* Node */ = {
 			isa = PBXGroup;
 			children = (
+				C76341F520E8D50D00E41737 /* Primitives */,
 				C76341DD20E7D39900E41737 /* Camera.swift */,
-				C76341C520E7A2A700E41737 /* Cube.swift */,
-				C7BFB9F620E2F5B600BCEB30 /* Plane.swift */,
 				C7BFB9F820E2F5B600BCEB30 /* Node.swift */,
-				C76341DF20E8010500E41737 /* Primitive.swift */,
+				C76341E120E8BA6100E41737 /* Model.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -326,12 +423,21 @@
 				C71F1D1120E5A4060095F6A6 /* abstract-color.jpg in Resources */,
 				C71F1D0720E58AC00095F6A6 /* picture-frame.png in Resources */,
 				C71F1D0E20E5A4060095F6A6 /* colors-paint.jpg in Resources */,
+				C763420120E8FE5900E41737 /* spiralcolor.jpg in Resources */,
 				C71F1D1020E5A4060095F6A6 /* colors-explosion.jpg in Resources */,
+				C76341F020E8BC2400E41737 /* texturedCube.blend in Resources */,
+				C763420020E8FE5900E41737 /* space_galaxy.jpg in Resources */,
 				C75FDB4020E1992100DE2EEC /* Assets.xcassets in Resources */,
 				C71F1D0620E58AC00095F6A6 /* picture-frame-mask.png in Resources */,
+				C76341FF20E8FE5900E41737 /* blue-frozen-water.jpg in Resources */,
 				C71F1D0F20E5A4060095F6A6 /* colors-world.jpg in Resources */,
+				C76341EF20E8BC2400E41737 /* humanFigure.obj in Resources */,
 				C71F1D1320E5A6F90095F6A6 /* stewe-griffin.jpg in Resources */,
+				C76341F120E8BC2400E41737 /* texturedCube.png in Resources */,
+				C76341ED20E8BC2400E41737 /* mushroom.png in Resources */,
+				C76341F220E8BC2400E41737 /* texturedCube.obj in Resources */,
 				C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */,
+				C76341EE20E8BC2400E41737 /* mushroom.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,8 +450,11 @@
 			files = (
 				C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */,
 				C7BFB9FD20E2F5B700BCEB30 /* GameScene.swift in Sources */,
+				C76341FB20E8FC4100E41737 /* Pyramid.swift in Sources */,
+				C763420B20E90A1900E41737 /* Cylinder.swift in Sources */,
 				C7BFB9FE20E2F5B700BCEB30 /* Node.swift in Sources */,
 				C712B54520E45459004CDFA3 /* Renderable.swift in Sources */,
+				C763420520E901DE00E41737 /* Icosahedron.swift in Sources */,
 				C76341D520E7ACD800E41737 /* Common.swift in Sources */,
 				C76341D220E7ACD800E41737 /* Exponential.swift in Sources */,
 				C702D54C20E78AF600991288 /* Transform.swift in Sources */,
@@ -354,14 +463,21 @@
 				C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */,
 				C76341D320E7ACD800E41737 /* Geometric.swift in Sources */,
 				C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */,
+				C763420720E9086400E41737 /* TriangularPrism.swift in Sources */,
 				C75FDBD320E1AB5D00DE2EEC /* Renderer.swift in Sources */,
 				C76341D720E7ACD800E41737 /* Trigonometric.swift in Sources */,
+				C76341F720E8D52400E41737 /* Torus.swift in Sources */,
 				C712B54120E44E2A004CDFA3 /* Types.swift in Sources */,
+				C763420D20E9117A00E41737 /* TorusKnot.swift in Sources */,
+				C76341E220E8BA6100E41737 /* Model.swift in Sources */,
+				C763420920E90A1000E41737 /* Cone.swift in Sources */,
 				C76341D820E7ACD800E41737 /* Matrix.swift in Sources */,
 				C76341D420E7ACD800E41737 /* Matrix_Transform.swift in Sources */,
+				C76341F920E8E7AB00E41737 /* Sphere.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
 				C76341DE20E7D39900E41737 /* Camera.swift in Sources */,
 				C76341D620E7ACD800E41737 /* Vector.swift in Sources */,
+				C763420320E8FF5F00E41737 /* Diamond.swift in Sources */,
 				C71F1D0920E58AC00095F6A6 /* Texturable.swift in Sources */,
 				C76341C620E7A2A700E41737 /* Cube.swift in Sources */,
 				C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */,

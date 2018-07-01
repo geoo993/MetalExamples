@@ -22,6 +22,10 @@ class Primitive: Node {
     // you might want to send constant values to the GPU, to do this we can create a struct to hold
     // the values that the GPU will then apply to all the vertices.
     var matrices = Matrices()
+    var materials = Materials()
+
+    // how to draw the object
+    var drawType: MTLPrimitiveType = .triangle
 
     //MARK: - Renderable
     var pipelineState: MTLRenderPipelineState!
@@ -47,6 +51,11 @@ class Primitive: Node {
         vertexDescriptor.attributes[2].offset = MemoryLayout<float3>.stride + MemoryLayout<float2>.stride // float3 and float2 offset from the first and second attribute as we are striding, this was the size of the position and texture attribute
         vertexDescriptor.attributes[2].bufferIndex = 0 // buffer index of vertex array
 
+        // describe the normal data from Vertex struct
+        vertexDescriptor.attributes[3].format = .float3
+        vertexDescriptor.attributes[3].offset = MemoryLayout<float3>.stride + MemoryLayout<float2>.stride + MemoryLayout<float4>.stride // float3 and float2 offset from the first and second attribute as we are striding, this was the size of the position and texture attribute
+        vertexDescriptor.attributes[3].bufferIndex = 0 // buffer index of vertex array
+
         // tell the vertex descriptor the size of the information held for each vertex
         vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
 
@@ -59,9 +68,9 @@ class Primitive: Node {
 
 
     //MARK: - initialise the Renderer with a device
-    init(device: MTLDevice, name: String, useIndicies: Bool = true) {
+    init(device: MTLDevice) {
         super.init()
-        self.useIndicies = useIndicies
+        setup()
         buildVertices()
         buildBuffers(device: device)
         pipelineState = buildPipelineState(device: device)
@@ -69,10 +78,9 @@ class Primitive: Node {
         depthStencilState = buildDepthStencilState(device: device)
     }
 
-    init(device: MTLDevice, name: String, imageName: String, useIndicies: Bool = true) {
+    init(device: MTLDevice, imageName: String) {
         super.init()
-        self.name = name
-        self.useIndicies = useIndicies
+        setup()
         buildVertices()
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
@@ -84,6 +92,25 @@ class Primitive: Node {
         samplerState = buildSamplerState(device: device)
         depthStencilState = buildDepthStencilState(device: device)
     }
+
+    init(device: MTLDevice, imageName: String, maskImageName: String) {
+        super.init()
+        setup()
+        buildVertices()
+        if let texture = setTexture(device: device, imageName: imageName) {
+            self.texture = texture
+            fragmentFunctionName = "textured_fragment"
+        }
+        if let maskTexture = setTexture(device: device, imageName: maskImageName) {
+            self.maskTexture = maskTexture
+            fragmentFunctionName = "textured_mask_fragment"
+        }
+        buildBuffers(device: device)
+        pipelineState = buildPipelineState(device: device)
+        samplerState = buildSamplerState(device: device)
+        depthStencilState = buildDepthStencilState(device: device)
+    }
+
 
     // MARK: - create metal buffer that holds the vertices and indices from the vertices and indices array
     private func buildBuffers(device: MTLDevice) {
@@ -107,6 +134,10 @@ class Primitive: Node {
                                              length: vertices.count * MemoryLayout<Vertex>.stride,
                                              options: [])
         }
+    }
+
+    func setup() {
+
     }
 
     func buildVertices() {
@@ -183,27 +214,38 @@ extension Primitive: Renderable {
                                       length: MemoryLayout<Matrices>.stride,
                                       index: 1)
 
+        // setup materials atributes
+        materials.materialColor = materialColor
+        commandEncoder.setVertexBytes(&materials,
+                                      length: MemoryLayout<Materials>.stride,
+                                      index: 2)
 
 
         // tell the command encoder to set the fragment texture at the fragment index buffer 0
-        commandEncoder.setFragmentTexture(texture, index: 0)
+        if texture != nil {
+            commandEncoder.setFragmentTexture(texture, index: 0)
+        }
 
         // set the mask texture's fragment buffer to buffer index 1:
-        commandEncoder.setFragmentTexture(maskTexture, index: 1)
+        if maskTexture != nil {
+            commandEncoder.setFragmentTexture(maskTexture, index: 1)
+        }
 
         if useIndicies {
              guard let indexBuffer = indexBuffer else { return }
             //6b) we change the draw command to teel the GPU that we are now using the index order
-            commandEncoder.drawIndexedPrimitives(type: .triangle,
+            commandEncoder.drawIndexedPrimitives(type: drawType,
                                                  indexCount: indices.count,
                                                  indexType: .uint16,
                                                  indexBuffer: indexBuffer,
                                                  indexBufferOffset: 0)
+
+            
         } else {
             //6a) finally we setup to draw, we specify that we are drawing a triangle primitive rather than a point or a line.
             // remember that we are setting a list of commands to the command encoder that get sent off in a batch
             // to the GPU, it is not until the commit at the end of the methods that we finish drawing or object.
-            commandEncoder.drawPrimitives(type: .triangle,
+            commandEncoder.drawPrimitives(type: drawType,
                                           vertexStart: 0,
                                           vertexCount: vertices.count)
         }

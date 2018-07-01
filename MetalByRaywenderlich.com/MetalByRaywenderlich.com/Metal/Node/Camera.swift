@@ -8,9 +8,9 @@
 
 import MetalKit
 
-class Camera: Node {
+class Camera {
 
-    // var position: float3       // The position of the camera's centre of projection
+    var position: float3       // The position of the camera's centre of projection
 
     //view and projection matrix
     var perspectiveProjectionMatrix: matrix_float4x4 // Perspective projection matrix
@@ -43,8 +43,7 @@ class Camera: Node {
     var screenSize: CGSize           // size of the screen window
 
     init(fov: Float, size: CGSize, zNear: Float, zFar: Float) {
-        self.screenSize = size
-
+        screenSize = size
         perspectiveProjectionMatrix = matrix_identity_float4x4
         orthographicProjectionMatrix = matrix_identity_float4x4
         viewMatrix = matrix_identity_float4x4
@@ -63,12 +62,11 @@ class Camera: Node {
         movementSpeed = 50
         sensitivity = 0.25
         screenSize = size
-        super.init()
-
         position = float3(0)
-        rotation = float3(0)
-        scale = float3(1)
-        setPerspectiveProjectionMatrix(fieldOfView: fieldOfView, aspectRatio: Float(screenSize.width / screenSize.height), nearClippingPlane: 0.1, farClippingPlane: 1000)
+
+        //rotation = float3(0)
+        //scale = float3(1)
+        setPerspectiveProjectionMatrix(fieldOfView: fov, aspectRatio: Float(screenSize.width / screenSize.height), nearClippingPlane: 0.1, farClippingPlane: 1000)
         setOrthographicProjectionMatrix(width: Float(screenSize.width), height: Float(screenSize.height), zNear: zNear, zFar: zFar)
 
         updateCameraVectors()
@@ -208,4 +206,3 @@ class Camera: Node {
 
 
 }
-

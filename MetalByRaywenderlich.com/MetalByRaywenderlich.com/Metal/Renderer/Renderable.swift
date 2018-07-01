@@ -16,6 +16,8 @@ protocol Renderable {
     var fragmentFunctionName: String { get }
     var vertexDescriptor: MTLVertexDescriptor { get }
     var matrices: Matrices { get set }
+    var materials: Materials { get set }
+    var drawType: MTLPrimitiveType { get set }
     func doRender(commandEncoder: MTLRenderCommandEncoder,
                   modelMatrix: matrix_float4x4,
                   viewMatrix: matrix_float4x4,
