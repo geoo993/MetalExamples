@@ -5,6 +5,7 @@ class Plane: Primitive {
 
     override func setup() {
         super.setup()
+        useIndicies = true
         name = String(describing: Plane.self)
     }
 

@@ -5,7 +5,7 @@ class TorusKnotScene: Scene {
 
     let torusKnot: TorusKnot
 
-    var cameraRoation: Float = 0
+    var cameraRotation: Float = 0
 
     override init(device: MTLDevice, camera: Camera) {
         torusKnot = TorusKnot(device: device, imageName: "blue-frozen-water.jpg")
@@ -23,8 +23,8 @@ class TorusKnotScene: Scene {
     override func update(deltaTime: Float) {
         super.update(deltaTime: deltaTime)
 
-        cameraRoation += deltaTime * 10
-        camera.rotateAroundPoint(distance: 45, viewpoint: torusKnot.position, angle: cameraRoation, y: 0)
+        cameraRotation += deltaTime * 10
+        camera.rotateAroundPoint(distance: 45, viewpoint: torusKnot.position, angle: cameraRotation, y: 0)
 
     }
 }

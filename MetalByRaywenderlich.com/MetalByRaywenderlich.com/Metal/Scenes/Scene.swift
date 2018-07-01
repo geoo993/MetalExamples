@@ -18,6 +18,10 @@ class Scene: Node {
         self.time += deltaTime
     }
 
+    func sceneSizeWillChange(to size: CGSize) {
+        camera.setPerspectiveProjectionMatrix(screenSize: size)
+    }
+
     func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float) {
         update(deltaTime: deltaTime)
 

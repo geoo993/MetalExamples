@@ -32,6 +32,8 @@ class Camera {
 
     // Eular Angles
     var fieldOfView: Float           // The view from the camera
+    var nearPlane: Float
+    var farPlane: Float
     var yaw: Float
     var pitch: Float
 
@@ -58,14 +60,14 @@ class Camera {
         pitch = 0.1
         yaw = -90
         fieldOfView = fov
+        nearPlane = zNear
+        farPlane = zFar
         strafe = float3( 0.0, 0.0, 0.0)
         movementSpeed = 50
         sensitivity = 0.25
         screenSize = size
         position = float3(0)
 
-        //rotation = float3(0)
-        //scale = float3(1)
         setPerspectiveProjectionMatrix(fieldOfView: fov, aspectRatio: Float(screenSize.width / screenSize.height), nearClippingPlane: 0.1, farClippingPlane: 1000)
         setOrthographicProjectionMatrix(width: Float(screenSize.width), height: Float(screenSize.height), zNear: zNear, zFar: zFar)
 
@@ -180,9 +182,19 @@ class Camera {
     // Set the camera perspective projection matrix to produce a view frustum with a specific field of view, aspect ratio,
     // and near / far clipping planes
     func setPerspectiveProjectionMatrix(fieldOfView: Float, aspectRatio: Float, nearClippingPlane: Float, farClippingPlane: Float){
-        self.fieldOfView = fieldOfView;
-        self.perspectiveProjectionMatrix = matrix_float4x4(projectionFov: radians(degrees: fieldOfView), aspect: aspectRatio, nearZ: nearClippingPlane,
-        farZ: farClippingPlane)
+        self.fieldOfView = fieldOfView
+        self.perspectiveProjectionMatrix = matrix_float4x4(projectionFov: radians(degrees: fieldOfView),
+                                                           aspect: aspectRatio, nearZ: nearClippingPlane,
+                                                           farZ: farClippingPlane)
+
+    }
+
+    func setPerspectiveProjectionMatrix(screenSize: CGSize){
+        self.screenSize = screenSize
+        self.perspectiveProjectionMatrix = matrix_float4x4(projectionFov: radians(degrees: fieldOfView),
+                                                           aspect: Float(screenSize.width / screenSize.height),
+                                                           nearZ: nearPlane,
+                                                           farZ: farPlane)
 
     }
 

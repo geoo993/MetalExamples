@@ -52,7 +52,6 @@ class MetalViewController: UIViewController {
     }
 
     var renderer: Renderer!
-    var isLandscape = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,15 +66,14 @@ class MetalViewController: UIViewController {
         let currentDevice = UIDevice.current.modelName
         let width = CGFloat.width(ofDevice: currentDevice).width
         let height = CGFloat.height(ofDevice: currentDevice).height
-
-        let screenSize = isLandscape ?
-            CGSize(width: height, height: width) : CGSize(width: width, height: height)
+        let screenSize = CGSize(width: width, height: height)
         let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 1000)
 
         let primitivesScene = PrimitivesScene(device: device, camera: camera)
         let torusKnotScene = TorusKnotScene(device: device, camera: camera)
         let instanceScene = InstanceScene(device: device, camera: camera)
-        renderer = Renderer(device: device, scene: instanceScene)
+        let landscapeScene = LandscapeScene(device: device, camera: camera)
+        renderer = Renderer(device: device, scene: landscapeScene)
 
         // Setup MTKView and delegate
         metalView.depthStencilPixelFormat = .depth32Float
