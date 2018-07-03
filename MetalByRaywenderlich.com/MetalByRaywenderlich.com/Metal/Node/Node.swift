@@ -7,6 +7,8 @@ class Node {
     var position = float3(0)
     var rotation = float3(0)
     var scale = float3(1)
+    var width: Float = 1
+    var height: Float = 1
     var materialColor = float4(1)
     var specularIntensity: Float = 1
     var shininess: Float = 1

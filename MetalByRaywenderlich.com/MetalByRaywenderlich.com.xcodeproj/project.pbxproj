@@ -53,6 +53,17 @@
 		C763420920E90A1000E41737 /* Cone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420820E90A1000E41737 /* Cone.swift */; };
 		C763420B20E90A1900E41737 /* Cylinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420A20E90A1900E41737 /* Cylinder.swift */; };
 		C763420D20E9117A00E41737 /* TorusKnot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420C20E9117A00E41737 /* TorusKnot.swift */; };
+		C78EB7BD20EC0A7000F48C02 /* Kai_Engel_-_03_-_Realness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */; };
+		C78EB7BE20EC0A7000F48C02 /* bulletstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */; };
+		C78EB7BF20EC0A7000F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B920EC0A6F00F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 */; };
+		C78EB7C020EC0A7000F48C02 /* Marcel_Pequel_-_06_-_Six.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7BA20EC0A6F00F48C02 /* Marcel_Pequel_-_06_-_Six.mp3 */; };
+		C78EB7C120EC0A7000F48C02 /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7BB20EC0A6F00F48C02 /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 */; };
+		C78EB7C320EC0A9D00F48C02 /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78EB7C220EC0A9D00F48C02 /* SoundController.swift */; };
+		C78EB7C920EC0BD000F48C02 /* Success_Effect_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C420EC0BCF00F48C02 /* Success_Effect_1.mp3 */; };
+		C78EB7CA20EC0BD000F48C02 /* Slow electronic song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C520EC0BCF00F48C02 /* Slow electronic song.mp3 */; };
+		C78EB7CB20EC0BD000F48C02 /* Quest Complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C620EC0BCF00F48C02 /* Quest Complete.mp3 */; };
+		C78EB7CC20EC0BD000F48C02 /* Gem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C720EC0BD000F48C02 /* Gem.mp3 */; };
+		C78EB7CD20EC0BD000F48C02 /* Success_Effect_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C820EC0BD000F48C02 /* Success_Effect_2.mp3 */; };
 		C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* Shader.metal */; };
 		C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F420E2F5B600BCEB30 /* Scene.swift */; };
 		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
@@ -162,6 +173,17 @@
 		C763420820E90A1000E41737 /* Cone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cone.swift; sourceTree = "<group>"; };
 		C763420A20E90A1900E41737 /* Cylinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cylinder.swift; sourceTree = "<group>"; };
 		C763420C20E9117A00E41737 /* TorusKnot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusKnot.swift; sourceTree = "<group>"; };
+		C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_03_-_Realness.mp3"; sourceTree = "<group>"; };
+		C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bulletstorm.mp3; sourceTree = "<group>"; };
+		C78EB7B920EC0A6F00F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_03_-_Brooks.mp3"; sourceTree = "<group>"; };
+		C78EB7BA20EC0A6F00F48C02 /* Marcel_Pequel_-_06_-_Six.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcel_Pequel_-_06_-_Six.mp3"; sourceTree = "<group>"; };
+		C78EB7BB20EC0A6F00F48C02 /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_08_-_Oecumene_Sleeps.mp3"; sourceTree = "<group>"; };
+		C78EB7C220EC0A9D00F48C02 /* SoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
+		C78EB7C420EC0BCF00F48C02 /* Success_Effect_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Success_Effect_1.mp3; sourceTree = "<group>"; };
+		C78EB7C520EC0BCF00F48C02 /* Slow electronic song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Slow electronic song.mp3"; sourceTree = "<group>"; };
+		C78EB7C620EC0BCF00F48C02 /* Quest Complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quest Complete.mp3"; sourceTree = "<group>"; };
+		C78EB7C720EC0BD000F48C02 /* Gem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Gem.mp3; sourceTree = "<group>"; };
+		C78EB7C820EC0BD000F48C02 /* Success_Effect_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Success_Effect_2.mp3; sourceTree = "<group>"; };
 		C7BFB9F120E2E1B100BCEB30 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
 		C7BFB9F420E2F5B600BCEB30 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
@@ -321,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				C75FDB3A20E1992000DE2EEC /* MetalViewController.swift */,
+				C78EB7C220EC0A9D00F48C02 /* SoundController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -386,12 +409,29 @@
 			path = Primitives;
 			sourceTree = "<group>";
 		};
-		C7BFB9F020E2E19F00BCEB30 /* Shader */ = {
+		C78EB7B520EC0A6F00F48C02 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C78EB7C720EC0BD000F48C02 /* Gem.mp3 */,
+				C78EB7C620EC0BCF00F48C02 /* Quest Complete.mp3 */,
+				C78EB7C520EC0BCF00F48C02 /* Slow electronic song.mp3 */,
+				C78EB7C420EC0BCF00F48C02 /* Success_Effect_1.mp3 */,
+				C78EB7C820EC0BD000F48C02 /* Success_Effect_2.mp3 */,
+				C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */,
+				C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */,
+				C78EB7B920EC0A6F00F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 */,
+				C78EB7BA20EC0A6F00F48C02 /* Marcel_Pequel_-_06_-_Six.mp3 */,
+				C78EB7BB20EC0A6F00F48C02 /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		C7BFB9F020E2E19F00BCEB30 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
 				C7BFB9F120E2E1B100BCEB30 /* Shader.metal */,
 			);
-			path = Shader;
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 		C7BFB9F320E2F5B600BCEB30 /* Metal */ = {
@@ -401,7 +441,8 @@
 				C712B54320E45445004CDFA3 /* Renderer */,
 				C71F1CFF20E58AC00095F6A6 /* Resources */,
 				C7BFBA0120E2F5D900BCEB30 /* Scenes */,
-				C7BFB9F020E2E19F00BCEB30 /* Shader */,
+				C78EB7B520EC0A6F00F48C02 /* Sounds */,
+				C7BFB9F020E2E19F00BCEB30 /* Shaders */,
 				C71F1D0420E58AC00095F6A6 /* Textures */,
 				C712B54220E44E2F004CDFA3 /* Utilities */,
 			);
@@ -572,19 +613,25 @@
 			files = (
 				C7E0440120E9444A00138FC0 /* helmet_diff.png in Resources */,
 				C7E043EA20E9444A00138FC0 /* GRANDEB2.JPG in Resources */,
+				C78EB7CC20EC0BD000F48C02 /* Gem.mp3 in Resources */,
 				C7E043F020E9444A00138FC0 /* hand_showroom_refl.png in Resources */,
 				C7E0440320E9444A00138FC0 /* leg_showroom_refl.png in Resources */,
 				C7E043F120E9444A00138FC0 /* body_showroom_ddn.png in Resources */,
 				C75FDB4320E1992100DE2EEC /* LaunchScreen.storyboard in Resources */,
 				C7E0441620E9611600138FC0 /* grass.obj in Resources */,
 				C71F1D1120E5A4060095F6A6 /* abstract-color.jpg in Resources */,
+				C78EB7CB20EC0BD000F48C02 /* Quest Complete.mp3 in Resources */,
 				C7E043FD20E9444A00138FC0 /* body_showroom_refl.png in Resources */,
+				C78EB7BF20EC0A7000F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 in Resources */,
 				C7E043F620E9444A00138FC0 /* arm_showroom_refl.png in Resources */,
 				C7E0440420E9444A00138FC0 /* leg_showroom_ddn.png in Resources */,
 				C71F1D0720E58AC00095F6A6 /* picture-frame.png in Resources */,
 				C71F1D0E20E5A4060095F6A6 /* colors-paint.jpg in Resources */,
 				C7E0440920E9444A00138FC0 /* hand_dif.png in Resources */,
+				C78EB7BD20EC0A7000F48C02 /* Kai_Engel_-_03_-_Realness.mp3 in Resources */,
+				C78EB7C920EC0BD000F48C02 /* Success_Effect_1.mp3 in Resources */,
 				C7E043EC20E9444A00138FC0 /* T-Rex Model.obj in Resources */,
+				C78EB7C120EC0A7000F48C02 /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 in Resources */,
 				C763420120E8FE5900E41737 /* spiralcolor.jpg in Resources */,
 				C7E0440820E9444A00138FC0 /* body_showroom_spec.png in Resources */,
 				C7E0440A20E9444A00138FC0 /* bunny.obj in Resources */,
@@ -599,6 +646,7 @@
 				C7E0440020E9444A00138FC0 /* nanosuit.blend in Resources */,
 				C7E043F820E9444A00138FC0 /* glass_ddn.png in Resources */,
 				C7E043ED20E9444A00138FC0 /* teapot.mtl in Resources */,
+				C78EB7C020EC0A7000F48C02 /* Marcel_Pequel_-_06_-_Six.mp3 in Resources */,
 				C7E043F420E9444A00138FC0 /* arm_showroom_spec.png in Resources */,
 				C7E043F920E9444A00138FC0 /* glass_refl.png in Resources */,
 				C7E043EE20E9444A00138FC0 /* teapot.obj in Resources */,
@@ -606,6 +654,7 @@
 				C7E0440B20E9444A00138FC0 /* bunny.mtl in Resources */,
 				C7E043FF20E9444A00138FC0 /* arm_dif.png in Resources */,
 				C71F1D0F20E5A4060095F6A6 /* colors-world.jpg in Resources */,
+				C78EB7BE20EC0A7000F48C02 /* bulletstorm.mp3 in Resources */,
 				C76341EF20E8BC2400E41737 /* humanFigure.obj in Resources */,
 				C71F1D1320E5A6F90095F6A6 /* stewe-griffin.jpg in Resources */,
 				C7E043FC20E9444A00138FC0 /* hand_showroom_ddn.png in Resources */,
@@ -617,9 +666,11 @@
 				C76341ED20E8BC2400E41737 /* mushroom.png in Resources */,
 				C7E043F720E9444A00138FC0 /* hand_showroom_spec.png in Resources */,
 				C7E043F520E9444A00138FC0 /* leg_dif.png in Resources */,
+				C78EB7CA20EC0BD000F48C02 /* Slow electronic song.mp3 in Resources */,
 				C75FDB3E20E1992000DE2EEC /* Main.storyboard in Resources */,
 				C7E0440720E9444A00138FC0 /* leg_showroom_spec.png in Resources */,
 				C76341EE20E8BC2400E41737 /* mushroom.obj in Resources */,
+				C78EB7CD20EC0BD000F48C02 /* Success_Effect_2.mp3 in Resources */,
 				C7E043EF20E9444A00138FC0 /* teapot.blend in Resources */,
 				C7E0440520E9444A00138FC0 /* helmet_showroom_refl.png in Resources */,
 			);
@@ -661,6 +712,7 @@
 				C76341D820E7ACD800E41737 /* Matrix.swift in Sources */,
 				C76341D420E7ACD800E41737 /* Matrix_Transform.swift in Sources */,
 				C76341F920E8E7AB00E41737 /* Sphere.swift in Sources */,
+				C78EB7C320EC0A9D00F48C02 /* SoundController.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
 				C76341DE20E7D39900E41737 /* Camera.swift in Sources */,
 				C76341D620E7ACD800E41737 /* Vector.swift in Sources */,

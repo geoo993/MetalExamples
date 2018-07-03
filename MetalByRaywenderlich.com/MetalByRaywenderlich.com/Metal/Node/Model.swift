@@ -142,6 +142,11 @@ class Model: Node {
                              vertexDescriptor: descriptor,
                              bufferAllocator: bufferAllocator)
 
+        // asset bounding box
+        let boundingBox = asset.boundingBox
+        width = boundingBox.maxBounds.x - boundingBox.minBounds.x
+        height = boundingBox.maxBounds.y - boundingBox.minBounds.y
+
         do {
             meshes = try MTKMesh.newMeshes(asset: asset, device: device).metalKitMeshes
         } catch {

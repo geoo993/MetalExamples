@@ -57,6 +57,11 @@ class Instance: Node {
         }
     }
 
+    func remove(instance: Int) {
+        nodes.remove(at: instance)
+        uniforms.remove(at: instance)
+    }
+
     func makeBuffer(device: MTLDevice) {
         instanceBuffer = device
             .makeBuffer(length: uniforms.count * MemoryLayout<Uniform>.stride , options: [])

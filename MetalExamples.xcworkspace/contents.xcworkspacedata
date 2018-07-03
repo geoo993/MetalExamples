@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:BreakOut/BreakOut.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:MetalByRaywenderlich.com/MetalByRaywenderlich.com.xcodeproj">
    </FileRef>
    <FileRef
