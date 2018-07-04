@@ -5,6 +5,7 @@ class Scene: Node {
     var time: Float
     var camera: Camera
     var light = Light()
+    var dirLight = DirectionalLight()
 
     init(device: MTLDevice, camera: Camera) {
 
@@ -32,6 +33,7 @@ class Scene: Node {
         update(deltaTime: deltaTime)
 
         commandEncoder.setFragmentBytes(&light, length: MemoryLayout<Light>.stride, index: 3)
+        commandEncoder.setFragmentBytes(&dirLight, length: MemoryLayout<DirectionalLight>.stride, index: 4)
 
         for child in children {
             child.render(commandEncoder: commandEncoder,

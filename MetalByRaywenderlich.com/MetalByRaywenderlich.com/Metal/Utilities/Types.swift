@@ -25,8 +25,7 @@ struct Uniform {
     var viewMatrix = matrix_identity_float4x4
     var normalMatrix = matrix_identity_float3x3
     var materialColor = float4(1)
-    var specularIntensity: Float = 1
-    var shininess: Float = 1
+    var shininess: Float = 1.0
     var useTexture: Bool = false
 }
 
@@ -36,5 +35,16 @@ struct Light {
     var direction = float3(0)
     var ambientIntensity: Float = 1.0
     var diffuseIntensity: Float = 1.0
+    var specularIntensity: Float = 1.0
 }
 
+struct DirectionalLight
+{
+    var position = float3(0)
+    var color = float3(1)
+    var direction = float3(0)
+    var intensity: Float = 1.0
+    var ambient = float3(0)
+    var diffuse = float3(0)
+    var specular = float3(0)
+};

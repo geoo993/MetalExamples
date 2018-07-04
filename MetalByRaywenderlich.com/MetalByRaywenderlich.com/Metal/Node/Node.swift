@@ -10,7 +10,6 @@ class Node {
     var width: Float = 1
     var height: Float = 1
     var materialColor = float4(1)
-    var specularIntensity: Float = 1
     var shininess: Float = 1
     var useTexture: Bool = true
 

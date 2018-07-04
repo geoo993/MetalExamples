@@ -213,7 +213,8 @@ class Camera {
     func computeNormalMatrix(modelMatrix: matrix_float4x4) -> matrix_float3x3
     {
         //return glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
-        return matrix_float3x3(modelMatrix).inverse.transpose
+        //glm::mat3 mNorm = glm::inverseTranspose(glm::mat3(mModel));
+        return matrix_float3x3(modelMatrix.inverse.transpose)
     }
 
 

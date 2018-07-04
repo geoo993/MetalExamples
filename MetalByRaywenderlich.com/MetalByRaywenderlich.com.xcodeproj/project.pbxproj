@@ -53,6 +53,8 @@
 		C763420920E90A1000E41737 /* Cone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420820E90A1000E41737 /* Cone.swift */; };
 		C763420B20E90A1900E41737 /* Cylinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420A20E90A1900E41737 /* Cylinder.swift */; };
 		C763420D20E9117A00E41737 /* TorusKnot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420C20E9117A00E41737 /* TorusKnot.swift */; };
+		C7713D8720EC22D80047019A /* LightShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7713D8620EC22D80047019A /* LightShader.metal */; };
+		C7713D8920EC28020047019A /* PhongShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7713D8820EC28020047019A /* PhongShader.metal */; };
 		C78EB7BD20EC0A7000F48C02 /* Kai_Engel_-_03_-_Realness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */; };
 		C78EB7BE20EC0A7000F48C02 /* bulletstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */; };
 		C78EB7BF20EC0A7000F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B920EC0A6F00F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 */; };
@@ -64,7 +66,7 @@
 		C78EB7CB20EC0BD000F48C02 /* Quest Complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C620EC0BCF00F48C02 /* Quest Complete.mp3 */; };
 		C78EB7CC20EC0BD000F48C02 /* Gem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C720EC0BD000F48C02 /* Gem.mp3 */; };
 		C78EB7CD20EC0BD000F48C02 /* Success_Effect_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C820EC0BD000F48C02 /* Success_Effect_2.mp3 */; };
-		C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* Shader.metal */; };
+		C7BFB9F220E2E1B100BCEB30 /* MainShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* MainShader.metal */; };
 		C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F420E2F5B600BCEB30 /* Scene.swift */; };
 		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
 		C7BFB9FD20E2F5B700BCEB30 /* PrimitivesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F720E2F5B600BCEB30 /* PrimitivesScene.swift */; };
@@ -173,6 +175,9 @@
 		C763420820E90A1000E41737 /* Cone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cone.swift; sourceTree = "<group>"; };
 		C763420A20E90A1900E41737 /* Cylinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cylinder.swift; sourceTree = "<group>"; };
 		C763420C20E9117A00E41737 /* TorusKnot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusKnot.swift; sourceTree = "<group>"; };
+		C7713D8620EC22D80047019A /* LightShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LightShader.metal; sourceTree = "<group>"; };
+		C7713D8820EC28020047019A /* PhongShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PhongShader.metal; sourceTree = "<group>"; };
+		C7713D8A20EC2BA70047019A /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_03_-_Realness.mp3"; sourceTree = "<group>"; };
 		C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bulletstorm.mp3; sourceTree = "<group>"; };
 		C78EB7B920EC0A6F00F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_03_-_Brooks.mp3"; sourceTree = "<group>"; };
@@ -184,7 +189,7 @@
 		C78EB7C620EC0BCF00F48C02 /* Quest Complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quest Complete.mp3"; sourceTree = "<group>"; };
 		C78EB7C720EC0BD000F48C02 /* Gem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Gem.mp3; sourceTree = "<group>"; };
 		C78EB7C820EC0BD000F48C02 /* Success_Effect_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Success_Effect_2.mp3; sourceTree = "<group>"; };
-		C7BFB9F120E2E1B100BCEB30 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
+		C7BFB9F120E2E1B100BCEB30 /* MainShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MainShader.metal; sourceTree = "<group>"; };
 		C7BFB9F420E2F5B600BCEB30 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		C7BFB9F720E2F5B600BCEB30 /* PrimitivesScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimitivesScene.swift; sourceTree = "<group>"; };
@@ -429,7 +434,10 @@
 		C7BFB9F020E2E19F00BCEB30 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				C7BFB9F120E2E1B100BCEB30 /* Shader.metal */,
+				C7713D8A20EC2BA70047019A /* Shader.h */,
+				C7BFB9F120E2E1B100BCEB30 /* MainShader.metal */,
+				C7713D8820EC28020047019A /* PhongShader.metal */,
+				C7713D8620EC22D80047019A /* LightShader.metal */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -683,7 +691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7BFB9F220E2E1B100BCEB30 /* Shader.metal in Sources */,
+				C7BFB9F220E2E1B100BCEB30 /* MainShader.metal in Sources */,
 				C7BFB9FD20E2F5B700BCEB30 /* PrimitivesScene.swift in Sources */,
 				C76341FB20E8FC4100E41737 /* Pyramid.swift in Sources */,
 				C763420B20E90A1900E41737 /* Cylinder.swift in Sources */,
@@ -712,6 +720,7 @@
 				C76341D820E7ACD800E41737 /* Matrix.swift in Sources */,
 				C76341D420E7ACD800E41737 /* Matrix_Transform.swift in Sources */,
 				C76341F920E8E7AB00E41737 /* Sphere.swift in Sources */,
+				C7713D8920EC28020047019A /* PhongShader.metal in Sources */,
 				C78EB7C320EC0A9D00F48C02 /* SoundController.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
 				C76341DE20E7D39900E41737 /* Camera.swift in Sources */,
@@ -721,6 +730,7 @@
 				C71F1D0920E58AC00095F6A6 /* Texturable.swift in Sources */,
 				C76341C620E7A2A700E41737 /* Cube.swift in Sources */,
 				C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */,
+				C7713D8720EC22D80047019A /* LightShader.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

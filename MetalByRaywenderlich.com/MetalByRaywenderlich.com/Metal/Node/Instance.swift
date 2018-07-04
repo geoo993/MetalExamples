@@ -92,9 +92,10 @@ extension Instance: Renderable {
             pointer.pointee.projectionMatrix = camera.perspectiveProjectionMatrix
             pointer.pointee.viewMatrix = camera.viewMatrix
             pointer.pointee.modelMatrix = modelMatrix
-            pointer.pointee.normalMatrix = camera.computeNormalMatrix(modelMatrix: modelMatrix)
+            pointer.pointee.normalMatrix =
+                //(camera.viewMatrix * modelMatrix).upperLeft3x3()
+                camera.computeNormalMatrix(modelMatrix: modelMatrix)
             pointer.pointee.materialColor = node.materialColor
-            pointer.pointee.specularIntensity = node.specularIntensity
             pointer.pointee.shininess = node.shininess
             pointer.pointee.useTexture = node.useTexture
             pointer = pointer.advanced(by: 1)
