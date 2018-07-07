@@ -321,3 +321,27 @@ public func /= (left: inout CGPoint, right: CGVector) {
 public func lerp(start: CGPoint, end: CGPoint, t: CGFloat) -> CGPoint {
     return start + (end - start) * t
 }
+
+public func + (lhs: CGPoint, rhs: CGSize) -> CGPoint {
+    return CGPoint(x: lhs.x + rhs.width, y: lhs.y + rhs.height)
+}
+
+public func - (lhs: CGPoint, rhs: CGSize) -> CGPoint {
+    return CGPoint(x: lhs.x - rhs.width, y: lhs.y - rhs.height)
+}
+
+public func - (lhs: CGPoint, rhs: CGPoint) -> CGVector {
+    return CGVector(dx: lhs.x - rhs.x, dy: lhs.y - rhs.y)
+}
+
+public func + (lhs: CGSize, rhs: CGSize) -> CGSize {
+    return CGSize(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
+}
+
+public func * (lhs: CGSize, rhs: CGFloat) -> CGSize {
+    return CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
+}
+
+public func / (lhs: CGSize, rhs: CGFloat) -> CGSize {
+    return CGSize(width: lhs.width / rhs, height: lhs.height / rhs)
+}

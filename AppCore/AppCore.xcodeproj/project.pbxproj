@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C71425AB20F0D06700B1D2D1 /* CGVector+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71425AA20F0D06700B1D2D1 /* CGVector+Ext.swift */; };
 		C717ECB420E197D800107CDD /* AppCore.h in Headers */ = {isa = PBXBuildFile; fileRef = C717ECB220E197D800107CDD /* AppCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C75FDB8320E19F2E00DE2EEC /* UIBezierPath+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB4C20E19F2D00DE2EEC /* UIBezierPath+Ext.swift */; };
 		C75FDB8420E19F2E00DE2EEC /* BezierCubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB4D20E19F2D00DE2EEC /* BezierCubicCurveAlgorithm.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C71425AA20F0D06700B1D2D1 /* CGVector+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+Ext.swift"; sourceTree = "<group>"; };
 		C717ECAF20E197D800107CDD /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C717ECB220E197D800107CDD /* AppCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppCore.h; sourceTree = "<group>"; };
 		C717ECB320E197D800107CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				C75FDB6A20E19F2D00DE2EEC /* CGPath+Ext.swift */,
 				C75FDB6020E19F2D00DE2EEC /* CGPoint+Ext.swift */,
 				C75FDB7720E19F2D00DE2EEC /* CGRect+Ext.swift */,
+				C71425AA20F0D06700B1D2D1 /* CGVector+Ext.swift */,
 				C75FDB6F20E19F2D00DE2EEC /* DeviceType.swift */,
 				C75FDB4F20E19F2D00DE2EEC /* Dictionary+Ext.swift */,
 				C75FDB5720E19F2D00DE2EEC /* Double+Ext.swift */,
@@ -358,6 +361,7 @@
 				C75FDBA720E19F2E00DE2EEC /* Int+Ext.swift in Sources */,
 				C75FDBB020E19F2E00DE2EEC /* NSRange+Ext.swift in Sources */,
 				C75FDBA120E19F2E00DE2EEC /* CGPath+Ext.swift in Sources */,
+				C71425AB20F0D06700B1D2D1 /* CGVector+Ext.swift in Sources */,
 				C75FDB9C20E19F2E00DE2EEC /* UIScrollView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

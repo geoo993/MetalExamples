@@ -10,6 +10,7 @@
 		C702D54C20E78AF600991288 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C702D54B20E78A0500991288 /* Transform.swift */; };
 		C712B54120E44E2A004CDFA3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C712B54020E44E2A004CDFA3 /* Types.swift */; };
 		C712B54520E45459004CDFA3 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C712B54420E45459004CDFA3 /* Renderable.swift */; };
+		C71425A920F0CF7D00B1D2D1 /* JoyStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71425A820F0CF7D00B1D2D1 /* JoyStickView.swift */; };
 		C71F1D0620E58AC00095F6A6 /* picture-frame-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0120E58AC00095F6A6 /* picture-frame-mask.png */; };
 		C71F1D0720E58AC00095F6A6 /* picture-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = C71F1D0220E58AC00095F6A6 /* picture-frame.png */; };
 		C71F1D0920E58AC00095F6A6 /* Texturable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71F1D0520E58AC00095F6A6 /* Texturable.swift */; };
@@ -71,6 +72,7 @@
 		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
 		C7BFB9FD20E2F5B700BCEB30 /* PrimitivesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F720E2F5B600BCEB30 /* PrimitivesScene.swift */; };
 		C7BFB9FE20E2F5B700BCEB30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F820E2F5B600BCEB30 /* Node.swift */; };
+		C7D9986E20F0FCEF0080095C /* JoyStickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D9986D20F0FCEF0080095C /* JoyStickViewController.swift */; };
 		C7E043E920E9444A00138FC0 /* GRANDECO.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C320E9444A00138FC0 /* GRANDECO.JPG */; };
 		C7E043EA20E9444A00138FC0 /* GRANDEB2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C420E9444A00138FC0 /* GRANDEB2.JPG */; };
 		C7E043EB20E9444A00138FC0 /* T-Rex Model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C520E9444A00138FC0 /* T-Rex Model.mtl */; };
@@ -131,6 +133,7 @@
 		C702D54B20E78A0500991288 /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		C712B54020E44E2A004CDFA3 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		C712B54420E45459004CDFA3 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		C71425A820F0CF7D00B1D2D1 /* JoyStickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoyStickView.swift; sourceTree = "<group>"; };
 		C71F1D0120E58AC00095F6A6 /* picture-frame-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture-frame-mask.png"; sourceTree = "<group>"; };
 		C71F1D0220E58AC00095F6A6 /* picture-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picture-frame.png"; sourceTree = "<group>"; };
 		C71F1D0520E58AC00095F6A6 /* Texturable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texturable.swift; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		C7BFB9F720E2F5B600BCEB30 /* PrimitivesScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimitivesScene.swift; sourceTree = "<group>"; };
 		C7BFB9F820E2F5B600BCEB30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		C7D9986D20F0FCEF0080095C /* JoyStickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoyStickViewController.swift; sourceTree = "<group>"; };
 		C7E043C320E9444A00138FC0 /* GRANDECO.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GRANDECO.JPG; sourceTree = "<group>"; };
 		C7E043C420E9444A00138FC0 /* GRANDEB2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GRANDEB2.JPG; sourceTree = "<group>"; };
 		C7E043C520E9444A00138FC0 /* T-Rex Model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "T-Rex Model.mtl"; sourceTree = "<group>"; };
@@ -274,6 +278,14 @@
 			path = Renderer;
 			sourceTree = "<group>";
 		};
+		C71425A720F0CF0600B1D2D1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C71425A820F0CF7D00B1D2D1 /* JoyStickView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C71F1CFF20E58AC00095F6A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +342,7 @@
 			children = (
 				C7BFB9F320E2F5B600BCEB30 /* Metal */,
 				C75FDBD020E1AB3400DE2EEC /* Controllers */,
+				C71425A720F0CF0600B1D2D1 /* Views */,
 				C75FDBD120E1AB4300DE2EEC /* Supporting Files */,
 				C75FDB4420E1992100DE2EEC /* Info.plist */,
 			);
@@ -349,6 +362,7 @@
 			children = (
 				C75FDB3A20E1992000DE2EEC /* MetalViewController.swift */,
 				C78EB7C220EC0A9D00F48C02 /* SoundController.swift */,
+				C7D9986D20F0FCEF0080095C /* JoyStickViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -697,6 +711,7 @@
 				C763420B20E90A1900E41737 /* Cylinder.swift in Sources */,
 				C7BFB9FE20E2F5B700BCEB30 /* Node.swift in Sources */,
 				C712B54520E45459004CDFA3 /* Renderable.swift in Sources */,
+				C7D9986E20F0FCEF0080095C /* JoyStickViewController.swift in Sources */,
 				C763420520E901DE00E41737 /* Icosahedron.swift in Sources */,
 				C76341D520E7ACD800E41737 /* Common.swift in Sources */,
 				C76341D220E7ACD800E41737 /* Exponential.swift in Sources */,
@@ -704,6 +719,7 @@
 				C75FDB3B20E1992000DE2EEC /* MetalViewController.swift in Sources */,
 				C76341E020E8010500E41737 /* Primitive.swift in Sources */,
 				C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */,
+				C71425A920F0CF7D00B1D2D1 /* JoyStickView.swift in Sources */,
 				C76341D320E7ACD800E41737 /* Geometric.swift in Sources */,
 				C76341D920E7ACD800E41737 /* Quaternion.swift in Sources */,
 				C763420720E9086400E41737 /* TriangularPrism.swift in Sources */,
