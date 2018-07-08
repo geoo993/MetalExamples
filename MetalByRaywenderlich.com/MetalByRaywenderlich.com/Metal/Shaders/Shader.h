@@ -19,36 +19,39 @@ struct Uniform {
     float4x4 modelMatrix;
     float4x4 viewMatrix;
     float3x3 normalMatrix;
-
-    // Materials attributes
-    float4 materialColor;
-    float shininess;
-
-    // texture
-    float useTexture;
-
 };
 
 
-struct Material
+struct MaterialInfo
 {
-    float shininess;
-
+    float4 color;
     float3 ambient;
     float3 diffuse;
     float3 specular;
+    float shininess; //Shininess values typically range from 1 to 128. Higher values result in more focussed specular highlights.
+    bool useTexture;
+};
+
+struct CameraInfo {
+    float3 position;
+    float3 view;
+    float3 front;
 };
 
 // lighting attributes
-struct Light {
+struct LightInfo {
     float3 position;
     float3 color;
-    float3 direction;
-    float ambientIntensity;
-    float diffuseIntensity;
-    float specularIntensity;
+    float3 direction; // a direction the spotlight is pointing
+    float3 ambient;
+    float3 diffuse;
+    float3 specular;
+    float cutOff;  // a cutoff angle, used to define a cone around the direction vector
+    float exponent; // an exponent, describing how light falls off from the centre
+
 };
 
+/*
 struct DirectionalLight
 {
     float3 position;
@@ -92,13 +95,13 @@ struct SpotLight
 
     float cutOff;
     float outerCutOff;
-
 };
+ */
 
 // input information to the shader
 // note that each item in the struct has been given an attribute number
 struct VertexIn {
-    float4 position [[ attribute(0) ]];
+    float3 position [[ attribute(0) ]];
     float2 textureCoordinates [[ attribute(1) ]];
     float4 color [[ attribute(2) ]];
     float3 normal [[ attribute(3) ]];
@@ -110,9 +113,6 @@ struct VertexOut {
     float2 textureCoordinates;
     float4 color;
     float3 normal;
-    float4 materialColor;
-    float shininess;
-    bool useTexture;
     float3 eyePosition;
 };
 

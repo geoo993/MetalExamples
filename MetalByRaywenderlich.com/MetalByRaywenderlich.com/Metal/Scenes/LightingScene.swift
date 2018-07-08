@@ -29,57 +29,65 @@ import MetalKit
 
 class LightingScene: Scene {
 
-    let torusKnot: TorusKnot
-    let cube: Cube
+    //let torusKnot: TorusKnot
+    //let cube: Cube
     let mushroom: Model
 
     var previousTouchLocation: CGPoint = .zero
     var cameraRotation: Float = 0
+    var leftCameraAngle: Float = 0
+    var leftCameraDisplacement: Float = 0
+    var rightCameraAngle: Float = 0
+    var rightCameraDisplacement: Float = 0
 
     override init(device: MTLDevice, camera: Camera) {
-        torusKnot = TorusKnot(device: device, imageName: "blue-frozen-water.jpg")
-        cube = Cube(device: device)
+        //torusKnot = TorusKnot(device: device, imageName: "blue-frozen-water.jpg")
+        //cube = Cube(device: device)
         mushroom = Model(device: device, modelName: "mushroom")
         super.init(device: device, camera: camera)
-        add(childNode: torusKnot)
-        add(childNode: cube)
+        //add(childNode: torusKnot)
+        //add(childNode: cube)
         add(childNode: mushroom)
 
 
 
-        torusKnot.position = float3(0, 0, 0)
-        torusKnot.scale = float3(0.8)
-        mushroom.shininess = 28.0
+        //torusKnot.position = float3(0, 0, 0)
+        //torusKnot.scale = float3(0.8)
 
         light.position = float3(-5, 10, 0)
         light.color = float3(1, 1, 1)
-        light.direction = float3(0, -1, 0)
-        light.ambientIntensity = 0.2
-        light.diffuseIntensity = 0.8
-        light.specularIntensity = 1.0
+        light.direction = float3(-2, 0, 0)
+        light.ambient = float3(0.2, 0.2, 0.2)
+        light.diffuse = float3(0.8, 0.9, 0.1)
+        light.specular = float3(1, 1.0, 1.0)
+        light.exponent = 16.0
+        light.cutOff = 30.0
 
-//        dirLight.ambient = float3(0.2, 0.2, 0.2)
-//        dirLight.diffuse = float3(0.8, 0.8, 0.8)
-//        dirLight.specular = float3(1, 1.0, 1.0)
+        mushroom.position = float3(0, -1, 0)
+        mushroom.material.ambient = float3(0.4, 0.4, 0.4)
+        mushroom.material.diffuse = float3(0.8, 0.8, 0.8)
+        mushroom.material.specular = float3(0.98, 0.98, 0.98)
+        mushroom.material.shininess = 2.0
+        mushroom.material.useTexture = true
+        mushroom.material.color = float4(1, 0, 0, 1)
 
-        mushroom.position = float3(2, 5, 0)
-        mushroom.shininess = 48.0
-
-        camera.set(position: float3(0,0,-19), viewpoint: torusKnot.position, up: float3(0,1,0))
-
+        camera.set(position: float3(10,0,0), viewpoint: mushroom.position, up: float3(0,1,0))
     }
 
     override func update(deltaTime: Float) {
         super.update(deltaTime: deltaTime)
+        camera.updateRotation(angle: leftCameraAngle, displacement: leftCameraDisplacement)
+        camera.updateMovement(deltaTime: deltaTime, angle: rightCameraAngle, displacement: rightCameraDisplacement)
 
-        cameraRotation += deltaTime * 10
-        camera.rotateAroundPoint(distance: 20, viewpoint: torusKnot.position, angle: cameraRotation, y: 0)
+        //cameraRotation += deltaTime * 10
+        //camera.rotateAroundPoint(distance: 10, viewpoint: mushroom.position, angle: cameraRotation, y: 0)
         light.position = camera.position
-        light.direction = camera.view
+        light.direction = camera.front
+        //print(camera.view, camera.front, camera.position)
 
-        cube.materialColor = float4(1)
-        cube.position = light.position
-        cube.scale = float3(0.8)
+        //cube.materialColor = float4(1)
+        //cube.position = light.position
+        //cube.scale = float3(0.8)
     }
 
     override func touchesBegan(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
@@ -90,11 +98,11 @@ class LightingScene: Scene {
     override func touchesMoved(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: view)
-        let delta = CGPoint(x: previousTouchLocation.x - touchLocation.x,
-                            y: previousTouchLocation.y - touchLocation.y)
+        //let delta = CGPoint(x: previousTouchLocation.x - touchLocation.x,
+        //                    y: previousTouchLocation.y - touchLocation.y)
 
-        torusKnot.rotation.x += Float(delta.y) * camera.sensitivity
-        torusKnot.rotation.y += Float(delta.x) * camera.sensitivity
+        //mushroom.rotation.x += Float(delta.y) * camera.sensitivity
+        //mushroom.rotation.y += Float(delta.x) * camera.sensitivity
 
         previousTouchLocation = touchLocation
     }

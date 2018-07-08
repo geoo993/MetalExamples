@@ -9,9 +9,7 @@ class Node {
     var scale = float3(1)
     var width: Float = 1
     var height: Float = 1
-    var materialColor = float4(1)
-    var shininess: Float = 1
-    var useTexture: Bool = true
+    var material = MaterialInfo()
 
     var modelMatrix: matrix_float4x4 {
         var matrix = matrix_float4x4(translationX: position.x,

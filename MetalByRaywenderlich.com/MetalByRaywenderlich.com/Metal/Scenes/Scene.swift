@@ -4,8 +4,8 @@ class Scene: Node {
     var device: MTLDevice
     var time: Float
     var camera: Camera
-    var light = Light()
-    var dirLight = DirectionalLight()
+    var light = LightInfo()
+    var cameraInfo = CameraInfo()
 
     init(device: MTLDevice, camera: Camera) {
 
@@ -18,6 +18,7 @@ class Scene: Node {
 
     func update(deltaTime: Float) {
         self.time += deltaTime
+
     }
 
     func sceneSizeWillChange(to size: CGSize) {
@@ -32,8 +33,12 @@ class Scene: Node {
     func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float) {
         update(deltaTime: deltaTime)
 
-        commandEncoder.setFragmentBytes(&light, length: MemoryLayout<Light>.stride, index: 3)
-        commandEncoder.setFragmentBytes(&dirLight, length: MemoryLayout<DirectionalLight>.stride, index: 4)
+        commandEncoder.setFragmentBytes(&light, length: MemoryLayout<LightInfo>.stride, index: 3)
+
+        self.cameraInfo.position = camera.position
+        self.cameraInfo.view = camera.view
+        self.cameraInfo.front = camera.front
+        commandEncoder.setFragmentBytes(&cameraInfo, length: MemoryLayout<CameraInfo>.stride, index: 5)
 
         for child in children {
             child.render(commandEncoder: commandEncoder,

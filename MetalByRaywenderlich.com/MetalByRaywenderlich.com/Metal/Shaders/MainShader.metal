@@ -63,16 +63,14 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
     VertexOut vertexOut;
 
     // Transform the vertex spatial position using
+    float4 position = float4(vertexIn.position, 1.0);
     float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
-    vertexOut.position = matrix * vertexIn.position;
-    vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
+    vertexOut.position = matrix * position;
     vertexOut.color = vertexIn.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
-
-    vertexOut.materialColor = uniform.materialColor;
-    vertexOut.shininess = uniform.shininess;
-    vertexOut.useTexture = uniform.useTexture;
-    vertexOut.eyePosition = (uniform.modelMatrix * vertexIn.position).xyz;
+    vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
+    vertexOut.eyePosition = (uniform.modelMatrix * position).xyz;
+//    vertexOut.eyePosition = (uniform.viewMatrix * uniform.modelMatrix * position).xyz;
 
     return vertexOut;
 }
@@ -85,16 +83,14 @@ vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
     VertexOut vertexOut;
 
     // Transform the vertex spatial position using
+    float4 position = float4(vertexIn.position, 1.0);
     float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
-    vertexOut.position = matrix * vertexIn.position;
+    vertexOut.position = matrix * position;
     vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
     vertexOut.color = vertexIn.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
-
-    vertexOut.materialColor = uniform.materialColor;
-    vertexOut.shininess = uniform.shininess;
-    vertexOut.useTexture = uniform.useTexture;
-    vertexOut.eyePosition = (uniform.modelMatrix * vertexIn.position).xyz;
+    vertexOut.eyePosition = (uniform.modelMatrix * position).xyz;
+//    vertexOut.eyePosition = (uniform.viewMatrix * uniform.modelMatrix * position).xyz;
 
     return vertexOut;
 }
@@ -117,8 +113,9 @@ fragment half4 fragment_shader() {
 // during this rasterisation process, in other words it is data that the rasterisor has generated per fragment,
 // rather than one constant value for all fragments.
 // fragment color are (r, g, b, a) per pixel, these rbg values are between 0 and 1
-fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]]) {
-    return half4(vertexIn.materialColor);
+fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]],
+                               constant MaterialInfo &material [[ buffer(4) ]]) {
+    return half4(vertexIn.color);
 }
 
 // the second parameter here is the texture in fragment buffer 0
@@ -128,11 +125,10 @@ fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
 
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
-    float4 color = vertexIn.color;
-    float3 normal = normalize(vertexIn.normal);
+    //float4 color = vertexIn.color;
+    //float3 normal = normalize(vertexIn.normal);
 
-    //return half4(normal.x, normal.y, normal.z, 1);
-    textcolor = textcolor * vertexIn.materialColor;
+    textcolor = textcolor * vertexIn.color;
     if (textcolor.a == 0.0)
         discard_fragment();
 

@@ -28,7 +28,7 @@ class LandscapeScene: Scene {
         add(childNode: grass)
         add(childNode: mushroom)
 
-        ground.materialColor = float4(0.4, 0.3, 0.1, 1) // brown
+        ground.material.color = float4(0.4, 0.3, 0.1, 1) // brown
         ground.position = float3(0, 0, 0)
         ground.scale = float3(20)
         ground.rotation.x = radians(degrees: 90)
@@ -48,7 +48,7 @@ class LandscapeScene: Scene {
                 let blade = grass.nodes[row * 100 + column]
                 blade.scale = float3(0.5)
                 blade.position = position
-                blade.materialColor = greens[Int(arc4random_uniform(3))]
+                blade.material.color = greens[Int(arc4random_uniform(3))]
                 blade.rotation.y = CGFloat.random(min: 0, max: 360).toFloat
             }
         }
@@ -60,7 +60,7 @@ class LandscapeScene: Scene {
         mushroom.position.z = -8
         mushroom.scale = float3(2)
 
-        sun.materialColor = float4(1, 1, 0, 1) // yellow
+        sun.material.color = float4(1, 1, 0, 1) // yellow
         sun.position.y = 30
         sun.position.x = 6
         sun.scale = float3(2)

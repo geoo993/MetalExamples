@@ -7,10 +7,12 @@
 //
 
 import MetalKit
+import AppCore
 
 class Camera {
 
     var position: float3       // The position of the camera's centre of projection
+    private var rotation: float3
 
     //view and projection matrix
     var perspectiveProjectionMatrix: matrix_float4x4 // Perspective projection matrix
@@ -38,8 +40,8 @@ class Camera {
     var pitch: Float
 
     // Camera options
-    var movementSpeed: Float         // How fast the camera moves
-    var sensitivity: Float      // How sensitive mouse is
+    var speed: Float         // How fast the camera moves
+    var sensitivity: Float      // How sensitive rotation is
 
     // Screen
     var screenSize: CGSize           // size of the screen window
@@ -53,7 +55,7 @@ class Camera {
         front = float3(0.0, 0.0, -1.0)
         back = float3(0.0, 0.0, 1.0)
         left = float3(-1.0, 0.0, 0.0)
-        right = float3(10.0, 0.0, 0.0)
+        right = float3(1.0, 0.0, 0.0)
         up = float3(0.0, 1.0, 0.0)
         down = float3(0.0, -1.0, 0.0)
         worldUp = float3( 0.0, 1.0, 0.0)
@@ -63,10 +65,11 @@ class Camera {
         nearPlane = zNear
         farPlane = zFar
         strafe = float3( 0.0, 0.0, 0.0)
-        movementSpeed = 50
-        sensitivity = 0.05
+        speed = 5.0 // between 0 and 1
+        sensitivity = 0.6 // between 0 and 1
         screenSize = size
         position = float3(0)
+        rotation = float3(0)
 
         setPerspectiveProjectionMatrix(fieldOfView: fov, aspectRatio: Float(screenSize.width / screenSize.height), nearClippingPlane: 0.1, farClippingPlane: 1000)
         setOrthographicProjectionMatrix(width: Float(screenSize.width), height: Float(screenSize.height), zNear: zNear, zFar: zFar)
@@ -114,10 +117,11 @@ class Camera {
 
 
     // Rotate the camera view point -- this effectively rotates the camera since it is looking at the view point
-    func rotateViewPoint(angle: Float, vPoint: float3) {
-        let vView = view - position;// direction vector
+    func rotateViewPoint(angle: Float, axis: float3) {
 
-        let rotation = rotate(m: matrix_identity_float4x4, angle: radians(degrees: angle), axis: vPoint)
+        let vView = view - position;// direction vector
+        
+        let rotation = rotate(m: matrix_identity_float4x4, angle: radians(degrees: angle), axis: axis)
         let newView = rotation * float4(vView, 1)
 
         self.front = normalize(float3(newView))
@@ -149,11 +153,8 @@ class Camera {
     // Strafe the camera (side to side motion) (Left - Right Motion)
     func strafe(direction: Float)
     {
-        let speedratio: Float = 0.025
-        let speed = speedratio * direction
-
-        position.x = position.x + strafe.x * speed;
-        position.z = position.z + strafe.z * speed;
+        position.x = position.x + strafe.x * direction;
+        position.z = position.z + strafe.z * direction;
 
         updateCameraVectors();
     }
@@ -161,21 +162,85 @@ class Camera {
     // Advance the camera (forward / backward motion)
     func advance(direction: Float)
     {
-        let speedratio: Float = 0.025
-        let speed = speedratio * direction
         let forwardView = normalize(view - position)
-        position = position + forwardView * speed
+        position = position + forwardView * direction
 
         updateCameraVectors()
     }
 
-    // Update the camera to respond to mouse motion for rotations and keyboard for translation
-    func update(deltaTime: Float)
+    // Update the camera for rotation
+    func setRotation(angle: Float, displacement: Float, enabled: Bool) {
+
+        if (enabled) {
+
+            let horizontalAngle: Float = sin(angle.toRadians) * displacement * sensitivity
+            let verticalAngle: Float = cos(angle.toRadians) * displacement * sensitivity
+
+            //let axisX: Float = sin(verticalAngle) * sin(horizontalAngle)
+            //let axisY = cos(verticalAngle)
+            //let axisZ: Float = sin(verticalAngle) * cos(horizontalAngle)
+            //print("angle:", angle, ", hori:", horizontalAngle, "vert:", verticalAngle, ", axis:", axisX, axisY, axisZ)
+
+
+            //rotation.x = horizontalAngle
+
+            let maxAngle: Float = 1.56 // Just a little bit below PI / 2
+
+            if (horizontalAngle < maxAngle && horizontalAngle > -maxAngle) {
+                let vPoint: float3 = cross(view - position, up)
+                let axis: float3 = normalize(vPoint)
+                rotateViewPoint(angle: -verticalAngle, axis: axis)
+            }
+
+            rotateViewPoint(angle: -horizontalAngle, axis: worldUp);
+
+        }
+    }
+
+    // Update the camera for translation
+    func setTranslation(deltaTime: Float, angle: Float, displacement: Float)
     {
         let vector = cross(view - position, up);
         strafe = normalize(vector);
 
+        var isAdvancing = false
+
+        if angle != 0 {
+            // Going forward
+            if (angle > 150 && angle < 180) || angle < -150 && angle > -180 {
+                advance(direction: speed * deltaTime)
+                isAdvancing = true
+            }
+
+            // Going backward
+            if angle < 30 && angle > -30 {
+                advance(direction: -speed * deltaTime)
+                isAdvancing = true
+            }
+
+            // Going left
+            if angle < 0 && angle > -180 && isAdvancing == false {
+                strafe(direction: -speed * deltaTime)
+            }
+
+            // Going right
+            if angle > 0 && angle < 180 && isAdvancing == false {
+                strafe(direction: speed * deltaTime)
+            }
+        }
         updateCameraVectors()
+    }
+
+
+    func updateRotation(angle: Float, displacement: Float, enabled: Bool = true) {
+
+        setRotation(angle: angle, displacement: displacement, enabled: enabled)
+    }
+
+    // Update the camera to respond to mouse motion for rotations and keyboard for translation
+    func updateMovement(deltaTime: Float, angle: Float, displacement: Float)
+    {
+        setTranslation(deltaTime: deltaTime, angle: angle, displacement: displacement)
     }
 
 
@@ -214,7 +279,7 @@ class Camera {
     {
         //return glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
         //glm::mat3 mNorm = glm::inverseTranspose(glm::mat3(mModel));
-        return matrix_float3x3(modelMatrix.inverse.transpose)
+        return (matrix_float3x3(modelMatrix).inverse).transpose
     }
 
 

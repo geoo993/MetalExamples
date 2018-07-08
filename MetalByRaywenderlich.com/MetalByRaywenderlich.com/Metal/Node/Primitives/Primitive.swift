@@ -83,7 +83,7 @@ class Primitive: Node {
         buildVertices()
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            self.fragmentFunctionName = "light_shader_fragment"
+            self.fragmentFunctionName = "phong_shader_fragment"
         }
 
         buildBuffers(device: device)
@@ -98,7 +98,7 @@ class Primitive: Node {
         buildVertices()
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "light_shader_fragment"
+            fragmentFunctionName = "phong_shader_fragment"
         }
         if let maskTexture = setTexture(device: device, imageName: maskImageName) {
             self.maskTexture = maskTexture
@@ -212,15 +212,12 @@ extension Primitive: Renderable {
             //(camera.viewMatrix * modelMatrix).upperLeft3x3()
             camera.computeNormalMatrix(modelMatrix: modelMatrix)
 
-        // materials
-        uniform.materialColor = materialColor
-        uniform.shininess = shininess
-        uniform.useTexture = useTexture
-
         commandEncoder.setVertexBytes(&uniform,
                                       length: MemoryLayout<Uniform>.stride,
                                       index: 1)
 
+        commandEncoder.setFragmentBytes(&material, length: MemoryLayout<MaterialInfo>.stride, index: 4)
+        
         // tell the command encoder to set the fragment texture at the fragment index buffer 0
         if texture != nil {
             commandEncoder.setFragmentTexture(texture, index: 0)

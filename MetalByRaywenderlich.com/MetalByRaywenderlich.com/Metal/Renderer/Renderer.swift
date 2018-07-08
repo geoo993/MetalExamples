@@ -7,6 +7,7 @@
 //
 
 import MetalKit
+import AppCore
 
 class Renderer: NSObject {
     let device: MTLDevice
@@ -35,7 +36,7 @@ class Renderer: NSObject {
 
 extension Renderer: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        scene.sceneSizeWillChange(to: size)
+        scene.sceneSizeWillChange(to: size.half)
     }
 
     // MARK: - Draw object

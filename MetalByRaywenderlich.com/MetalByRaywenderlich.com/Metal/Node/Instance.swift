@@ -95,12 +95,10 @@ extension Instance: Renderable {
             pointer.pointee.normalMatrix =
                 //(camera.viewMatrix * modelMatrix).upperLeft3x3()
                 camera.computeNormalMatrix(modelMatrix: modelMatrix)
-            pointer.pointee.materialColor = node.materialColor
-            pointer.pointee.shininess = node.shininess
-            pointer.pointee.useTexture = node.useTexture
             pointer = pointer.advanced(by: 1)
         }
 
+        commandEncoder.setFragmentBytes(&material, length: MemoryLayout<MaterialInfo>.stride, index: 4)
 
         if model.texture != nil {
             commandEncoder.setFragmentTexture(model.texture, index: 0)

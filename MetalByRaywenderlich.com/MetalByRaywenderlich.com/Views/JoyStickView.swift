@@ -29,6 +29,10 @@ public typealias JoyStickViewMonitor = (_ angle: CGFloat, _ displacement: CGFloa
  beyond displacement of 1.0.
 
  */
+
+public enum AngleType  { case full, half }
+
+
 @IBDesignable
 public final class JoyStickView: UIView {
 
@@ -65,6 +69,7 @@ public final class JoyStickView: UIView {
 
     /// The last-reported angle from the joystick handle. Unit is degrees, with 0° up (north) and 90° right (east)
     public private(set) var angle: CGFloat = 0.0
+    public private(set) var angleType: AngleType = .half
 
     /// The last-reported displacement from the joystick handle. Dimensionless but is the ratio of movement over
     /// the radius of the joystick base. Always falls between 0.0 and 1.0
@@ -72,6 +77,7 @@ public final class JoyStickView: UIView {
 
     /// The radius of the base of the joystick, the max distance the handle may move in any direction.
     private lazy var radius: CGFloat = { return self.bounds.size.width / 2.0 }()
+
 
     /// The image to use for the base of the joystick
     @IBInspectable
@@ -326,7 +332,10 @@ public final class JoyStickView: UIView {
 
             // Convert to degrees: 0° is up, 90° is right, 180° is down and 270° is left
             //
-            self.angle = newClampedDisplacement != 0.0 ? CGFloat(180.0 - newAngleRadians * 180.0 / Float.pi) : 0.0
+            let newAngle = (angleType == .full) ? (180.0 - newAngleRadians) : newAngleRadians
+            self.angle = newClampedDisplacement != 0.0
+                ? CGFloat(newAngle * 180.0 / Float.pi)
+                : 0.0
             monitor?(angle, displacement)
         }
     }

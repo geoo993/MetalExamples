@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     metalView.depthStencilPixelFormat = .depth32Float
     
     renderer = Renderer(device: device)
-    let scene = GameScene(device: device, size: view.bounds.size)
+    let scene = LightingScene(device: device, size: view.bounds.size)
     scene.sceneDelegate = self
     renderer?.scene = scene
     metalView.delegate = renderer

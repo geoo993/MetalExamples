@@ -62,6 +62,7 @@
 		C75FDBB520E19F2E00DE2EEC /* NumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB7F20E19F2E00DE2EEC /* NumberExtensions.swift */; };
 		C75FDBB620E19F2E00DE2EEC /* ColorFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB8020E19F2E00DE2EEC /* ColorFormatter.swift */; };
 		C75FDBB720E19F2E00DE2EEC /* Decimals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FDB8120E19F2E00DE2EEC /* Decimals.swift */; };
+		C7B2D84420F2524D00CBC660 /* CGSize+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2D84320F2524D00CBC660 /* CGSize+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		C75FDB7F20E19F2E00DE2EEC /* NumberExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
 		C75FDB8020E19F2E00DE2EEC /* ColorFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorFormatter.swift; sourceTree = "<group>"; };
 		C75FDB8120E19F2E00DE2EEC /* Decimals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decimals.swift; sourceTree = "<group>"; };
+		C7B2D84320F2524D00CBC660 /* CGSize+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				C75FDB6A20E19F2D00DE2EEC /* CGPath+Ext.swift */,
 				C75FDB6020E19F2D00DE2EEC /* CGPoint+Ext.swift */,
 				C75FDB7720E19F2D00DE2EEC /* CGRect+Ext.swift */,
+				C7B2D84320F2524D00CBC660 /* CGSize+Ext.swift */,
 				C71425AA20F0D06700B1D2D1 /* CGVector+Ext.swift */,
 				C75FDB6F20E19F2D00DE2EEC /* DeviceType.swift */,
 				C75FDB4F20E19F2D00DE2EEC /* Dictionary+Ext.swift */,
@@ -353,6 +356,7 @@
 				C75FDB9620E19F2E00DE2EEC /* UITableView+Ext.swift in Sources */,
 				C75FDBA920E19F2E00DE2EEC /* UIWindow+Ext.swift in Sources */,
 				C75FDB8920E19F2E00DE2EEC /* UIImage+GIF.swift in Sources */,
+				C7B2D84420F2524D00CBC660 /* CGSize+Ext.swift in Sources */,
 				C75FDB9820E19F2E00DE2EEC /* GameLoop.swift in Sources */,
 				C75FDB9F20E19F2E00DE2EEC /* UIColor+Ext.swift in Sources */,
 				C75FDB8420E19F2E00DE2EEC /* BezierCubicCurveAlgorithm.swift in Sources */,

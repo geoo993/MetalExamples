@@ -39,7 +39,7 @@ class PrimitivesScene: Scene {
         //add(childNode: cone)
         //add(childNode: cylinder)
 
-        sun.materialColor = float4(1, 1, 0, 1)
+        sun.material.color = float4(1, 1, 0, 1)
         sun.position = float3(0, 0, 0)
 
         cube.position = float3(1, 0, 0)

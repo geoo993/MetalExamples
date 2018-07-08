@@ -80,7 +80,7 @@ class Model: Node {
         let imageName = modelName + ".png"
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "light_shader_fragment"
+            fragmentFunctionName = "blinn_phong_shader_fragment"
         }
 
         pipelineState = buildPipelineState(device: device)
@@ -95,7 +95,7 @@ class Model: Node {
 
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "light_shader_fragment"
+            fragmentFunctionName = "blinn_phong_shader_fragment"
         }
 
         pipelineState = buildPipelineState(device: device)
@@ -185,14 +185,11 @@ extension Model: Renderable {
         //(camera.viewMatrix * modelMatrix).upperLeft3x3()
         camera.computeNormalMatrix(modelMatrix: modelMatrix)
 
-        // materials
-        uniform.materialColor = materialColor
-        uniform.shininess = shininess
-        uniform.useTexture = useTexture
-
         commandEncoder.setVertexBytes(&uniform,
                                       length: MemoryLayout<Uniform>.stride,
                                       index: 1)
+
+        commandEncoder.setFragmentBytes(&material, length: MemoryLayout<MaterialInfo>.stride, index: 4)
 
         if texture != nil {
             commandEncoder.setFragmentTexture(texture, index: 0)

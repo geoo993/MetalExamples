@@ -47,9 +47,9 @@ import AppCore
 
 class MetalViewController: UIViewController {
 
-    var metalView: MTKView {
-        return view as! MTKView
-    }
+    @IBOutlet weak var metalView: MTKView!
+    @IBOutlet weak var leftJoyStick: JoyStickView!
+    @IBOutlet weak var rightJoyStick: JoyStickView!
 
     var renderer: Renderer!
 
@@ -67,12 +67,13 @@ class MetalViewController: UIViewController {
         let width = CGFloat.width(ofDevice: currentDevice).width
         let height = CGFloat.height(ofDevice: currentDevice).height
         let screenSize = CGSize(width: width, height: height)
+
         let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 1000)
 
-        let primitivesScene = PrimitivesScene(device: device, camera: camera)
+        //let primitivesScene = PrimitivesScene(device: device, camera: camera)
         let lightingScene = LightingScene(device: device, camera: camera)
-        let instanceScene = InstanceScene(device: device, camera: camera)
-        let landscapeScene = LandscapeScene(device: device, camera: camera)
+//        let instanceScene = InstanceScene(device: device, camera: camera)
+//        let landscapeScene = LandscapeScene(device: device, camera: camera)
         renderer = Renderer(device: device, scene: lightingScene)
 
         // Setup MTKView and delegate
@@ -80,7 +81,20 @@ class MetalViewController: UIViewController {
         metalView.depthStencilPixelFormat = .depth32Float
         metalView.delegate = renderer
 
-        SoundController.shared.playBackgroundMusic("Gem.mp3")
+        //SoundController.shared.playBackgroundMusic("Gem.mp3")
+
+        leftJoyStick.monitor = { angle, displacement in
+            lightingScene.leftCameraAngle = Float(angle)
+            lightingScene.leftCameraDisplacement = Float(displacement)
+            //print("left joystick angle \(angle)")
+            //print("left joystick magnitude \(displacement)")
+        }
+        rightJoyStick.monitor = { angle, displacement in
+            lightingScene.rightCameraAngle = Float(angle)
+            lightingScene.rightCameraDisplacement = Float(angle)
+            //print("right joystick angle \(angle)")
+            //print("right joystick angle \(displacement)")
+        }
 
     }
 

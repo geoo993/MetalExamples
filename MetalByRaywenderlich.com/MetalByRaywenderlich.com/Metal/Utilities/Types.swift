@@ -24,19 +24,35 @@ struct Uniform {
     var modelMatrix = matrix_identity_float4x4
     var viewMatrix = matrix_identity_float4x4
     var normalMatrix = matrix_identity_float3x3
-    var materialColor = float4(1)
+}
+
+// Structure holding material information:  its ambient, diffuse, and specular colours, and shininess
+struct MaterialInfo {
+    var color = float4(1)
+    var ambient = float3(0)
+    var diffuse = float3(0)
+    var specular = float3(0)
     var shininess: Float = 1.0
     var useTexture: Bool = false
 }
 
-struct Light {
+struct LightInfo {
     var position = float3(0)
     var color = float3(1)
     var direction = float3(0)
-    var ambientIntensity: Float = 1.0
-    var diffuseIntensity: Float = 1.0
-    var specularIntensity: Float = 1.0
+    var ambient = float3(0)
+    var diffuse = float3(0)
+    var specular = float3(0)
+    var cutOff: Float = 0.0
+    var exponent: Float = 0.0
 }
+
+struct CameraInfo {
+    var position = float3(0)
+    var view = float3(0)
+    var front = float3(0)
+};
+
 
 struct DirectionalLight
 {
