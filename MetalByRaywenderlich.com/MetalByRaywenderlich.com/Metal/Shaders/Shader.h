@@ -107,5 +107,7 @@ struct VertexOut {
     float3 fragPosition;
 };
 
+float radians(float degree);
+
 
 #endif /* Shader_h */

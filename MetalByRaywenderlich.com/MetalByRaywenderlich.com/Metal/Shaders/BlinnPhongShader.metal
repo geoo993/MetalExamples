@@ -13,7 +13,6 @@ using namespace metal;
 float radians(float degree) {
     return degree * 3.14159265359 / 180.0;
 }
-
 // This function implements the Blinn Phong shading model
 // The code is based on the OpenGL 4.0 Shading Language Cookbook, pp. 67 - 68, with a few tweaks.
 // Please see Chapter 2 of the book for a detailed discussion.

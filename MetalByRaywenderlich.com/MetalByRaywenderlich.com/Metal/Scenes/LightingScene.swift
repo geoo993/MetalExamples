@@ -64,7 +64,7 @@ class LightingScene: Scene {
         light.cutOff = 30.0
 
         spotLight.point.base.color = float3(1, 1, 1)
-        spotLight.point.base.intensity = 5.0
+        spotLight.point.base.intensity = 25.0
         spotLight.point.position = float3(-5, 10, 0)
         spotLight.point.base.ambient = float3(0.5, 0.5, 0.5)
         spotLight.point.base.diffuse = float3(0.9, 0.9, 0.91)
@@ -74,14 +74,14 @@ class LightingScene: Scene {
         spotLight.point.atten.exponent = 0.032
         spotLight.direction = float3(-2, 0, 0)
         spotLight.point.range = 22
-        spotLight.cutoff = 0.6
-        spotLight.outerCutoff = 0.85
+        spotLight.cutoff = 4.6
+        spotLight.outerCutoff = 2.85
 
         mushroom.position = float3(0, -1, 0)
         mushroom.material.ambient = float3(0.4, 0.4, 0.4)
         mushroom.material.diffuse = float3(0.8, 0.8, 0.8)
         mushroom.material.specular = float3(0.98, 0.98, 0.98)
-        mushroom.material.shininess = 2.0
+        mushroom.material.shininess = 12.0
         mushroom.material.useTexture = true
         mushroom.material.color = float4(1, 0, 0, 1)
 
