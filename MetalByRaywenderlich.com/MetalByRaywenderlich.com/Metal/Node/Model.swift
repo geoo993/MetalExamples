@@ -80,7 +80,7 @@ class Model: Node {
         let imageName = modelName + ".png"
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "blinn_phong_shader_fragment"
+            fragmentFunctionName = "spot_light_shader_fragment"
         }
 
         pipelineState = buildPipelineState(device: device)
@@ -95,7 +95,7 @@ class Model: Node {
 
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "blinn_phong_shader_fragment"
+            fragmentFunctionName = "spot_light_shader_fragment"
         }
 
         pipelineState = buildPipelineState(device: device)

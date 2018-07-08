@@ -63,6 +63,20 @@ class LightingScene: Scene {
         light.exponent = 16.0
         light.cutOff = 30.0
 
+        spotLight.point.base.color = float3(1, 1, 1)
+        spotLight.point.base.intensity = 5.0
+        spotLight.point.position = float3(-5, 10, 0)
+        spotLight.point.base.ambient = float3(0.5, 0.5, 0.5)
+        spotLight.point.base.diffuse = float3(0.9, 0.9, 0.91)
+        spotLight.point.base.specular = float3(1.0, 1.0, 1.0)
+        spotLight.point.atten.constants = 1.0
+        spotLight.point.atten.linear = 0.2
+        spotLight.point.atten.exponent = 0.032
+        spotLight.direction = float3(-2, 0, 0)
+        spotLight.point.range = 22
+        spotLight.cutoff = 0.6
+        spotLight.outerCutoff = 0.85
+
         mushroom.position = float3(0, -1, 0)
         mushroom.material.ambient = float3(0.4, 0.4, 0.4)
         mushroom.material.diffuse = float3(0.8, 0.8, 0.8)
@@ -81,9 +95,8 @@ class LightingScene: Scene {
 
         //cameraRotation += deltaTime * 10
         //camera.rotateAroundPoint(distance: 10, viewpoint: mushroom.position, angle: cameraRotation, y: 0)
-        light.position = camera.position
-        light.direction = camera.front
-        //print(camera.view, camera.front, camera.position)
+        spotLight.point.position = camera.position
+        spotLight.direction = camera.front
 
         //cube.materialColor = float4(1)
         //cube.position = light.position

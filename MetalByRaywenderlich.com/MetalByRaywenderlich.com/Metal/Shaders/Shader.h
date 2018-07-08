@@ -51,52 +51,43 @@ struct LightInfo {
 
 };
 
-/*
-struct DirectionalLight
+struct BaseLight
 {
-    float3 position;
     float3 color;
-    float3 direction;
-
+    float intensity;
     float3 ambient;
     float3 diffuse;
     float3 specular;
+};
+
+struct Attenuation
+{
+    float constants;
+    float linear;
+    float exponent;
+};
+
+struct DirectionalLight
+{
+    BaseLight base;
+    float3 direction;
 };
 
 struct PointLight
 {
+    BaseLight base;
+    Attenuation atten;
     float3 position;
-    float3 color;
-
-    float3 ambient;
-    float3 diffuse;
-    float3 specular;
-
-    float constantic;
-    float linearic;
-    float quadratic;
+    float range;
 };
-
 
 struct SpotLight
 {
-    float3 position;
-    float3 color;
+    PointLight point;
     float3 direction;
-    float intensity;
-
-    float3 ambient;
-    float3 diffuse;
-    float3 specular;
-
-    float constantic;
-    float linearic;
-    float quadratic;
-
-    float cutOff;
-    float outerCutOff;
+    float cutoff;
+    float outerCutoff;
 };
- */
 
 // input information to the shader
 // note that each item in the struct has been given an attribute number
@@ -113,7 +104,7 @@ struct VertexOut {
     float2 textureCoordinates;
     float4 color;
     float3 normal;
-    float3 eyePosition;
+    float3 fragPosition;
 };
 
 

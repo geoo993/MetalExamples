@@ -53,14 +53,40 @@ struct CameraInfo {
     var front = float3(0)
 };
 
-
-struct DirectionalLight
+struct BaseLight
 {
-    var position = float3(0)
     var color = float3(1)
-    var direction = float3(0)
-    var intensity: Float = 1.0
+    var intensity: Float = 0
     var ambient = float3(0)
     var diffuse = float3(0)
     var specular = float3(0)
+};
+
+struct Attenuation
+{
+    var constants: Float = 1.0
+    var linear: Float = 1.0
+    var exponent: Float = 1.0
+};
+
+struct DirectionalLight
+{
+    var base: BaseLight = BaseLight()
+    var direction = float3(0)
+};
+
+struct PointLight
+{
+    var base: BaseLight = BaseLight()
+    var atten: Attenuation = Attenuation()
+    var position = float3(0)
+    var range: Float = 0
+};
+
+struct SpotLight
+{
+    var point: PointLight = PointLight()
+    var direction = float3(0)
+    var cutoff: Float = 0
+    var outerCutoff: Float = 0
 };

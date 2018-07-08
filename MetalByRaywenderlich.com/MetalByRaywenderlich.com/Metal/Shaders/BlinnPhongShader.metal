@@ -18,18 +18,18 @@ float radians(float degree) {
 // The code is based on the OpenGL 4.0 Shading Language Cookbook, pp. 67 - 68, with a few tweaks.
 // Please see Chapter 2 of the book for a detailed discussion.
 fragment half4 blinn_phong_shader_fragment(VertexOut vertexIn [[ stage_in ]],
-                                     constant LightInfo &light [[ buffer(3) ]],
-                                     constant MaterialInfo &material [[ buffer(4) ]],
-                                     constant CameraInfo &camera [[ buffer(5) ]],
-                                     texture2d<float> texture [[ texture(0) ]],
-                                     sampler sampler2d [[ sampler(0) ]]) {
+                                           constant CameraInfo &camera [[ buffer(3) ]],
+                                           constant MaterialInfo &material [[ buffer(4) ]],
+                                           constant LightInfo &light [[ buffer(5) ]],
+                                           texture2d<float> texture [[ texture(0) ]],
+                                           sampler sampler2d [[ sampler(0) ]]) {
 
 
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
     //float4 color = vertexIn.color;
 
-    float3 p = vertexIn.eyePosition; // Eye coordinates are computed as part of the camera model
+    float3 p = vertexIn.fragPosition; // Eye coordinates are computed as part of the camera model
     float3 d = light.direction; // d is the spotlight direction (in eye coordinates)
     float3 s = normalize(light.position - p); // light direction is the normalised vector pointing to the light source
     //float3 v = normalize(-p);

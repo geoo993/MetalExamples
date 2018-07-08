@@ -77,7 +77,7 @@ class MetalViewController: UIViewController {
         renderer = Renderer(device: device, scene: lightingScene)
 
         // Setup MTKView and delegate
-        metalView.clearColor = UIColor.darkKhaki.toMTLClearColor
+        metalView.clearColor = UIColor.bbciplayerDark.toMTLClearColor
         metalView.depthStencilPixelFormat = .depth32Float
         metalView.delegate = renderer
 

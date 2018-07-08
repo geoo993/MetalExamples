@@ -69,8 +69,7 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
     vertexOut.color = vertexIn.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
     vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
-    vertexOut.eyePosition = (uniform.modelMatrix * position).xyz;
-//    vertexOut.eyePosition = (uniform.viewMatrix * uniform.modelMatrix * position).xyz;
+    vertexOut.fragPosition = (uniform.modelMatrix * position).xyz;
 
     return vertexOut;
 }
@@ -89,8 +88,7 @@ vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
     vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
     vertexOut.color = vertexIn.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
-    vertexOut.eyePosition = (uniform.modelMatrix * position).xyz;
-//    vertexOut.eyePosition = (uniform.viewMatrix * uniform.modelMatrix * position).xyz;
+    vertexOut.fragPosition = (uniform.modelMatrix * position).xyz;
 
     return vertexOut;
 }
