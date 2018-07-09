@@ -8,6 +8,23 @@
 
 import simd
 
+enum VertexFunction: String {
+    case vertex_shader
+    case vertex_instance_shader
+}
+
+enum FragmentFunction: String {
+    case fragment_shader
+    case fragment_color
+    case textured_fragment
+    case textured_mask_fragment
+    case lit_textured_fragment
+    case phong_fragment_shader
+    case blinn_phong_fragment_shader
+    case lighting_fragment_shader
+}
+
+
 struct Vertex {
     var position: float3
     var texture: float2

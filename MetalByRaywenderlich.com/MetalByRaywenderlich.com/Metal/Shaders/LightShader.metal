@@ -23,7 +23,7 @@ float3 CalcLight(BaseLight base, MaterialInfo material, CameraInfo camera,
 
     // Diffuse
     float diffuseFactor = max(dot(direction, normal), 0.0);
-    diffuseColor = base.diffuse * material.diffuse * diffuseFactor;
+    diffuseColor = base.diffuse * material.diffuse * base.color * base.intensity * diffuseFactor;
 
     // Specular
     float3 directionToEye = normalize(camera.view - position); // viewDirection
@@ -33,6 +33,7 @@ float3 CalcLight(BaseLight base, MaterialInfo material, CameraInfo camera,
     {
         specularColor = base.specular
         * material.specular
+        * base.color
         * pow(max(dot(halfDirection, normal), 0.0), material.shininess);
     }
 
@@ -90,27 +91,52 @@ float3 CalcSpotLight(SpotLight spotLight, MaterialInfo material, CameraInfo came
 }
 
 
-fragment half4 spot_light_shader_fragment(VertexOut vertexIn [[ stage_in ]],
-                                           constant CameraInfo &camera [[ buffer(3) ]],
-                                           constant MaterialInfo &material [[ buffer(4) ]],
-                                           constant SpotLight &light [[ buffer(8) ]],
-                                           texture2d<float> texture [[ texture(0) ]],
-                                           sampler sampler2d [[ sampler(0) ]]) {
+fragment half4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
+                                        constant CameraInfo &camera [[ buffer(3) ]],
+                                        constant MaterialInfo &material [[ buffer(4) ]],
+                                        constant DirectionalLight *dirlights [[ buffer(6) ]],
+                                        constant PointLight *pointlights [[ buffer(7) ]],
+                                        constant SpotLight *spotlights [[ buffer(8) ]],
+                                        texture2d<float> texture [[ texture(0) ]],
+                                        sampler sampler2d [[ sampler(0) ]]) {
 
+    // Properties
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
     //float4 color = vertexIn.color;
     float3 p = vertexIn.fragPosition; // Eye coordinates are computed as part of the camera model
     float3 n = normalize(vertexIn.normal);
-    float3 finalColor = float3(0.0f);
+    float3 result = float3(0.0);
+    const int NUMBER_OF_DIRECTIONAL_LIGHTS = 4;
+    const int NUMBER_OF_POINT_LIGHTS = 5;
+    const int NUMBER_OF_SPOT_LIGHTS = 1;
 
-    float3 spotL = CalcSpotLight(light, material, camera, n, p);
-    finalColor += spotL;
+    // Directional lighting
+    for (int i = 0; i < NUMBER_OF_DIRECTIONAL_LIGHTS; i++) {
+        //float3 directionalLight = CalcDirectionalLight(dirlights[i], material, camera, n, p);
+        //result += directionalLight;
+    }
 
-    textcolor = textcolor * float4(finalColor, 1);
+    // Point lights
+    for (int i = 0; i < NUMBER_OF_POINT_LIGHTS; i++) {
+        float3 pointL = CalcPointLight(pointlights[i], material, camera, n, p);
+        result += pointL;
+    }
 
-    if (textcolor.a == 0.0)
-    discard_fragment();
+    // Spot light
+    for (int i = 0; i < NUMBER_OF_SPOT_LIGHTS; i++) {
+        float3 spotL = CalcSpotLight(spotlights[i], material, camera, n, p);
+        result += spotL;
+    }
 
-    return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+    if (material.useTexture) {
+        textcolor = textcolor * material.color * float4(result, 1);
+        if (textcolor.a == 0.0)
+        discard_fragment();
+
+        return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+    } else {
+        float4 finalColor = material.color * float4(result, 1);
+        return half4(finalColor.r, finalColor.g, finalColor.b, 1);
+    }
 }

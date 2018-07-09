@@ -29,8 +29,8 @@ class Model: Node {
     var pipelineState: MTLRenderPipelineState!
     var samplerState: MTLSamplerState!
     var depthStencilState: MTLDepthStencilState!
-    var fragmentFunctionName: String = "fragment_shader"
-    var vertexFunctionName: String = "vertex_shader"
+    var vertexFunctionName: VertexFunction = .vertex_shader
+    var fragmentFunctionName: FragmentFunction = .fragment_shader
 
     var vertexDescriptor: MTLVertexDescriptor {
         let vertexDescriptor = MTLVertexDescriptor()
@@ -72,15 +72,15 @@ class Model: Node {
     var texture: MTLTexture?
 
     //MARK: - initialise the Renderer with a device
-    init(device:MTLDevice, modelName: String) {
+    init(device:MTLDevice, modelName: String, fragmentShader: FragmentFunction) {
         super.init()
         name = modelName
+        fragmentFunctionName = fragmentShader
         loadModel(device: device, modelName: modelName)
 
         let imageName = modelName + ".png"
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "spot_light_shader_fragment"
         }
 
         pipelineState = buildPipelineState(device: device)
@@ -88,14 +88,14 @@ class Model: Node {
         depthStencilState = buildDepthStencilState(device: device)
     }
 
-    init(device:MTLDevice, modelName: String, imageName: String) {
+    init(device:MTLDevice, modelName: String, imageName: String, fragmentShader: FragmentFunction) {
         super.init()
         name = modelName
+        fragmentFunctionName = fragmentShader
         loadModel(device: device, modelName: modelName)
 
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "spot_light_shader_fragment"
         }
 
         pipelineState = buildPipelineState(device: device)

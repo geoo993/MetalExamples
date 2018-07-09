@@ -7,7 +7,8 @@ class InstanceScene: Scene {
     var humans : Instance
 
     override init(device: MTLDevice, camera: Camera) {
-        humans = Instance(device: device, modelName: "humanFigure", instances: 40)
+        humans = Instance(device: device, modelName: "humanFigure", instances: 40,
+                          fragmentShader: .lit_textured_fragment)
         super.init(device: device, camera: camera)
         add(childNode: humans)
 

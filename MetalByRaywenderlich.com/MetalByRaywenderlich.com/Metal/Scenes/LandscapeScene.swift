@@ -13,8 +13,8 @@ class LandscapeScene: Scene {
     override init(device: MTLDevice, camera: Camera) {
         sun = Sphere(device: device)
         ground = Plane(device: device)
-        grass = Instance(device: device, modelName: "grass", instances: 10000)
-        mushroom = Model(device: device, modelName: "mushroom")
+        grass = Instance(device: device, modelName: "grass", instances: 10000, fragmentShader: .lit_textured_fragment)
+        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .lit_textured_fragment)
         super.init(device: device, camera: camera)
 
         setupScene()

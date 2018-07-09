@@ -67,6 +67,7 @@ extension Renderer: MTKViewDelegate {
         let deltaTime = 1 / Float(view.preferredFramesPerSecond)
 
         // set the scene
+        scene.time += 1 / Float(view.preferredFramesPerSecond)
         scene.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
         
         

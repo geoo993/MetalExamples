@@ -101,19 +101,17 @@ vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
 // the fragment function the one that returns the color of each fragment is the one that is easier that the vertex fucntion.
 // it is a fragment function so we prefix it with fragment and returning a half4,
 // which is a smaller float4 and calling the function fragment_shader
-/*
-fragment half4 fragment_shader() {
-    return half4(1, 1, 0, 1);
+fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]]) {
+    return half4(vertexIn.color);
 }
- */
 
 // notice the special qualifier 'stage_in', all the vertex information within this in-struct has been interpolated,
 // during this rasterisation process, in other words it is data that the rasterisor has generated per fragment,
 // rather than one constant value for all fragments.
 // fragment color are (r, g, b, a) per pixel, these rbg values are between 0 and 1
-fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]],
+fragment half4 fragment_color(VertexOut vertexIn [[ stage_in ]],
                                constant MaterialInfo &material [[ buffer(4) ]]) {
-    return half4(vertexIn.color);
+    return half4(material.color);
 }
 
 // the second parameter here is the texture in fragment buffer 0

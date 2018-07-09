@@ -25,8 +25,8 @@ class Instance: Node {
     var pipelineState: MTLRenderPipelineState!
     var samplerState: MTLSamplerState!
     var depthStencilState: MTLDepthStencilState!
-    var fragmentFunctionName: String
-    var vertexFunctionName: String = "vertex_instance_shader"
+    var vertexFunctionName: VertexFunction = .vertex_instance_shader
+    var fragmentFunctionName: FragmentFunction
 
     var vertexDescriptor: MTLVertexDescriptor
     var uniform = Uniform()
@@ -34,8 +34,8 @@ class Instance: Node {
     var drawType: MTLPrimitiveType = .triangle
 
     //Mark: - initialiser
-    init(device: MTLDevice, modelName: String, instances: Int) {
-        model = Model(device: device, modelName: modelName)
+    init(device: MTLDevice, modelName: String, instances: Int, fragmentShader: FragmentFunction) {
+        model = Model(device: device, modelName: modelName, fragmentShader: fragmentShader)
         fragmentFunctionName = model.fragmentFunctionName
         vertexDescriptor = model.vertexDescriptor
         super.init()

@@ -22,16 +22,48 @@
 // towards the light the dot product will be -1 and that part of the model will be fully lit.
 // The way we calculate the lighting will be similar to the way we calculate the ambient lighting.
 
-
-
-
 import MetalKit
 
 class LightingScene: Scene {
 
-    //let torusKnot: TorusKnot
-    //let cube: Cube
+    var cubes = [Cube]()
+    var cubesColor = float3(1.0)
+    var pointLightCubes = [Cube]()
     let mushroom: Model
+
+    var cubesPosition: [float3] = [
+        float3(-1.0, -4.0, -1.0),
+        float3(-8.0, 7.0, 5.0),
+        float3(-5.0, 3.0, -2.0),
+        float3(2.0, 5.0, 8.0),
+        float3(-2.0, 8.0, -9.0),
+        float3(4.0, -1.0, -2.0),
+        float3(9.0, -5.0, 3.0),
+        float3(-8.0, 2.0, 8.0)
+    ]
+
+    let directionalLightsDirections: [float3] = [
+        float3(  3.2, 3.0, -0.3),
+        float3(  15.7,  5.2,  -6.0      ),
+        float3(  -9.3, -14.3, -2.0      ),
+        float3(  -24.0,  9.0, -15.0    ),
+    ]
+
+    var pointLightPositions: [float3] = [
+        float3(  1.0,  3.0,  -2.0      ),
+        float3(  -5.7,  0.2,  2.0      ),
+        float3(  2.3, -3.3, -4.0      ),
+        float3(  -4.0,  2.0, -12.0    ),
+        float3(  0.0,  0.0, -3.0     )
+    ]
+
+    var pointlightsColours: [float3] = [
+        float3(1.0, 1.0, 0.0),
+        float3(0.4, 0.6, 0.7),
+        float3(0.9, 0.1, 0.4),
+        float3(0.6, 0.2, 0.25),
+        float3(0.3, 0.5, 0.2),
+    ]
 
     var previousTouchLocation: CGPoint = .zero
     var cameraRotation: Float = 0
@@ -41,30 +73,83 @@ class LightingScene: Scene {
     var rightCameraDisplacement: Float = 0
 
     override init(device: MTLDevice, camera: Camera) {
-        //torusKnot = TorusKnot(device: device, imageName: "blue-frozen-water.jpg")
-        //cube = Cube(device: device)
-        mushroom = Model(device: device, modelName: "mushroom")
+        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .lighting_fragment_shader)
         super.init(device: device, camera: camera)
-        //add(childNode: torusKnot)
-        //add(childNode: cube)
+
+        mushroom.position = float3(0, -1, 0)
+        mushroom.material.ambient = float3(0.4, 0.4, 0.4)
+        mushroom.material.diffuse = float3(0.8, 0.8, 0.8)
+        mushroom.material.specular = float3(0.98, 0.98, 0.98)
+        mushroom.material.shininess = 12.0
+        mushroom.material.useTexture = true
+        mushroom.material.color = float4(1, 1, 1, 1)
         add(childNode: mushroom)
 
+        for i in 0..<cubesPosition.count {
+            let angle: Float = 20.0 * i.toFloat
+            let position: float3 = cubesPosition[i]
+            let cube =
+                Cube(device: device, imageName: "abstract-color.jpg", fragmentShader: .lighting_fragment_shader)
+            cube.position = position
+            cube.rotation = float3(1.0, angle, 1.0)
+            cube.scale = float3(2.0)
+
+            cube.material.ambient = float3(0.4, 0.4, 0.4)
+            cube.material.diffuse = float3(0.8, 0.8, 0.8)
+            cube.material.specular = float3(0.98, 0.98, 0.98)
+            cube.material.shininess = 16.0
+            cube.material.useTexture = false
+            cube.material.color = float4(cubesColor, 1)
+
+            add(childNode: cube)
+            cubes.append(cube)
+
+        }
+
+        // Directional light
+        for i in 0..<directionalLightsDirections.count {
+            let direction: float3 = directionalLightsDirections[i]
+            let color = float3(1.0)
+            let ambient = float3(0.5, 0.5, 0.5)
+            let diffuse = float3(0.9, 0.9, 0.9)
+            let specular = float3(1.0, 1.0, 1.0)
+
+            let base = BaseLight(color: color, intensity: 1.4, ambient: ambient, diffuse: diffuse, specular: specular)
+            let dirLight = DirectionalLight(base: base, direction: direction)
+            dirLights.append(dirLight)
+        }
+
+        // Point Light
+        for i in 0..<pointLightPositions.count {
+            let position: float3 = pointLightPositions[i]
+            let color: float3 = pointlightsColours[i];
+            let cube = Cube(device: device, fragmentShader: .fragment_color)
+            add(childNode: cube)
+            cube.material.color = float4(color, 1.0)
+            cube.position = position
+            cube.scale = float3(0.4)
+            pointLightCubes.append(cube)
+
+            var pointLight = PointLight()
+            pointLight.base.color = color
+            pointLight.base.intensity = 10.7
+            pointLight.position = position
+            pointLight.base.ambient = float3(0.5, 0.5, 0.5)
+            pointLight.base.diffuse = float3(0.9, 0.9, 0.9)
+            pointLight.base.specular = float3(1.0, 1.0, 1.0)
+            pointLight.atten.constants = 1.0
+            pointLight.atten.linear = 0.09
+            pointLight.atten.exponent = 0.32
+            pointLight.range = 50
+
+            pointLights.append(pointLight)
+        }
 
 
-        //torusKnot.position = float3(0, 0, 0)
-        //torusKnot.scale = float3(0.8)
-
-        light.position = float3(-5, 10, 0)
-        light.color = float3(1, 1, 1)
-        light.direction = float3(-2, 0, 0)
-        light.ambient = float3(0.2, 0.2, 0.2)
-        light.diffuse = float3(0.8, 0.9, 0.1)
-        light.specular = float3(1, 1.0, 1.0)
-        light.exponent = 16.0
-        light.cutOff = 30.0
-
+        //Spot Light
+        var spotLight = SpotLight()
         spotLight.point.base.color = float3(1, 1, 1)
-        spotLight.point.base.intensity = 25.0
+        spotLight.point.base.intensity = 2.9
         spotLight.point.position = float3(-5, 10, 0)
         spotLight.point.base.ambient = float3(0.5, 0.5, 0.5)
         spotLight.point.base.diffuse = float3(0.9, 0.9, 0.91)
@@ -73,17 +158,11 @@ class LightingScene: Scene {
         spotLight.point.atten.linear = 0.2
         spotLight.point.atten.exponent = 0.032
         spotLight.direction = float3(-2, 0, 0)
-        spotLight.point.range = 22
-        spotLight.cutoff = 4.6
-        spotLight.outerCutoff = 2.85
+        spotLight.point.range = 40
+        spotLight.cutoff = 6.6
+        spotLight.outerCutoff = 1.85
+        spotLights.append(spotLight)
 
-        mushroom.position = float3(0, -1, 0)
-        mushroom.material.ambient = float3(0.4, 0.4, 0.4)
-        mushroom.material.diffuse = float3(0.8, 0.8, 0.8)
-        mushroom.material.specular = float3(0.98, 0.98, 0.98)
-        mushroom.material.shininess = 12.0
-        mushroom.material.useTexture = true
-        mushroom.material.color = float4(1, 0, 0, 1)
 
         camera.set(position: float3(10,0,0), viewpoint: mushroom.position, up: float3(0,1,0))
     }
@@ -95,12 +174,16 @@ class LightingScene: Scene {
 
         //cameraRotation += deltaTime * 10
         //camera.rotateAroundPoint(distance: 10, viewpoint: mushroom.position, angle: cameraRotation, y: 0)
-        spotLight.point.position = camera.position
-        spotLight.direction = camera.front
+        spotLights[0].point.position = camera.position
+        spotLights[0].direction = camera.front
 
-        //cube.materialColor = float4(1)
-        //cube.position = light.position
-        //cube.scale = float3(0.8)
+
+        for cube in cubes {
+            cubesColor.x = sin( time * 0.1 );
+            cubesColor.y = sin( time * 0.06 );
+            cubesColor.z = sin( time * 0.03 );
+            cube.material.color = float4(cubesColor, 1)
+        }
     }
 
     override func touchesBegan(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {

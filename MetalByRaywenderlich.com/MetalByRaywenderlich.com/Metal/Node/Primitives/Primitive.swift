@@ -30,8 +30,8 @@ class Primitive: Node {
     var pipelineState: MTLRenderPipelineState!
     var samplerState: MTLSamplerState!
     var depthStencilState: MTLDepthStencilState!
-    var fragmentFunctionName: String = "fragment_shader"
-    var vertexFunctionName: String = "vertex_shader"
+    var vertexFunctionName: VertexFunction = .vertex_shader
+    var fragmentFunctionName: FragmentFunction = .fragment_shader
 
     var vertexDescriptor: MTLVertexDescriptor {
         let vertexDescriptor = MTLVertexDescriptor()
@@ -67,8 +67,9 @@ class Primitive: Node {
 
 
     //MARK: - initialise the Renderer with a device
-    init(device: MTLDevice) {
+    init(device: MTLDevice, fragmentShader: FragmentFunction = .fragment_shader) {
         super.init()
+        self.fragmentFunctionName = fragmentShader
         setup()
         buildVertices()
         buildBuffers(device: device)
@@ -77,13 +78,13 @@ class Primitive: Node {
         depthStencilState = buildDepthStencilState(device: device)
     }
 
-    init(device: MTLDevice, imageName: String) {
+    init(device: MTLDevice, imageName: String, fragmentShader: FragmentFunction) {
         super.init()
         setup()
         buildVertices()
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            self.fragmentFunctionName = "phong_shader_fragment"
+            self.fragmentFunctionName = fragmentShader
         }
 
         buildBuffers(device: device)
@@ -98,11 +99,10 @@ class Primitive: Node {
         buildVertices()
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
-            fragmentFunctionName = "phong_shader_fragment"
         }
         if let maskTexture = setTexture(device: device, imageName: maskImageName) {
             self.maskTexture = maskTexture
-            fragmentFunctionName = "textured_mask_fragment"
+            fragmentFunctionName = .textured_mask_fragment
         }
         buildBuffers(device: device)
         pipelineState = buildPipelineState(device: device)

@@ -16,16 +16,16 @@ class PrimitivesScene: Scene {
     var cameraRotation: Float = 0
 
     override init(device: MTLDevice, camera: Camera) {
-        mushroom = Model(device: device, modelName: "mushroom")
-        cube = Cube(device: device, imageName: "abstract-color.jpg")
-        torus = Torus(device: device, imageName: "abstract-color.jpg")
-        sun = Sphere(device: device, imageName: "abstract-color.jpg")
-        pyramid = Pyramid(device: device, imageName: "spiralcolor.jpg")
-        diamond = Diamond(device: device, imageName: "blue-frozen-water.jpg")
-        icosahedron = Icosahedron(device: device, imageName: "colors-world")
-        prism  = TriangularPrism(device: device, imageName: "abstract-color.jpg")
-        //cone = Cone(device: device, imageName: "abstract-color.jpg")
-        //cylinder = Cylinder(device: device, imageName: "abstract-color.jpg")
+        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .lit_textured_fragment)
+        cube = Cube(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
+        torus = Torus(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
+        sun = Sphere(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
+        pyramid = Pyramid(device: device, imageName: "spiralcolor.jpg", fragmentShader: .lit_textured_fragment)
+        diamond = Diamond(device: device, imageName: "blue-frozen-water.jpg", fragmentShader: .lit_textured_fragment)
+        icosahedron = Icosahedron(device: device, imageName: "colors-world", fragmentShader: .lit_textured_fragment)
+        prism  = TriangularPrism(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
+        //cone = Cone(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
+        //cylinder = Cylinder(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
 
         super.init(device: device, camera: camera)
         add(childNode: cube)

@@ -5,9 +5,9 @@ class Scene: Node {
     var time: Float
     var camera: Camera
     var light = LightInfo()
-    var dirLight: DirectionalLight = DirectionalLight()
-    var pointLight: PointLight = PointLight()
-    var spotLight: SpotLight = SpotLight()
+    var dirLights = [DirectionalLight]()
+    var pointLights = [PointLight]()
+    var spotLights = [SpotLight]()
     var cameraInfo = CameraInfo()
 
     init(device: MTLDevice, camera: Camera) {
@@ -20,7 +20,7 @@ class Scene: Node {
     }
 
     func update(deltaTime: Float) {
-        self.time += deltaTime
+        
 
     }
 
@@ -42,9 +42,9 @@ class Scene: Node {
         commandEncoder.setFragmentBytes(&cameraInfo, length: MemoryLayout<CameraInfo>.stride, index: 3)
 
         commandEncoder.setFragmentBytes(&light, length: MemoryLayout<LightInfo>.stride, index: 5)
-        commandEncoder.setFragmentBytes(&dirLight, length: MemoryLayout<DirectionalLight>.stride, index: 6)
-        commandEncoder.setFragmentBytes(&pointLight, length: MemoryLayout<PointLight>.stride, index: 7)
-        commandEncoder.setFragmentBytes(&spotLight, length: MemoryLayout<SpotLight>.stride, index: 8)
+        commandEncoder.setFragmentBytes(&dirLights, length: MemoryLayout<DirectionalLight>.stride, index: 6)
+        commandEncoder.setFragmentBytes(&pointLights, length: MemoryLayout<PointLight>.stride, index: 7)
+        commandEncoder.setFragmentBytes(&spotLights, length: MemoryLayout<SpotLight>.stride, index: 8)
 
         for child in children {
             child.render(commandEncoder: commandEncoder,

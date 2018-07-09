@@ -6,8 +6,8 @@ protocol Renderable {
     var pipelineState: MTLRenderPipelineState! { get set }
     var samplerState: MTLSamplerState! { get set }
     var depthStencilState: MTLDepthStencilState! { get set }
-    var vertexFunctionName: String { get }
-    var fragmentFunctionName: String { get }
+    var vertexFunctionName: VertexFunction { get }
+    var fragmentFunctionName: FragmentFunction { get }
     var vertexDescriptor: MTLVertexDescriptor { get }
     var uniform: Uniform { get set }
     var drawType: MTLPrimitiveType { get set }
@@ -25,8 +25,8 @@ extension Renderable {
         let library = device.makeDefaultLibrary()
 
         //2) xcode will compile these function when we complie the project
-        let vertexFunction = library?.makeFunction(name: vertexFunctionName) //"vertex_shader")
-        let fragmentFunction = library?.makeFunction(name: fragmentFunctionName) //"fragment_shader")
+        let vertexFunction = library?.makeFunction(name: vertexFunctionName.rawValue) //"vertex_shader")
+        let fragmentFunction = library?.makeFunction(name: fragmentFunctionName.rawValue) //"fragment_shader")
 
         //3) create pipeline descriptor
         // the descriptor contains the reference to the shader functions and

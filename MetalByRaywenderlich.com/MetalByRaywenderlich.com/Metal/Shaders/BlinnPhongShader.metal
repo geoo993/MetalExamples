@@ -16,7 +16,7 @@ float radians(float degree) {
 // This function implements the Blinn Phong shading model
 // The code is based on the OpenGL 4.0 Shading Language Cookbook, pp. 67 - 68, with a few tweaks.
 // Please see Chapter 2 of the book for a detailed discussion.
-fragment half4 blinn_phong_shader_fragment(VertexOut vertexIn [[ stage_in ]],
+fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
                                            constant CameraInfo &camera [[ buffer(3) ]],
                                            constant MaterialInfo &material [[ buffer(4) ]],
                                            constant LightInfo &light [[ buffer(5) ]],
@@ -38,6 +38,7 @@ fragment half4 blinn_phong_shader_fragment(VertexOut vertexIn [[ stage_in ]],
     float angle = acos(dot(-s, d));
     float cutoff = radians(clamp(light.cutOff, 0.0f, 90.0));
     float shininess = material.shininess;
+    float4 finalColor = float4(1.0);
 
     // ambient
     float3 ambientColor = light.ambient * material.ambient;
@@ -56,13 +57,19 @@ fragment half4 blinn_phong_shader_fragment(VertexOut vertexIn [[ stage_in ]],
             specularColor = light.specular * material.specular * pow(max(dot(h, n), 0.0), shininess);
         }
 
-        textcolor = textcolor *  float4(ambientColor + spotFactor * (diffuseColor + specularColor), 1);
+        finalColor = float4(ambientColor + spotFactor * (diffuseColor + specularColor), 1);
     } else  {
-        textcolor = textcolor * float4(ambientColor, 1);
+        finalColor = float4(ambientColor, 1.0);
     }
 
-    if (textcolor.a == 0.0)
-        discard_fragment();
+    if (material.useTexture) {
+        textcolor = textcolor * material.color * finalColor;
+        if (textcolor.a == 0.0)
+            discard_fragment();
 
-    return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+        return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+    } else {
+        finalColor = material.color * finalColor;
+        return half4(finalColor.r, finalColor.g, finalColor.b, 1);
+    }
 }
