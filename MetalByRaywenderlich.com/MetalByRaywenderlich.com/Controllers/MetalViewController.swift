@@ -48,6 +48,9 @@ import AppCore
 class MetalViewController: UIViewController {
 
     @IBOutlet weak var metalView: MTKView!
+    @IBOutlet weak var lightIntensity: UISlider!
+    @IBOutlet weak var lightPower: UISlider!
+    @IBOutlet weak var materialShininess: UISlider!
     @IBOutlet weak var leftJoyStick: JoyStickView!
     @IBOutlet weak var rightJoyStick: JoyStickView!
 
@@ -72,8 +75,8 @@ class MetalViewController: UIViewController {
 
         //let primitivesScene = PrimitivesScene(device: device, camera: camera)
         let lightingScene = LightingScene(device: device, camera: camera)
-//        let instanceScene = InstanceScene(device: device, camera: camera)
-//        let landscapeScene = LandscapeScene(device: device, camera: camera)
+        //let instanceScene = InstanceScene(device: device, camera: camera)
+        //let landscapeScene = LandscapeScene(device: device, camera: camera)
         renderer = Renderer(device: device, scene: lightingScene)
 
         // Setup MTKView and delegate
@@ -96,6 +99,27 @@ class MetalViewController: UIViewController {
             //print("right joystick angle \(displacement)")
         }
 
+        lightIntensity.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        lightPower.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        materialShininess.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+
+        print("light intensity", lightIntensity.value, ", light power", lightPower.value, ", shininess", materialShininess)
+
+    }
+
+    @objc func onSliderChanged(slider: UISlider, event: UIEvent) {
+        if let touchEvent = event.allTouches?.first {
+            switch slider.tag {
+            case 0:
+                renderer.scene.onSlider(.intensity, phase: touchEvent.phase, value: slider.value)
+            case 1:
+                renderer.scene.onSlider(.power, phase: touchEvent.phase, value: slider.value)
+            case 2:
+                renderer.scene.onSlider(.shininess, phase: touchEvent.phase, value: slider.value)
+            default:
+                break
+            }
+        }
     }
 
     deinit {
@@ -103,6 +127,7 @@ class MetalViewController: UIViewController {
     }
 
 }
+
 
 // MARK: - Gestures
 extension MetalViewController {

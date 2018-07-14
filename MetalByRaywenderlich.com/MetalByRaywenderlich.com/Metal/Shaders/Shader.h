@@ -9,7 +9,6 @@
 #ifndef Shader_h
 #define Shader_h
 
-
 // --------- Attributes --------
 // uniform matrices and materials 3D attributes
 struct Uniform {
@@ -24,37 +23,31 @@ struct Uniform {
 
 struct MaterialInfo
 {
+    //sampler normalMap;
+    //sampler diffuseMap;
+    //sampler specularMap;
+
     float4 color;
-    float3 ambient;
-    float3 diffuse;
-    float3 specular;
     float shininess; //Shininess values typically range from 1 to 128. Higher values result in more focussed specular highlights.
     bool useTexture;
 };
 
+struct InstanceInfo {
+    Uniform uniform;
+    MaterialInfo material;
+};
+
 struct CameraInfo {
     float3 position;
-    float3 view;
     float3 front;
 };
 
 // lighting attributes
-struct LightInfo {
-    float3 position;
-    float3 color;
-    float3 direction; // a direction the spotlight is pointing
-    float3 ambient;
-    float3 diffuse;
-    float3 specular;
-    float cutOff;  // a cutoff angle, used to define a cone around the direction vector
-    float exponent; // an exponent, describing how light falls off from the centre
-
-};
-
 struct BaseLight
 {
     float3 color;
     float intensity;
+    float power;
     float3 ambient;
     float3 diffuse;
     float3 specular;
@@ -62,7 +55,7 @@ struct BaseLight
 
 struct Attenuation
 {
-    float constants;
+    float continual;
     float linear;
     float exponent;
 };
@@ -83,11 +76,12 @@ struct PointLight
 
 struct SpotLight
 {
-    PointLight point;
+    PointLight pointLight;
     float3 direction;
-    float cutoff;
-    float outerCutoff;
+    float cutOff;
+    float outerCutOff;
 };
+
 
 // input information to the shader
 // note that each item in the struct has been given an attribute number

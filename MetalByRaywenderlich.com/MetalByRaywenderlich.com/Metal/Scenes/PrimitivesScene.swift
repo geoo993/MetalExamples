@@ -16,16 +16,16 @@ class PrimitivesScene: Scene {
     var cameraRotation: Float = 0
 
     override init(device: MTLDevice, camera: Camera) {
-        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .lit_textured_fragment)
-        cube = Cube(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
-        torus = Torus(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
-        sun = Sphere(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
-        pyramid = Pyramid(device: device, imageName: "spiralcolor.jpg", fragmentShader: .lit_textured_fragment)
-        diamond = Diamond(device: device, imageName: "blue-frozen-water.jpg", fragmentShader: .lit_textured_fragment)
-        icosahedron = Icosahedron(device: device, imageName: "colors-world", fragmentShader: .lit_textured_fragment)
-        prism  = TriangularPrism(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
-        //cone = Cone(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
-        //cylinder = Cylinder(device: device, imageName: "abstract-color.jpg", fragmentShader: .lit_textured_fragment)
+        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .phong_fragment_shader)
+        cube = Cube(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        torus = Torus(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        sun = Sphere(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        pyramid = Pyramid(device: device, imageName: "spiralcolor.jpg", fragmentShader: .phong_fragment_shader)
+        diamond = Diamond(device: device, imageName: "blue-frozen-water.jpg", fragmentShader: .phong_fragment_shader)
+        icosahedron = Icosahedron(device: device, imageName: "colors-world", fragmentShader: .phong_fragment_shader)
+        prism  = TriangularPrism(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        //cone = Cone(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        //cylinder = Cylinder(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
 
         super.init(device: device, camera: camera)
         add(childNode: cube)
@@ -39,32 +39,57 @@ class PrimitivesScene: Scene {
         //add(childNode: cone)
         //add(childNode: cylinder)
 
+        let shininess: Float = 12
+
         sun.material.color = float4(1, 1, 0, 1)
+        sun.material.shininess = shininess
+        sun.material.useTexture = true
         sun.position = float3(0, 0, 0)
 
         cube.position = float3(1, 0, 0)
-
-        mushroom.position = float3(0, 1.6, 0)
-        mushroom.scale = float3(0.5)
-
+        cube.material.shininess = shininess
+        cube.material.useTexture = true
         cube.position.x = -2
         cube.scale = float3(0.5)
 
+        mushroom.position = float3(0, 1.6, 0)
+        mushroom.scale = float3(0.5)
+        mushroom.material.shininess = shininess
+        mushroom.material.useTexture = true
+
         pyramid.position = float3(0, -1.6, 0)
         pyramid.scale = float3(0.4)
+        pyramid.material.shininess = shininess
+        pyramid.material.useTexture = true
 
         diamond.position = float3(1, -1, 0)
         diamond.scale = float3(0.4)
+        diamond.material.shininess = shininess
+        diamond.material.useTexture = true
 
         icosahedron.position = float3(1, -3, -4)
         icosahedron.scale = float3(0.6)
+        icosahedron.material.shininess = shininess
+        icosahedron.material.useTexture = true
 
         prism.position = float3(1, -2, 4)
         prism.scale = float3(0.5)
+        prism.material.shininess = shininess
+        prism.material.useTexture = true
 
         //cone.position = float3(0, 2, 6)
         //cone.scale = float3(0.8)
 
+
+        var dirLight = DirectionalLight()
+        dirLight.direction = float3(-0.2, -1.0, -0.2)
+        dirLight.base.color = float3(1, 1.0, 1.0)
+        dirLight.base.intensity = 0.7
+        dirLight.base.power = 2
+        dirLight.base.ambient = float3(0.05)
+        dirLight.base.diffuse = float3(0.4)
+        dirLight.base.specular = float3(0.5)
+        dirLights.append(dirLight)
 
         camera.set(position: float3(0,0,0), viewpoint: float3(0,0,1), up: float3(0,1,0))
 

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +26,49 @@
                                         <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUI-U6-zNh">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="567"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="lrC-OF-LaG">
+                                                        <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="lrC-OF-LaG" firstAttribute="centerY" secondItem="aUI-U6-zNh" secondAttribute="centerY" id="JPm-90-RyO"/>
+                                                    <constraint firstItem="lrC-OF-LaG" firstAttribute="centerX" secondItem="aUI-U6-zNh" secondAttribute="centerX" id="bv4-Td-dqe"/>
+                                                    <constraint firstItem="lrC-OF-LaG" firstAttribute="width" secondItem="aUI-U6-zNh" secondAttribute="width" id="tC6-7K-MDd"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19n-SX-lEC">
+                                                <rect key="frame" x="0.0" y="33.5" width="375" height="33"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="T79-TU-rbs">
+                                                        <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="T79-TU-rbs" firstAttribute="centerX" secondItem="19n-SX-lEC" secondAttribute="centerX" id="1Cl-Gi-znW"/>
+                                                    <constraint firstItem="T79-TU-rbs" firstAttribute="centerY" secondItem="19n-SX-lEC" secondAttribute="centerY" id="EKj-ve-brT"/>
+                                                    <constraint firstItem="T79-TU-rbs" firstAttribute="width" secondItem="19n-SX-lEC" secondAttribute="width" id="FLN-1R-gvp"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-cb-4T2">
+                                                <rect key="frame" x="0.0" y="66.5" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="32" minValue="0.0" maxValue="128" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
+                                                        <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="CCn-7A-LHv" firstAttribute="centerX" secondItem="vVE-cb-4T2" secondAttribute="centerX" id="GWb-U4-Xiq"/>
+                                                    <constraint firstItem="CCn-7A-LHv" firstAttribute="width" secondItem="vVE-cb-4T2" secondAttribute="width" id="IQF-I7-C4r"/>
+                                                    <constraint firstItem="CCn-7A-LHv" firstAttribute="centerY" secondItem="vVE-cb-4T2" secondAttribute="centerY" id="yWm-kx-Vjg"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-Xu-Apb">
+                                                <rect key="frame" x="0.0" y="100" width="375" height="467"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcb-Zd-FfH">
                                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
@@ -78,6 +121,11 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="vVE-cb-4T2" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="AhS-X6-LRW"/>
+                                            <constraint firstItem="aUI-U6-zNh" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="cRa-8c-0Ca"/>
+                                            <constraint firstItem="19n-SX-lEC" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="gQX-fy-8IV"/>
+                                        </constraints>
                                         <variation key="widthClass=compact" axis="vertical"/>
                                     </stackView>
                                 </subviews>
@@ -100,6 +148,9 @@
                     </view>
                     <connections>
                         <outlet property="leftJoyStick" destination="YZq-5C-hs8" id="cTn-sT-CkO"/>
+                        <outlet property="lightIntensity" destination="lrC-OF-LaG" id="vVf-0G-EpA"/>
+                        <outlet property="lightPower" destination="T79-TU-rbs" id="zTH-Bu-vgt"/>
+                        <outlet property="materialShininess" destination="CCn-7A-LHv" id="rBA-dX-wFw"/>
                         <outlet property="metalView" destination="94C-3h-HC7" id="NOV-SL-Yt7"/>
                         <outlet property="rightJoyStick" destination="pfs-pi-M5N" id="0XS-F8-fro"/>
                     </connections>

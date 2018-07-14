@@ -55,7 +55,6 @@
 		C763420B20E90A1900E41737 /* Cylinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420A20E90A1900E41737 /* Cylinder.swift */; };
 		C763420D20E9117A00E41737 /* TorusKnot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420C20E9117A00E41737 /* TorusKnot.swift */; };
 		C7713D8720EC22D80047019A /* LightShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7713D8620EC22D80047019A /* LightShader.metal */; };
-		C7713D8920EC28020047019A /* PhongShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7713D8820EC28020047019A /* PhongShader.metal */; };
 		C78EB7BD20EC0A7000F48C02 /* Kai_Engel_-_03_-_Realness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */; };
 		C78EB7BE20EC0A7000F48C02 /* bulletstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */; };
 		C78EB7BF20EC0A7000F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B920EC0A6F00F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 */; };
@@ -67,7 +66,6 @@
 		C78EB7CB20EC0BD000F48C02 /* Quest Complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C620EC0BCF00F48C02 /* Quest Complete.mp3 */; };
 		C78EB7CC20EC0BD000F48C02 /* Gem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C720EC0BD000F48C02 /* Gem.mp3 */; };
 		C78EB7CD20EC0BD000F48C02 /* Success_Effect_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7C820EC0BD000F48C02 /* Success_Effect_2.mp3 */; };
-		C7B2D84620F2B0B000CBC660 /* BlinnPhongShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7B2D84520F2B0B000CBC660 /* BlinnPhongShader.metal */; };
 		C7BFB9F220E2E1B100BCEB30 /* MainShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F120E2E1B100BCEB30 /* MainShader.metal */; };
 		C7BFB9FA20E2F5B700BCEB30 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F420E2F5B600BCEB30 /* Scene.swift */; };
 		C7BFB9FC20E2F5B700BCEB30 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BFB9F620E2F5B600BCEB30 /* Plane.swift */; };
@@ -113,6 +111,8 @@
 		C7E0441120E94D7B00138FC0 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0441020E94D7B00138FC0 /* Instance.swift */; };
 		C7E0441320E95F0200138FC0 /* LandscapeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E0441220E95F0200138FC0 /* LandscapeScene.swift */; };
 		C7E0441620E9611600138FC0 /* grass.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E0441520E9611600138FC0 /* grass.obj */; };
+		C7F39F1D20FA89E4008CD00C /* container_specular.png in Resources */ = {isa = PBXBuildFile; fileRef = C7F39F1B20FA89E3008CD00C /* container_specular.png */; };
+		C7F39F1E20FA89E4008CD00C /* container.png in Resources */ = {isa = PBXBuildFile; fileRef = C7F39F1C20FA89E3008CD00C /* container.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -179,7 +179,6 @@
 		C763420A20E90A1900E41737 /* Cylinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cylinder.swift; sourceTree = "<group>"; };
 		C763420C20E9117A00E41737 /* TorusKnot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusKnot.swift; sourceTree = "<group>"; };
 		C7713D8620EC22D80047019A /* LightShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LightShader.metal; sourceTree = "<group>"; };
-		C7713D8820EC28020047019A /* PhongShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PhongShader.metal; sourceTree = "<group>"; };
 		C7713D8A20EC2BA70047019A /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
 		C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_03_-_Realness.mp3"; sourceTree = "<group>"; };
 		C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bulletstorm.mp3; sourceTree = "<group>"; };
@@ -192,7 +191,6 @@
 		C78EB7C620EC0BCF00F48C02 /* Quest Complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quest Complete.mp3"; sourceTree = "<group>"; };
 		C78EB7C720EC0BD000F48C02 /* Gem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Gem.mp3; sourceTree = "<group>"; };
 		C78EB7C820EC0BD000F48C02 /* Success_Effect_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Success_Effect_2.mp3; sourceTree = "<group>"; };
-		C7B2D84520F2B0B000CBC660 /* BlinnPhongShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BlinnPhongShader.metal; sourceTree = "<group>"; };
 		C7BFB9F120E2E1B100BCEB30 /* MainShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MainShader.metal; sourceTree = "<group>"; };
 		C7BFB9F420E2F5B600BCEB30 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C7BFB9F620E2F5B600BCEB30 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
@@ -238,6 +236,8 @@
 		C7E0441020E94D7B00138FC0 /* Instance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
 		C7E0441220E95F0200138FC0 /* LandscapeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeScene.swift; sourceTree = "<group>"; };
 		C7E0441520E9611600138FC0 /* grass.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grass.obj; sourceTree = "<group>"; };
+		C7F39F1B20FA89E3008CD00C /* container_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container_specular.png; sourceTree = "<group>"; };
+		C7F39F1C20FA89E3008CD00C /* container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +298,7 @@
 		C71F1D0020E58AC00095F6A6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C7F39F1A20FA89E3008CD00C /* crate */,
 				C76341FC20E8FE5800E41737 /* blue-frozen-water.jpg */,
 				C76341FD20E8FE5900E41737 /* space_galaxy.jpg */,
 				C76341FE20E8FE5900E41737 /* spiralcolor.jpg */,
@@ -449,8 +450,6 @@
 			children = (
 				C7713D8A20EC2BA70047019A /* Shader.h */,
 				C7BFB9F120E2E1B100BCEB30 /* MainShader.metal */,
-				C7713D8820EC28020047019A /* PhongShader.metal */,
-				C7B2D84520F2B0B000CBC660 /* BlinnPhongShader.metal */,
 				C7713D8620EC22D80047019A /* LightShader.metal */,
 			);
 			path = Shaders;
@@ -574,6 +573,15 @@
 			path = Grass;
 			sourceTree = "<group>";
 		};
+		C7F39F1A20FA89E3008CD00C /* crate */ = {
+			isa = PBXGroup;
+			children = (
+				C7F39F1B20FA89E3008CD00C /* container_specular.png */,
+				C7F39F1C20FA89E3008CD00C /* container.png */,
+			);
+			path = crate;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -636,9 +644,11 @@
 				C7E0440120E9444A00138FC0 /* helmet_diff.png in Resources */,
 				C7E043EA20E9444A00138FC0 /* GRANDEB2.JPG in Resources */,
 				C78EB7CC20EC0BD000F48C02 /* Gem.mp3 in Resources */,
+				C7F39F1E20FA89E4008CD00C /* container.png in Resources */,
 				C7E043F020E9444A00138FC0 /* hand_showroom_refl.png in Resources */,
 				C7E0440320E9444A00138FC0 /* leg_showroom_refl.png in Resources */,
 				C7E043F120E9444A00138FC0 /* body_showroom_ddn.png in Resources */,
+				C7F39F1D20FA89E4008CD00C /* container_specular.png in Resources */,
 				C75FDB4320E1992100DE2EEC /* LaunchScreen.storyboard in Resources */,
 				C7E0441620E9611600138FC0 /* grass.obj in Resources */,
 				C71F1D1120E5A4060095F6A6 /* abstract-color.jpg in Resources */,
@@ -706,7 +716,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7BFB9F220E2E1B100BCEB30 /* MainShader.metal in Sources */,
-				C7B2D84620F2B0B000CBC660 /* BlinnPhongShader.metal in Sources */,
 				C7BFB9FD20E2F5B700BCEB30 /* PrimitivesScene.swift in Sources */,
 				C76341FB20E8FC4100E41737 /* Pyramid.swift in Sources */,
 				C763420B20E90A1900E41737 /* Cylinder.swift in Sources */,
@@ -736,7 +745,6 @@
 				C76341D820E7ACD800E41737 /* Matrix.swift in Sources */,
 				C76341D420E7ACD800E41737 /* Matrix_Transform.swift in Sources */,
 				C76341F920E8E7AB00E41737 /* Sphere.swift in Sources */,
-				C7713D8920EC28020047019A /* PhongShader.metal in Sources */,
 				C78EB7C320EC0A9D00F48C02 /* SoundController.swift in Sources */,
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
 				C76341DE20E7D39900E41737 /* Camera.swift in Sources */,

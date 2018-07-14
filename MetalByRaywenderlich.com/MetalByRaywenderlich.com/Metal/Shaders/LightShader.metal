@@ -10,81 +10,219 @@
 using namespace metal;
 #include "Shader.h"
 
-float3 CalcLight(BaseLight base, MaterialInfo material, CameraInfo camera,
-                 float3 direction, float3 normal, float3 position)
-{
 
-    float3 diffuseColor = float3(0.0);
-    float3 specularColor = float3(0.0);
-    float3 ambientColor = float3(0.0);
+float radians(float degree) {
+    return degree * 3.14159265359 / 180.0;
+}
+
+
+// This function implements the Phong shading model
+// The code is based on the OpenGL 4.0 Shading Language Cookbook, pp. 67 - 68, with a few tweaks.
+// Please see Chapter 2 of the book for a detailed discussion.
+fragment half4 phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
+                                     constant CameraInfo &camera [[ buffer(3) ]],
+                                     constant MaterialInfo &material [[ buffer(4) ]],
+                                     constant DirectionalLight &light [[ buffer(5) ]],
+                                     texture2d<float> texture [[ texture(0) ]],
+                                     sampler sampler2d [[ sampler(0) ]]) {
+
+    // extract color from current fragmnet coordinates
+    float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
+    //float4 color = vertexIn.color;
+
+    float3 p = vertexIn.fragPosition; // Eye coordinates are computed as part of the camera model
+    float3 s = normalize(-light.direction); // light direction is the normalised vector pointing to the light source
+    //float3 v = normalize(-p);
+    float3 view =  camera.position + camera.front;
+    float3 v = normalize(view - p);  // view direction is the normalised vector pointing to the camera
+    float3 n = normalize(vertexIn.normal);   // normal, normalizing makes sure that the normal is a unit vector
+    float3 r = reflect(-s, n);   // reflection direction, is the normalised reflection vector
+    float shininess = material.shininess;
+
+    // diffuse
+    // the dot function gives us the dot product between the normal and the light direction
+    // and this gives us the angle so that we know how much lighting the fragment should receive.
+    // its negative because when the normal is -1, the fragment should receive the most light, i.e.
+    // diffuseFactor would be 1.
+    float diffuseFactor = max(dot(s, n), 0.0f);
+    float3 diffuseColor = light.base.diffuse * light.base.color * light.base.intensity * diffuseFactor;
 
     // Ambient
-    ambientColor = base.ambient * material.ambient;
+    float3 ambientColor = light.base.ambient * diffuseColor;
 
-    // Diffuse
-    float diffuseFactor = max(dot(direction, normal), 0.0);
-    diffuseColor = base.diffuse * material.diffuse * base.color * base.intensity * diffuseFactor;
+    // specular
+    float3 specularColor = float3(0.0f);
+    float specularFactor = pow(max(dot(v, r), 0.0f), shininess);
 
-    // Specular
-    float3 directionToEye = normalize(camera.view - position); // viewDirection
-    float3 halfDirection = normalize(direction + directionToEye);
+    if (diffuseFactor > 0.0f) {
+        specularColor = light.base.specular * light.base.color * light.base.power * specularFactor;
+    }
 
-    if(diffuseFactor > 0.0)
+    if (material.useTexture) {
+        textcolor = textcolor * material.color * float4(ambientColor + diffuseColor + specularColor, 1);
+
+        if (textcolor.a == 0.0f)
+            discard_fragment();
+
+        return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+    } else {
+        float4 finalColor = material.color * float4(ambientColor + diffuseColor + specularColor, 1);
+        return half4(finalColor.r, finalColor.g, finalColor.b, 1);
+    }
+
+}
+
+
+// This function implements the Blinn Phong shading model
+// The code is based on the OpenGL 4.0 Shading Language Cookbook, pp. 67 - 68, with a few tweaks.
+// Please see Chapter 2 of the book for a detailed discussion.
+fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
+                                           constant CameraInfo &camera [[ buffer(3) ]],
+                                           constant MaterialInfo &material [[ buffer(4) ]],
+                                           constant SpotLight &light [[ buffer(7) ]],
+                                           texture2d<float> texture [[ texture(0) ]],
+                                           sampler sampler2d [[ sampler(0) ]]) {
+
+
+    // extract color from current fragmnet coordinates
+    float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
+    //float4 color = vertexIn.color;
+
+    float3 p = vertexIn.fragPosition; // Eye coordinates are computed as part of the camera model
+    float3 d = light.direction; // d is the spotlight direction (in eye coordinates)
+    float3 s = normalize(light.pointLight.position - p); // light direction is the normalised vector pointing to the light source
+    //float3 v = normalize(-p);
+    float3 view = camera.position + camera.front;
+    float3 v = normalize(view - p);  // view direction is the normalised vector pointing to the camera
+    float3 n = normalize(vertexIn.normal);   // normal, normalizing makes sure that the normal is a unit vector
+    float3 h = normalize(s + v); // halfway vector between the vector pointing to the camera with the one pointing to light source
+    float angle = acos(dot(-s, d));
+    float cutoff = radians(clamp(light.cutOff, 0.0f, 90.0f));
+    float shininess = material.shininess;
+    float4 finalColor = float4(1.0f);
+
+    // diffuse
+    float diffuseFactor = max(dot(s, n), 0.0f);
+    float3 diffuseColor = light.pointLight.base.diffuse * light.pointLight.base.color *
+    light.pointLight.base.intensity * diffuseFactor;
+
+    // ambient
+    float3 ambientColor = light.pointLight.base.ambient * diffuseColor;
+
+    if (angle < cutoff) {
+
+        // specular
+        float spotFactor = pow(dot(-s, d), light.pointLight.atten.exponent);
+        float3 specularColor = float3(0.0f);
+        if (diffuseFactor > 0.0f) {
+            specularColor = light.pointLight.base.specular * pow(max(dot(h, n), 0.0f), shininess);
+        }
+
+        finalColor = float4(ambientColor + spotFactor * (diffuseColor + specularColor), 1.0f);
+    } else  {
+        finalColor = float4(ambientColor, 1.0f);
+    }
+
+    if (material.useTexture) {
+        textcolor = textcolor * material.color * finalColor;
+        if (textcolor.a == 0.0f)
+            discard_fragment();
+
+        return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+    } else {
+        finalColor = material.color * finalColor;
+        return half4(finalColor.r, finalColor.g, finalColor.b, 1);
+    }
+}
+
+
+float4 CalcLight(BaseLight base, MaterialInfo material, float3 lightDirection, float3 viewDirection, float3 normal)
+{
+    float diffuseFactor = max(dot(normal, lightDirection), 0.0f);
+
+    float4 diffuseColor = float4(0.0);
+    float4 specularColor = float4(0.0);
+    float4 ambientColor = float4(0.0);
+
+    if(diffuseFactor > 0.0f)
     {
-        specularColor = base.specular
-        * material.specular
-        * base.color
-        * pow(max(dot(halfDirection, normal), 0.0), material.shininess);
+        // Diffuse
+        diffuseColor = float4(base.diffuse, 1) /** base.color*/ * base.intensity * diffuseFactor;
+
+        // Ambient
+        ambientColor = float4(base.ambient, 1) * diffuseColor;
+
+        // Specular
+        float3 reflectDirection = reflect(-lightDirection, normal);
+        float specularFactor = pow(max(dot(viewDirection, reflectDirection), 0.0), material.shininess);
+
+        if(diffuseFactor > 0.0f)
+        {
+            specularColor = float4(base.specular, 1) /** base.color*/ * base.power * specularFactor;
+        }
     }
 
     return ambientColor + diffuseColor + specularColor;
 }
 
-float3 CalcDirectionalLight(DirectionalLight directionalLight, MaterialInfo material, CameraInfo camera,
-                            float3 normal, float3 fragPosition)
+float4 CalcDirectionalLight(DirectionalLight directionalLight, MaterialInfo material, float3 viewDirection, float3 normal)
 {
-    return CalcLight(directionalLight.base, material, camera, -directionalLight.direction, normal, fragPosition);
+    return CalcLight(directionalLight.base, material, -directionalLight.direction, viewDirection, normal);
 }
 
-float3 CalcPointLight(PointLight pointLight, MaterialInfo material, CameraInfo camera, float3 normal, float3 position)
+float4 CalcPointLight(PointLight pointLight, MaterialInfo material, float3 vertexPosition, float3 viewDirection, float3 normal)
 {
 
-    float3 lightDirection = normalize(pointLight.position - position);
+    float3 lightDirection = pointLight.position - vertexPosition;
     float distanceToPoint = length(lightDirection);
 
-    if(distanceToPoint > pointLight.range)
-        return float3(0.0, 0.0, 0.0);
 
-    float3 color = CalcLight(pointLight.base, material, camera, lightDirection, normal, position);
+    //if(distanceToPoint > pointLight.range)
+    //    return float3(0.0, 0.0, 0.0);
+
+    float4 color = CalcLight(pointLight.base, material, normalize(lightDirection), viewDirection, normal);
 
     // Attenuation
+    ///*
     float attenuation =
-    pointLight.atten.constants +
+    pointLight.atten.continual +
     pointLight.atten.linear *
     distanceToPoint +
     pointLight.atten.exponent *
-    distanceToPoint *
-    distanceToPoint +
+    (distanceToPoint * distanceToPoint) +
     0.0001f;
+    //*/
 
     return color / attenuation;
+
+    /*
+     float attenuation =
+     1.0f / (pointLight.atten.continual +
+     pointLight.atten.linear *
+     distanceToPoint +
+     pointLight.atten.exponent *
+     (distanceToPoint * distanceToPoint));
+     return color * attenuation;
+     */
 }
 
-float3 CalcSpotLight(SpotLight spotLight, MaterialInfo material, CameraInfo camera, float3 normal, float3 position)
+
+float4 CalcSpotLight(SpotLight spotLight, MaterialInfo material, float3 vertexPosition, float3 viewDirection, float3 normal)
 {
-    float3 lightDirection = normalize(spotLight.point.position - position);
+    float3 lightDirection = normalize(spotLight.pointLight.position - vertexPosition);
 
     // Intensity
-    float angle = acos(dot(-lightDirection, spotLight.direction));
-    float cutoff = radians(clamp(spotLight.cutoff, 0.0f, 90.0));
+    //float spotFactor = dot(lightDirection, normalize(-spotLight.direction));
+    float spotFactor = max(dot(lightDirection, normalize(-spotLight.direction)), 0.0f); //// no difference
+    float4 color = float4(0.0f);
 
-    float3 color = float3(0.0);
-
-    if(angle < cutoff)
+    if(spotFactor > spotLight.cutOff)
     {
-        float spotFactor = pow(dot(-lightDirection, spotLight.direction), spotLight.point.atten.exponent);
+        float epsilon = spotLight.cutOff - spotLight.outerCutOff;
+        float intensity = clamp((spotFactor - spotLight.outerCutOff) / epsilon, 0.0f, 1.0f);
+        //float intensity = (1.0f - (1.0f - spotFactor) / (1.0 - spotLight.cutOff));
 
-        color = CalcPointLight(spotLight.point, material, camera, normal, position) * spotFactor;
+        color = CalcPointLight(spotLight.pointLight, material, vertexPosition, viewDirection, normal) * intensity;
     }
 
     return color;
@@ -94,49 +232,50 @@ float3 CalcSpotLight(SpotLight spotLight, MaterialInfo material, CameraInfo came
 fragment half4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
                                         constant CameraInfo &camera [[ buffer(3) ]],
                                         constant MaterialInfo &material [[ buffer(4) ]],
-                                        constant DirectionalLight *dirlights [[ buffer(6) ]],
-                                        constant PointLight *pointlights [[ buffer(7) ]],
-                                        constant SpotLight *spotlights [[ buffer(8) ]],
+                                        constant DirectionalLight *dirlights [[ buffer(5) ]],
+                                        constant PointLight *pointlights [[ buffer(6) ]],
+                                        constant SpotLight *spotlights [[ buffer(7) ]],
                                         texture2d<float> texture [[ texture(0) ]],
                                         sampler sampler2d [[ sampler(0) ]]) {
 
     // Properties
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
-    //float4 color = vertexIn.color;
+    float4 c = material.color;
     float3 p = vertexIn.fragPosition; // Eye coordinates are computed as part of the camera model
     float3 n = normalize(vertexIn.normal);
-    float3 result = float3(0.0);
-    const int NUMBER_OF_DIRECTIONAL_LIGHTS = 4;
+    float3 view = camera.position + camera.front;
+    float3 v = normalize(view - vertexIn.fragPosition); // viewDirection
+    float4 result = float4(0.0f);
+
+
+    const int NUMBER_OF_DIRECTIONAL_LIGHTS = 1;
     const int NUMBER_OF_POINT_LIGHTS = 5;
     const int NUMBER_OF_SPOT_LIGHTS = 1;
 
     // Directional lighting
     for (int i = 0; i < NUMBER_OF_DIRECTIONAL_LIGHTS; i++) {
-        //float3 directionalLight = CalcDirectionalLight(dirlights[i], material, camera, n, p);
-        //result += directionalLight;
+        float4 directionalLight = CalcDirectionalLight(dirlights[i], material, v, n);
+        result += directionalLight;
     }
 
     // Point lights
     for (int i = 0; i < NUMBER_OF_POINT_LIGHTS; i++) {
-        float3 pointL = CalcPointLight(pointlights[i], material, camera, n, p);
-        result += pointL;
+        float4 pointL = CalcPointLight(pointlights[i], material, p, v, n);
+        //result += pointL;
     }
 
     // Spot light
     for (int i = 0; i < NUMBER_OF_SPOT_LIGHTS; i++) {
-        float3 spotL = CalcSpotLight(spotlights[i], material, camera, n, p);
-        result += spotL;
+        float4 spotL = CalcSpotLight(spotlights[i], material, p, v, n);
+        //result += spotL;
     }
 
     if (material.useTexture) {
-        textcolor = textcolor * material.color * float4(result, 1);
-        if (textcolor.a == 0.0)
-        discard_fragment();
-
-        return half4(textcolor.r, textcolor.g, textcolor.b, 1);
+        textcolor = textcolor * result;
+        return half4(textcolor);
     } else {
-        float4 finalColor = material.color * float4(result, 1);
+        float4 finalColor = c * result;
         return half4(finalColor.r, finalColor.g, finalColor.b, 1);
     }
 }

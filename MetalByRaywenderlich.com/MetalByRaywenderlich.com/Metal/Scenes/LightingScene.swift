@@ -29,7 +29,9 @@ class LightingScene: Scene {
     var cubes = [Cube]()
     var cubesColor = float3(1.0)
     var pointLightCubes = [Cube]()
-    let mushroom: Model
+    var lightIntensity: Float = 0.7
+    var lightPower: Float = 1
+    var materialShininess: Float = 32
 
     var cubesPosition: [float3] = [
         float3(-1.0, -4.0, -1.0),
@@ -43,10 +45,7 @@ class LightingScene: Scene {
     ]
 
     let directionalLightsDirections: [float3] = [
-        float3(  3.2, 3.0, -0.3),
-        float3(  15.7,  5.2,  -6.0      ),
-        float3(  -9.3, -14.3, -2.0      ),
-        float3(  -24.0,  9.0, -15.0    ),
+        float3(  -0.2, -1.0, -0.3)
     ]
 
     var pointLightPositions: [float3] = [
@@ -65,6 +64,7 @@ class LightingScene: Scene {
         float3(0.3, 0.5, 0.2),
     ]
 
+
     var previousTouchLocation: CGPoint = .zero
     var cameraRotation: Float = 0
     var leftCameraAngle: Float = 0
@@ -73,33 +73,20 @@ class LightingScene: Scene {
     var rightCameraDisplacement: Float = 0
 
     override init(device: MTLDevice, camera: Camera) {
-        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .lighting_fragment_shader)
         super.init(device: device, camera: camera)
-
-        mushroom.position = float3(0, -1, 0)
-        mushroom.material.ambient = float3(0.4, 0.4, 0.4)
-        mushroom.material.diffuse = float3(0.8, 0.8, 0.8)
-        mushroom.material.specular = float3(0.98, 0.98, 0.98)
-        mushroom.material.shininess = 12.0
-        mushroom.material.useTexture = true
-        mushroom.material.color = float4(1, 1, 1, 1)
-        add(childNode: mushroom)
 
         for i in 0..<cubesPosition.count {
             let angle: Float = 20.0 * i.toFloat
             let position: float3 = cubesPosition[i]
             let cube =
-                Cube(device: device, imageName: "abstract-color.jpg", fragmentShader: .lighting_fragment_shader)
+                Cube(device: device, imageName: "container.png", fragmentShader: .lighting_fragment_shader)
             cube.position = position
             cube.rotation = float3(1.0, angle, 1.0)
             cube.scale = float3(2.0)
 
-            cube.material.ambient = float3(0.4, 0.4, 0.4)
-            cube.material.diffuse = float3(0.8, 0.8, 0.8)
-            cube.material.specular = float3(0.98, 0.98, 0.98)
-            cube.material.shininess = 16.0
-            cube.material.useTexture = false
             cube.material.color = float4(cubesColor, 1)
+            cube.material.shininess = materialShininess
+            cube.material.useTexture = true
 
             add(childNode: cube)
             cubes.append(cube)
@@ -108,13 +95,14 @@ class LightingScene: Scene {
 
         // Directional light
         for i in 0..<directionalLightsDirections.count {
-            let direction: float3 = directionalLightsDirections[i]
-            let color = float3(1.0)
-            let ambient = float3(0.5, 0.5, 0.5)
-            let diffuse = float3(0.9, 0.9, 0.9)
-            let specular = float3(1.0, 1.0, 1.0)
-
-            let base = BaseLight(color: color, intensity: 1.4, ambient: ambient, diffuse: diffuse, specular: specular)
+            var base = BaseLight()
+            let direction = directionalLightsDirections[i]
+            base.color = float3(1.0)
+            base.intensity = lightIntensity
+            base.power = lightPower
+            base.ambient = float3(0.05)
+            base.diffuse = float3(0.4)
+            base.specular = float3(0.5)
             let dirLight = DirectionalLight(base: base, direction: direction)
             dirLights.append(dirLight)
         }
@@ -125,22 +113,25 @@ class LightingScene: Scene {
             let color: float3 = pointlightsColours[i];
             let cube = Cube(device: device, fragmentShader: .fragment_color)
             add(childNode: cube)
-            cube.material.color = float4(color, 1.0)
+
             cube.position = position
             cube.scale = float3(0.4)
+            cube.material.color = float4(color, 1.0)
+            cube.material.shininess = 20
+            cube.material.useTexture = false
             pointLightCubes.append(cube)
 
             var pointLight = PointLight()
-            pointLight.base.color = color
-            pointLight.base.intensity = 10.7
             pointLight.position = position
-            pointLight.base.ambient = float3(0.5, 0.5, 0.5)
-            pointLight.base.diffuse = float3(0.9, 0.9, 0.9)
-            pointLight.base.specular = float3(1.0, 1.0, 1.0)
-            pointLight.atten.constants = 1.0
+            pointLight.base.color = color
+            pointLight.base.intensity = lightIntensity
+            pointLight.base.power = lightPower
+            pointLight.atten.continual = 1.0
             pointLight.atten.linear = 0.09
             pointLight.atten.exponent = 0.32
-            pointLight.range = 50
+
+            let range = caluclateRange(with: pointLight)
+            pointLight.range = range
 
             pointLights.append(pointLight)
         }
@@ -148,23 +139,28 @@ class LightingScene: Scene {
 
         //Spot Light
         var spotLight = SpotLight()
-        spotLight.point.base.color = float3(1, 1, 1)
-        spotLight.point.base.intensity = 2.9
-        spotLight.point.position = float3(-5, 10, 0)
-        spotLight.point.base.ambient = float3(0.5, 0.5, 0.5)
-        spotLight.point.base.diffuse = float3(0.9, 0.9, 0.91)
-        spotLight.point.base.specular = float3(1.0, 1.0, 1.0)
-        spotLight.point.atten.constants = 1.0
-        spotLight.point.atten.linear = 0.2
-        spotLight.point.atten.exponent = 0.032
+        spotLight.pointLight.position = float3(-5, 10, 0)
+        spotLight.pointLight.base.color = float3(1, 1, 1)
+        spotLight.pointLight.base.intensity = lightIntensity
+        spotLight.pointLight.base.power = lightPower
+        spotLight.pointLight.atten.continual = 1.0
+        spotLight.pointLight.atten.linear = 0.09
+        spotLight.pointLight.atten.exponent = 0.32
+        spotLight.pointLight.range = caluclateRange(with: spotLight.pointLight)
         spotLight.direction = float3(-2, 0, 0)
-        spotLight.point.range = 40
-        spotLight.cutoff = 6.6
-        spotLight.outerCutoff = 1.85
+        spotLight.cutOff = cos(radians(degrees: 12))
+        spotLight.outerCutOff = cos(radians(degrees: 18))
         spotLights.append(spotLight)
 
+    }
 
-        camera.set(position: float3(10,0,0), viewpoint: mushroom.position, up: float3(0,1,0))
+    func caluclateRange(with pointLight: PointLight) -> Float {
+        let a: Float = pointLight.atten.exponent
+        let b: Float = pointLight.atten.linear
+        let COLOR_DEPTH: Float = 256
+        let colorMax = pointLight.base.color.max() ?? 1
+        let c: Float = pointLight.atten.continual - COLOR_DEPTH * pointLight.base.intensity * colorMax
+        return (-b + sqrtf(b * b - 4 * a * c)) / (2 * a)
     }
 
     override func update(deltaTime: Float) {
@@ -174,16 +170,33 @@ class LightingScene: Scene {
 
         //cameraRotation += deltaTime * 10
         //camera.rotateAroundPoint(distance: 10, viewpoint: mushroom.position, angle: cameraRotation, y: 0)
-        spotLights[0].point.position = camera.position
-        spotLights[0].direction = camera.front
 
-
+        cubesColor.x = sin( time * 0.1 );
+        cubesColor.y = sin( time * 0.06 );
+        cubesColor.z = sin( time * 0.03 );
         for cube in cubes {
-            cubesColor.x = sin( time * 0.1 );
-            cubesColor.y = sin( time * 0.06 );
-            cubesColor.z = sin( time * 0.03 );
             cube.material.color = float4(cubesColor, 1)
+            cube.material.shininess = materialShininess
         }
+
+        for i in 0..<dirLights.count {
+            dirLights[i].base.intensity = lightIntensity
+            dirLights[i].base.power = lightPower
+        }
+
+        for i in 0..<pointLights.count {
+            pointLights[i].base.intensity = lightIntensity
+            pointLights[i].base.power = lightPower
+        }
+
+        for i in 0..<spotLights.count {
+            spotLights[i].pointLight.position = camera.position
+            spotLights[i].direction = camera.front
+            spotLights[i].pointLight.base.intensity = lightIntensity
+            spotLights[i].pointLight.base.power = lightPower
+        }
+
+        print(lightIntensity, lightPower, materialShininess)
     }
 
     override func touchesBegan(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
@@ -201,5 +214,17 @@ class LightingScene: Scene {
         //mushroom.rotation.y += Float(delta.x) * camera.sensitivity
 
         previousTouchLocation = touchLocation
+    }
+
+    override func onSlider(_ type: SliderType, phase: UITouchPhase, value: Float) {
+        switch type {
+        case .intensity:
+            lightIntensity = value
+        case .power:
+            lightPower = value
+        case .shininess:
+            materialShininess = value
+
+        }
     }
 }

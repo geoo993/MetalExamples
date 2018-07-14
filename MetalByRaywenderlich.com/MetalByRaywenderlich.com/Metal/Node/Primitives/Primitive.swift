@@ -102,7 +102,7 @@ class Primitive: Node {
         }
         if let maskTexture = setTexture(device: device, imageName: maskImageName) {
             self.maskTexture = maskTexture
-            fragmentFunctionName = .textured_mask_fragment
+            fragmentFunctionName = .fragment_textured_mask_shader
         }
         buildBuffers(device: device)
         pipelineState = buildPipelineState(device: device)

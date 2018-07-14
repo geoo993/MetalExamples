@@ -15,8 +15,7 @@ class Instance: Node {
     // Mark: - properties
     var model: Model
     var nodes = [Node]()
-
-    var uniforms = [Uniform]()
+    var instances = [InstanceInfo]()
 
     // create a MetalBuffer and store the object instances in that buffer
     var instanceBuffer: MTLBuffer?
@@ -52,20 +51,20 @@ class Instance: Node {
         for i in 0..<instances {
             let node = Node()
             node.name = "Instance \(i)"
-            nodes.append(node)
-            uniforms.append(Uniform())
+            self.nodes.append(node)
+            self.instances.append(InstanceInfo())
         }
     }
 
     func remove(instance: Int) {
-        nodes.remove(at: instance)
-        uniforms.remove(at: instance)
+        self.nodes.remove(at: instance)
+        self.instances.remove(at: instance)
     }
 
     func makeBuffer(device: MTLDevice) {
-        instanceBuffer = device
-            .makeBuffer(length: uniforms.count * MemoryLayout<Uniform>.stride , options: [])
-        instanceBuffer?.label = "Instance Buffer"
+        self.instanceBuffer = device
+            .makeBuffer(length: instances.count * MemoryLayout<InstanceInfo>.stride , options: [])
+        self.instanceBuffer?.label = "Instance Buffer"
     }
 
 }
@@ -84,17 +83,19 @@ extension Instance: Renderable {
 
 
         // we need to update each instance in the buffer at every draw
-        var pointer = instanceBuffer.contents().bindMemory(to: Uniform.self, capacity: nodes.count)
+        var pointer = instanceBuffer.contents().bindMemory(to: InstanceInfo.self, capacity: nodes.count)
 
         for node in nodes {
             // setup the matrices attributes
             let modelMatrix = matrix_multiply(modelMatrix, node.modelMatrix)
-            pointer.pointee.projectionMatrix = camera.perspectiveProjectionMatrix
-            pointer.pointee.viewMatrix = camera.viewMatrix
-            pointer.pointee.modelMatrix = modelMatrix
-            pointer.pointee.normalMatrix =
+            pointer.pointee.uniform.projectionMatrix = camera.perspectiveProjectionMatrix
+            pointer.pointee.uniform.viewMatrix = camera.viewMatrix
+            pointer.pointee.uniform.modelMatrix = modelMatrix
+            pointer.pointee.uniform.normalMatrix =
                 //(camera.viewMatrix * modelMatrix).upperLeft3x3()
                 camera.computeNormalMatrix(modelMatrix: modelMatrix)
+            pointer.pointee.material = node.material
+
             pointer = pointer.advanced(by: 1)
         }
 

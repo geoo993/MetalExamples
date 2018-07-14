@@ -63,7 +63,7 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
     VertexOut vertexOut;
 
     // Transform the vertex spatial position using
-    float4 position = float4(vertexIn.position, 1.0);
+    float4 position = float4(vertexIn.position, 1.0f);
     float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
     vertexOut.position = matrix * position;
     vertexOut.color = vertexIn.color;
@@ -76,9 +76,11 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
 
 // vertex function for instances
 vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
-                                        constant Uniform *instances [[ buffer(1) ]],
+                                        constant InstanceInfo *instances [[ buffer(1) ]],
                                         uint instanceId [[ instance_id ]]) {
-    Uniform uniform = instances[instanceId];
+    Uniform uniform = instances[instanceId].uniform;
+    MaterialInfo material = instances[instanceId].material;
+
     VertexOut vertexOut;
 
     // Transform the vertex spatial position using
@@ -86,7 +88,7 @@ vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
     float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
     vertexOut.position = matrix * position;
     vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
-    vertexOut.color = vertexIn.color;
+    vertexOut.color = material.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
     vertexOut.fragPosition = (uniform.modelMatrix * position).xyz;
 
@@ -115,9 +117,9 @@ fragment half4 fragment_color(VertexOut vertexIn [[ stage_in ]],
 }
 
 // the second parameter here is the texture in fragment buffer 0
-fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
-                                 texture2d<float> texture [[ texture(0) ]],
-                                 sampler sampler2d [[ sampler(0) ]]) {
+fragment half4 fragment_texture_shader(VertexOut vertexIn [[ stage_in ]],
+                                       texture2d<float> texture [[ texture(0) ]],
+                                       sampler sampler2d [[ sampler(0) ]]) {
 
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
@@ -131,10 +133,10 @@ fragment half4 textured_fragment(VertexOut vertexIn [[ stage_in ]],
     return half4(textcolor.r, textcolor.g, textcolor.b, 1);
 }
 
-fragment half4 textured_mask_fragment(VertexOut vertexIn [[ stage_in ]],
-                                      texture2d<float> texture [[ texture(0)]],
-                                      texture2d<float> maskTexture [[ texture(1) ]],
-                                      sampler sampler2d [[sampler(0)]]) {
+fragment half4 fragment_textured_mask_shader(VertexOut vertexIn [[ stage_in ]],
+                                             texture2d<float> texture [[ texture(0)]],
+                                             texture2d<float> maskTexture [[ texture(1) ]],
+                                             sampler sampler2d [[sampler(0)]]) {
 
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);

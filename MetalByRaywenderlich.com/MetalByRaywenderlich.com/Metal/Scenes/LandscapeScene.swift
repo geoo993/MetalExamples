@@ -11,14 +11,13 @@ class LandscapeScene: Scene {
     var cameraRotation: Float = 0
 
     override init(device: MTLDevice, camera: Camera) {
-        sun = Sphere(device: device)
-        ground = Plane(device: device)
-        grass = Instance(device: device, modelName: "grass", instances: 10000, fragmentShader: .lit_textured_fragment)
-        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .lit_textured_fragment)
+        sun = Sphere(device: device, fragmentShader: .fragment_color)
+        ground = Plane(device: device, fragmentShader: .fragment_color)
+        grass = Instance(device: device, modelName: "grass", instances: 10000, fragmentShader: .fragment_shader)
+        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .phong_fragment_shader)
         super.init(device: device, camera: camera)
 
         setupScene()
-
 
     }
 
@@ -29,6 +28,8 @@ class LandscapeScene: Scene {
         add(childNode: mushroom)
 
         ground.material.color = float4(0.4, 0.3, 0.1, 1) // brown
+        ground.material.shininess = 32
+        ground.material.useTexture = true
         ground.position = float3(0, 0, 0)
         ground.scale = float3(20)
         ground.rotation.x = radians(degrees: 90)
@@ -59,11 +60,24 @@ class LandscapeScene: Scene {
         mushroom.position.x = -6
         mushroom.position.z = -8
         mushroom.scale = float3(2)
+        mushroom.material.shininess = 32
+        mushroom.material.useTexture = true
 
-        sun.material.color = float4(1, 1, 0, 1) // yellow
-        sun.position.y = 30
+        let sunColor = float3(1, 1, 0)
+        sun.material.color = float4(sunColor, 1) // yellow
+        sun.position.y = 10
         sun.position.x = 6
-        sun.scale = float3(2)
+        sun.scale = float3(5)
+
+        var dirLight = DirectionalLight()
+        dirLight.direction = float3(0, -1.0, 0.0)
+        dirLight.base.color = sunColor
+        dirLight.base.intensity = 0.7
+        dirLight.base.power = 2
+        dirLight.base.ambient = float3(0.05)
+        dirLight.base.diffuse = float3(0.4)
+        dirLight.base.specular = float3(0.5)
+        dirLights.append(dirLight)
 
         //camera.fieldOfView = 25
         camera.set(position: float3(0, 10, -20), viewpoint: float3(0,0,0), up: float3(0,1,0))

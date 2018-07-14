@@ -4,7 +4,6 @@ class Scene: Node {
     var device: MTLDevice
     var time: Float
     var camera: Camera
-    var light = LightInfo()
     var dirLights = [DirectionalLight]()
     var pointLights = [PointLight]()
     var spotLights = [SpotLight]()
@@ -32,19 +31,17 @@ class Scene: Node {
     func touchesMoved(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {}
     func touchesEnded(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {}
     func touchesCancelled(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {}
+    func onSlider(_ type: SliderType, phase: UITouchPhase, value: Float) {}
 
     func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float) {
         update(deltaTime: deltaTime)
 
         self.cameraInfo.position = camera.position
-        self.cameraInfo.view = camera.view
         self.cameraInfo.front = camera.front
         commandEncoder.setFragmentBytes(&cameraInfo, length: MemoryLayout<CameraInfo>.stride, index: 3)
-
-        commandEncoder.setFragmentBytes(&light, length: MemoryLayout<LightInfo>.stride, index: 5)
-        commandEncoder.setFragmentBytes(&dirLights, length: MemoryLayout<DirectionalLight>.stride, index: 6)
-        commandEncoder.setFragmentBytes(&pointLights, length: MemoryLayout<PointLight>.stride, index: 7)
-        commandEncoder.setFragmentBytes(&spotLights, length: MemoryLayout<SpotLight>.stride, index: 8)
+        commandEncoder.setFragmentBytes(&dirLights, length: MemoryLayout<DirectionalLight>.stride, index: 5)
+        commandEncoder.setFragmentBytes(&pointLights, length: MemoryLayout<PointLight>.stride, index: 6)
+        commandEncoder.setFragmentBytes(&spotLights, length: MemoryLayout<SpotLight>.stride, index: 7)
 
         for child in children {
             child.render(commandEncoder: commandEncoder,
