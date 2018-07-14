@@ -92,8 +92,8 @@ extension Instance: Renderable {
             pointer.pointee.uniform.viewMatrix = camera.viewMatrix
             pointer.pointee.uniform.modelMatrix = modelMatrix
             pointer.pointee.uniform.normalMatrix =
-                //(camera.viewMatrix * modelMatrix).upperLeft3x3()
-                camera.computeNormalMatrix(modelMatrix: modelMatrix)
+                (camera.viewMatrix * modelMatrix).upperLeft3x3()
+                //camera.computeNormalMatrix(modelMatrix: modelMatrix)
             pointer.pointee.material = node.material
 
             pointer = pointer.advanced(by: 1)

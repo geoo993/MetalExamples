@@ -55,7 +55,7 @@ struct InstanceInfo {
 // Structure holding material information:  its ambient, diffuse, and specular colours, and shininess
 struct MaterialInfo {
 
-    var color = float4(1)
+    var color = float4(1,1,1,1)
     var shininess: Float = 1.0
     var useTexture: Bool = false
 }
@@ -67,7 +67,7 @@ struct CameraInfo {
 
 struct BaseLight
 {
-    var color = float3(1)
+    var color = float3(1,1,1)
     var intensity: Float = 0
     var power: Float = 0
     var ambient = float3(1)
@@ -77,9 +77,9 @@ struct BaseLight
 
 struct Attenuation
 {
-    var continual: Float = 1.0
-    var linear: Float = 1.0
-    var exponent: Float = 1.0
+    var continual: Float = 0.0
+    var linear: Float = 0.0
+    var exponent: Float = 0.0
 }
 
 struct DirectionalLight

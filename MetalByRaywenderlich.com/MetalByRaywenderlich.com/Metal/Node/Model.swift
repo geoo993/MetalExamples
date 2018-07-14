@@ -182,8 +182,8 @@ extension Model: Renderable {
 
         // normal matrix
         uniform.normalMatrix =
-        //(camera.viewMatrix * modelMatrix).upperLeft3x3()
-        camera.computeNormalMatrix(modelMatrix: modelMatrix)
+        (camera.viewMatrix * modelMatrix).upperLeft3x3()
+        //camera.computeNormalMatrix(modelMatrix: modelMatrix)
 
         commandEncoder.setVertexBytes(&uniform,
                                       length: MemoryLayout<Uniform>.stride,

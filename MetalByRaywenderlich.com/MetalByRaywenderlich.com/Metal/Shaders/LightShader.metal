@@ -15,7 +15,6 @@ float radians(float degree) {
     return degree * 3.14159265359 / 180.0;
 }
 
-
 // This function implements the Phong shading model
 // The code is based on the OpenGL 4.0 Shading Language Cookbook, pp. 67 - 68, with a few tweaks.
 // Please see Chapter 2 of the book for a detailed discussion.
@@ -51,7 +50,7 @@ fragment half4 phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     float3 ambientColor = light.base.ambient * diffuseColor;
 
     // specular
-    float3 specularColor = float3(0.0f);
+    float3 specularColor = float3(0.0f,0,0);
     float specularFactor = pow(max(dot(v, r), 0.0f), shininess);
 
     if (diffuseFactor > 0.0f) {
@@ -99,7 +98,7 @@ fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     float angle = acos(dot(-s, d));
     float cutoff = radians(clamp(light.cutOff, 0.0f, 90.0f));
     float shininess = material.shininess;
-    float4 finalColor = float4(1.0f);
+    float4 finalColor = float4(1.0f,1,1,1);
 
     // diffuse
     float diffuseFactor = max(dot(s, n), 0.0f);
@@ -135,22 +134,24 @@ fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     }
 }
 
-
 float4 CalcLight(BaseLight base, MaterialInfo material, float3 lightDirection, float3 viewDirection, float3 normal)
 {
     float diffuseFactor = max(dot(normal, lightDirection), 0.0f);
 
-    float4 diffuseColor = float4(0.0);
-    float4 specularColor = float4(0.0);
-    float4 ambientColor = float4(0.0);
+    float4 baseColor = float4(base.color.x, base.color.y, base.color.z, 1);
+    float4 diffuseColor = float4(0.0,0,0,0);
+    float4 specularColor = float4(0.0,0,0,0);
+    float4 ambientColor = float4(0.0,0,0,0);
 
     if(diffuseFactor > 0.0f)
     {
         // Diffuse
-        diffuseColor = float4(base.diffuse, 1) /** base.color*/ * base.intensity * diffuseFactor;
+        float4 baseDiff = float4(base.diffuse.x, base.diffuse.y, base.diffuse.z, 1);
+        diffuseColor = baseDiff * baseColor * base.intensity * diffuseFactor;
 
         // Ambient
-        ambientColor = float4(base.ambient, 1) * diffuseColor;
+        float4 baseAmb = float4(base.ambient.x, base.ambient.y, base.ambient.z, 1);
+        ambientColor = baseAmb * diffuseColor;
 
         // Specular
         float3 reflectDirection = reflect(-lightDirection, normal);
@@ -158,7 +159,8 @@ float4 CalcLight(BaseLight base, MaterialInfo material, float3 lightDirection, f
 
         if(diffuseFactor > 0.0f)
         {
-            specularColor = float4(base.specular, 1) /** base.color*/ * base.power * specularFactor;
+            float4 baseSpec = float4(base.specular.x, base.specular.y, base.specular.z, 1);
+            specularColor = baseSpec * baseColor * base.power * specularFactor;
         }
     }
 
@@ -177,13 +179,13 @@ float4 CalcPointLight(PointLight pointLight, MaterialInfo material, float3 verte
     float distanceToPoint = length(lightDirection);
 
 
-    //if(distanceToPoint > pointLight.range)
-    //    return float3(0.0, 0.0, 0.0);
+    //if(distanceToPoint > pointLight.range) {
+    //    return float4(0.0, 0.0, 0.0, 0.0);
+    //}
 
     float4 color = CalcLight(pointLight.base, material, normalize(lightDirection), viewDirection, normal);
 
     // Attenuation
-    ///*
     float attenuation =
     pointLight.atten.continual +
     pointLight.atten.linear *
@@ -191,9 +193,7 @@ float4 CalcPointLight(PointLight pointLight, MaterialInfo material, float3 verte
     pointLight.atten.exponent *
     (distanceToPoint * distanceToPoint) +
     0.0001f;
-    //*/
-
-    return color / attenuation;
+     return color / attenuation;
 
     /*
      float attenuation =
@@ -214,7 +214,7 @@ float4 CalcSpotLight(SpotLight spotLight, MaterialInfo material, float3 vertexPo
     // Intensity
     //float spotFactor = dot(lightDirection, normalize(-spotLight.direction));
     float spotFactor = max(dot(lightDirection, normalize(-spotLight.direction)), 0.0f); //// no difference
-    float4 color = float4(0.0f);
+    float4 color = float4(0.0,0,0,0);
 
     if(spotFactor > spotLight.cutOff)
     {
@@ -246,8 +246,7 @@ fragment half4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     float3 n = normalize(vertexIn.normal);
     float3 view = camera.position + camera.front;
     float3 v = normalize(view - vertexIn.fragPosition); // viewDirection
-    float4 result = float4(0.0f);
-
+    float4 finalColor = float4(0.0,0,0,0);
 
     const int NUMBER_OF_DIRECTIONAL_LIGHTS = 1;
     const int NUMBER_OF_POINT_LIGHTS = 5;
@@ -256,26 +255,29 @@ fragment half4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     // Directional lighting
     for (int i = 0; i < NUMBER_OF_DIRECTIONAL_LIGHTS; i++) {
         float4 directionalLight = CalcDirectionalLight(dirlights[i], material, v, n);
-        result += directionalLight;
+        finalColor += directionalLight;
     }
 
     // Point lights
     for (int i = 0; i < NUMBER_OF_POINT_LIGHTS; i++) {
         float4 pointL = CalcPointLight(pointlights[i], material, p, v, n);
-        //result += pointL;
+        finalColor += pointL;
     }
 
     // Spot light
     for (int i = 0; i < NUMBER_OF_SPOT_LIGHTS; i++) {
         float4 spotL = CalcSpotLight(spotlights[i], material, p, v, n);
-        //result += spotL;
+        finalColor += spotL;
     }
 
-    if (material.useTexture) {
-        textcolor = textcolor * result;
-        return half4(textcolor);
+    if (material.useTexture == true) {
+        textcolor = textcolor * finalColor;
+
+        return half4(textcolor.r, textcolor.g, textcolor.b, 1);
     } else {
-        float4 finalColor = c * result;
-        return half4(finalColor.r, finalColor.g, finalColor.b, 1);
+        //finalColor = c * finalColor;
+        return half4(finalColor.x, finalColor.y, finalColor.z, 1);
     }
+
+
 }
