@@ -1,7 +1,11 @@
 import Foundation
 
 public extension CGPoint {
-    
+
+    public static func point(_ x: CGFloat, _ y: CGFloat) -> CGPoint {
+        return CGPoint(x: x, y: y)
+    }
+
     public func distance(from rect: CGRect) -> CGFloat {
         let dx = max(rect.minX - x, x - rect.maxX, 0)
         let dy = max(rect.minY - y, y - rect.maxY, 0)
