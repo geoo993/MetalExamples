@@ -26,6 +26,8 @@ protocol Texturable {
 }
 
 extension Texturable {
+
+    // MARK: - Setup texture with bundle resource
     func setTexture(device: MTLDevice, imageName: String) -> MTLTexture? {
         let textureLoader = MTKTextureLoader(device: device)
 
@@ -34,7 +36,12 @@ extension Texturable {
         let textureLoaderOptions: [MTKTextureLoader.Option: Any]
 
         if #available(iOS 10.0, *) {
-            textureLoaderOptions = [.origin : MTKTextureLoader.Origin.bottomLeft]
+            textureLoaderOptions = [.origin : MTKTextureLoader.Origin.bottomLeft,
+                                    .generateMipmaps : true,
+                                    .SRGB : true,
+                                    .textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
+                                    .textureStorageMode: NSNumber(value: MTLStorageMode.`private`.rawValue)
+            ]
         } else {
             textureLoaderOptions = [:]
         }
@@ -49,6 +56,62 @@ extension Texturable {
         }
 
         // when you notice that the image is pixelated, this is becuase the default sampler uses filter mode Nearest
+        return texture
+    }
+
+    func loadTexture(device: MTLDevice, textureName: String) -> MTLTexture? {
+        /// Load texture data with optimal parameters for sampling
+
+        let textureLoader = MTKTextureLoader(device: device)
+
+        let textureLoaderOptions = [
+            MTKTextureLoader.Option.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
+            MTKTextureLoader.Option.textureStorageMode: NSNumber(value: MTLStorageMode.`private`.rawValue)
+        ]
+
+        // load texture using the passed in image name
+        do {
+            return try textureLoader.newTexture(name: textureName,
+                                                scaleFactor: 1.0,
+                                                bundle: nil,
+                                                options: textureLoaderOptions)
+        } catch {
+            print("texture not created")
+            return nil
+        }
+
+    }
+
+    // MARK: - Setup texture with uiimage
+    func setTexture(device: MTLDevice, image: UIImage) -> MTLTexture? {
+        // https://stackoverflow.com/questions/29835537/metal-mtltexture-replaces-semi-transparent-areas-with-black-when-alpha-values-th
+        let bytesPerPixel = 4
+        let bitsPerComponent = 8
+        let width = Int(image.size.width)
+        let height = Int(image.size.height)
+        let bounds = CGRect(x:0, y:0, width: CGFloat(width), height: CGFloat(height))
+
+        let bytesPerRow = width * bytesPerPixel
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+
+        let info = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue).rawValue
+        let context = CGContext(data: nil, width: width, height: height,
+                                bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow,
+                                space: colorSpace, bitmapInfo: info)
+
+        context?.clear(bounds)
+        context?.translateBy(x: CGFloat(width), y: CGFloat(height))
+        context?.scaleBy(x: -1.0, y: -1.0)
+        context?.draw(image.cgImage!, in: bounds)
+        let pixelsData = context?.data
+
+        let textureDescriptor = MTLTextureDescriptor
+            .texture2DDescriptor(pixelFormat: .rgba8Unorm, width: width, height: height, mipmapped: false)
+
+        let texture = device.makeTexture(descriptor: textureDescriptor)
+        let region = MTLRegionMake2D(0, 0, width, height)
+        texture?.replace(region: region, mipmapLevel: 0, withBytes: pixelsData!, bytesPerRow: bytesPerRow)
+
         return texture
     }
 }

@@ -36,27 +36,31 @@ class Primitive: Node {
     var vertexDescriptor: MTLVertexDescriptor {
         let vertexDescriptor = MTLVertexDescriptor()
         // describe the position data from Vertex struct
-        vertexDescriptor.attributes[0].format = .float3
-        vertexDescriptor.attributes[0].offset = 0
-        vertexDescriptor.attributes[0].bufferIndex = 0 // buffer index of vertex array
+        vertexDescriptor.attributes[VertexAttribute.position.rawValue].format = .float3
+        vertexDescriptor.attributes[VertexAttribute.position.rawValue].offset = 0
+        vertexDescriptor.attributes[VertexAttribute.position.rawValue].bufferIndex = BufferIndex.meshPositions.rawValue // buffer index of vertex array
 
         // describe the texture data
-        vertexDescriptor.attributes[1].format = .float2
-        vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.stride // float3 offset from the first attribute as we are striding, this is the size of the position attribute
-        vertexDescriptor.attributes[1].bufferIndex = 0 // buffer index of vertex array still at 0
+        vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].format = .float2
+        vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].offset = MemoryLayout<float3>.stride // float3 offset from the first attribute as we are striding, this is the size of the position attribute
+        vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].bufferIndex = 0 // buffer index of vertex array still at 0
 
         // describe the color data from Vertex struct
-        vertexDescriptor.attributes[2].format = .float4
-        vertexDescriptor.attributes[2].offset = MemoryLayout<float3>.stride + MemoryLayout<float2>.stride // float3 and float2 offset from the first and second attribute as we are striding, this was the size of the position and texture attribute
-        vertexDescriptor.attributes[2].bufferIndex = 0 // buffer index of vertex array
+        vertexDescriptor.attributes[VertexAttribute.color.rawValue].format = .float4
+        vertexDescriptor.attributes[VertexAttribute.color.rawValue].offset =
+            MemoryLayout<float3>.stride + MemoryLayout<float2>.stride // float3 and float2 offset from the first and second attribute as we are striding, this was the size of the position and texture attribute
+        vertexDescriptor.attributes[VertexAttribute.color.rawValue].bufferIndex = 0 // buffer index of vertex array
 
         // describe the normal data from Vertex struct
-        vertexDescriptor.attributes[3].format = .float3
-        vertexDescriptor.attributes[3].offset = MemoryLayout<float3>.stride + MemoryLayout<float2>.stride + MemoryLayout<float4>.stride // float3 and float2 offset from the first and second attribute as we are striding, this was the size of the position and texture attribute
-        vertexDescriptor.attributes[3].bufferIndex = 0 // buffer index of vertex array
+        vertexDescriptor.attributes[VertexAttribute.normal.rawValue].format = .float3
+        vertexDescriptor.attributes[VertexAttribute.normal.rawValue].offset =
+            MemoryLayout<float3>.stride + MemoryLayout<float2>.stride + MemoryLayout<float4>.stride // float3 and float2 offset from the first and second attribute as we are striding, this was the size of the position and texture attribute
+        vertexDescriptor.attributes[VertexAttribute.normal.rawValue].bufferIndex = 0 // buffer index of vertex array
 
         // tell the vertex descriptor the size of the information held for each vertex
-        vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
+        vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stride = MemoryLayout<Vertex>.stride
+        vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepRate = 1
+        vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepFunction = MTLVertexStepFunction.perVertex
 
         return vertexDescriptor
     }
@@ -67,45 +71,42 @@ class Primitive: Node {
 
 
     //MARK: - initialise the Renderer with a device
-    init(device: MTLDevice, fragmentShader: FragmentFunction = .fragment_shader) {
-        super.init()
+    init(mtkView: MTKView, fragmentShader: FragmentFunction = .fragment_shader) {
+        super.init(name: "")
         self.fragmentFunctionName = fragmentShader
         setup()
         buildVertices()
-        buildBuffers(device: device)
-        pipelineState = buildPipelineState(device: device)
-        samplerState = buildSamplerState(device: device)
-        depthStencilState = buildDepthStencilState(device: device)
+        setupBuffers(mtkView: mtkView)
     }
 
-    init(device: MTLDevice, imageName: String, fragmentShader: FragmentFunction) {
-        super.init()
+    init(mtkView: MTKView, imageName: String, fragmentShader: FragmentFunction) {
+        super.init(name: "")
+        self.fragmentFunctionName = fragmentShader
         setup()
         buildVertices()
-        if let texture = setTexture(device: device, imageName: imageName) {
-            self.texture = texture
-            self.fragmentFunctionName = fragmentShader
-        }
-
-        buildBuffers(device: device)
-        pipelineState = buildPipelineState(device: device)
-        samplerState = buildSamplerState(device: device)
-        depthStencilState = buildDepthStencilState(device: device)
+        setupBuffers(mtkView: mtkView, imageName: imageName)
     }
 
-    init(device: MTLDevice, imageName: String, maskImageName: String) {
-        super.init()
+    init(mtkView: MTKView, imageName: String, maskImageName: String) {
+        super.init(name: "")
         setup()
         buildVertices()
+        setupBuffers(mtkView: mtkView, imageName: imageName, maskImageName: maskImageName)
+    }
+
+    func setupBuffers(mtkView: MTKView, imageName: String = "", maskImageName: String = "") {
+        guard let device = mtkView.device else { fatalError("No Device Found") }
+
         if let texture = setTexture(device: device, imageName: imageName) {
             self.texture = texture
         }
+
         if let maskTexture = setTexture(device: device, imageName: maskImageName) {
             self.maskTexture = maskTexture
             fragmentFunctionName = .fragment_textured_mask_shader
         }
         buildBuffers(device: device)
-        pipelineState = buildPipelineState(device: device)
+        pipelineState = buildPipelineState(metalKitView: mtkView)
         samplerState = buildSamplerState(device: device)
         depthStencilState = buildDepthStencilState(device: device)
     }
@@ -136,7 +137,6 @@ class Primitive: Node {
     }
 
     func setup() {
-
     }
 
     func buildVertices() {
@@ -183,7 +183,9 @@ extension Primitive: Renderable {
         // the buffer is at. you can have up to 31 buffers.
         // the vertex information is in the metal buffer at zero (0), so the GPU can tie the index information
         // with the vertex information
-        commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        if vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stride != 0 {
+            commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: BufferIndex.meshPositions.rawValue)
+        }
 
 
 
@@ -208,24 +210,23 @@ extension Primitive: Renderable {
         uniform.modelMatrix = modelMatrix
 
         // normal matrix
-        uniform.normalMatrix =
-            (camera.viewMatrix * modelMatrix).upperLeft3x3()
-            //camera.computeNormalMatrix(modelMatrix: modelMatrix)
+        uniform.normalMatrix = camera.computeNormalMatrix(modelMatrix: modelMatrix)
 
         commandEncoder.setVertexBytes(&uniform,
                                       length: MemoryLayout<Uniform>.stride,
-                                      index: 1)
+                                      index: BufferIndex.uniforms.rawValue)
 
-        commandEncoder.setFragmentBytes(&material, length: MemoryLayout<MaterialInfo>.stride, index: 4)
+        commandEncoder.setFragmentBytes(&material, length: MemoryLayout<MaterialInfo>.stride,
+                                        index: BufferIndex.materialInfo.rawValue)
         
         // tell the command encoder to set the fragment texture at the fragment index buffer 0
         if texture != nil {
-            commandEncoder.setFragmentTexture(texture, index: 0)
+            commandEncoder.setFragmentTexture(texture, index: TextureIndex.color.rawValue)
         }
 
         // set the mask texture's fragment buffer to buffer index 1:
         if maskTexture != nil {
-            commandEncoder.setFragmentTexture(maskTexture, index: 1)
+            commandEncoder.setFragmentTexture(maskTexture, index: TextureIndex.mask.rawValue)
         }
 
         if useIndicies {

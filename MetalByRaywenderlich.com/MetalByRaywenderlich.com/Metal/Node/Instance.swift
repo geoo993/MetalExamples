@@ -33,15 +33,19 @@ class Instance: Node {
     var drawType: MTLPrimitiveType = .triangle
 
     //Mark: - initialiser
-    init(device: MTLDevice, modelName: String, instances: Int, fragmentShader: FragmentFunction) {
-        model = Model(device: device, modelName: modelName, fragmentShader: fragmentShader)
+    init(mtkView: MTKView, modelName: String, instances: Int, fragmentShader: FragmentFunction) {
+        model = Model(mtkView: mtkView, modelName: modelName, fragmentShader: fragmentShader)
         fragmentFunctionName = model.fragmentFunctionName
         vertexDescriptor = model.vertexDescriptor
-        super.init()
-        name = modelName
+        super.init(name: modelName)
         create(instances: instances)
+        setupBuffers(mtkView: mtkView)
+    }
+
+    func setupBuffers(mtkView: MTKView) {
+        guard let device = mtkView.device else { fatalError("No Device Found") }
         makeBuffer(device: device)
-        pipelineState = buildPipelineState(device: device)
+        pipelineState = buildPipelineState(metalKitView: mtkView)
         samplerState = buildSamplerState(device: device)
         depthStencilState = buildDepthStencilState(device: device)
     }
@@ -49,8 +53,7 @@ class Instance: Node {
     //Mark: - creates instances
     func create(instances: Int) {
         for i in 0..<instances {
-            let node = Node()
-            node.name = "Instance \(i)"
+            let node = Node(name: "Instance \(i)")
             self.nodes.append(node)
             self.instances.append(InstanceInfo())
         }
@@ -91,21 +94,20 @@ extension Instance: Renderable {
             pointer.pointee.uniform.projectionMatrix = camera.perspectiveProjectionMatrix
             pointer.pointee.uniform.viewMatrix = camera.viewMatrix
             pointer.pointee.uniform.modelMatrix = modelMatrix
-            pointer.pointee.uniform.normalMatrix =
-                (camera.viewMatrix * modelMatrix).upperLeft3x3()
-                //camera.computeNormalMatrix(modelMatrix: modelMatrix)
+            pointer.pointee.uniform.normalMatrix = camera.computeNormalMatrix(modelMatrix: modelMatrix)
             pointer.pointee.material = node.material
 
             pointer = pointer.advanced(by: 1)
         }
 
-        commandEncoder.setFragmentBytes(&material, length: MemoryLayout<MaterialInfo>.stride, index: 4)
+        commandEncoder.setFragmentBytes(&material, length: MemoryLayout<MaterialInfo>.stride,
+                                        index: BufferIndex.materialInfo.rawValue)
 
         if model.texture != nil {
-            commandEncoder.setFragmentTexture(model.texture, index: 0)
+            commandEncoder.setFragmentTexture(model.texture, index: TextureIndex.color.rawValue)
         }
 
-        commandEncoder.setVertexBuffer(instanceBuffer, offset: 0, index: 1)
+        commandEncoder.setVertexBuffer(instanceBuffer, offset: 0, index: BufferIndex.instances.rawValue)
 
         guard let meshes = model.meshes as? [MTKMesh], meshes.count > 0 else { return }
 
@@ -113,8 +115,16 @@ extension Instance: Renderable {
         // To render the object we loop through MetalKit meshes, we get the VertexBuffer from the mesh
         // and set that as the GPU vertex buffer.
         for mesh in meshes {
-            let vertexBuffer = mesh.vertexBuffers[0]
-            commandEncoder.setVertexBuffer(vertexBuffer.buffer, offset: vertexBuffer.offset, index: 0)
+
+            for (index, element) in mesh.vertexDescriptor.layouts.enumerated() {
+                guard let layout = element as? MDLVertexBufferLayout else {
+                    return
+                }
+                if layout.stride != 0 {
+                    let vertexBuffer = mesh.vertexBuffers[index]
+                    commandEncoder.setVertexBuffer(vertexBuffer.buffer, offset: vertexBuffer.offset, index: index)
+                }
+            }
 
             // then we loop through the MTLMesh sub meshes, and draw the group of meshes that belongs to the MTLMesh
             // using the submesh indicies.

@@ -44,7 +44,7 @@ extension Renderable {
     pipelineDescriptor.vertexFunction = vertexFunction
     pipelineDescriptor.fragmentFunction = fragmentFunction
     pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
-    pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+    pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm // unorm means that the value falls between 0 and 255
     pipelineDescriptor.vertexDescriptor = vertexDescriptor
     
     let pipelineState: MTLRenderPipelineState

@@ -277,10 +277,10 @@ class Camera {
     // The normal matrix is used to transform normals to eye coordinates -- part of lighting calculations
     func computeNormalMatrix(modelMatrix: matrix_float4x4) -> matrix_float3x3
     {
+        return modelMatrix.upperLeft3x3().transpose.inverse
         //return glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
         //glm::mat3 mNorm = glm::inverseTranspose(glm::mat3(mModel));
-        return (matrix_float3x3(modelMatrix).inverse).transpose
+        //return (matrix_float3x3(modelMatrix).inverse).transpose
     }
-
 
 }

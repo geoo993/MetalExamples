@@ -7,8 +7,9 @@
 //
 
 #include <metal_stdlib>
-using namespace metal;
 #include "Shader.h"
+
+using namespace metal;
 
 
 float radians(float degree) {
@@ -19,10 +20,10 @@ float radians(float degree) {
 // The code is based on the OpenGL 4.0 Shading Language Cookbook, pp. 67 - 68, with a few tweaks.
 // Please see Chapter 2 of the book for a detailed discussion.
 fragment half4 phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
-                                     constant CameraInfo &camera [[ buffer(3) ]],
-                                     constant MaterialInfo &material [[ buffer(4) ]],
-                                     constant DirectionalLight &light [[ buffer(5) ]],
-                                     texture2d<float> texture [[ texture(0) ]],
+                                     constant CameraInfo &camera [[ buffer(BufferIndexCameraInfo) ]],
+                                     constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
+                                     constant DirectionalLight &light [[ buffer(BufferIndexDirectionalLightInfo) ]],
+                                     texture2d<float> texture [[ texture(TextureIndexColor) ]],
                                      sampler sampler2d [[ sampler(0) ]]) {
 
     // extract color from current fragmnet coordinates
@@ -76,10 +77,10 @@ fragment half4 phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
 // The code is based on the OpenGL 4.0 Shading Language Cookbook, pp. 67 - 68, with a few tweaks.
 // Please see Chapter 2 of the book for a detailed discussion.
 fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
-                                           constant CameraInfo &camera [[ buffer(3) ]],
-                                           constant MaterialInfo &material [[ buffer(4) ]],
-                                           constant SpotLight &light [[ buffer(7) ]],
-                                           texture2d<float> texture [[ texture(0) ]],
+                                           constant CameraInfo &camera [[ buffer(BufferIndexCameraInfo) ]],
+                                           constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
+                                           constant SpotLight &light [[ buffer(BufferIndexSpotLightInfo) ]],
+                                           texture2d<float> texture [[ texture(TextureIndexColor) ]],
                                            sampler sampler2d [[ sampler(0) ]]) {
 
 
@@ -230,18 +231,18 @@ float4 CalcSpotLight(SpotLight spotLight, MaterialInfo material, float3 vertexPo
 
 
 fragment half4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
-                                        constant CameraInfo &camera [[ buffer(3) ]],
-                                        constant MaterialInfo &material [[ buffer(4) ]],
-                                        constant DirectionalLight *dirlights [[ buffer(5) ]],
-                                        constant PointLight *pointlights [[ buffer(6) ]],
-                                        constant SpotLight *spotlights [[ buffer(7) ]],
-                                        texture2d<float> texture [[ texture(0) ]],
+                                        constant CameraInfo &camera [[ buffer(BufferIndexCameraInfo) ]],
+                                        constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
+                                        constant DirectionalLight *dirlights [[ buffer(BufferIndexDirectionalLightInfo) ]],
+                                        constant PointLight *pointlights [[ buffer(BufferIndexPointLightInfo) ]],
+                                        constant SpotLight *spotlights [[ buffer(BufferIndexSpotLightInfo) ]],
+                                        texture2d<float> texture [[ texture(TextureIndexColor) ]],
                                         sampler sampler2d [[ sampler(0) ]]) {
 
     // Properties
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
-    float4 c = material.color;
+    //float4 c = material.color;
     float3 p = vertexIn.fragPosition; // Eye coordinates are computed as part of the camera model
     float3 n = normalize(vertexIn.normal);
     float3 view = camera.position + camera.front;

@@ -24,6 +24,8 @@ import MetalKit
 
 class Renderer: NSObject {
   let device: MTLDevice
+
+    
   let commandQueue: MTLCommandQueue
   
   var scene: Scene?

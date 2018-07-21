@@ -15,7 +15,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MetalViewController" id="BYZ-38-t0r" customClass="MetalViewController" customModule="MetalByRaywenderlich_com" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="MTKView">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -151,7 +151,7 @@
                         <outlet property="lightIntensity" destination="lrC-OF-LaG" id="vVf-0G-EpA"/>
                         <outlet property="lightPower" destination="T79-TU-rbs" id="zTH-Bu-vgt"/>
                         <outlet property="materialShininess" destination="CCn-7A-LHv" id="rBA-dX-wFw"/>
-                        <outlet property="metalView" destination="94C-3h-HC7" id="NOV-SL-Yt7"/>
+                        <outlet property="metalKitView" destination="94C-3h-HC7" id="u5I-uD-DxM"/>
                         <outlet property="rightJoyStick" destination="pfs-pi-M5N" id="0XS-F8-fro"/>
                     </connections>
                 </viewController>

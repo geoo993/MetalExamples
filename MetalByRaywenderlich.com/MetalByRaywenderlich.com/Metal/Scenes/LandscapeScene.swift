@@ -3,25 +3,26 @@ import MetalKit
 
 class LandscapeScene: Scene {
 
-    let sun: Sphere
-    let ground: Plane
-    let grass: Instance
-    let mushroom: Model
+    var sun: Sphere!
+    var ground: Plane!
+    var grass: Instance!
+    var mushroom: Model!
 
     var cameraRotation: Float = 0
 
-    override init(device: MTLDevice, camera: Camera) {
-        sun = Sphere(device: device, fragmentShader: .fragment_color)
-        ground = Plane(device: device, fragmentShader: .fragment_color)
-        grass = Instance(device: device, modelName: "grass", instances: 10000, fragmentShader: .fragment_shader)
-        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .phong_fragment_shader)
-        super.init(device: device, camera: camera)
-
-        setupScene()
-
+    override init(mtkView: MTKView, camera: Camera) {
+        super.init(mtkView: mtkView, camera: camera)
     }
 
-    func setupScene() {
+    override func setup (view: MTKView) {
+        super.setup(view: view)
+        name = "Landscape scene"
+
+        sun = Sphere(mtkView: view, fragmentShader: .fragment_color)
+        ground = Plane(mtkView: view, fragmentShader: .fragment_color)
+        grass = Instance(mtkView: view, modelName: "grass", instances: 10000, fragmentShader: .fragment_shader)
+        mushroom = Model(mtkView: view, modelName: "mushroom", fragmentShader: .phong_fragment_shader)
+      
         add(childNode: sun)
         add(childNode: ground)
         add(childNode: grass)

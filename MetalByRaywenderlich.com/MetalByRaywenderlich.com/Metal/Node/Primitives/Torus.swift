@@ -30,8 +30,8 @@ class Torus: Primitive {
 
         var x: Float, y: Float, z: Float = 0      // POSITION
         var nx: Float, ny: Float, nz: Float = 0   // NORMAL
-        var tx: Float, ty: Float, tz: Float = 0   // TANGENT
-        var bx: Float, by: Float, bz: Float = 0   // BINORMAL
+        //var tx: Float, ty: Float, tz: Float = 0   // TANGENT
+        //var bx: Float, by: Float, bz: Float = 0   // BINORMAL
         var s: Float, t: Float = 0         // TEXCOORD
         var u: Float, v: Float = 0          //  U V
         var cu: Float, su: Float = 0       // COS And SIN  U
@@ -79,14 +79,14 @@ class Torus: Primitive {
                     nz = sv
 
                     // Tangent
-                    tx = ( outerRadius + innerRadius * cv ) * -su
-                    ty = ( outerRadius + innerRadius * cv ) * cu
-                    tz = 0.0
+                    //tx = ( outerRadius + innerRadius * cv ) * -su
+                    //ty = ( outerRadius + innerRadius * cv ) * cu
+                    //tz = 0.0
 
                     // Binormal
-                    bx = -cu * sv
-                    by = -su * cv
-                    bz = cv
+                    //bx = -cu * sv
+                    //by = -su * cv
+                    //bz = cv
 
                     // U, V texture mapping
                     s = ( u * sTexCoord[0] ) + ( v * sTexCoord[1] )

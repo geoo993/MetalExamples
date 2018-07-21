@@ -1,26 +1,31 @@
 import MetalKit
 
 class Scene: Node {
-    var device: MTLDevice
-    var time: Float
-    var camera: Camera
+    var camera: Camera!
+    var time: Float = 0
     var dirLights = [DirectionalLight]()
     var pointLights = [PointLight]()
     var spotLights = [SpotLight]()
     var cameraInfo = CameraInfo()
 
-    init(device: MTLDevice, camera: Camera) {
+    init(mtkView: MTKView, camera: Camera) {
 
         //1) Create a reference to the GPU, which is the Device
-        self.device = device
-        self.time = 0
+        super.init(name: "Untitled")
         self.camera = camera
-        super.init()
+        setup(view: mtkView)
+    }
+
+    override func add(childNode: Node) {
+        super.add(childNode: childNode)
+    }
+
+    func setup(view: MTKView) {
+
     }
 
     func update(deltaTime: Float) {
         
-
     }
 
     func sceneSizeWillChange(to size: CGSize) {
@@ -38,10 +43,14 @@ class Scene: Node {
 
         self.cameraInfo.position = camera.position
         self.cameraInfo.front = camera.front
-        commandEncoder.setFragmentBytes(&cameraInfo, length: MemoryLayout<CameraInfo>.stride, index: 3)
-        commandEncoder.setFragmentBytes(&dirLights, length: MemoryLayout<DirectionalLight>.stride, index: 5)
-        commandEncoder.setFragmentBytes(&pointLights, length: MemoryLayout<PointLight>.stride, index: 6)
-        commandEncoder.setFragmentBytes(&spotLights, length: MemoryLayout<SpotLight>.stride, index: 7)
+        commandEncoder.setFragmentBytes(&cameraInfo, length: MemoryLayout<CameraInfo>.stride,
+                                        index: BufferIndex.cameraInfo.rawValue)
+        commandEncoder.setFragmentBytes(&dirLights, length: MemoryLayout<DirectionalLight>.stride,
+                                        index: BufferIndex.directionalLightInfo.rawValue)
+        commandEncoder.setFragmentBytes(&pointLights, length: MemoryLayout<PointLight>.stride,
+                                        index: BufferIndex.pointLightInfo.rawValue)
+        commandEncoder.setFragmentBytes(&spotLights, length: MemoryLayout<SpotLight>.stride,
+                                        index: BufferIndex.spotLightInfo.rawValue)
 
         for child in children {
             child.render(commandEncoder: commandEncoder,

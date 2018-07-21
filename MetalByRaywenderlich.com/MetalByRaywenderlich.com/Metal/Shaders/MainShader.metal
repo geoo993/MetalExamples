@@ -22,9 +22,8 @@
 
 
 #include <metal_stdlib>
-using namespace metal;
 #include "Shader.h"
-
+using namespace metal;
 
 // --------- Vertex Shader --------
 // this is a vertex function so we prefix it with vertex and we are going to
@@ -59,13 +58,13 @@ vertex float4 vertex_shader(const device packed_float3 *vertices [[ buffer(0) ]]
 */
 
 vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
-                               constant Uniform &uniform [[ buffer(1) ]]) {
+                               constant Uniform &uniform [[ buffer(BufferIndexUniforms) ]]) {
     VertexOut vertexOut;
 
     // Transform the vertex spatial position using
     float4 position = float4(vertexIn.position, 1.0f);
-    float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
-    vertexOut.position = matrix * position;
+    float4x4 matrices = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
+    vertexOut.position = matrices * position;
     vertexOut.color = vertexIn.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
     vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
@@ -76,7 +75,7 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
 
 // vertex function for instances
 vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
-                                        constant InstanceInfo *instances [[ buffer(1) ]],
+                                        constant InstanceInfo *instances [[ buffer(BufferIndexInstances) ]],
                                         uint instanceId [[ instance_id ]]) {
     Uniform uniform = instances[instanceId].uniform;
     MaterialInfo material = instances[instanceId].material;
@@ -85,8 +84,8 @@ vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
 
     // Transform the vertex spatial position using
     float4 position = float4(vertexIn.position, 1.0);
-    float4x4 matrix = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
-    vertexOut.position = matrix * position;
+    float4x4 matrices = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
+    vertexOut.position = matrices * position;
     vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
     vertexOut.color = material.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
@@ -112,13 +111,17 @@ fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]]) {
 // rather than one constant value for all fragments.
 // fragment color are (r, g, b, a) per pixel, these rbg values are between 0 and 1
 fragment half4 fragment_color(VertexOut vertexIn [[ stage_in ]],
-                               constant MaterialInfo &material [[ buffer(4) ]]) {
+                               constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]]) {
     return half4(material.color);
+}
+
+fragment half4 fragment_normal(VertexOut vertexIn [[ stage_in ]]) {
+    return half4(vertexIn.normal.x, vertexIn.normal.y, vertexIn.normal.z, 1);
 }
 
 // the second parameter here is the texture in fragment buffer 0
 fragment half4 fragment_texture_shader(VertexOut vertexIn [[ stage_in ]],
-                                       texture2d<float> texture [[ texture(0) ]],
+                                       texture2d<float> texture [[ texture(TextureIndexColor) ]],
                                        sampler sampler2d [[ sampler(0) ]]) {
 
     // extract color from current fragmnet coordinates
@@ -126,7 +129,6 @@ fragment half4 fragment_texture_shader(VertexOut vertexIn [[ stage_in ]],
     //float4 color = vertexIn.color;
     //float3 normal = normalize(vertexIn.normal);
 
-    textcolor = textcolor * vertexIn.color;
     if (textcolor.a == 0.0)
         discard_fragment();
 
@@ -134,8 +136,8 @@ fragment half4 fragment_texture_shader(VertexOut vertexIn [[ stage_in ]],
 }
 
 fragment half4 fragment_textured_mask_shader(VertexOut vertexIn [[ stage_in ]],
-                                             texture2d<float> texture [[ texture(0)]],
-                                             texture2d<float> maskTexture [[ texture(1) ]],
+                                             texture2d<float> texture [[ texture(TextureIndexColor)]],
+                                             texture2d<float> maskTexture [[ texture(TextureIndexMask) ]],
                                              sampler sampler2d [[sampler(0)]]) {
 
     // extract color from current fragmnet coordinates

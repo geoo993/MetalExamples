@@ -5,7 +5,12 @@
 //  Created by GEORGE QUENTIN on 27/06/2018.
 //  Copyright © 2018 Geo Games. All rights reserved.
 //
+import MetalKit
 import simd
+
+public protocol HasMetalKit {
+    static var view: MTKView { get }
+}
 
 enum SliderType: String {
     case intensity
@@ -21,30 +26,20 @@ enum VertexFunction: String {
 enum FragmentFunction: String {
     case fragment_shader
     case fragment_color
+    case fragment_normal
     case fragment_texture_shader
     case fragment_textured_mask_shader
+    case fragment_light_mix_shader
     case phong_fragment_shader
     case blinn_phong_fragment_shader
     case lighting_fragment_shader
 }
-
 
 struct Vertex {
     var position: float3
     var texture: float2
     var color: float4
     var normal: float3
-}
-
-// each model will declare a model constant struct and this matrix will be sent to the GPU
-// to transform all the vertices of the model into camera space.
-// An identiy matrix is sort of a neutral marix, multiply an identity matrix and you get the
-// same matrix back
-struct Uniform {
-    var projectionMatrix = matrix_identity_float4x4
-    var modelMatrix = matrix_identity_float4x4
-    var viewMatrix = matrix_identity_float4x4
-    var normalMatrix = matrix_identity_float3x3
 }
 
 struct InstanceInfo {
@@ -54,7 +49,6 @@ struct InstanceInfo {
 
 // Structure holding material information:  its ambient, diffuse, and specular colours, and shininess
 struct MaterialInfo {
-
     var color = float4(1,1,1,1)
     var shininess: Float = 1.0
     var useTexture: Bool = false

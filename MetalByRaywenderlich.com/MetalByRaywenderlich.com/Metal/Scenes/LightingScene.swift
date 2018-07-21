@@ -72,13 +72,18 @@ class LightingScene: Scene {
     var rightCameraAngle: Float = 0
     var rightCameraDisplacement: Float = 0
 
-    override init(device: MTLDevice, camera: Camera) {
-        super.init(device: device, camera: camera)
+    override init(mtkView: MTKView, camera: Camera) {
+        super.init(mtkView: mtkView, camera: camera)
+        name = "Lighting scene"
 
+    }
+
+    override func setup(view: MTKView) {
+        super.setup(view: view)
         for i in 0..<cubesPosition.count {
             let angle: Float = 20.0 * i.toFloat
             let position: float3 = cubesPosition[i]
-            let cube = Cube(device: device, imageName: "container.png", fragmentShader: .lighting_fragment_shader)
+            let cube = Cube(mtkView: view, imageName: "container.png", fragmentShader: .lighting_fragment_shader)
             //let cube = Model(device: device, modelName: "mushroom", fragmentShader: .lighting_fragment_shader)
             cube.position = position
             cube.rotation = float3(1.0, angle, 1.0)
@@ -111,7 +116,7 @@ class LightingScene: Scene {
         for i in 0..<pointLightPositions.count {
             let position: float3 = pointLightPositions[i]
             let color: float3 = pointlightsColours[i];
-            let light = Cube(device: device, fragmentShader: .fragment_color)
+            let light = Cube(mtkView: view, fragmentShader: .fragment_color)
             add(childNode: light)
 
             light.position = position

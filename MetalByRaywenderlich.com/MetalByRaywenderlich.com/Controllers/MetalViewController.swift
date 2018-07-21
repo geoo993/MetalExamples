@@ -47,7 +47,7 @@ import AppCore
 
 class MetalViewController: UIViewController {
 
-    @IBOutlet weak var metalView: MTKView!
+    @IBOutlet weak var metalKitView: MTKView!
     @IBOutlet weak var lightIntensity: UISlider!
     @IBOutlet weak var lightPower: UISlider!
     @IBOutlet weak var materialShininess: UISlider!
@@ -59,13 +59,18 @@ class MetalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //1) Create a reference to the GPU, which is the Device
-        metalView.device = MTLCreateSystemDefaultDevice()
-        guard let device = metalView.device else {
+        //1) Create a reference to the GPU, which is the Device and setup properties
+        metalKitView.device = MTLCreateSystemDefaultDevice()
+        metalKitView.clearColor = MTLClearColorMake(0.63, 0.81, 1.0, 1.0)//UIColor.bbciplayerDark.toMTLClearColor
+        metalKitView.depthStencilPixelFormat = .depth32Float_stencil8
+        metalKitView.colorPixelFormat = .bgra8Unorm_srgb // unorm means that the value falls between 0 and 255
+        metalKitView.sampleCount = 1
+
+        guard metalKitView.device != nil else {
             fatalError("Device not created. Run on a physical device")
         }
 
-        // create renderer
+        // setup scene
         let currentDevice = UIDevice.current.modelName
         let width = CGFloat.width(ofDevice: currentDevice).width
         let height = CGFloat.height(ofDevice: currentDevice).height
@@ -73,17 +78,19 @@ class MetalViewController: UIViewController {
 
         let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 1000)
 
-        //let primitivesScene = PrimitivesScene(device: device, camera: camera)
-        let lightingScene = LightingScene(device: device, camera: camera)
-        //let instanceScene = InstanceScene(device: device, camera: camera)
-        //let landscapeScene = LandscapeScene(device: device, camera: camera)
-        renderer = Renderer(device: device, scene: lightingScene)
+        //let primitivesScene = PrimitivesScene(mtkView: metalKitView, camera: camera)
+        //let instanceScene = InstanceScene(mtkView: metalKitView, camera: camera)
+        //let landscapeScene = LandscapeScene(mtkView: metalKitView, camera: camera)
+        //let lightingScene = LightingScene(mtkView: metalKitView, camera: camera)
+        let lightingScene = SimpleScene(mtkView: metalKitView, camera: camera)
+
+        // create renderer
+        renderer = Renderer(mtkView: metalKitView, scene: lightingScene)
 
         // Setup MTKView and delegate
-        metalView.clearColor = UIColor.bbciplayerDark.toMTLClearColor
-        metalView.depthStencilPixelFormat = .depth32Float
-        metalView.delegate = renderer
+        metalKitView.delegate = renderer
 
+        // Play sound
         //SoundController.shared.playBackgroundMusic("Gem.mp3")
 
         leftJoyStick.monitor = { angle, displacement in
@@ -102,9 +109,6 @@ class MetalViewController: UIViewController {
         lightIntensity.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
         lightPower.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
         materialShininess.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
-
-        print("light intensity", lightIntensity.value, ", light power", lightPower.value, ", shininess", materialShininess)
-
     }
 
     @objc func onSliderChanged(slider: UISlider, event: UIEvent) {

@@ -9,24 +9,12 @@
 #ifndef Shader_h
 #define Shader_h
 
+#include "ShaderTypes.h"
+using namespace metal;
+
 // --------- Attributes --------
-// uniform matrices and materials 3D attributes
-struct Uniform {
-
-    // Martices attributes
-    float4x4 projectionMatrix;
-    float4x4 modelMatrix;
-    float4x4 viewMatrix;
-    float3x3 normalMatrix;
-};
-
-
 struct MaterialInfo
 {
-    //sampler normalMap;
-    //sampler diffuseMap;
-    //sampler specularMap;
-
     float4 color;
     float shininess; //Shininess values typically range from 1 to 128. Higher values result in more focussed specular highlights.
     bool useTexture;
@@ -82,14 +70,13 @@ struct SpotLight
     float outerCutOff;
 };
 
-
 // input information to the shader
 // note that each item in the struct has been given an attribute number
 struct VertexIn {
-    float3 position [[ attribute(0) ]];
-    float2 textureCoordinates [[ attribute(1) ]];
-    float4 color [[ attribute(2) ]];
-    float3 normal [[ attribute(3) ]];
+    float3 position [[ attribute(VertexAttributePosition) ]];
+    float2 textureCoordinates [[ attribute(VertexAttributeTexcoord) ]];
+    float4 color [[ attribute(VertexAttributeColor) ]];
+    float3 normal [[ attribute(VertexAttributeNormal) ]];
 };
 
 // this tells the rasterisor, which of these data items contains, contains the vertex position or color value

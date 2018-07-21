@@ -2,32 +2,38 @@ import MetalKit
 
 class PrimitivesScene: Scene {
 
-    let mushroom: Model
-    let cube: Cube
-    let sun: Sphere
-    let torus: Torus
-    let pyramid: Pyramid
-    let diamond: Diamond
-    let icosahedron: Icosahedron
-    let prism: TriangularPrism
-    //let cone: Cone
-    //let cylinder: Cylinder
+    var mushroom: Model!
+    var cube: Cube!
+    var sun: Sphere!
+    var torus: Torus!
+    var pyramid: Pyramid!
+    var diamond: Diamond!
+    var icosahedron: Icosahedron!
+    var prism: TriangularPrism!
+    //var cone: Cone!
+    //var cylinder: Cylinder!
 
     var cameraRotation: Float = 0
 
-    override init(device: MTLDevice, camera: Camera) {
-        mushroom = Model(device: device, modelName: "mushroom", fragmentShader: .phong_fragment_shader)
-        cube = Cube(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
-        torus = Torus(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
-        sun = Sphere(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
-        pyramid = Pyramid(device: device, imageName: "spiralcolor.jpg", fragmentShader: .phong_fragment_shader)
-        diamond = Diamond(device: device, imageName: "blue-frozen-water.jpg", fragmentShader: .phong_fragment_shader)
-        icosahedron = Icosahedron(device: device, imageName: "colors-world", fragmentShader: .phong_fragment_shader)
-        prism  = TriangularPrism(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
-        //cone = Cone(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
-        //cylinder = Cylinder(device: device, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+    override init(mtkView: MTKView, camera: Camera) {
+        super.init(mtkView: mtkView, camera: camera)
+    }
 
-        super.init(device: device, camera: camera)
+    override func setup (view: MTKView) {
+        super.setup(view: view)
+        name = "Primitives scene"
+
+        mushroom = Model(mtkView: view, modelName: "mushroom", fragmentShader: .phong_fragment_shader)
+        cube = Cube(mtkView: view, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        torus = Torus(mtkView: view, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        sun = Sphere(mtkView: view, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        pyramid = Pyramid(mtkView: view, imageName: "spiralcolor.jpg", fragmentShader: .phong_fragment_shader)
+        diamond = Diamond(mtkView: view, imageName: "blue-frozen-water.jpg", fragmentShader: .phong_fragment_shader)
+        icosahedron = Icosahedron(mtkView: view, imageName: "colors-world", fragmentShader: .phong_fragment_shader)
+        prism  = TriangularPrism(mtkView: view, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        //cone = Cone(mtkView: view, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+        //cylinder = Cylinder(mtkView: view, imageName: "abstract-color.jpg", fragmentShader: .phong_fragment_shader)
+
         add(childNode: cube)
         add(childNode: mushroom)
         add(childNode: torus)

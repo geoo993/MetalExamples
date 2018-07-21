@@ -4,12 +4,18 @@ import AppCore
 
 class InstanceScene: Scene {
 
-    var humans : Instance
+    var humans: Instance!
 
-    override init(device: MTLDevice, camera: Camera) {
-        humans = Instance(device: device, modelName: "humanFigure", instances: 40,
-                          fragmentShader: .fragment_shader)
-        super.init(device: device, camera: camera)
+    override init(mtkView: MTKView, camera: Camera) {
+        super.init(mtkView: mtkView, camera: camera)
+
+    }
+    
+    override func setup(view: MTKView) {
+        super.setup(view: view)
+        name = "Instance scene"
+
+        humans = Instance(mtkView: view, modelName: "humanFigure", instances: 40, fragmentShader: .fragment_shader)
         add(childNode: humans)
 
         for human in humans.nodes {
