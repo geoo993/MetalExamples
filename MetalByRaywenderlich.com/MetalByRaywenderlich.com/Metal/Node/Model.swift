@@ -20,6 +20,7 @@
 // We create MTKMesh for these Model IO Mesh objects and we are going to be able to send the MTK vertex buffers
 // to the GPU
 
+// http://metalbyexample.com/modern-metal-1/
 
 import MetalKit
 
@@ -181,10 +182,10 @@ extension Model: Renderable {
         uniform.modelMatrix = modelMatrix
 
         // normal matrix
-        uniform.normalMatrix =
-        (camera.viewMatrix * modelMatrix).upperLeft3x3()
-        //camera.computeNormalMatrix(modelMatrix: modelMatrix)
+        uniform.normalMatrix = camera.computeNormalMatrix(modelMatrix: modelMatrix)
 
+
+        // to set up the buffer that contains the uniform data. Because this data is so small, we would like to avoid creating a dedicated buffer for it. Fortunately, the render command encoder has a method called setVertexBytes(_:length:index:) that enables exactly this. This method takes a pointer to some data that will be written into a buffer that is managed internally by Metal. In this case, the buffer index specified by the last parameter matches the index of the [[buffer()]] attribute in the parameter list of the vertex function. In this sample app, we dedicate buffer index 1 to our uniform buffer.
         commandEncoder.setVertexBytes(&uniform,
                                       length: MemoryLayout<Uniform>.stride,
                                       index: BufferIndex.uniforms.rawValue)
@@ -208,6 +209,8 @@ extension Model: Renderable {
                     return
                 }
                 if layout.stride != 0 {
+                    // To tell our vertex function where to get data from, we need to tell it which buffers contain the data. We will accomplish this in two separate ways, depending on the type of data.
+                    //First, we will set up the buffer that contains our vertex data with the setVertexBuffer(_:offset:index:) method. The offset parameter indicates where in the buffer the data starts, while the at parameter specifies the buffer index. The buffer index corresponds to the bufferIndex property of the attributes specified in our vertex descriptor; this is what creates the linkage between how the data is laid out in the buffer and how it is laid out in the struct taken as a parameter by our vertex function.
                     let vertexBuffer = mesh.vertexBuffers[index]
                     commandEncoder.setVertexBuffer(vertexBuffer.buffer, offset: vertexBuffer.offset, index: index)
                 }
@@ -223,6 +226,7 @@ extension Model: Renderable {
                                                      indexBuffer: submesh.indexBuffer.buffer,
                                                      indexBufferOffset: submesh.indexBuffer.offset)
             }
+            
         }
 
     }

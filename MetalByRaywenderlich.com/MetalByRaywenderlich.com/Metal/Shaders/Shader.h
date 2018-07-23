@@ -35,7 +35,6 @@ struct BaseLight
 {
     float3 color;
     float intensity;
-    float power;
     float3 ambient;
     float3 diffuse;
     float3 specular;
@@ -86,6 +85,8 @@ struct VertexOut {
     float4 color;
     float3 normal;
     float3 fragPosition;
+    float4 eyePosition;
+    float4 eyeNormal;
 };
 
 float radians(float degree);

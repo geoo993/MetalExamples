@@ -83,13 +83,22 @@ extension Renderable {
         // The depth stencil masks out fragments that are behind other fragments.
         // during rendering the rasterizer creates fragments for the blue squares, and for the yellow square.
         // each fragment can be depth tested with another fragment in the same position.
+        
         //We create the depth stencil state using a descriptor.
         let depthStencilDescriptor = MTLDepthStencilDescriptor()
 
         //When the depth compared function is set to less, any fragment further away are discarded.
+        // The depthCompareFunction is used to determine whether a fragment passes the so-called depth test.
+        // In our case, we want to keep the fragment that is closest to the camera for each pixel, so we use a
+        // compare function of .less, which replaces the depth value in the depth buffer whenever
+        // a fragment closer to the camera is processed.
         depthStencilDescriptor.depthCompareFunction = .less
 
-        // we record the depth value for testing against other fragments with isDepthWriteEnabled
+        // we record the depth value for testing against other fragments when isDepthWriteEnabled is enabled.
+        // We also set isDepthWriteEnabled to true, so that the depth values of passing fragments are actually
+        // written to the depth buffer. Without this flag set, no writes to the depth buffer would occur,
+        // and it would essentially be useless. There are circumstances in which we want to prevent depth
+        // buffer writes (such as particle rendering), but for opaque geometry, we almost always want it enabled.
         depthStencilDescriptor.isDepthWriteEnabled = true
         
         return device.makeDepthStencilState(descriptor: depthStencilDescriptor)!

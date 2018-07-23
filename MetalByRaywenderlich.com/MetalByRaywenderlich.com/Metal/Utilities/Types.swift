@@ -16,6 +16,9 @@ enum SliderType: String {
     case intensity
     case power
     case shininess
+    case range
+    case cutoff
+    case outerCutoff
 }
 
 enum VertexFunction: String {
@@ -63,7 +66,6 @@ struct BaseLight
 {
     var color = float3(1,1,1)
     var intensity: Float = 0
-    var power: Float = 0
     var ambient = float3(1)
     var diffuse = float3(1)
     var specular = float3(1)

@@ -32,6 +32,10 @@ class Renderer: NSObject {
         self.device = mtkView.device!
 
         //2) Create a command Queue
+        // The command queue stores a sequence of command buffers, which we will create and write GPU commands into.
+        // Commands consist of things like state-setting operations (which describe how things should be drawn and what
+        // resources they should be drawn with) as well as draw calls, which tell the GPU to actually draw geometry,
+        // causing our vertex and fragment functions to be called and producing the pixels that wind up on the screen.
         self.commandQueue = device.makeCommandQueue()!
 
         self.scene = scene
@@ -83,11 +87,17 @@ extension Renderer: MTKViewDelegate {
         scene.time += 1 / Float(view.preferredFramesPerSecond)
         scene.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
         
-        
+        // Once we’re done drawing, we need to call endEncoding() on our render command encoder to end the pass—and the frame:
+        // Ending encoding signifies that we won’t be doing any more drawing with this render command encoder. If we wanted to draw additional objects, we would need to do that before calling endEncoding.
         commandEncoder.endEncoding()
+
+        // In order to get our rendered content on the screen, we have to expressly present the drawable
+        // whose texture we’ve be drawing into. We do this with a call on the command buffer, rather than the command encoder:
         commandBuffer.present(drawable)
 
         //4) send command buffer to the GPU when you finish encoding all the commands
+        // Once we’re done encoding commands into the command buffer, we commit it,
+        // so its queue knows that it should ship the commands over to the GPU.
         commandBuffer.commit()
 
     }

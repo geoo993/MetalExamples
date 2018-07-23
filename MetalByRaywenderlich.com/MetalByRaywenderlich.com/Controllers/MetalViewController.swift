@@ -48,8 +48,8 @@ import AppCore
 class MetalViewController: UIViewController {
 
     @IBOutlet weak var metalKitView: MTKView!
-    @IBOutlet weak var lightIntensity: UISlider!
-    @IBOutlet weak var lightPower: UISlider!
+    @IBOutlet weak var lightCutoff: UISlider!
+    @IBOutlet weak var lightOuterCutoff: UISlider!
     @IBOutlet weak var materialShininess: UISlider!
     @IBOutlet weak var leftJoyStick: JoyStickView!
     @IBOutlet weak var rightJoyStick: JoyStickView!
@@ -61,9 +61,18 @@ class MetalViewController: UIViewController {
 
         //1) Create a reference to the GPU, which is the Device and setup properties
         metalKitView.device = MTLCreateSystemDefaultDevice()
-        metalKitView.clearColor = MTLClearColorMake(0.63, 0.81, 1.0, 1.0)//UIColor.bbciplayerDark.toMTLClearColor
+        metalKitView.clearColor = MTLClearColorMake(0.01, 0.01, 0.01, 1.0)
+
+        // we need to tell Metal to store the depth of each fragment as we process it,
+        // keeping the closest depth value and only replacing it if we see a fragment that is closer to the camera.
+        // This is called depth buffering, and fortunately, it’s not too hard to configure.
+        // Depth buffering requires the use of an additional texture called, naturally, the depth buffer.
+        // This texture is a lot like the color texture we’re already presenting to the screen when we’re done drawing,
+        // but instead of storing color, it stores depth, which is basically the distance from the camera to the surface.
         metalKitView.depthStencilPixelFormat = .depth32Float_stencil8
-        metalKitView.colorPixelFormat = .bgra8Unorm_srgb // unorm means that the value falls between 0 and 255
+
+        // we need to tell the view the format of the color texture we will be drawing to. We will choose bgra8Unorm, which is a format that uses one byte per color channel (red, green, blue, and alpha (transparency)), laid out in blue, green, red, alpha order. The Unorm portion of the name signifies that the components are stored as unsigned 8-bit values, so that the values 0-255 map to 0-100% intensity (or 0-100% opacity, in the case of the alpha channel).
+        metalKitView.colorPixelFormat = .bgra8Unorm_srgb
         metalKitView.sampleCount = 1
 
         guard metalKitView.device != nil else {
@@ -106,8 +115,8 @@ class MetalViewController: UIViewController {
             //print("right joystick angle \(displacement)")
         }
 
-        lightIntensity.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
-        lightPower.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        lightCutoff.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        lightOuterCutoff.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
         materialShininess.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
     }
 
@@ -115,9 +124,9 @@ class MetalViewController: UIViewController {
         if let touchEvent = event.allTouches?.first {
             switch slider.tag {
             case 0:
-                renderer.scene.onSlider(.intensity, phase: touchEvent.phase, value: slider.value)
+                renderer.scene.onSlider(.cutoff, phase: touchEvent.phase, value: slider.value)
             case 1:
-                renderer.scene.onSlider(.power, phase: touchEvent.phase, value: slider.value)
+                renderer.scene.onSlider(.outerCutoff, phase: touchEvent.phase, value: slider.value)
             case 2:
                 renderer.scene.onSlider(.shininess, phase: touchEvent.phase, value: slider.value)
             default:

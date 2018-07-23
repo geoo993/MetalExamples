@@ -61,14 +61,28 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
                                constant Uniform &uniform [[ buffer(BufferIndexUniforms) ]]) {
     VertexOut vertexOut;
 
+    // there are three types of coordinate systems that are commoly defined
+    // there is the model space (position of the vertices relative to the model),
+    // world space (usually known as world position or fragment position in the scene)
+    // and one more intermediate coordinate space that we need to move through
+    // (variously called “eye space,” “view space,” or “camera space”)
+
     // Transform the vertex spatial position using
-    float4 position = float4(vertexIn.position, 1.0f);
-    float4x4 matrices = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
-    vertexOut.position = matrices * position;
+    float4 position = float4(vertexIn.position, 1.0f); // model local vertex postion
+    float4x4 modelViewMatrix = uniform.viewMatrix * uniform.modelMatrix;
+
+    // This moves the vertex position from model space to clip space, which is needed by the next stages of the pipeline
+    vertexOut.position = uniform.projectionMatrix * modelViewMatrix * position; // // clip-space position
     vertexOut.color = vertexIn.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
-    vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
-    vertexOut.fragPosition = (uniform.modelMatrix * position).xyz;
+    vertexOut.fragPosition = (uniform.modelMatrix * position).xyz; // model world position in the scene
+    vertexOut.normal = uniform.normalMatrix * vertexIn.normal; // model world normal in the scene
+
+    // we multiply the object normal by just the model-view matrix, which leaves it in eye space.
+    // We do this because we will want to calculate things like lighting and reflections in eye space instead of model space.
+    // For the same reason, we also compute the eye space position of the vertex.
+    vertexOut.eyePosition = modelViewMatrix * position; // eye position, relative to the camera
+    vertexOut.eyeNormal = modelViewMatrix * float4(vertexIn.normal, 0);
 
     return vertexOut;
 }
@@ -83,13 +97,21 @@ vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
     VertexOut vertexOut;
 
     // Transform the vertex spatial position using
-    float4 position = float4(vertexIn.position, 1.0);
-    float4x4 matrices = uniform.projectionMatrix * uniform.viewMatrix * uniform.modelMatrix;
-    vertexOut.position = matrices * position;
-    vertexOut.normal = uniform.normalMatrix * vertexIn.normal;
+    float4 position = float4(vertexIn.position, 1.0); // model local vertex postion
+    float4x4 modelViewMatrix = uniform.viewMatrix * uniform.modelMatrix;
+
+    // This moves the vertex position from model space to clip space, which is needed by the next stages of the pipeline
+    vertexOut.position = uniform.projectionMatrix * modelViewMatrix * position; // // clip-space position
     vertexOut.color = material.color;
     vertexOut.textureCoordinates = vertexIn.textureCoordinates;
-    vertexOut.fragPosition = (uniform.modelMatrix * position).xyz;
+    vertexOut.fragPosition = (uniform.modelMatrix * position).xyz; // model world position in the scene
+    vertexOut.normal = uniform.normalMatrix * vertexIn.normal; // model world normal in the scene
+
+    // we multiply the object normal by just the model-view matrix, which leaves it in eye space.
+    // We do this because we will want to calculate things like lighting and reflections in eye space instead of model space.
+    // For the same reason, we also compute the eye space position of the vertex.
+    vertexOut.eyePosition = modelViewMatrix * position; // eye position, relative to the camera
+    vertexOut.eyeNormal = modelViewMatrix * float4(vertexIn.normal, 0);
 
     return vertexOut;
 }
@@ -116,8 +138,10 @@ fragment half4 fragment_color(VertexOut vertexIn [[ stage_in ]],
 }
 
 fragment half4 fragment_normal(VertexOut vertexIn [[ stage_in ]]) {
-    return half4(vertexIn.normal.x, vertexIn.normal.y, vertexIn.normal.z, 1);
+    float3 normal = abs(normalize(vertexIn.eyeNormal.xyz));
+    return half4(normal.x, normal.y, normal.z, 1);
 }
+
 
 // the second parameter here is the texture in fragment buffer 0
 fragment half4 fragment_texture_shader(VertexOut vertexIn [[ stage_in ]],

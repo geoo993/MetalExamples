@@ -71,7 +71,7 @@ class Camera {
         position = float3(0)
         rotation = float3(0)
 
-        setPerspectiveProjectionMatrix(fieldOfView: fov, aspectRatio: Float(screenSize.width / screenSize.height), nearClippingPlane: 0.1, farClippingPlane: 1000)
+        setPerspectiveProjectionMatrix(fieldOfView: fov, aspectRatio: Float(screenSize.width / screenSize.height), nearClippingPlane: 0.1, farClippingPlane: 100)
         setOrthographicProjectionMatrix(width: Float(screenSize.width), height: Float(screenSize.height), zNear: zNear, zFar: zFar)
 
         updateCameraVectors()

@@ -55,6 +55,7 @@
 		C763420B20E90A1900E41737 /* Cylinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420A20E90A1900E41737 /* Cylinder.swift */; };
 		C763420D20E9117A00E41737 /* TorusKnot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763420C20E9117A00E41737 /* TorusKnot.swift */; };
 		C7713D8720EC22D80047019A /* LightShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7713D8620EC22D80047019A /* LightShader.metal */; };
+		C77549CC210659BD005B5A76 /* LightsShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C77549CB210659BD005B5A76 /* LightsShader.metal */; };
 		C78EB7BD20EC0A7000F48C02 /* Kai_Engel_-_03_-_Realness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */; };
 		C78EB7BE20EC0A7000F48C02 /* bulletstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */; };
 		C78EB7BF20EC0A7000F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C78EB7B920EC0A6F00F48C02 /* Kai_Engel_-_03_-_Brooks.mp3 */; };
@@ -83,9 +84,7 @@
 		C7E043EA20E9444A00138FC0 /* GRANDEB2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C420E9444A00138FC0 /* GRANDEB2.JPG */; };
 		C7E043EB20E9444A00138FC0 /* T-Rex Model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C520E9444A00138FC0 /* T-Rex Model.mtl */; };
 		C7E043EC20E9444A00138FC0 /* T-Rex Model.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C620E9444A00138FC0 /* T-Rex Model.obj */; };
-		C7E043ED20E9444A00138FC0 /* teapot.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C820E9444A00138FC0 /* teapot.mtl */; };
 		C7E043EE20E9444A00138FC0 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7E043C920E9444A00138FC0 /* teapot.obj */; };
-		C7E043EF20E9444A00138FC0 /* teapot.blend in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CA20E9444A00138FC0 /* teapot.blend */; };
 		C7E043F020E9444A00138FC0 /* hand_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CC20E9444A00138FC0 /* hand_showroom_refl.png */; };
 		C7E043F120E9444A00138FC0 /* body_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CD20E9444A00138FC0 /* body_showroom_ddn.png */; };
 		C7E043F220E9444A00138FC0 /* helmet_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E043CE20E9444A00138FC0 /* helmet_showroom_ddn.png */; };
@@ -188,6 +187,7 @@
 		C763420C20E9117A00E41737 /* TorusKnot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusKnot.swift; sourceTree = "<group>"; };
 		C7713D8620EC22D80047019A /* LightShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LightShader.metal; sourceTree = "<group>"; };
 		C7713D8A20EC2BA70047019A /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		C77549CB210659BD005B5A76 /* LightsShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LightsShader.metal; sourceTree = "<group>"; };
 		C776D4E4210345DA0000DF5A /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 		C78EB7B720EC0A6F00F48C02 /* Kai_Engel_-_03_-_Realness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_03_-_Realness.mp3"; sourceTree = "<group>"; };
 		C78EB7B820EC0A6F00F48C02 /* bulletstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bulletstorm.mp3; sourceTree = "<group>"; };
@@ -217,9 +217,7 @@
 		C7E043C420E9444A00138FC0 /* GRANDEB2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GRANDEB2.JPG; sourceTree = "<group>"; };
 		C7E043C520E9444A00138FC0 /* T-Rex Model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "T-Rex Model.mtl"; sourceTree = "<group>"; };
 		C7E043C620E9444A00138FC0 /* T-Rex Model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "T-Rex Model.obj"; sourceTree = "<group>"; };
-		C7E043C820E9444A00138FC0 /* teapot.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.mtl; sourceTree = "<group>"; };
 		C7E043C920E9444A00138FC0 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
-		C7E043CA20E9444A00138FC0 /* teapot.blend */ = {isa = PBXFileReference; lastKnownFileType = file; path = teapot.blend; sourceTree = "<group>"; };
 		C7E043CC20E9444A00138FC0 /* hand_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_showroom_refl.png; sourceTree = "<group>"; };
 		C7E043CD20E9444A00138FC0 /* body_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_ddn.png; sourceTree = "<group>"; };
 		C7E043CE20E9444A00138FC0 /* helmet_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_ddn.png; sourceTree = "<group>"; };
@@ -500,6 +498,7 @@
 				C7BFB9F120E2E1B100BCEB30 /* MainShader.metal */,
 				C7713D8620EC22D80047019A /* LightShader.metal */,
 				C7A6AE932103E0C1001E2090 /* LightMixShader.metal */,
+				C77549CB210659BD005B5A76 /* LightsShader.metal */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -566,9 +565,7 @@
 		C7E043C720E9444A00138FC0 /* Teapot */ = {
 			isa = PBXGroup;
 			children = (
-				C7E043C820E9444A00138FC0 /* teapot.mtl */,
 				C7E043C920E9444A00138FC0 /* teapot.obj */,
-				C7E043CA20E9444A00138FC0 /* teapot.blend */,
 			);
 			path = Teapot;
 			sourceTree = "<group>";
@@ -730,7 +727,6 @@
 				C7E043F220E9444A00138FC0 /* helmet_showroom_ddn.png in Resources */,
 				C7E0440020E9444A00138FC0 /* nanosuit.blend in Resources */,
 				C7E043F820E9444A00138FC0 /* glass_ddn.png in Resources */,
-				C7E043ED20E9444A00138FC0 /* teapot.mtl in Resources */,
 				C78EB7C020EC0A7000F48C02 /* Marcel_Pequel_-_06_-_Six.mp3 in Resources */,
 				C7E043F420E9444A00138FC0 /* arm_showroom_spec.png in Resources */,
 				C7E043F920E9444A00138FC0 /* glass_refl.png in Resources */,
@@ -759,7 +755,6 @@
 				C78EB7CD20EC0BD000F48C02 /* Success_Effect_2.mp3 in Resources */,
 				C7A6AE9E2103ECA5001E2090 /* blub.obj in Resources */,
 				C7A6AE922103D391001E2090 /* bob.obj in Resources */,
-				C7E043EF20E9444A00138FC0 /* teapot.blend in Resources */,
 				C7E0440520E9444A00138FC0 /* helmet_showroom_refl.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -806,6 +801,7 @@
 				C75FDB3920E1992000DE2EEC /* AppDelegate.swift in Sources */,
 				C76341DE20E7D39900E41737 /* Camera.swift in Sources */,
 				C76341D620E7ACD800E41737 /* Vector.swift in Sources */,
+				C77549CC210659BD005B5A76 /* LightsShader.metal in Sources */,
 				C763420320E8FF5F00E41737 /* Diamond.swift in Sources */,
 				C7E0440D20E9461F00138FC0 /* InstanceScene.swift in Sources */,
 				C71F1D0920E58AC00095F6A6 /* Texturable.swift in Sources */,

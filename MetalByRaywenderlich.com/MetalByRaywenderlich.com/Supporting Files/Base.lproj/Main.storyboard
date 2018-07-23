@@ -28,7 +28,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUI-U6-zNh">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
                                                 <subviews>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="lrC-OF-LaG">
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="lrC-OF-LaG">
                                                         <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
@@ -42,7 +42,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19n-SX-lEC">
                                                 <rect key="frame" x="0.0" y="33.5" width="375" height="33"/>
                                                 <subviews>
-                                                    <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="T79-TU-rbs">
+                                                    <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="T79-TU-rbs">
                                                         <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
@@ -56,7 +56,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-cb-4T2">
                                                 <rect key="frame" x="0.0" y="66.5" width="375" height="33.5"/>
                                                 <subviews>
-                                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="32" minValue="0.0" maxValue="128" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
+                                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="32" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
                                                         <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
@@ -148,8 +148,8 @@
                     </view>
                     <connections>
                         <outlet property="leftJoyStick" destination="YZq-5C-hs8" id="cTn-sT-CkO"/>
-                        <outlet property="lightIntensity" destination="lrC-OF-LaG" id="vVf-0G-EpA"/>
-                        <outlet property="lightPower" destination="T79-TU-rbs" id="zTH-Bu-vgt"/>
+                        <outlet property="lightCutoff" destination="lrC-OF-LaG" id="AeJ-aM-Pw7"/>
+                        <outlet property="lightOuterCutoff" destination="T79-TU-rbs" id="2yN-vG-Bcu"/>
                         <outlet property="materialShininess" destination="CCn-7A-LHv" id="rBA-dX-wFw"/>
                         <outlet property="metalKitView" destination="94C-3h-HC7" id="u5I-uD-DxM"/>
                         <outlet property="rightJoyStick" destination="pfs-pi-M5N" id="0XS-F8-fro"/>

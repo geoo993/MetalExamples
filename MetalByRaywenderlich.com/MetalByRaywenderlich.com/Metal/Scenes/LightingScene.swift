@@ -30,7 +30,6 @@ class LightingScene: Scene {
     var cubesColor = float3(1.0)
     var pointLightCubes = [Cube]()
     var lightIntensity: Float = 0.7
-    var lightPower: Float = 1
     var materialShininess: Float = 32
 
     var cubesPosition: [float3] = [
@@ -104,7 +103,6 @@ class LightingScene: Scene {
             let direction = directionalLightsDirections[i]
             base.color = float3(1.0, 1.0, 1.0)
             base.intensity = lightIntensity
-            base.power = lightPower
             base.ambient = float3(0.05, 0.05, 0.05)
             base.diffuse = float3(0.4, 0.4, 0.4)
             base.specular = float3(0.5, 0.5, 0.5)
@@ -130,7 +128,6 @@ class LightingScene: Scene {
             pointLight.position = position
             pointLight.base.color = color
             pointLight.base.intensity = lightIntensity
-            pointLight.base.power = lightPower
             pointLight.base.ambient = float3(0.1, 0.1, 0.1)
             pointLight.base.diffuse = float3(0.8, 0.8, 0.8)
             pointLight.base.specular = float3(1.0, 1.0, 1.0)
@@ -149,7 +146,6 @@ class LightingScene: Scene {
         spotLight.pointLight.position = float3(-5, 10, 0)
         spotLight.pointLight.base.color = float3(1, 1, 1)
         spotLight.pointLight.base.intensity = lightIntensity
-        spotLight.pointLight.base.power = lightPower
         spotLight.pointLight.base.ambient = float3(0.1, 0.1, 0.1)
         spotLight.pointLight.base.diffuse = float3(1.0, 1.0, 1.0)
         spotLight.pointLight.base.specular = float3(1.0, 1.0, 1.0)
@@ -192,7 +188,6 @@ class LightingScene: Scene {
         for i in 0..<dirLights.count {
             var dirLight = dirLights[i]
             dirLight.base.intensity = lightIntensity
-            dirLight.base.power = lightPower
             dirLight.base.color = float3(1.0, 1.0, 1.0)
             dirLight.base.ambient = float3(0.05, 0.05, 0.05)
             dirLight.base.diffuse = float3(0.4, 0.4, 0.4)
@@ -204,7 +199,6 @@ class LightingScene: Scene {
             var pointLight = pointLights[i]
             pointLight.base.color = color
             pointLight.base.intensity = lightIntensity
-            pointLight.base.power = lightPower
             pointLight.base.ambient = float3(0.1, 0.1, 0.1)
             pointLight.base.diffuse = float3(0.8, 0.8, 0.8)
             pointLight.base.specular = float3(1.0, 1.0, 1.0)
@@ -221,7 +215,6 @@ class LightingScene: Scene {
             spotLight.pointLight.position = camera.position
             spotLight.pointLight.base.color = float3(1, 1, 1)
             spotLight.pointLight.base.intensity = lightIntensity
-            spotLight.pointLight.base.power = lightPower
             spotLight.pointLight.base.ambient = float3(0.1, 0.1, 0.1)
             spotLight.pointLight.base.diffuse = float3(1.0, 1.0, 1.0)
             spotLight.pointLight.base.specular = float3(1.0, 1.0, 1.0)
@@ -258,11 +251,10 @@ class LightingScene: Scene {
         switch type {
         case .intensity:
             lightIntensity = value
-        case .power:
-            lightPower = value
+        case .power: break
         case .shininess:
             materialShininess = value
-
+        default: break
         }
     }
 }

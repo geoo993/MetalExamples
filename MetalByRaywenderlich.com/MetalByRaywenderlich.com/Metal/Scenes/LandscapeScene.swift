@@ -74,7 +74,6 @@ class LandscapeScene: Scene {
         dirLight.direction = float3(0, -1.0, 0.0)
         dirLight.base.color = sunColor
         dirLight.base.intensity = 0.7
-        dirLight.base.power = 2
         dirLight.base.ambient = float3(0.05)
         dirLight.base.diffuse = float3(0.4)
         dirLight.base.specular = float3(0.5)
