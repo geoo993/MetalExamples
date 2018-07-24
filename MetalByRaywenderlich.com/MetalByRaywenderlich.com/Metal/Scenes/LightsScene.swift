@@ -3,7 +3,7 @@
 import MetalKit
 import AppCore
 
-class SimpleScene: Scene {
+class LightsScene: Scene {
 
     var rootNode: Node!
 
@@ -23,24 +23,25 @@ class SimpleScene: Scene {
     ]
 
     var pointLightPositions: [float3] = [
-        float3(  1.0,  3.0,  -2.0      ),
-        float3(  -5.7,  0.2,  2.0      ),
-        float3(  2.3, -3.3, -4.0      ),
         float3(  -4.0,  2.0, -12.0    ),
-        float3(  0.0,  0.0, -3.0     )
+        float3(  -5.7,  6.2,  2.0      ),
+        float3(  1.0,  3.0,  -2.0      ),
+        float3(  2.3, -3.3, -4.0      ),
+        float3(  10.0,  0.0, -3.0     )
     ]
 
     var pointlightsColours: [float3] = [
-        float3(1.0, 1.0, 0.0),
-        float3(0.4, 0.6, 0.7),
-        float3(0.9, 0.1, 0.4),
-        float3(0.6, 0.2, 0.25),
-        float3(0.3, 0.5, 0.2),
-        ]
+        float3(0.6, 0.1, 0.25),
+        float3(0.2, 0.7, 0.9),
+        float3(1.0, 0.9, 0.0),
+        float3(0.05, 0.1, 0.9),
+        float3(0.34, 0.75, 0.2),
+    ]
 
     var cubesColor = float3(1.0)
     var lightCutoff: Float = 1
     var lightOuterCutoff: Float = 10
+    var lightIntensity: Float = 10
     var materialShininess: Float = 32
 
     var previousTouchLocation: CGPoint = .zero
@@ -58,21 +59,22 @@ class SimpleScene: Scene {
 
     override func setup(view: MTKView) {
         super.setup(view: view)
-        name = "Simple scene"
+        name = "Lights scene"
         rootNode = Node(name: "Root")
         add(childNode: rootNode)
 
         for i in 0..<cubesPosition.count {
             let angle: Float = 20.0 * i.toFloat
             let position: float3 = cubesPosition[i]
+            //let cube = Cube(mtkView: view, imageName: "container.png", fragmentShader: .lighting_fragment_shader)
             let cube = Model(mtkView: view, modelName: "mushroom", fragmentShader: .lighting_fragment_shader)
             cube.name = "Mushroom\(i)"
             cube.position = position
             cube.rotation = float3(1.0, angle, 1.0)
             cube.scale = float3(2.0)
 
-            cube.material.color = float4(cubesColor, 1)
-            cube.material.shininess = 100
+            cube.material.color = float4(1,1,1, 1)
+            cube.material.shininess = materialShininess
             cube.material.useTexture = true
             rootNode.children.append(cube)
         }
@@ -81,7 +83,8 @@ class SimpleScene: Scene {
         let bob = Model(mtkView: view, modelName: "bob", imageName: "bob_baseColor.png",
                         fragmentShader: .lighting_fragment_shader)
         bob.name = "Bob"
-        bob.material.color = float4(0.8, 0.8, 0.8, 1)
+        bob.material.color = float4(1.0, 1.0, 1.0, 1)
+        bob.material.shininess = materialShininess
         bob.material.useTexture = true
         rootNode.children.append(bob)
 
@@ -89,17 +92,17 @@ class SimpleScene: Scene {
             let blub = Model(mtkView: view, modelName: "blub", imageName: "blub_baseColor.png",
                             fragmentShader: .lighting_fragment_shader)
             blub.name = "Blub \(i)"
-            blub.material.shininess = 40
-            blub.material.color = float4(0.8, 0.8, 0.8, 1)
+            blub.material.color = float4(1.0, 1.0, 1.0, 1)
+            blub.material.shininess = materialShininess
             blub.material.useTexture = true
             bob.children.append(blub)
         }
 
-        let teapot = Model(mtkView: view, modelName: "teapot", imageName: "bob_baseColor.png",
+        let teapot = Model(mtkView: view, modelName: "teapot", imageName: "tiles_baseColor.jpg",
                            fragmentShader: .lighting_fragment_shader)
         teapot.name = "Teapot"
         teapot.scale = float3(2.0)
-        teapot.material.shininess = 200
+        teapot.material.shininess = materialShininess
         teapot.position = float3(3, 1, 8)
         teapot.material.color = float4(1.0, 0.0, 0.0, 1)
         teapot.material.useTexture = false
@@ -112,10 +115,10 @@ class SimpleScene: Scene {
 
         for i in 0..<pointLightPositions.count {
             let position: float3 = pointLightPositions[i]
-            let color: float3 = pointlightsColours[i];
-            let light = createPointLight(view: view, name: "PointLight\(i)", color: color, position: position)
-            add(childNode: light.object)
-            pointLights.append(light.light)
+            let color: float3 = pointlightsColours[i]
+            let pointLight = createPointLight(view: view, name: "PointLight\(i)", color: color, position: position)
+            add(childNode: pointLight.object)
+            pointLights.append(pointLight.light)
         }
 
         let spotLight = createSpotLight(view: view, color: float3(1,1,1), position: camera.position)
@@ -137,37 +140,55 @@ class SimpleScene: Scene {
         cubesColor.z = sin( time * 0.03 );
 
         for i in 0..<dirLights.count {
-            dirLights[i].base.intensity = 1
+            dirLights[i].base.color = float3(1,1,1)
+            dirLights[i].base.intensity = lightIntensity
+        }
+
+        for i in 0..<pointLightPositions.count {
+            pointLights[i].position = pointLightPositions[i]
+            pointLights[i].base.color = pointlightsColours[i]
+            pointLights[i].base.intensity = lightIntensity
+            pointLights[i].base.ambient = 0.1
+            pointLights[i].base.diffuse = 0.8
+            pointLights[i].base.specular = 0.9
+            pointLights[i].atten.continual = 1.0
+            pointLights[i].atten.linear = 0.09
+            pointLights[i].atten.exponent = 0.032
         }
 
         for i in 0..<spotLights.count {
-            spotLights[i].direction = camera.front
             spotLights[i].pointLight.position = camera.position
-            spotLights[i].pointLight.base.intensity = 1
+            spotLights[i].pointLight.base.color = float3(1.0, 1.0, 1.0)
+            spotLights[i].pointLight.base.intensity = lightIntensity
+            spotLights[i].pointLight.base.ambient = 0.1
+            spotLights[i].pointLight.base.diffuse = 1.0
+            spotLights[i].pointLight.base.specular = 1.0
+            spotLights[i].pointLight.atten.continual = 1.0
+            spotLights[i].pointLight.atten.linear = 0.09
+            spotLights[i].pointLight.atten.exponent = 0.032
+            spotLights[i].direction = camera.front
             spotLights[i].cutOff = cos(radians(degrees: lightCutoff))
             spotLights[i].outerCutOff = cos(radians(degrees: lightOuterCutoff))
-            spotLights[i].pointLight.range = caluclateRange(with: spotLights[i].pointLight)
-        }
-
-        for i in 0..<pointLights.count {
-            pointLights[1].base.intensity = 30
-            pointLights[i].range = caluclateRange(with: pointLights[i])
         }
 
         for i in 0..<cubesPosition.count {
             if let cube = nodeNamed("Mushroom\(i)") {
-                cube.material.useTexture = false
+                cube.material.useTexture = true
+                cube.material.color = float4(1,1,1,1)
                 cube.material.shininess = materialShininess
             }
         }
         if let teapot = nodeNamed("Teapot") {
             teapot.material.color = float4(cubesColor.x, cubesColor.y, cubesColor.z, 1)
             teapot.material.shininess = materialShininess
+            teapot.material.useTexture = true
         }
 
         if let bob = nodeNamed("Bob") {
             bob.position = float3(0, 0.015 * sin(time * 5), 0)
+            bob.material.color = float4(1,1,1,1)
             bob.material.shininess = materialShininess
+            bob.material.useTexture = true
         }
 
         let blubBaseTransform = float4x4(rotationAbout: float3(0, 0, 1), by: -.pi / 2) *
@@ -188,20 +209,14 @@ class SimpleScene: Scene {
 
                 blub.overrideModelMatrix = true
                 blub.modelMatrix = modelMatrix
+                blub.material.color = float4(1,1,1,1)
                 blub.material.shininess = materialShininess
+                blub.material.useTexture = true
             }
         }
-    }
 
-    func caluclateRange(with pointLight: PointLight) -> Float {
-        let a: Float = pointLight.atten.exponent
-        let b: Float = pointLight.atten.linear
-        let COLOR_DEPTH: Float = 256
-        let colorMax = pointLight.base.color.max() ?? 1
-        let c: Float = pointLight.atten.continual - COLOR_DEPTH * pointLight.base.intensity * colorMax
-        return (-b + sqrtf(b * b - 4 * a * c)) / (2 * a)
+        
     }
-
 
     override func touchesBegan(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
@@ -226,6 +241,8 @@ class SimpleScene: Scene {
             lightCutoff = value
         case .outerCutoff:
             lightOuterCutoff = value
+        case .intensity:
+            lightIntensity = value
         case .shininess:
             materialShininess = value
         default:
@@ -237,9 +254,9 @@ class SimpleScene: Scene {
         // Directional light
         var base = BaseLight()
         base.color = color
-        base.ambient = float3(0.05, 0.05, 0.05)
-        base.diffuse = float3(0.4, 0.4, 0.4)
-        base.specular = float3(0.5, 0.5, 0.5)
+        base.ambient = 0.05
+        base.diffuse = 0.4
+        base.specular = 0.5
         return DirectionalLight(base: base, direction: direction)
     }
 
@@ -251,17 +268,18 @@ class SimpleScene: Scene {
         light.position = position
         light.scale = float3(0.2, 0.2, 0.2)
         light.material.color = float4(color.x, color.y, color.z, 1.0)
-        light.material.useTexture = false
+        light.material.useTexture = true
 
         var pointLight = PointLight()
         pointLight.position = position
         pointLight.base.color = color
-        pointLight.base.ambient = float3(0.1, 0.1, 0.1)
-        pointLight.base.diffuse = float3(0.7, 0.7, 0.7)
-        pointLight.base.specular = float3(0.9, 0.9, 0.9)
+        pointLight.base.intensity = lightIntensity
+        pointLight.base.ambient = 0.1
+        pointLight.base.diffuse = 0.7
+        pointLight.base.specular = 0.9
         pointLight.atten.continual = 1.0
-        pointLight.atten.linear = 0.032
-        pointLight.atten.exponent = 0.9
+        pointLight.atten.linear = 0.09
+        pointLight.atten.exponent = 0.032
 
         return (light, pointLight)
     }
@@ -272,9 +290,9 @@ class SimpleScene: Scene {
         var spotLight = SpotLight()
         spotLight.pointLight.position = position
         spotLight.pointLight.base.color = color
-        spotLight.pointLight.base.ambient = float3(0.1, 0.1, 0.1)
-        spotLight.pointLight.base.diffuse = float3(1.0, 1.0, 1.0)
-        spotLight.pointLight.base.specular = float3(1.0, 1.0, 1.0)
+        spotLight.pointLight.base.ambient = 0.1
+        spotLight.pointLight.base.diffuse = 1.0
+        spotLight.pointLight.base.specular = 1.0
         spotLight.pointLight.atten.continual = 1.0
         spotLight.pointLight.atten.linear = 0.09
         spotLight.pointLight.atten.exponent = 0.32

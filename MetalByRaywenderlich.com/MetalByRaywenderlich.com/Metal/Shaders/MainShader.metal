@@ -25,6 +25,7 @@
 #include "Shader.h"
 using namespace metal;
 
+
 // --------- Vertex Shader --------
 // this is a vertex function so we prefix it with vertex and we are going to
 // return a float4 for the position of the vertex.

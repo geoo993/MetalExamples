@@ -106,7 +106,7 @@ fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     float3 diffuseColor = light.pointLight.base.diffuse * light.pointLight.base.color * diffuseFactor;
 
     // ambient
-    float3 ambientColor = light.pointLight.base.ambient * diffuseColor;
+    float3 ambientColor = light.pointLight.base.ambient * light.pointLight.base.color * diffuseColor;
 
     if (angle < cutoff) {
 
@@ -114,7 +114,7 @@ fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
         float spotFactor = pow(dot(-s, d), light.pointLight.atten.exponent);
         float3 specularColor = float3(0.0f);
         if (diffuseFactor > 0.0f) {
-            specularColor = light.pointLight.base.specular * pow(max(dot(h, n), 0.0f), shininess);
+            specularColor = light.pointLight.base.specular * light.pointLight.base.color * pow(max(dot(h, n), 0.0f), shininess);
         }
 
         finalColor = float4(ambientColor + spotFactor * (diffuseColor + specularColor), 1.0f);
@@ -122,7 +122,7 @@ fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
         finalColor = float4(ambientColor, 1.0f);
     }
 
-    if (material.useTexture) {
+    if (material.useTexture == true) {
         textcolor = textcolor * material.color * finalColor;
         if (textcolor.a == 0.0f)
             discard_fragment();

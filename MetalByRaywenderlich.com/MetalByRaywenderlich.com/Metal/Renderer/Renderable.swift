@@ -69,7 +69,6 @@ extension Renderable {
         descriptor.minFilter = .linear
         descriptor.magFilter = .linear
         descriptor.mipFilter = .linear
-
         return device.makeSamplerState(descriptor: descriptor)!
     }
 

@@ -50,6 +50,7 @@ class MetalViewController: UIViewController {
     @IBOutlet weak var metalKitView: MTKView!
     @IBOutlet weak var lightCutoff: UISlider!
     @IBOutlet weak var lightOuterCutoff: UISlider!
+    @IBOutlet weak var lightIntensity: UISlider!
     @IBOutlet weak var materialShininess: UISlider!
     @IBOutlet weak var leftJoyStick: JoyStickView!
     @IBOutlet weak var rightJoyStick: JoyStickView!
@@ -85,13 +86,12 @@ class MetalViewController: UIViewController {
         let height = CGFloat.height(ofDevice: currentDevice).height
         let screenSize = CGSize(width: width, height: height)
 
-        let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 1000)
+        let camera = Camera(fov: 45, size: screenSize, zNear: 0.1, zFar: 100)
 
         //let primitivesScene = PrimitivesScene(mtkView: metalKitView, camera: camera)
         //let instanceScene = InstanceScene(mtkView: metalKitView, camera: camera)
         //let landscapeScene = LandscapeScene(mtkView: metalKitView, camera: camera)
-        //let lightingScene = LightingScene(mtkView: metalKitView, camera: camera)
-        let lightingScene = SimpleScene(mtkView: metalKitView, camera: camera)
+        let lightingScene = LightsScene(mtkView: metalKitView, camera: camera)
 
         // create renderer
         renderer = Renderer(mtkView: metalKitView, scene: lightingScene)
@@ -117,6 +117,7 @@ class MetalViewController: UIViewController {
 
         lightCutoff.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
         lightOuterCutoff.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        lightIntensity.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
         materialShininess.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
     }
 
@@ -128,6 +129,8 @@ class MetalViewController: UIViewController {
             case 1:
                 renderer.scene.onSlider(.outerCutoff, phase: touchEvent.phase, value: slider.value)
             case 2:
+                renderer.scene.onSlider(.intensity, phase: touchEvent.phase, value: slider.value)
+            case 3:
                 renderer.scene.onSlider(.shininess, phase: touchEvent.phase, value: slider.value)
             default:
                 break

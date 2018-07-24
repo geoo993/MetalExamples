@@ -31,6 +31,7 @@
 using namespace metal;
 
 // http://metalbyexample.com/modern-metal-2/
+// https://www.tomdalling.com/blog/modern-opengl/06-diffuse-point-lighting/
 /* AMBIENT ILLUMINATION
 
  The ambient term in our lighting equation accounts for indirect illumination: light that arrives at a surface after it has “bounced” off another surface. Imagine a desk illuminated above by a fluorescent light: even if the light is the only source of illumination around, the floor beneath the desk will still receive some light that has bounced off the walls and floor. Since modeling indirect light is expensive, simplified lighting models such as ours include an ambient term as a “fudge factor,” a hack that makes the scene look more plausible despite being a gross simplification of reality.
@@ -62,28 +63,40 @@ using namespace metal;
 fragment float4 fragment_light_mix_shader(VertexOut vertexIn [[ stage_in ]],
                                           constant CameraInfo &camera [[ buffer(BufferIndexCameraInfo) ]],
                                           constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
-                                          constant PointLight *lights [[ buffer(BufferIndexPointLightInfo) ]],
+                                          constant LightsUniforms &lights [[buffer(BufferIndexLights)]],
                                           texture2d<float, access::sample> texture [[ texture(TextureIndexColor) ]],
                                           sampler sampler2d [[sampler(0)]])
 {
 
+    float3 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates).rgb;
+    float3 baseColor = material.useTexture ?  textcolor : material.color.xyz;
+    float3 P = vertexIn.fragPosition.xyz;
+    float3 N = normalize(vertexIn.normal);
+    float3 V = normalize(camera.position - P);
 
-    //float3 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates).rgb;
-
-    const int LightCount = 1;
     float3 finalColor(0, 0, 0);
-    for (int i = 0; i < LightCount; ++i) {
-        PointLight light = lights[i];
-        float3 ambientIntensity = light.base.ambient;
-        float3 N = normalize(vertexIn.normal);
-        float3 L = normalize(light.position - vertexIn.fragPosition.xyz);
-        float3 diffuseIntensity = saturate(dot(N, L)); // we use the saturate function to clamp the result to the range of [0, 1].
-        float3 V = normalize(camera.position - vertexIn.fragPosition);
+    for (int i = 0; i < NUMBER_OF_POINT_LIGHTS; ++i) {
+        PointLight light = lights.pointLights[i];
+        // Ambient
+        float ambientCoefficient = light.base.ambient;
+        float3 ambientIntensity = float3(ambientCoefficient, ambientCoefficient, ambientCoefficient);
+
+        // Diffuse
+        float3 L = normalize(light.position - P);
+        float diffuseCoefficient = saturate(dot(N, L)); // we use the saturate function to clamp the result to the range of [0, 1].
+        float3 diffuseIntensity = light.base.intensity * diffuseCoefficient;
+
+        // Specular
         float3 H = normalize(L + V);
-        float specularBase = saturate(dot(N, H));
-        float specularIntensity = powr(specularBase, material.shininess);
-        finalColor = saturate(ambientIntensity + diffuseIntensity)
-        * material.color.xyz * light.base.color
+        float specularCoefficient = powr(saturate(dot(N, H)), material.shininess);
+        float3 specularIntensity = light.base.specular * specularCoefficient;
+
+        // Attenuation
+        float D = length(light.position - P);
+        float attenuation = 1.0 / (light.atten.continual + light.atten.linear * D + light.atten.exponent * (D * D));
+
+        finalColor += attenuation * saturate(ambientIntensity + diffuseIntensity)
+        * baseColor * light.base.color
         + specularIntensity * light.base.color;
     }
     return float4(finalColor, 1);

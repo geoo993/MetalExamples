@@ -71,7 +71,8 @@ class Camera {
         position = float3(0)
         rotation = float3(0)
 
-        setPerspectiveProjectionMatrix(fieldOfView: fov, aspectRatio: Float(screenSize.width / screenSize.height), nearClippingPlane: 0.1, farClippingPlane: 100)
+        setPerspectiveProjectionMatrix(fieldOfView: fov, aspectRatio: Float(screenSize.width / screenSize.height),
+                                       nearClippingPlane: zNear, farClippingPlane: zFar)
         setOrthographicProjectionMatrix(width: Float(screenSize.width), height: Float(screenSize.height), zNear: zNear, zFar: zFar)
 
         updateCameraVectors()
@@ -103,7 +104,6 @@ class Camera {
         //let xRotation = rota
 
     }
-
 
     // Set the camera at a specific position, looking at the view point, with a given up vector
     func set(position: float3, viewpoint: float3, up: float3) {
@@ -170,7 +170,6 @@ class Camera {
 
     // Update the camera for rotation
     func setRotation(angle: Float, displacement: Float, enabled: Bool) {
-
         if (enabled) {
 
             let horizontalAngle: Float = sin(angle.toRadians) * displacement * sensitivity
@@ -278,9 +277,6 @@ class Camera {
     func computeNormalMatrix(modelMatrix: matrix_float4x4) -> matrix_float3x3
     {
         return modelMatrix.upperLeft3x3().transpose.inverse
-        //return glm::transpose(glm::inverse(glm::mat3(modelMatrix)));
-        //glm::mat3 mNorm = glm::inverseTranspose(glm::mat3(mModel));
-        //return (matrix_float3x3(modelMatrix).inverse).transpose
     }
 
 }

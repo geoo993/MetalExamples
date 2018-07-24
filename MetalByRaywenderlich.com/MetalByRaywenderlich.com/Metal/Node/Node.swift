@@ -54,17 +54,17 @@ class Node {
         if overrideModelMatrix == false {
             self.modelMatrix = makeModelMatrix
         }
-        let mMatrix = matrix_multiply(parentModelMatrix, modelMatrix)
+        let originAndModel = matrix_multiply(parentModelMatrix, modelMatrix)
         for child in children {
             child.render(commandEncoder: commandEncoder,
-                         parentModelMatrix: mMatrix,
+                         parentModelMatrix: originAndModel,
                          camera: camera)
         }
 
         if let renderable = self as? Renderable {
             commandEncoder.pushDebugGroup(name)
             renderable.doRender(commandEncoder: commandEncoder,
-                                modelMatrix: mMatrix,
+                                modelMatrix: originAndModel,
                                 camera: camera)
             commandEncoder.popDebugGroup()
         }

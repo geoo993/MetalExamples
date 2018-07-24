@@ -12,63 +12,6 @@
 #include "ShaderTypes.h"
 using namespace metal;
 
-// --------- Attributes --------
-struct MaterialInfo
-{
-    float4 color;
-    float shininess; //Shininess values typically range from 1 to 128. Higher values result in more focussed specular highlights.
-    bool useTexture;
-};
-
-struct InstanceInfo {
-    Uniform uniform;
-    MaterialInfo material;
-};
-
-struct CameraInfo {
-    float3 position;
-    float3 front;
-};
-
-// lighting attributes
-struct BaseLight
-{
-    float3 color;
-    float intensity;
-    float3 ambient;
-    float3 diffuse;
-    float3 specular;
-};
-
-struct Attenuation
-{
-    float continual;
-    float linear;
-    float exponent;
-};
-
-struct DirectionalLight
-{
-    BaseLight base;
-    float3 direction;
-};
-
-struct PointLight
-{
-    BaseLight base;
-    Attenuation atten;
-    float3 position;
-    float range;
-};
-
-struct SpotLight
-{
-    PointLight pointLight;
-    float3 direction;
-    float cutOff;
-    float outerCutOff;
-};
-
 // input information to the shader
 // note that each item in the struct has been given an attribute number
 struct VertexIn {
@@ -88,8 +31,6 @@ struct VertexOut {
     float4 eyePosition;
     float4 eyeNormal;
 };
-
-float radians(float degree);
 
 
 #endif /* Shader_h */

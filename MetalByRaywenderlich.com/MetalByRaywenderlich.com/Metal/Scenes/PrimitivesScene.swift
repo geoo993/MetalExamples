@@ -91,9 +91,9 @@ class PrimitivesScene: Scene {
         dirLight.direction = float3(-0.2, -1.0, -0.2)
         dirLight.base.color = float3(1, 1.0, 1.0)
         dirLight.base.intensity = 0.7
-        dirLight.base.ambient = float3(0.05)
-        dirLight.base.diffuse = float3(0.4)
-        dirLight.base.specular = float3(0.5)
+        dirLight.base.ambient = 0.05
+        dirLight.base.diffuse = 0.4
+        dirLight.base.specular = 0.5
         dirLights.append(dirLight)
 
         camera.set(position: float3(0,0,0), viewpoint: float3(0,0,1), up: float3(0,1,0))

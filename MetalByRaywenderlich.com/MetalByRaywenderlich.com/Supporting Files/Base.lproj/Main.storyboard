@@ -56,7 +56,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-cb-4T2">
                                                 <rect key="frame" x="0.0" y="66.5" width="375" height="33.5"/>
                                                 <subviews>
-                                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="32" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
+                                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
                                                         <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
@@ -67,8 +67,22 @@
                                                     <constraint firstItem="CCn-7A-LHv" firstAttribute="centerY" secondItem="vVE-cb-4T2" secondAttribute="centerY" id="yWm-kx-Vjg"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPF-ck-lPH">
+                                                <rect key="frame" x="0.0" y="100" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="32" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="rp1-Ak-5nn">
+                                                        <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="rp1-Ak-5nn" firstAttribute="width" secondItem="pPF-ck-lPH" secondAttribute="width" id="PTU-sq-As6"/>
+                                                    <constraint firstItem="rp1-Ak-5nn" firstAttribute="centerX" secondItem="pPF-ck-lPH" secondAttribute="centerX" id="cIC-SY-8oS"/>
+                                                    <constraint firstItem="rp1-Ak-5nn" firstAttribute="centerY" secondItem="pPF-ck-lPH" secondAttribute="centerY" id="wwL-Vl-6cd"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-Xu-Apb">
-                                                <rect key="frame" x="0.0" y="100" width="375" height="467"/>
+                                                <rect key="frame" x="0.0" y="133.5" width="375" height="433.5"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcb-Zd-FfH">
                                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
@@ -122,6 +136,7 @@
                                             </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="pPF-ck-lPH" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="1Ll-Yt-Umj"/>
                                             <constraint firstItem="vVE-cb-4T2" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="AhS-X6-LRW"/>
                                             <constraint firstItem="aUI-U6-zNh" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="cRa-8c-0Ca"/>
                                             <constraint firstItem="19n-SX-lEC" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="gQX-fy-8IV"/>
@@ -149,8 +164,9 @@
                     <connections>
                         <outlet property="leftJoyStick" destination="YZq-5C-hs8" id="cTn-sT-CkO"/>
                         <outlet property="lightCutoff" destination="lrC-OF-LaG" id="AeJ-aM-Pw7"/>
+                        <outlet property="lightIntensity" destination="CCn-7A-LHv" id="2e6-NE-SGX"/>
                         <outlet property="lightOuterCutoff" destination="T79-TU-rbs" id="2yN-vG-Bcu"/>
-                        <outlet property="materialShininess" destination="CCn-7A-LHv" id="rBA-dX-wFw"/>
+                        <outlet property="materialShininess" destination="rp1-Ak-5nn" id="m2n-8S-8rJ"/>
                         <outlet property="metalKitView" destination="94C-3h-HC7" id="u5I-uD-DxM"/>
                         <outlet property="rightJoyStick" destination="pfs-pi-M5N" id="0XS-F8-fro"/>
                     </connections>
