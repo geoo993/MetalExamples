@@ -102,7 +102,7 @@ fragment float4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     // Directional lighting
     for (int i = 0; i < NUMBER_OF_DIRECTIONAL_LIGHTS; i++) {
         float4 directionalLight = CalcDirectionalLight(lights.dirLights[i], material, v, n);
-        //finalColor += directionalLight;
+        finalColor += directionalLight;
     }
 
     // Point lights
@@ -114,7 +114,7 @@ fragment float4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     // Spot light
     for (int i = 0; i < NUMBER_OF_SPOT_LIGHTS; i++) {
         float4 spotL = CalcSpotLight(lights.spotLights[i], material, p, v, n);
-        //finalColor += spotL;
+        finalColor += spotL;
     }
 
     return finalColor * baseColor;

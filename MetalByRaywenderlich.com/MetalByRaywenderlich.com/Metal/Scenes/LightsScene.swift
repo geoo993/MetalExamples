@@ -84,7 +84,7 @@ class LightsScene: Scene {
                         fragmentShader: .lighting_fragment_shader)
         bob.name = "Bob"
         bob.material.color = float4(1.0, 1.0, 1.0, 1)
-        bob.material.shininess = materialShininess
+        bob.material.shininess = 100
         bob.material.useTexture = true
         rootNode.children.append(bob)
 
@@ -93,7 +93,7 @@ class LightsScene: Scene {
                             fragmentShader: .lighting_fragment_shader)
             blub.name = "Blub \(i)"
             blub.material.color = float4(1.0, 1.0, 1.0, 1)
-            blub.material.shininess = materialShininess
+            blub.material.shininess = 40
             blub.material.useTexture = true
             bob.children.append(blub)
         }

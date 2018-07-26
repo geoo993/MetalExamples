@@ -61,8 +61,13 @@ class MetalViewController: UIViewController {
         super.viewDidLoad()
 
         //1) Create a reference to the GPU, which is the Device and setup properties
-        metalKitView.device = MTLCreateSystemDefaultDevice()
+        metalKitView.device = MTLCreateSystemDefaultDevice() //  A device is an abstraction of the GPU and provides us a few methods and properties.
         metalKitView.clearColor = MTLClearColorMake(0.01, 0.01, 0.01, 1.0)
+
+        guard let device = metalKitView.device else {
+            fatalError("Your GPU does not support Metal!")
+        }
+        print("\(device.name)\n")
 
         // we need to tell Metal to store the depth of each fragment as we process it,
         // keeping the closest depth value and only replacing it if we see a fragment that is closer to the camera.

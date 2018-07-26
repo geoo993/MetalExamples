@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UJ0-Ak-kXz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -156,10 +156,10 @@
                         <constraints>
                             <constraint firstItem="94C-3h-HC7" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="6eO-8y-1q0"/>
                             <constraint firstItem="94C-3h-HC7" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ERu-nM-5EB"/>
-                            <constraint firstItem="94C-3h-HC7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IjN-gg-26D"/>
+                            <constraint firstItem="94C-3h-HC7" firstAttribute="centerX" secondItem="Aq8-sc-S3L" secondAttribute="centerX" id="IjN-gg-26D"/>
                             <constraint firstItem="94C-3h-HC7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="t9N-Ad-h2S"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="Aq8-sc-S3L"/>
                     </view>
                     <connections>
                         <outlet property="leftJoyStick" destination="YZq-5C-hs8" id="cTn-sT-CkO"/>
@@ -174,6 +174,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="41" y="127"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="oVN-57-ERj">
+            <objects>
+                <viewController storyboardIdentifier="MBEViewController" id="UJ0-Ak-kXz" customClass="MBEViewController" customModule="MetalByRaywenderlich_com" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a4p-XS-Kld" customClass="MTKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-BD-1um">
+                                <rect key="frame" x="32" y="619" width="311" height="29"/>
+                                <segments>
+                                    <segment title="Blur"/>
+                                    <segment title="Threshold"/>
+                                    <segment title="Edge"/>
+                                    <segment title="Saturation"/>
+                                </segments>
+                                <color key="tintColor" red="0.81676640330000005" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="selectedKernelChanged:" destination="UJ0-Ak-kXz" eventType="valueChanged" id="W1h-R3-4Zm"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Tte-0m-SaI" firstAttribute="bottom" secondItem="DCn-BD-1um" secondAttribute="bottom" constant="20" id="jMe-cb-8jJ"/>
+                            <constraint firstItem="DCn-BD-1um" firstAttribute="centerX" secondItem="Tte-0m-SaI" secondAttribute="centerX" id="jrg-AE-kOY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tte-0m-SaI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YE5-rY-w5E" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="913" y="126"/>
         </scene>
     </scenes>
     <resources>
