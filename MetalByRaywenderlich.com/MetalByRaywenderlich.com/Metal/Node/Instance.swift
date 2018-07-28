@@ -33,10 +33,11 @@ class Instance: Node {
     var drawType: MTLPrimitiveType = .triangle
 
     //Mark: - initialiser
-    init(mtkView: MTKView, modelName: String, instances: Int, fragmentShader: FragmentFunction) {
-        model = Model(mtkView: mtkView, modelName: modelName, fragmentShader: fragmentShader)
-        fragmentFunctionName = model.fragmentFunctionName
-        vertexDescriptor = model.vertexDescriptor
+    init(mtkView: MTKView, modelName: String, instances: Int, vertexShader: VertexFunction = .vertex_shader, fragmentShader: FragmentFunction) {
+        self.model = Model(mtkView: mtkView, modelName: modelName, fragmentShader: fragmentShader)
+        self.vertexFunctionName = vertexShader
+        self.fragmentFunctionName = model.fragmentFunctionName
+        self.vertexDescriptor = model.vertexDescriptor
         super.init(name: modelName)
         create(instances: instances)
         setupBuffers(mtkView: mtkView)

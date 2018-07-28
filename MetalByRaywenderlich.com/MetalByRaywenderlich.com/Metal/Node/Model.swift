@@ -79,16 +79,18 @@ class Model: Node {
     var texture: MTLTexture?
 
     //MARK: - initialise the Renderer with a device
-    init(mtkView: MTKView, modelName: String, fragmentShader: FragmentFunction) {
+    init(mtkView: MTKView, modelName: String, vertexShader: VertexFunction = .vertex_shader, fragmentShader: FragmentFunction) {
         super.init(name: modelName)
-        fragmentFunctionName = fragmentShader
+        self.vertexFunctionName = vertexShader
+        self.fragmentFunctionName = fragmentShader
         let imageName = modelName + ".png"
         setupBuffers(mtkView: mtkView, modelName: modelName, imageName: imageName)
     }
 
-    init(mtkView: MTKView, modelName: String, imageName: String, fragmentShader: FragmentFunction) {
+    init(mtkView: MTKView, modelName: String, imageName: String, vertexShader: VertexFunction = .vertex_shader, fragmentShader: FragmentFunction) {
         super.init(name: modelName)
-        fragmentFunctionName = fragmentShader
+        self.vertexFunctionName = vertexShader
+        self.fragmentFunctionName = fragmentShader
         setupBuffers(mtkView: mtkView, modelName: modelName, imageName: imageName)
     }
 

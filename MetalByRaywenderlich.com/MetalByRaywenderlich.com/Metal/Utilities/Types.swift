@@ -9,17 +9,24 @@ import MetalKit
 import simd
 
 enum SliderType: String {
-    case intensity
-    case power
-    case shininess
-    case range
-    case cutoff
-    case outerCutoff
+    case slider_x0
+    case slider_x2
+    case slider_x1
+    case slider_x3
+    case slider_x4
+    case slider_x5
 }
+
+struct LightsUniforms {
+    var dirLights: [DirectionalLight]
+    var pointLights: [PointLight]
+    var spotLights: [SpotLight]
+};
 
 enum VertexFunction: String {
     case vertex_shader
     case vertex_instance_shader
+    case vertex_fire_ball_shader
 }
 
 enum FragmentFunction: String {
@@ -32,6 +39,8 @@ enum FragmentFunction: String {
     case phong_fragment_shader
     case blinn_phong_fragment_shader
     case lighting_fragment_shader
+    case fragment_toon_shader
+    case fragment_fire_ball_shader
 }
 
 struct Vertex {

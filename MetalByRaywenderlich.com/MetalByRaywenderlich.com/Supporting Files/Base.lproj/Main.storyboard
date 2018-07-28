@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UJ0-Ak-kXz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,7 +28,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUI-U6-zNh">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
                                                 <subviews>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="lrC-OF-LaG">
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lrC-OF-LaG">
                                                         <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
@@ -42,7 +42,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19n-SX-lEC">
                                                 <rect key="frame" x="0.0" y="33.5" width="375" height="33"/>
                                                 <subviews>
-                                                    <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="T79-TU-rbs">
+                                                    <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="T79-TU-rbs">
                                                         <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
@@ -56,7 +56,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-cb-4T2">
                                                 <rect key="frame" x="0.0" y="66.5" width="375" height="33.5"/>
                                                 <subviews>
-                                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
+                                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
                                                         <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
@@ -70,7 +70,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPF-ck-lPH">
                                                 <rect key="frame" x="0.0" y="100" width="375" height="33.5"/>
                                                 <subviews>
-                                                    <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="32" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="rp1-Ak-5nn">
+                                                    <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="rp1-Ak-5nn">
                                                         <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
@@ -81,8 +81,36 @@
                                                     <constraint firstItem="rp1-Ak-5nn" firstAttribute="centerY" secondItem="pPF-ck-lPH" secondAttribute="centerY" id="wwL-Vl-6cd"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkL-SZ-TwG">
+                                                <rect key="frame" x="0.0" y="133.5" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="nlW-wf-N0i">
+                                                        <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="nlW-wf-N0i" firstAttribute="width" secondItem="wkL-SZ-TwG" secondAttribute="width" id="6ht-5T-oSP"/>
+                                                    <constraint firstItem="nlW-wf-N0i" firstAttribute="centerX" secondItem="wkL-SZ-TwG" secondAttribute="centerX" id="vlN-nj-UxB"/>
+                                                    <constraint firstItem="nlW-wf-N0i" firstAttribute="centerY" secondItem="wkL-SZ-TwG" secondAttribute="centerY" id="yfs-K9-hss"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sih-Jv-2pP">
+                                                <rect key="frame" x="0.0" y="167" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="JBB-1r-z0E">
+                                                        <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="JBB-1r-z0E" firstAttribute="centerY" secondItem="sih-Jv-2pP" secondAttribute="centerY" id="CU8-Kl-jV4"/>
+                                                    <constraint firstItem="JBB-1r-z0E" firstAttribute="centerX" secondItem="sih-Jv-2pP" secondAttribute="centerX" id="VHF-4w-PJC"/>
+                                                    <constraint firstItem="JBB-1r-z0E" firstAttribute="width" secondItem="sih-Jv-2pP" secondAttribute="width" id="fCx-9b-hDO"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-Xu-Apb">
-                                                <rect key="frame" x="0.0" y="133.5" width="375" height="433.5"/>
+                                                <rect key="frame" x="0.0" y="200.5" width="375" height="366.5"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcb-Zd-FfH">
                                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
@@ -138,7 +166,9 @@
                                         <constraints>
                                             <constraint firstItem="pPF-ck-lPH" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="1Ll-Yt-Umj"/>
                                             <constraint firstItem="vVE-cb-4T2" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="AhS-X6-LRW"/>
+                                            <constraint firstItem="wkL-SZ-TwG" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="ILt-JR-T0c"/>
                                             <constraint firstItem="aUI-U6-zNh" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="cRa-8c-0Ca"/>
+                                            <constraint firstItem="sih-Jv-2pP" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="gJf-t9-uxy"/>
                                             <constraint firstItem="19n-SX-lEC" firstAttribute="height" secondItem="lO7-yx-Jie" secondAttribute="height" multiplier="0.05" id="gQX-fy-8IV"/>
                                         </constraints>
                                         <variation key="widthClass=compact" axis="vertical"/>
@@ -163,12 +193,14 @@
                     </view>
                     <connections>
                         <outlet property="leftJoyStick" destination="YZq-5C-hs8" id="cTn-sT-CkO"/>
-                        <outlet property="lightCutoff" destination="lrC-OF-LaG" id="AeJ-aM-Pw7"/>
-                        <outlet property="lightIntensity" destination="CCn-7A-LHv" id="2e6-NE-SGX"/>
-                        <outlet property="lightOuterCutoff" destination="T79-TU-rbs" id="2yN-vG-Bcu"/>
-                        <outlet property="materialShininess" destination="rp1-Ak-5nn" id="m2n-8S-8rJ"/>
                         <outlet property="metalKitView" destination="94C-3h-HC7" id="u5I-uD-DxM"/>
                         <outlet property="rightJoyStick" destination="pfs-pi-M5N" id="0XS-F8-fro"/>
+                        <outlet property="slider0" destination="lrC-OF-LaG" id="mCO-FV-ygl"/>
+                        <outlet property="slider1" destination="T79-TU-rbs" id="Fvt-7O-yGC"/>
+                        <outlet property="slider2" destination="CCn-7A-LHv" id="J7p-Kx-fG3"/>
+                        <outlet property="slider3" destination="rp1-Ak-5nn" id="JS3-Fm-gw1"/>
+                        <outlet property="slider4" destination="nlW-wf-N0i" id="yJI-av-AUQ"/>
+                        <outlet property="slider5" destination="JBB-1r-z0E" id="rux-nE-lOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

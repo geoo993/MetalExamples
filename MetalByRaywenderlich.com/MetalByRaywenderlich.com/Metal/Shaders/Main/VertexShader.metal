@@ -1,10 +1,11 @@
 //
-//  Shader.metal
+//  VertexInOut.metal
 //  MetalByRaywenderlich.com
 //
-//  Created by GEORGE QUENTIN on 26/06/2018.
+//  Created by GEORGE QUENTIN on 28/07/2018.
 //  Copyright © 2018 Geo Games. All rights reserved.
 //
+
 
 // --------- What Are Shaders --------
 // Shaders are small programs that run on the GPU.
@@ -38,27 +39,28 @@ using namespace metal;
 // then takes over and splits our triangle into fragments.
 
 /*
-vertex float4 vertex_shader(const device packed_float3 *vertices [[ buffer(0) ]],
-                            uint vertexId [[ vertex_id ]]) {
-    return float4(vertices[vertexId], 1);
-}
-*/
+ vertex float4 vertex_shader(const device packed_float3 *vertices [[ buffer(0) ]],
+ uint vertexId [[ vertex_id ]]) {
+ return float4(vertices[vertexId], 1);
+ }
+ */
 
 // we add the constants in the parameters to send data to the GPU, we give the constant the attribute
 // buffer 1 which is the buffer number that we allocated in the Renderer
 /*
-vertex float4 vertex_shader(const device packed_float3 *vertices [[ buffer(0) ]],
-                            constant Constants &constants [[ buffer(1) ]],
-                            uint vertexId [[ vertex_id ]]) {
+ vertex float4 vertex_shader(const device packed_float3 *vertices [[ buffer(0) ]],
+ constant Constants &constants [[ buffer(1) ]],
+ uint vertexId [[ vertex_id ]]) {
 
-    float4 position = float4(vertices[vertexId], 1);
-    position.x += constants.animateBy;
+ float4 position = float4(vertices[vertexId], 1);
+ position.x += constants.animateBy;
 
-    return position;
-}
-*/
+ return position;
+ }
+ */
 
 vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
+                               constant Constants &constants [[ buffer(BufferIndexConstants) ]],
                                constant Uniform &uniform [[ buffer(BufferIndexUniforms) ]]) {
     VertexOut vertexOut;
 
@@ -90,6 +92,7 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
 
 // vertex function for instances
 vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
+                                        constant Constants &constants [[ buffer(BufferIndexConstants) ]],
                                         constant InstanceInfo *instances [[ buffer(BufferIndexInstances) ]],
                                         uint instanceId [[ instance_id ]]) {
     Uniform uniform = instances[instanceId].uniform;
@@ -118,65 +121,3 @@ vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
 }
 
 
-
-
-// --------- Fragment Shader --------
-
-// the fragment function the one that returns the color of each fragment is the one that is easier that the vertex fucntion.
-// it is a fragment function so we prefix it with fragment and returning a half4,
-// which is a smaller float4 and calling the function fragment_shader
-fragment half4 fragment_shader(VertexOut vertexIn [[ stage_in ]]) {
-    return half4(vertexIn.color);
-}
-
-// notice the special qualifier 'stage_in', all the vertex information within this in-struct has been interpolated,
-// during this rasterisation process, in other words it is data that the rasterisor has generated per fragment,
-// rather than one constant value for all fragments.
-// fragment color are (r, g, b, a) per pixel, these rbg values are between 0 and 1
-fragment half4 fragment_color(VertexOut vertexIn [[ stage_in ]],
-                               constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]]) {
-    return half4(material.color);
-}
-
-fragment half4 fragment_normal(VertexOut vertexIn [[ stage_in ]]) {
-    float3 normal = abs(normalize(vertexIn.eyeNormal.xyz));
-    return half4(normal.x, normal.y, normal.z, 1);
-}
-
-
-// the second parameter here is the texture in fragment buffer 0
-fragment half4 fragment_texture_shader(VertexOut vertexIn [[ stage_in ]],
-                                       texture2d<float> texture [[ texture(TextureIndexColor) ]],
-                                       sampler sampler2d [[ sampler(0) ]]) {
-
-    // extract color from current fragmnet coordinates
-    float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
-    //float4 color = vertexIn.color;
-    //float3 normal = normalize(vertexIn.normal);
-
-    if (textcolor.a == 0.0)
-        discard_fragment();
-
-    return half4(textcolor.r, textcolor.g, textcolor.b, 1);
-}
-
-fragment half4 fragment_textured_mask_shader(VertexOut vertexIn [[ stage_in ]],
-                                             texture2d<float> texture [[ texture(TextureIndexColor)]],
-                                             texture2d<float> maskTexture [[ texture(TextureIndexMask) ]],
-                                             sampler sampler2d [[sampler(0)]]) {
-
-    // extract color from current fragmnet coordinates
-    float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
-
-    // extract mask from current fragment coordinates
-    float4 maskColor = maskTexture.sample(sampler2d, vertexIn.textureCoordinates);
-
-    // check the opacity, if the opacity is less than 0.5, discard the fragment.
-    // This means that the fragment will be empty when rendered.
-    float maskOpacity = maskColor.a;
-    if (maskOpacity < 0.5)
-        discard_fragment();
-
-    // Return the fragment color for the fragments that aren't discarded:
-    return half4(textcolor.r, textcolor.g, textcolor.b, 1);
-}

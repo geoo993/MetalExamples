@@ -71,16 +71,18 @@ class Primitive: Node {
 
 
     //MARK: - initialise the Renderer with a device
-    init(mtkView: MTKView, fragmentShader: FragmentFunction = .fragment_shader) {
+    init(mtkView: MTKView, vertexShader: VertexFunction = .vertex_shader, fragmentShader: FragmentFunction = .fragment_shader) {
         super.init(name: "")
+        self.vertexFunctionName = vertexShader
         self.fragmentFunctionName = fragmentShader
         setup()
         buildVertices()
         setupBuffers(mtkView: mtkView)
     }
 
-    init(mtkView: MTKView, imageName: String, fragmentShader: FragmentFunction) {
+    init(mtkView: MTKView, imageName: String, vertexShader: VertexFunction = .vertex_shader, fragmentShader: FragmentFunction) {
         super.init(name: "")
+        self.vertexFunctionName = vertexShader
         self.fragmentFunctionName = fragmentShader
         setup()
         buildVertices()

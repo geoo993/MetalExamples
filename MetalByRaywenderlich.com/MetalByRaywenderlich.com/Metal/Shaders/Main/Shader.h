@@ -30,7 +30,7 @@ struct VertexOut {
     float3 fragPosition;
     float4 eyePosition;
     float4 eyeNormal;
+    float noise;
 };
-
 
 #endif /* Shader_h */

@@ -48,10 +48,12 @@ import AppCore
 class MetalViewController: UIViewController {
 
     @IBOutlet weak var metalKitView: MTKView!
-    @IBOutlet weak var lightCutoff: UISlider!
-    @IBOutlet weak var lightOuterCutoff: UISlider!
-    @IBOutlet weak var lightIntensity: UISlider!
-    @IBOutlet weak var materialShininess: UISlider!
+    @IBOutlet weak var slider0: UISlider!
+    @IBOutlet weak var slider1: UISlider!
+    @IBOutlet weak var slider2: UISlider!
+    @IBOutlet weak var slider3: UISlider!
+    @IBOutlet weak var slider4: UISlider!
+    @IBOutlet weak var slider5: UISlider!
     @IBOutlet weak var leftJoyStick: JoyStickView!
     @IBOutlet weak var rightJoyStick: JoyStickView!
 
@@ -96,10 +98,11 @@ class MetalViewController: UIViewController {
         //let primitivesScene = PrimitivesScene(mtkView: metalKitView, camera: camera)
         //let instanceScene = InstanceScene(mtkView: metalKitView, camera: camera)
         //let landscapeScene = LandscapeScene(mtkView: metalKitView, camera: camera)
-        let lightingScene = LightsScene(mtkView: metalKitView, camera: camera)
+        //let scene = LightsScene(mtkView: metalKitView, camera: camera)
+        let scene = GameObjectScene(mtkView: metalKitView, camera: camera)
 
         // create renderer
-        renderer = Renderer(mtkView: metalKitView, scene: lightingScene)
+        renderer = Renderer(mtkView: metalKitView, scene: scene)
 
         // Setup MTKView and delegate
         metalKitView.delegate = renderer
@@ -108,35 +111,42 @@ class MetalViewController: UIViewController {
         //SoundController.shared.playBackgroundMusic("Gem.mp3")
 
         leftJoyStick.monitor = { angle, displacement in
-            lightingScene.leftCameraAngle = Float(angle)
-            lightingScene.leftCameraDisplacement = Float(displacement)
+            scene.leftCameraAngle = Float(angle)
+            scene.leftCameraDisplacement = Float(displacement)
             //print("left joystick angle \(angle)")
             //print("left joystick magnitude \(displacement)")
         }
         rightJoyStick.monitor = { angle, displacement in
-            lightingScene.rightCameraAngle = Float(angle)
-            lightingScene.rightCameraDisplacement = Float(angle)
+            scene.rightCameraAngle = Float(angle)
+            scene.rightCameraDisplacement = Float(angle)
             //print("right joystick angle \(angle)")
             //print("right joystick angle \(displacement)")
         }
 
-        lightCutoff.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
-        lightOuterCutoff.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
-        lightIntensity.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
-        materialShininess.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        slider0.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        slider1.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        slider2.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        slider3.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        slider4.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+        slider5.addTarget(self, action: #selector(onSliderChanged(slider:event:)), for: .valueChanged)
+
     }
 
     @objc func onSliderChanged(slider: UISlider, event: UIEvent) {
         if let touchEvent = event.allTouches?.first {
             switch slider.tag {
             case 0:
-                renderer.scene.onSlider(.cutoff, phase: touchEvent.phase, value: slider.value)
+                renderer.scene.onSlider(.slider_x0, phase: touchEvent.phase, value: slider.value)
             case 1:
-                renderer.scene.onSlider(.outerCutoff, phase: touchEvent.phase, value: slider.value)
+                renderer.scene.onSlider(.slider_x1, phase: touchEvent.phase, value: slider.value)
             case 2:
-                renderer.scene.onSlider(.intensity, phase: touchEvent.phase, value: slider.value)
+                renderer.scene.onSlider(.slider_x2, phase: touchEvent.phase, value: slider.value)
             case 3:
-                renderer.scene.onSlider(.shininess, phase: touchEvent.phase, value: slider.value)
+                renderer.scene.onSlider(.slider_x3, phase: touchEvent.phase, value: slider.value)
+            case 4:
+                renderer.scene.onSlider(.slider_x4, phase: touchEvent.phase, value: slider.value)
+            case 5:
+                renderer.scene.onSlider(.slider_x5, phase: touchEvent.phase, value: slider.value)
             default:
                 break
             }

@@ -29,7 +29,9 @@ typedef NS_ENUM(NSInteger, BufferIndex)
     BufferIndexDirectionalLightInfo = 5,
     BufferIndexPointLightInfo       = 6,
     BufferIndexSpotLightInfo        = 7,
-    BufferIndexLights               = 8,
+    BufferIndexConstants            = 8,
+    BufferIndexToon                 = 9,
+    BufferIndexFireBall             = 10,
 };
 
 typedef NS_ENUM(NSInteger, VertexAttribute)
@@ -128,12 +130,24 @@ typedef struct
     float outerCutOff;
 } SpotLight;
 
-typedef struct {
-    DirectionalLight dirLights[NUMBER_OF_DIRECTIONAL_LIGHTS];
-    PointLight pointLights[NUMBER_OF_POINT_LIGHTS];
-    SpotLight spotLights[NUMBER_OF_SPOT_LIGHTS];
-} LightsUniforms;
 
-float radians(float degree);
+// --------- Custom --------
+typedef struct
+{
+    float time;
+} Constants;
+
+typedef struct
+{
+    float toonEdge;
+} ToonConstants;
+
+typedef struct
+{
+    float time;
+    float frequency;
+    float explosion;
+} FireBallConstants;
+
 
 #endif /* ShaderTypes_h */

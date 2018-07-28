@@ -5,8 +5,6 @@ import AppCore
 
 class LightsScene: Scene {
 
-    var rootNode: Node!
-
     var cubesPosition: [float3] = [
         float3(-1.0, -4.0, -1.0),
         float3(-8.0, 7.0, 5.0),
@@ -16,26 +14,6 @@ class LightsScene: Scene {
         float3(4.0, -1.0, -2.0),
         float3(9.0, -5.0, 3.0),
         float3(-8.0, 2.0, 8.0)
-    ]
-
-    let directionalLightsDirections: [float3] = [
-        float3(  -0.2, -1.0, -0.3)
-    ]
-
-    var pointLightPositions: [float3] = [
-        float3(  -4.0,  2.0, -12.0    ),
-        float3(  -5.7,  6.2,  2.0      ),
-        float3(  1.0,  3.0,  -2.0      ),
-        float3(  2.3, -3.3, -4.0      ),
-        float3(  10.0,  0.0, -3.0     )
-    ]
-
-    var pointlightsColours: [float3] = [
-        float3(0.6, 0.1, 0.25),
-        float3(0.2, 0.7, 0.9),
-        float3(1.0, 0.9, 0.0),
-        float3(0.05, 0.1, 0.9),
-        float3(0.34, 0.75, 0.2),
     ]
 
     var cubesColor = float3(1.0)
@@ -60,8 +38,6 @@ class LightsScene: Scene {
     override func setup(view: MTKView) {
         super.setup(view: view)
         name = "Lights scene"
-        rootNode = Node(name: "Root")
-        add(childNode: rootNode)
 
         for i in 0..<cubesPosition.count {
             let angle: Float = 20.0 * i.toFloat
@@ -116,12 +92,12 @@ class LightsScene: Scene {
         for i in 0..<pointLightPositions.count {
             let position: float3 = pointLightPositions[i]
             let color: float3 = pointlightsColours[i]
-            let pointLight = createPointLight(view: view, name: "PointLight\(i)", color: color, position: position)
+            let pointLight = createPointLight(view: view, name: "PointLight\(i)", color: color, position: position, intensity: 00)
             add(childNode: pointLight.object)
             pointLights.append(pointLight.light)
         }
 
-        let spotLight = createSpotLight(view: view, color: float3(1,1,1), position: camera.position)
+        let spotLight = createSpotLight(view: view, color: float3(1,1,1), position: camera.position, cutoff: 0, outerCutoff: 0)
         spotLights.append(spotLight)
 
         camera.set(position: float3(0, 0,-5), viewpoint: float3(0,0,1), up: float3(0,1,0))
@@ -237,77 +213,20 @@ class LightsScene: Scene {
 
     override func onSlider(_ type: SliderType, phase: UITouchPhase, value: Float) {
         switch type {
-        case .cutoff:
-            lightCutoff = value
-        case .outerCutoff:
-            lightOuterCutoff = value
-        case .intensity:
-            lightIntensity = value
-        case .shininess:
-            materialShininess = value
-        default:
+        case .slider_x0: // 0 - 1
             break
+        case .slider_x1: // 0 - 5
+            break
+        case .slider_x2: // 0 - 10
+            lightCutoff = value
+        case .slider_x3: // 0 - 50
+            lightOuterCutoff = value
+        case .slider_x4: // 0 - 100
+            lightIntensity = value
+        case .slider_x5: // 0 - 255
+            materialShininess = value
         }
     }
-    
-    func createDirectionalLight(color: float3, direction: float3) -> DirectionalLight {
-        // Directional light
-        var base = BaseLight()
-        base.color = color
-        base.ambient = 0.05
-        base.diffuse = 0.4
-        base.specular = 0.5
-        return DirectionalLight(base: base, direction: direction)
-    }
 
-    func createPointLight(view: MTKView, name: String, color: float3, position: float3)
-        -> (object: Primitive, light:PointLight) {
-        // Point Light
-        let light = Cube(mtkView: view, fragmentShader: .fragment_color)
-        light.name = name
-        light.position = position
-        light.scale = float3(0.2, 0.2, 0.2)
-        light.material.color = float4(color.x, color.y, color.z, 1.0)
-        light.material.useTexture = true
-
-        var pointLight = PointLight()
-        pointLight.position = position
-        pointLight.base.color = color
-        pointLight.base.intensity = lightIntensity
-        pointLight.base.ambient = 0.1
-        pointLight.base.diffuse = 0.7
-        pointLight.base.specular = 0.9
-        pointLight.atten.continual = 1.0
-        pointLight.atten.linear = 0.09
-        pointLight.atten.exponent = 0.032
-
-        return (light, pointLight)
-    }
-
-    func createSpotLight(view: MTKView, color: float3, position: float3) -> SpotLight {
-
-        //Spot Light
-        var spotLight = SpotLight()
-        spotLight.pointLight.position = position
-        spotLight.pointLight.base.color = color
-        spotLight.pointLight.base.ambient = 0.1
-        spotLight.pointLight.base.diffuse = 1.0
-        spotLight.pointLight.base.specular = 1.0
-        spotLight.pointLight.atten.continual = 1.0
-        spotLight.pointLight.atten.linear = 0.09
-        spotLight.pointLight.atten.exponent = 0.32
-        spotLight.direction = float3(-2, 0, 0)
-        spotLight.cutOff = cos(radians(degrees: lightCutoff))
-        spotLight.outerCutOff = cos(radians(degrees: lightOuterCutoff))
-        return spotLight
-    }
-
-    func nodeNamed(_ name: String) -> Node? {
-        if rootNode.name == name {
-            return rootNode
-        } else {
-            return rootNode.get(childNode: name)
-        }
-    }
 }
 

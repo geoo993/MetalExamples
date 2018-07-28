@@ -17,12 +17,89 @@ class Sphere: Primitive {
         useIndicies = true
     }
 
+    // https://stackoverflow.com/questions/7957254/connecting-sphere-vertices-opengl
+    // https://gist.github.com/davidbitton/1094320
+    func SolidSphere(radius: Float, latitude: Int, longitude: Int)
+    {
+        /* ONE
+        let pi = Float.pi
+        for lat in 0...latitude {
+            let theta: Float = lat.toFloat * pi / latitude.toFloat
+            let sinTheta: Float = sin(theta)
+            let cosTheta: Float = cos(theta)
+
+            for long in 0...longitude {
+                let phi: Float = long.toFloat * 2 * pi / longitude.toFloat
+                let sinPhi: Float = sin(phi)
+                let cosPhi: Float = cos(phi)
+
+                let verts = float3(cosPhi * sinTheta * radius, cosTheta * radius, sinPhi * sinTheta * radius)
+                let texture = float2(1.0 - (long.toFloat / longitude.toFloat), 1.0 - (lat.toFloat / latitude.toFloat))
+                let normal = float3(cosPhi * sinTheta, cosTheta, sinPhi * sinTheta)
+                let vertex = Vertex(position: verts, texture: texture, color: float4(verts,1), normal: normal)
+                vertices.append(vertex)
+
+            }
+
+            for lat in 0...latitude {
+                for long in 0...longitude {
+
+                    let first: UInt16 = UInt16((lat * (longitude + 1)) + long)
+                    let second: UInt16 = UInt16(first) + UInt16(longitude + 1)
+                    indices.append(first)
+                    indices.append(second)
+                    indices.append(first + 1)
+
+                    indices.append(second)
+                    indices.append(second + 1)
+                    indices.append(first + 1)
+
+                }
+            }
+
+
+        }
+        */
+
+        /* TWO
+        let R: Float = 1.0 / (rings - 1).toFloat
+        let S: Float = 1.0 / (sectors - 1).toFloat
+        let pi = Float.pi
+        let pi2 = Float.pi * 2
+        for r in 0..<rings {
+            for s in 0..<sectors {
+                let y: Float = sin( -pi2 + pi * r.toFloat * R );
+                let x: Float = cos(2 * pi * s.toFloat * S) * sin( pi * r.toFloat * R )
+                let z: Float = sin(2 * pi * s.toFloat * S) * sin( pi * r.toFloat * R )
+
+                let verts = float3(x * radius, y * radius, z * radius)
+                let texture = float2(s.toFloat * S, r.toFloat * R)
+                let normal = float3(x, y, z)
+
+                let vertex = Vertex(position: verts, texture: texture, color: float4(verts,1), normal: normal)
+                vertices.append(vertex)
+            }
+        }
+
+        for r in 0..<rings {
+            for s in 0..<sectors {
+                indices.append(UInt16( r * sectors + s))
+                indices.append(UInt16(r * sectors + (s + 1)))
+                indices.append(UInt16((r + 1) * sectors + (s + 1)))
+                indices.append(UInt16((r + 1) * sectors + s))
+            }
+        }
+ */
+    }
+
     override func buildVertices() {
         super.buildVertices()
 
+        //SolidSphere(radius: 2, latitude: 50, longitude: 50)
+
         // Compute vertex attributes and store in VBO
-        let slicesIn = 25
-        let stacksIn = 25
+        let slicesIn = 50
+        let stacksIn = 50
         let pi = Float.pi
         var verts = [float3]()
         var uvs = [float2]()

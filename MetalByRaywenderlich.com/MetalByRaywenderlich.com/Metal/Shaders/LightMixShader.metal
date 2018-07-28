@@ -27,7 +27,7 @@
 // The Metal Standard Library contains many types and functions for doing vertex and matrix math,
 // which is most of what you’ll be doing in the shaders.
 #include <metal_stdlib>
-#include "Shader.h"
+#include "Main/Shader.h"
 using namespace metal;
 
 // http://metalbyexample.com/modern-metal-2/
@@ -63,7 +63,7 @@ using namespace metal;
 fragment float4 fragment_light_mix_shader(VertexOut vertexIn [[ stage_in ]],
                                           constant CameraInfo &camera [[ buffer(BufferIndexCameraInfo) ]],
                                           constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
-                                          constant LightsUniforms &lights [[buffer(BufferIndexLights)]],
+                                          constant PointLight *lights [[buffer(BufferIndexPointLightInfo)]],
                                           texture2d<float, access::sample> texture [[ texture(TextureIndexColor) ]],
                                           sampler sampler2d [[sampler(0)]])
 {
@@ -76,7 +76,7 @@ fragment float4 fragment_light_mix_shader(VertexOut vertexIn [[ stage_in ]],
 
     float3 finalColor(0, 0, 0);
     for (int i = 0; i < NUMBER_OF_POINT_LIGHTS; ++i) {
-        PointLight light = lights.pointLights[i];
+        PointLight light = lights[i];
         // Ambient
         float ambientCoefficient = light.base.ambient;
         float3 ambientIntensity = float3(ambientCoefficient, ambientCoefficient, ambientCoefficient);

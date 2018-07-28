@@ -12,7 +12,7 @@
 // http://ogldev.atspace.co.uk/www/tutorial20/tutorial20.html
 
 #include <metal_stdlib>
-#include "Shader.h"
+#include "Main/Shader.h"
 using namespace metal;
 
 
@@ -79,11 +79,24 @@ float4 CalcSpotLight(SpotLight spotLight, MaterialInfo material, float3 vertexPo
     return color;
 }
 
+/* What is 'device'
+ https://stackoverflow.com/questions/50490040/what-does-the-keyword-device-mean-in-the-metal-shading-language
+ According to the language spec doc
 
+ Arguments to Metal graphics and kernel functions declared in a program that are pointers must be declared with the Metal device, threadgroup, threadgroup_imageblock, or constant address space attribute.
+
+ Furthermore:
+ The device address space name refers to buffer memory objects allocated from the device memory pool that are both readable and writeable.
+
+ So its a memory specification that indicates where the pointer is located. Note that the use of const preceding the address space attribute indicates that it is read only.
+
+ */
 fragment float4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
                                         constant CameraInfo &camera [[ buffer(BufferIndexCameraInfo) ]],
                                         constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
-                                        constant LightsUniforms &lights [[buffer(BufferIndexLights)]],
+                                        device DirectionalLight *dirLights [[buffer(BufferIndexDirectionalLightInfo)]],
+                                        device PointLight *pointLights [[buffer(BufferIndexPointLightInfo)]],
+                                        device SpotLight *spotLights [[buffer(BufferIndexSpotLightInfo)]],
                                         texture2d<float> texture [[ texture(TextureIndexColor) ]],
                                         sampler sampler2d [[ sampler(0) ]]) {
 
@@ -92,7 +105,6 @@ fragment float4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
     float4 baseColor = material.useTexture ? textcolor : material.color;
 
-    //float4 c = material.color;
     float3 p = vertexIn.fragPosition; // Eye coordinates are computed as part of the camera model
     float3 n = normalize(vertexIn.normal);
     float3 v = normalize(camera.position - p); // viewDirection
@@ -101,19 +113,19 @@ fragment float4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
 
     // Directional lighting
     for (int i = 0; i < NUMBER_OF_DIRECTIONAL_LIGHTS; i++) {
-        float4 directionalLight = CalcDirectionalLight(lights.dirLights[i], material, v, n);
+        float4 directionalLight = CalcDirectionalLight(dirLights[i], material, v, n);
         finalColor += directionalLight;
     }
 
     // Point lights
     for (int i = 0; i < NUMBER_OF_POINT_LIGHTS; i++) {
-        float4 pointL = CalcPointLight(lights.pointLights[i], material, p, v, n);
+        float4 pointL = CalcPointLight(pointLights[i], material, p, v, n);
         finalColor += pointL;
     }
 
     // Spot light
     for (int i = 0; i < NUMBER_OF_SPOT_LIGHTS; i++) {
-        float4 spotL = CalcSpotLight(lights.spotLights[i], material, p, v, n);
+        float4 spotL = CalcSpotLight(spotLights[i], material, p, v, n);
         finalColor += spotL;
     }
 
