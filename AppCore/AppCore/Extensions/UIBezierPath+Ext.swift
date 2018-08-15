@@ -278,7 +278,7 @@ public extension UIBezierPath {
         }
     }
 
-    public func forEachPathElement( body: @convention(block) (CGPathElement) -> Void) {
+    public func forEachPathElement( body: @escaping @convention(block) (CGPathElement) -> Void) {
         typealias Body = @convention(block) (CGPathElement) -> Void
         let callback: @convention(c) (UnsafeMutableRawPointer, UnsafePointer<CGPathElement>) -> Void = { (info, element) in
             let body = unsafeBitCast(info, to: Body.self)
@@ -324,18 +324,18 @@ public extension UIBezierPath {
                 endPoint = points[0]
             case .addLineToPoint:
                 endPoint = points[0]
-                subLength = linearLineLength(fromPoint: currentPoint, toPoint: endPoint)
+                subLength = self.linearLineLength(fromPoint: currentPoint, toPoint: endPoint)
             case .addQuadCurveToPoint:
                 endPoint = points[1]
                 let controlPoint = points[0]
-                subLength = quadCurveLength(fromPoint: currentPoint, toPoint: endPoint,
+                subLength = self.quadCurveLength(fromPoint: currentPoint, toPoint: endPoint,
                                                          controlPoint: controlPoint)
                 subpath.controlPoint1 = controlPoint
             case .addCurveToPoint:
                 endPoint = points[2]
                 let controlPoint1 = points[0]
                 let controlPoint2 = points[1]
-                subLength = cubicCurveLength(fromPoint: currentPoint, toPoint: endPoint,
+                subLength = self.cubicCurveLength(fromPoint: currentPoint, toPoint: endPoint,
                                                           controlPoint1: controlPoint1,
                                                           controlPoint2: controlPoint2)
                 subpath.controlPoint1 = controlPoint1

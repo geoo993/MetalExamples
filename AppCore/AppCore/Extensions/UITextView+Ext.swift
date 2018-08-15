@@ -53,12 +53,12 @@ public extension UITextView {
     }
     
     public func rectForRange(range: Range<Int>) -> CGRect? {
-        return self.rect(for: range)
+        return self.rect(range: range)
     }
    
-    public func rect(for range: CountableRange<Int>) -> CGRect? {
-        guard let start   = self.position(from: self.beginningOfDocument, offset: range.lowerBound)
-            , let end     = self.position(from: start, offset: range.count) 
+    public func rect(countableRange: CountableRange<Int>) -> CGRect? {
+        guard let start   = self.position(from: self.beginningOfDocument, offset: countableRange.lowerBound)
+            , let end     = self.position(from: start, offset: countableRange.count)
             , let textRange = self.textRange(from: start, to: end) 
             else { 
                 return nil }
@@ -68,7 +68,7 @@ public extension UITextView {
         return rect//.offsetBy(dx: -offset.x, dy: -offset.y)
     }
     
-    public func rect(for range: Range<Int>) -> CGRect? {
+    public func rect(range: Range<Int>) -> CGRect? {
  
         guard 
             let start   = self.position(from: self.beginningOfDocument, offset: range.lowerBound),

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,20 +15,20 @@
             <objects>
                 <viewController storyboardIdentifier="MetalViewController" id="BYZ-38-t0r" customClass="MetalViewController" customModule="MetalByRaywenderlich_com" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94C-3h-HC7" customClass="MTKView">
-                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lO7-yx-Jie">
-                                        <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUI-U6-zNh">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="28.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lrC-OF-LaG">
-                                                        <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
+                                                        <rect key="frame" x="-2" y="-1" width="324" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -40,10 +39,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19n-SX-lEC">
-                                                <rect key="frame" x="0.0" y="33.5" width="375" height="33"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="320" height="28.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="T79-TU-rbs">
-                                                        <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
+                                                        <rect key="frame" x="-2" y="-1" width="324" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -54,10 +53,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-cb-4T2">
-                                                <rect key="frame" x="0.0" y="66.5" width="375" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="57" width="320" height="28"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
-                                                        <rect key="frame" x="-2.5" y="2" width="379" height="31"/>
+                                                        <rect key="frame" x="-2" y="-1" width="324" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -68,10 +67,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPF-ck-lPH">
-                                                <rect key="frame" x="0.0" y="100" width="375" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="85" width="320" height="28.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="rp1-Ak-5nn">
-                                                        <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
+                                                        <rect key="frame" x="-2" y="-0.5" width="324" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -82,10 +81,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkL-SZ-TwG">
-                                                <rect key="frame" x="0.0" y="133.5" width="375" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="113.5" width="320" height="28.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="nlW-wf-N0i">
-                                                        <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
+                                                        <rect key="frame" x="-2" y="-0.5" width="324" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -96,10 +95,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sih-Jv-2pP">
-                                                <rect key="frame" x="0.0" y="167" width="375" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="142" width="320" height="28.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="JBB-1r-z0E">
-                                                        <rect key="frame" x="-2.5" y="1.5" width="379" height="31"/>
+                                                        <rect key="frame" x="-2" y="-1" width="324" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -110,10 +109,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-Xu-Apb">
-                                                <rect key="frame" x="0.0" y="200.5" width="375" height="366.5"/>
+                                                <rect key="frame" x="0.0" y="170.5" width="320" height="297.5"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcb-Zd-FfH">
-                                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="468" width="320" height="100"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZq-5C-hs8" customClass="JoyStickView" customModule="MetalByRaywenderlich_com" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="0.0" width="80" height="80"/>
@@ -135,7 +134,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfs-pi-M5N" customClass="JoyStickView" customModule="MetalByRaywenderlich_com" customModuleProvider="target">
-                                                        <rect key="frame" x="275" y="0.0" width="80" height="80"/>
+                                                        <rect key="frame" x="220" y="0.0" width="80" height="80"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="Ti2-mH-J90"/>
@@ -212,11 +211,11 @@
             <objects>
                 <viewController storyboardIdentifier="MBEViewController" id="UJ0-Ak-kXz" customClass="MBEViewController" customModule="MetalByRaywenderlich_com" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a4p-XS-Kld" customClass="MTKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-BD-1um">
-                                <rect key="frame" x="32" y="619" width="311" height="29"/>
+                                <rect key="frame" x="4.5" y="520" width="311" height="29"/>
                                 <segments>
                                     <segment title="Blur"/>
                                     <segment title="Threshold"/>
