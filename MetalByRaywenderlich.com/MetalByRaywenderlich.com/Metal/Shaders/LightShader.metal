@@ -81,7 +81,7 @@ fragment half4 blinn_phong_fragment_shader(VertexOut vertexIn [[ stage_in ]],
                                            constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
                                            constant SpotLight &light [[ buffer(BufferIndexSpotLightInfo) ]],
                                            texture2d<float> texture [[ texture(TextureIndexColor) ]],
-                                           sampler sampler2d [[ sampler(0) ]]) {
+                                           sampler sampler2d [[ sampler(SamplerIndexMain) ]]) {
 
 
     // extract color from current fragmnet coordinates

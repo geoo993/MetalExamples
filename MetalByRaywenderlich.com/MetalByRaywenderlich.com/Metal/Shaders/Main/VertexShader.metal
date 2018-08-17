@@ -93,7 +93,7 @@ vertex VertexOut vertex_shader(const VertexIn vertexIn [[ stage_in ]],
 // vertex function for instances
 vertex VertexOut vertex_instance_shader(const VertexIn vertexIn [[ stage_in ]],
                                         constant Constants &constants [[ buffer(BufferIndexConstants) ]],
-                                        constant InstanceInfo *instances [[ buffer(BufferIndexInstances) ]],
+                                        constant InstanceUniform *instances [[ buffer(BufferIndexInstances) ]],
                                         uint instanceId [[ instance_id ]]) {
     Uniform uniform = instances[instanceId].uniform;
     MaterialInfo material = instances[instanceId].material;

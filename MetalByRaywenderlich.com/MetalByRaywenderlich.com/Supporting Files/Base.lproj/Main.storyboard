@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="daI-al-rUE">
+    <device id="ipad10_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,20 +14,20 @@
             <objects>
                 <viewController storyboardIdentifier="MetalViewController" id="BYZ-38-t0r" customClass="MetalViewController" customModule="MetalByRaywenderlich_com" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94C-3h-HC7" customClass="MTKView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lO7-yx-Jie">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUI-U6-zNh">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="28.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="834" height="55.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lrC-OF-LaG">
-                                                        <rect key="frame" x="-2" y="-1" width="324" height="31"/>
+                                                        <rect key="frame" x="-2" y="13" width="838" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -39,10 +38,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19n-SX-lEC">
-                                                <rect key="frame" x="0.0" y="28.5" width="320" height="28.5"/>
+                                                <rect key="frame" x="0.0" y="55.5" width="834" height="55.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="T79-TU-rbs">
-                                                        <rect key="frame" x="-2" y="-1" width="324" height="31"/>
+                                                        <rect key="frame" x="-2" y="13" width="838" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -53,10 +52,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-cb-4T2">
-                                                <rect key="frame" x="0.0" y="57" width="320" height="28"/>
+                                                <rect key="frame" x="0.0" y="111" width="834" height="56"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="CCn-7A-LHv">
-                                                        <rect key="frame" x="-2" y="-1" width="324" height="31"/>
+                                                        <rect key="frame" x="-2" y="13" width="838" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -67,10 +66,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPF-ck-lPH">
-                                                <rect key="frame" x="0.0" y="85" width="320" height="28.5"/>
+                                                <rect key="frame" x="0.0" y="167" width="834" height="55.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="rp1-Ak-5nn">
-                                                        <rect key="frame" x="-2" y="-0.5" width="324" height="31"/>
+                                                        <rect key="frame" x="-2" y="12.5" width="838" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -81,10 +80,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkL-SZ-TwG">
-                                                <rect key="frame" x="0.0" y="113.5" width="320" height="28.5"/>
+                                                <rect key="frame" x="0.0" y="222.5" width="834" height="55.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="nlW-wf-N0i">
-                                                        <rect key="frame" x="-2" y="-0.5" width="324" height="31"/>
+                                                        <rect key="frame" x="-2" y="12.5" width="838" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -95,10 +94,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sih-Jv-2pP">
-                                                <rect key="frame" x="0.0" y="142" width="320" height="28.5"/>
+                                                <rect key="frame" x="0.0" y="278" width="834" height="55.5"/>
                                                 <subviews>
                                                     <slider opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="JBB-1r-z0E">
-                                                        <rect key="frame" x="-2" y="-1" width="324" height="31"/>
+                                                        <rect key="frame" x="-2" y="13" width="838" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </slider>
                                                 </subviews>
@@ -109,10 +108,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-Xu-Apb">
-                                                <rect key="frame" x="0.0" y="170.5" width="320" height="297.5"/>
+                                                <rect key="frame" x="0.0" y="333.5" width="834" height="678.5"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcb-Zd-FfH">
-                                                <rect key="frame" x="0.0" y="468" width="320" height="100"/>
+                                                <rect key="frame" x="0.0" y="1012" width="834" height="100"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZq-5C-hs8" customClass="JoyStickView" customModule="MetalByRaywenderlich_com" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="0.0" width="80" height="80"/>
@@ -134,7 +133,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfs-pi-M5N" customClass="JoyStickView" customModule="MetalByRaywenderlich_com" customModuleProvider="target">
-                                                        <rect key="frame" x="220" y="0.0" width="80" height="80"/>
+                                                        <rect key="frame" x="734" y="0.0" width="80" height="80"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="Ti2-mH-J90"/>
@@ -206,16 +205,16 @@
             </objects>
             <point key="canvasLocation" x="41" y="127"/>
         </scene>
-        <!--View Controller-->
+        <!--MBEViewController-->
         <scene sceneID="oVN-57-ERj">
             <objects>
-                <viewController storyboardIdentifier="MBEViewController" id="UJ0-Ak-kXz" customClass="MBEViewController" customModule="MetalByRaywenderlich_com" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MBEViewController" id="UJ0-Ak-kXz" userLabel="MBEViewController" customClass="MBEViewController" customModule="MetalByRaywenderlich_com" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a4p-XS-Kld" customClass="MTKView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-BD-1um">
-                                <rect key="frame" x="4.5" y="520" width="311" height="29"/>
+                                <rect key="frame" x="261.5" y="1064" width="311" height="29"/>
                                 <segments>
                                     <segment title="Blur"/>
                                     <segment title="Threshold"/>
@@ -238,7 +237,102 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YE5-rY-w5E" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="126"/>
+            <point key="canvasLocation" x="812" y="127"/>
+        </scene>
+        <!--Box View Controller-->
+        <scene sceneID="tCH-jo-JA7">
+            <objects>
+                <viewController storyboardIdentifier="BoxViewController" id="89G-1e-z3b" customClass="BoxViewController" customModule="MetalByRaywenderlich_com" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VOd-wE-nIw">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRi-hn-b7A" customClass="MTKView">
+                                <rect key="frame" x="0.0" y="10" width="834" height="1112"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fRi-hn-b7A" firstAttribute="height" secondItem="VOd-wE-nIw" secondAttribute="height" id="Tik-pO-rZC"/>
+                            <constraint firstItem="fRi-hn-b7A" firstAttribute="centerY" secondItem="ew8-UB-UPl" secondAttribute="centerY" id="ap7-IX-FaB"/>
+                            <constraint firstItem="fRi-hn-b7A" firstAttribute="centerX" secondItem="ew8-UB-UPl" secondAttribute="centerX" id="eAx-tb-rEK"/>
+                            <constraint firstItem="fRi-hn-b7A" firstAttribute="width" secondItem="VOd-wE-nIw" secondAttribute="width" id="jzh-Dq-6oo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ew8-UB-UPl"/>
+                    </view>
+                    <connections>
+                        <outlet property="metalKitView" destination="fRi-hn-b7A" id="2tN-Eu-0eT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ded-hZ-HqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1564" y="127"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="a05-ha-p4s">
+            <objects>
+                <viewController id="daI-al-rUE" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VZm-lQ-Upy" customClass="MetalView" customModule="MetalByRaywenderlich_com" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mY9-jV-wrK">
+                                <rect key="frame" x="10" y="50" width="814" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Multithreaded Encode" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fJC-zJ-gsx">
+                                        <rect key="frame" x="0.0" y="0.0" width="163" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Draws" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cMY-2r-KvP">
+                                        <rect key="frame" x="163" y="0.0" width="162.5" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5er-cf-hNp">
+                                        <rect key="frame" x="325.5" y="0.0" width="325.5" height="40"/>
+                                    </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Timing" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5G8-cE-d9T">
+                                        <rect key="frame" x="651" y="0.0" width="163" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="cMY-2r-KvP" firstAttribute="width" secondItem="mY9-jV-wrK" secondAttribute="width" multiplier="0.2" id="7B3-At-QjM"/>
+                                    <constraint firstItem="5G8-cE-d9T" firstAttribute="width" secondItem="mY9-jV-wrK" secondAttribute="width" multiplier="0.2" id="STp-bf-Pm5"/>
+                                    <constraint firstAttribute="height" constant="40" id="U1s-no-ife"/>
+                                    <constraint firstItem="fJC-zJ-gsx" firstAttribute="width" secondItem="mY9-jV-wrK" secondAttribute="width" multiplier="0.2" id="VBb-jD-KG7"/>
+                                </constraints>
+                            </stackView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="10" maxValue="200000" translatesAutoresizingMaskIntoConstraints="NO" id="jlV-OV-TwQ">
+                                <rect key="frame" x="8" y="20" width="818" height="31"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jlV-OV-TwQ" firstAttribute="leading" secondItem="A5u-Nk-t9i" secondAttribute="leading" constant="10" id="5zd-Nm-mdi"/>
+                            <constraint firstItem="jlV-OV-TwQ" firstAttribute="top" secondItem="A5u-Nk-t9i" secondAttribute="top" id="DRZ-d0-ASL"/>
+                            <constraint firstItem="mY9-jV-wrK" firstAttribute="leading" secondItem="A5u-Nk-t9i" secondAttribute="leading" constant="10" id="EXv-K2-kGa"/>
+                            <constraint firstItem="mY9-jV-wrK" firstAttribute="top" secondItem="jlV-OV-TwQ" secondAttribute="bottom" id="bvs-tP-VAy"/>
+                            <constraint firstItem="A5u-Nk-t9i" firstAttribute="trailing" secondItem="jlV-OV-TwQ" secondAttribute="trailing" constant="10" id="uI6-rq-onw"/>
+                            <constraint firstItem="A5u-Nk-t9i" firstAttribute="trailing" secondItem="mY9-jV-wrK" secondAttribute="trailing" constant="10" id="y28-Ti-qEo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A5u-Nk-t9i"/>
+                        <connections>
+                            <outlet property="drawCountField" destination="cMY-2r-KvP" id="ZFZ-L5-DhZ"/>
+                            <outlet property="frameEncodingTimeField" destination="5G8-cE-d9T" id="eYX-49-Ec1"/>
+                            <outlet property="mtLabel" destination="fJC-zJ-gsx" id="zWG-dg-Mtm"/>
+                            <outlet property="slider" destination="jlV-OV-TwQ" id="Rbr-3r-WYR"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="khc-6p-jte" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2283" y="130"/>
         </scene>
     </scenes>
     <resources>

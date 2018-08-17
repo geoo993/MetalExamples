@@ -34,8 +34,8 @@ vertex ColoredVertex project_vertex(constant ColoredVertexIn *vertices [[buffer(
 
 fragment half4 texture_fragment(ColoredVertex vert [[stage_in]],
                                 texture2d<float> diffuseTexture [[texture(0)]],
-                                sampler samplr [[sampler(0)]])
+                                sampler sampler2d [[sampler(0)]])
 {
-    float4 diffuse = diffuseTexture.sample(samplr, vert.texCoords);
+    float4 diffuse = diffuseTexture.sample(sampler2d, vert.texCoords);
     return half4(diffuse);
 };

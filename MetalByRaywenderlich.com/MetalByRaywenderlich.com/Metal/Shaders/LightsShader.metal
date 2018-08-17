@@ -98,7 +98,7 @@ fragment float4 lighting_fragment_shader(VertexOut vertexIn [[ stage_in ]],
                                         device PointLight *pointLights [[buffer(BufferIndexPointLightInfo)]],
                                         device SpotLight *spotLights [[buffer(BufferIndexSpotLightInfo)]],
                                         texture2d<float> texture [[ texture(TextureIndexColor) ]],
-                                        sampler sampler2d [[ sampler(0) ]]) {
+                                        sampler sampler2d [[ sampler(SamplerIndexMain) ]]) {
 
     // Properties
     // extract color from current fragmnet coordinates

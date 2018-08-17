@@ -18,6 +18,18 @@
 #endif
 #import <simd/simd.h>
 
+// --------- Vertex Data --------
+// Structure defining the layout of each vertex.  Shared between C code filling in the vertex data
+//   and Metal vertex shader consuming the vertices
+// The Vertex struct defines the layout and memory of each vertex in a vertex array passes into a vertex_shader
+typedef struct
+{
+    vector_float3 position;
+    packed_float2 texture;
+    vector_float4 color;
+    vector_float3 normal;
+} Vertex;
+
 // --------- Buffers and Indexes --------
 typedef NS_ENUM(NSInteger, BufferIndex)
 {
@@ -51,7 +63,22 @@ typedef NS_ENUM(NSInteger, TextureIndex)
     TextureIndexSpecularMap     = 4,
 };
 
+// Sampler index values shared between shader and C code to ensure Metal shader texture indices
+//   match indices of Metal API texture set calls
+// this tells what index the sampler state is in
+typedef NS_ENUM(NSInteger, SamplerIndex)
+{
+    SamplerIndexMain            = 0,
+};
 
+
+// --------- Materials --------
+typedef struct
+{
+    vector_float4 color;
+    float shininess; //Shininess values typically range from 1 to 128. Higher values result in more focussed specular highlights.
+    bool useTexture;
+} MaterialInfo;
 
 // --------- Matrix Uniform --------
 // each model will declare a model constant struct and this matrix will be sent to the GPU
@@ -68,18 +95,12 @@ typedef struct
     matrix_float3x3 normalMatrix;
 } Uniform;
 
-// --------- Attributes --------
-typedef struct
-{
-    vector_float4 color;
-    float shininess; //Shininess values typically range from 1 to 128. Higher values result in more focussed specular highlights.
-    bool useTexture;
-} MaterialInfo;
-
+// --------- Instance Uniform --------
 typedef struct {
     Uniform uniform;
     MaterialInfo material;
-} InstanceInfo;
+} InstanceUniform;
+
 
 
 // --------- Camera --------
@@ -148,6 +169,38 @@ typedef struct
     float frequency;
     float explosion;
 } FireBallConstants;
+
+
+struct ObjectData
+{
+    matrix_float4x4 LocalToWorld;
+    vector_float4 color;
+    vector_float4 pad0;
+    vector_float4 pad01;
+    vector_float4 pad02;
+    matrix_float4x4 pad1;
+    matrix_float4x4 pad2;
+
+};
+
+struct ShadowPass
+{
+    matrix_float4x4 ViewProjection;
+    matrix_float4x4 pad1;
+    matrix_float4x4 pad2;
+    matrix_float4x4 pad3;
+};
+
+struct MainPass
+{
+    matrix_float4x4 ViewProjection;
+    matrix_float4x4 ViewShadow0Projection;
+    vector_float4    LightPosition;
+    vector_float4    pad00;
+    vector_float4    pad01;
+    vector_float4    pad02;
+    matrix_float4x4 pad1;
+};
 
 
 #endif /* ShaderTypes_h */

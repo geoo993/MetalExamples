@@ -15,7 +15,7 @@ class Instance: Node {
     // Mark: - properties
     var model: Model
     var nodes = [Node]()
-    var instances = [InstanceInfo]()
+    var instances = [InstanceUniform]()
 
     // create a MetalBuffer and store the object instances in that buffer
     var instanceBuffer: MTLBuffer?
@@ -56,7 +56,7 @@ class Instance: Node {
         for i in 0..<instances {
             let node = Node(name: "Instance \(i)")
             self.nodes.append(node)
-            self.instances.append(InstanceInfo())
+            self.instances.append(InstanceUniform())
         }
     }
 
@@ -67,7 +67,7 @@ class Instance: Node {
 
     func makeBuffer(device: MTLDevice) {
         self.instanceBuffer = device
-            .makeBuffer(length: instances.count * MemoryLayout<InstanceInfo>.stride , options: [])
+            .makeBuffer(length: instances.count * MemoryLayout<InstanceUniform>.stride , options: [])
         self.instanceBuffer?.label = "Instance Buffer"
     }
 
@@ -79,7 +79,7 @@ extension Instance: Renderable {
         guard let instanceBuffer = instanceBuffer, nodes.count > 0 else { return }
 
         commandEncoder.setRenderPipelineState(pipelineState)
-        commandEncoder.setFragmentSamplerState(samplerState, index: 0)
+        commandEncoder.setFragmentSamplerState(samplerState, index: SamplerIndex.main.rawValue)
 
         commandEncoder.setFrontFacing(.counterClockwise)
         commandEncoder.setCullMode(.back)
@@ -87,7 +87,7 @@ extension Instance: Renderable {
 
 
         // we need to update each instance in the buffer at every draw
-        var pointer = instanceBuffer.contents().bindMemory(to: InstanceInfo.self, capacity: nodes.count)
+        var pointer = instanceBuffer.contents().bindMemory(to: InstanceUniform.self, capacity: nodes.count)
 
         for node in nodes {
             // setup the matrices attributes

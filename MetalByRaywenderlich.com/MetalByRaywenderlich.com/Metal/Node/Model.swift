@@ -166,7 +166,7 @@ extension Model: Renderable {
     func doRender(commandEncoder: MTLRenderCommandEncoder, modelMatrix: matrix_float4x4, camera: Camera) {
 
         commandEncoder.setRenderPipelineState(pipelineState)
-        commandEncoder.setFragmentSamplerState(samplerState, index: 0)
+        commandEncoder.setFragmentSamplerState(samplerState, index: SamplerIndex.main.rawValue)
 
         commandEncoder.setCullMode(.back)
         commandEncoder.setFrontFacing(.counterClockwise)
@@ -214,6 +214,10 @@ extension Model: Renderable {
                     // To tell our vertex function where to get data from, we need to tell it which buffers contain the data. We will accomplish this in two separate ways, depending on the type of data.
                     //First, we will set up the buffer that contains our vertex data with the setVertexBuffer(_:offset:index:) method. The offset parameter indicates where in the buffer the data starts, while the at parameter specifies the buffer index. The buffer index corresponds to the bufferIndex property of the attributes specified in our vertex descriptor; this is what creates the linkage between how the data is laid out in the buffer and how it is laid out in the struct taken as a parameter by our vertex function.
                     let vertexBuffer = mesh.vertexBuffers[index]
+
+                    // takes: buffer, offset and index.
+                    // the index is the argument table index of the buffer in the metal shader.
+                    // as the host, we are setting resources that are going to be used in the shader
                     commandEncoder.setVertexBuffer(vertexBuffer.buffer, offset: vertexBuffer.offset, index: index)
                 }
             }

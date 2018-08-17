@@ -42,10 +42,3 @@ enum FragmentFunction: String {
     case fragment_toon_shader
     case fragment_fire_ball_shader
 }
-
-struct Vertex {
-    var position: float3
-    var texture: float2
-    var color: float4
-    var normal: float3
-}

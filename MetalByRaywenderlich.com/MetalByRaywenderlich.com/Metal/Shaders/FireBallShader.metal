@@ -243,7 +243,7 @@ fragment float4 fragment_fire_ball_shader(VertexOut vertexIn [[ stage_in ]],
                                           constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
                                           constant PointLight *lights [[buffer(BufferIndexPointLightInfo)]],
                                           texture2d<float, access::sample> texture [[ texture(TextureIndexColor) ]],
-                                          sampler sampler2d [[sampler(0)]])
+                                          sampler sampler2d [[sampler(SamplerIndexMain)]])
 {
 
     // get a random offset

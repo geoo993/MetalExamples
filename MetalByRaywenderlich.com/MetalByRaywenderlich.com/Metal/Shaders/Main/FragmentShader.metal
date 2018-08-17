@@ -37,7 +37,7 @@ fragment half4 fragment_normal(VertexOut vertexIn [[ stage_in ]]) {
 // the second parameter here is the texture in fragment buffer 0
 fragment half4 fragment_texture_shader(VertexOut vertexIn [[ stage_in ]],
                                        texture2d<float> texture [[ texture(TextureIndexColor) ]],
-                                       sampler sampler2d [[ sampler(0) ]]) {
+                                       sampler sampler2d [[ sampler(SamplerIndexMain) ]]) {
 
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);
@@ -53,7 +53,7 @@ fragment half4 fragment_texture_shader(VertexOut vertexIn [[ stage_in ]],
 fragment half4 fragment_textured_mask_shader(VertexOut vertexIn [[ stage_in ]],
                                              texture2d<float> texture [[ texture(TextureIndexColor)]],
                                              texture2d<float> maskTexture [[ texture(TextureIndexMask) ]],
-                                             sampler sampler2d [[sampler(0)]]) {
+                                             sampler sampler2d [[sampler(SamplerIndexMain)]]) {
 
     // extract color from current fragmnet coordinates
     float4 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates);

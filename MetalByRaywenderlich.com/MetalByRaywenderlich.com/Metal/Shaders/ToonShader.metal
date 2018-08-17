@@ -35,7 +35,7 @@ fragment float4 fragment_toon_shader(VertexOut vertexIn [[ stage_in ]],
                                      constant MaterialInfo &material [[ buffer(BufferIndexMaterialInfo) ]],
                                      constant PointLight *lights [[buffer(BufferIndexPointLightInfo)]],
                                      texture2d<float, access::sample> texture [[ texture(TextureIndexColor) ]],
-                                     sampler sampler2d [[sampler(0)]])
+                                     sampler sampler2d [[sampler(SamplerIndexMain)]])
 {
 
     float3 textcolor = texture.sample(sampler2d, vertexIn.textureCoordinates).rgb;

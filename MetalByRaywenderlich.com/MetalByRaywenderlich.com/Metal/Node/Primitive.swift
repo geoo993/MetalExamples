@@ -158,7 +158,7 @@ extension Primitive: Renderable {
         // multiple commands each with its own command encoder.
         commandEncoder.setRenderPipelineState(pipelineState)
 
-        commandEncoder.setFragmentSamplerState(samplerState, index: 0)
+        commandEncoder.setFragmentSamplerState(samplerState, index: SamplerIndex.main.rawValue)
 
 
         // if we want to render face that are facing towards by using something called backface culling
