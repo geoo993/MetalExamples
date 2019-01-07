@@ -31,23 +31,6 @@ class GameObjectScene: Scene {
         super.setup(view: view)
         name = "GameObject scene"
 
-        let teapot = Model(mtkView: view, modelName: "teapot", imageName: "tiles_baseColor.jpg",
-                           fragmentShader: .fragment_toon_shader)
-        teapot.name = "Teapot"
-        teapot.scale = float3(2.0)
-        teapot.material.shininess = 20
-        teapot.position = float3(1, 2, 4)
-        teapot.material.color = float4(1.0, 0.0, 0.0, 1)
-        teapot.material.useTexture = false
-        rootNode.children.append(teapot)
-
-        let mushroom = Model(mtkView: view, modelName: "mushroom", fragmentShader: .fragment_toon_shader)
-        mushroom.name = "Mushroom"
-        mushroom.material.useTexture = true
-        mushroom.material.color = float4(1, 0, 1, 1)
-        mushroom.material.shininess = materialShininess
-        rootNode.children.append(mushroom)
-
         let sphere = Sphere(mtkView: view, imageName: "explosion.png",
                             vertexShader: .vertex_fire_ball_shader, fragmentShader: .fragment_fire_ball_shader)
         sphere.name = "Sphere"
@@ -55,14 +38,6 @@ class GameObjectScene: Scene {
         sphere.material.color = float4(0, 1, 0, 1)
         sphere.material.shininess = materialShininess
         rootNode.children.append(sphere)
-
-        for i in 0..<pointLightPositions.count {
-            let position: float3 = pointLightPositions[i]
-            let color: float3 = pointlightsColours[i]
-            let pointLight = createPointLight(view: view, name: "PointLight\(i)", color: color, position: position, intensity: 0)
-            add(childNode: pointLight.object)
-            pointLights.append(pointLight.light)
-        }
 
         camera.set(position: float3(0, 0,-5), viewpoint: float3(0,0,1), up: float3(0,1,0))
     }
@@ -72,39 +47,10 @@ class GameObjectScene: Scene {
         camera.updateRotation(angle: leftCameraAngle, displacement: leftCameraDisplacement)
         camera.updateMovement(deltaTime: deltaTime, angle: rightCameraAngle, displacement: rightCameraDisplacement)
 
-        if let mushroom = nodeNamed("Mushroom") {
-            //mushroom.rotation.y = -time
-            mushroom.material.shininess = materialShininess
-            mushroom.material.useTexture = true
-        }
-
         if let sphere = nodeNamed("Sphere") {
-            //sphere.rotation.y = -time
-            sphere.position = float3(-3, 4, -5)
-            sphere.material.shininess = materialShininess
-            sphere.material.useTexture = true
+            sphere.rotation.y = -time
         }
 
-        if let teapot = nodeNamed("Teapot") {
-            //teapot.material.color.x = sin( time * 0.1 )
-            //teapot.material.color.y = sin( time * 0.06 )
-            //teapot.material.color.z = sin( time * 0.03 )
-            //teapot.material.color.w = 1.0
-            teapot.material.shininess = materialShininess
-            teapot.material.useTexture = false
-        }
-
-        for i in 0..<pointLightPositions.count {
-            pointLights[i].position = pointLightPositions[i]
-            pointLights[i].base.color = pointlightsColours[i]
-            pointLights[i].base.intensity = lightIntensity
-            pointLights[i].base.ambient = 0.15
-            pointLights[i].base.diffuse = 0.8
-            pointLights[i].base.specular = 0.9
-            pointLights[i].atten.continual = 1.0
-            pointLights[i].atten.linear = 0.09
-            pointLights[i].atten.exponent = 0.032
-        }
     }
 
     override func touchesBegan(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
@@ -118,7 +64,7 @@ class GameObjectScene: Scene {
         previousTouchLocation = touchLocation
     }
 
-    override func onSlider(_ type: SliderType, phase: UITouchPhase, value: Float) {
+    override func onSlider(_ type: SliderType, phase: UITouch.Phase, value: Float) {
         switch type {
         case .slider_x0: // 0 - 1
             toonEdge = value

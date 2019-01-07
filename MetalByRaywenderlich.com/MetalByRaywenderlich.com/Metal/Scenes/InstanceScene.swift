@@ -2,7 +2,7 @@
 import MetalKit
 import AppCore
 
-class InstanceScene: Scene {
+public class InstanceScene: Scene {
 
     var humans: Instance!
 
@@ -11,7 +11,7 @@ class InstanceScene: Scene {
 
     }
     
-    override func setup(view: MTKView) {
+    override public func setup(view: MTKView) {
         super.setup(view: view)
         name = "Instance scene"
 
@@ -31,7 +31,7 @@ class InstanceScene: Scene {
 
     }
 
-    override func update(deltaTime: Float) {
+    override public func update(deltaTime: Float) {
         super.update(deltaTime: deltaTime)
 
 

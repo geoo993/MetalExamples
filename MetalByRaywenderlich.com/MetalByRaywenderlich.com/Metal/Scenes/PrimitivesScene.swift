@@ -1,6 +1,7 @@
 import MetalKit
+import AppCore
 
-class PrimitivesScene: Scene {
+public class PrimitivesScene: Scene {
 
     var mushroom: Model!
     var cube: Cube!
@@ -15,11 +16,11 @@ class PrimitivesScene: Scene {
 
     var cameraRotation: Float = 0
 
-    override init(mtkView: MTKView, camera: Camera) {
+    override public init(mtkView: MTKView, camera: Camera) {
         super.init(mtkView: mtkView, camera: camera)
     }
 
-    override func setup (view: MTKView) {
+    override public func setup (view: MTKView) {
         super.setup(view: view)
         name = "Primitives scene"
 
@@ -100,7 +101,7 @@ class PrimitivesScene: Scene {
 
     }
 
-    override func update(deltaTime: Float) {
+    override public func update(deltaTime: Float) {
         super.update(deltaTime: deltaTime)
 
         cameraRotation += deltaTime * 10

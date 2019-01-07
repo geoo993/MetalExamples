@@ -11,6 +11,7 @@ import UIKit
 import Metal
 import MetalKit
 import Dispatch
+import AppCore
 
 let DEG2RAD = Double.pi / 180.0
 

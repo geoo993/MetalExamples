@@ -87,6 +87,7 @@ class MetalViewController: UIViewController {
             fatalError("Device not created. Run on a physical device")
         }
 
+        
         // setup scene
         let currentDevice = UIDevice.current.modelName
         let width = CGFloat.width(ofDevice: currentDevice).width
@@ -107,9 +108,7 @@ class MetalViewController: UIViewController {
         // Setup MTKView and delegate
         metalKitView.delegate = renderer
 
-        // Play sound
-        //SoundController.shared.playBackgroundMusic("Gem.mp3")
-
+        
         leftJoyStick.monitor = { angle, displacement in
             scene.leftCameraAngle = Float(angle)
             scene.leftCameraDisplacement = Float(displacement)

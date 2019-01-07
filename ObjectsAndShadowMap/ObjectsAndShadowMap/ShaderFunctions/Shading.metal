@@ -1,5 +1,5 @@
 #include <metal_stdlib>
-#include "/../ShaderFunctions/VertexShaderData.h"
+#include "VertexShaderData.h"
 using namespace metal;
 
 struct ShadowVertex

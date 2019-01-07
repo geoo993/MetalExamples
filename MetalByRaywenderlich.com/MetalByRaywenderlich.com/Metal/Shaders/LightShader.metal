@@ -7,7 +7,7 @@
 //
 
 #include <metal_stdlib>
-#include "Main/Shader.h"
+#include "../ShaderFunctions/VertexShaderData.h"
 
 using namespace metal;
 

@@ -7,6 +7,8 @@
  */
 
 import Foundation
+import simd
+import AppCore
 import Metal
 
 class RenderableObject

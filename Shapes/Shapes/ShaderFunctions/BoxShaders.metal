@@ -7,7 +7,7 @@
 */
 
 #include <metal_stdlib>
-#include "../Metal/Shaders/Main/Shader.h"
+#include "VertexShaderData.h"
 using namespace metal;
 
 constant half3 ambientLightIntensity(0.1, 0.1, 0.1);

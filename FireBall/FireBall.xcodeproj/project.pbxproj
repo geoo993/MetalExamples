@@ -12,7 +12,37 @@
 		C71DB2E521E291730004ADD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71DB2E321E291730004ADD2 /* Main.storyboard */; };
 		C71DB2E721E291750004ADD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C71DB2E621E291750004ADD2 /* Assets.xcassets */; };
 		C71DB2EA21E291750004ADD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71DB2E821E291750004ADD2 /* LaunchScreen.storyboard */; };
+		C7B7236A21E2D96500C6F65D /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B7236921E2D96500C6F65D /* SoundController.swift */; };
+		C7B7237921E2DDBE00C6F65D /* bulletstorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7236F21E2DDBD00C6F65D /* bulletstorm.mp3 */; };
+		C7B7237A21E2DDBE00C6F65D /* Kai_Engel_-_03_-_Realness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237021E2DDBD00C6F65D /* Kai_Engel_-_03_-_Realness.mp3 */; };
+		C7B7237B21E2DDBE00C6F65D /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237121E2DDBD00C6F65D /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 */; };
+		C7B7237C21E2DDBE00C6F65D /* Quest Complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237221E2DDBD00C6F65D /* Quest Complete.mp3 */; };
+		C7B7237D21E2DDBE00C6F65D /* Gem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237321E2DDBD00C6F65D /* Gem.mp3 */; };
+		C7B7237E21E2DDBE00C6F65D /* Success_Effect_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237421E2DDBD00C6F65D /* Success_Effect_1.mp3 */; };
+		C7B7237F21E2DDBE00C6F65D /* Success_Effect_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237521E2DDBE00C6F65D /* Success_Effect_2.mp3 */; };
+		C7B7238021E2DDBE00C6F65D /* Marcel_Pequel_-_06_-_Six.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237621E2DDBE00C6F65D /* Marcel_Pequel_-_06_-_Six.mp3 */; };
+		C7B7238121E2DDBE00C6F65D /* Kai_Engel_-_03_-_Brooks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237721E2DDBE00C6F65D /* Kai_Engel_-_03_-_Brooks.mp3 */; };
+		C7B7238221E2DDBE00C6F65D /* Slow electronic song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7B7237821E2DDBE00C6F65D /* Slow electronic song.mp3 */; };
+		C7B7238421E2DDC400C6F65D /* GameObjectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B7238321E2DDC400C6F65D /* GameObjectScene.swift */; };
+		C7B7238621E2DDCC00C6F65D /* FireBallShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7B7238521E2DDCB00C6F65D /* FireBallShader.metal */; };
+		C7B7238D21E2DDDB00C6F65D /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B7238C21E2DDDB00C6F65D /* AppCore.framework */; };
+		C7B7238E21E2DDDB00C6F65D /* AppCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C7B7238C21E2DDDB00C6F65D /* AppCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C7B7239221E2E02C00C6F65D /* explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = C7B7239121E2E02C00C6F65D /* explosion.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C7B7238F21E2DDDB00C6F65D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C7B7238E21E2DDDB00C6F65D /* AppCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C71DB2DC21E291730004ADD2 /* FireBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +52,22 @@
 		C71DB2E621E291750004ADD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C71DB2E921E291750004ADD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C71DB2EB21E291750004ADD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7B7236921E2D96500C6F65D /* SoundController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
+		C7B7236F21E2DDBD00C6F65D /* bulletstorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bulletstorm.mp3; sourceTree = "<group>"; };
+		C7B7237021E2DDBD00C6F65D /* Kai_Engel_-_03_-_Realness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_03_-_Realness.mp3"; sourceTree = "<group>"; };
+		C7B7237121E2DDBD00C6F65D /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_08_-_Oecumene_Sleeps.mp3"; sourceTree = "<group>"; };
+		C7B7237221E2DDBD00C6F65D /* Quest Complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quest Complete.mp3"; sourceTree = "<group>"; };
+		C7B7237321E2DDBD00C6F65D /* Gem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Gem.mp3; sourceTree = "<group>"; };
+		C7B7237421E2DDBD00C6F65D /* Success_Effect_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Success_Effect_1.mp3; sourceTree = "<group>"; };
+		C7B7237521E2DDBE00C6F65D /* Success_Effect_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Success_Effect_2.mp3; sourceTree = "<group>"; };
+		C7B7237621E2DDBE00C6F65D /* Marcel_Pequel_-_06_-_Six.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcel_Pequel_-_06_-_Six.mp3"; sourceTree = "<group>"; };
+		C7B7237721E2DDBE00C6F65D /* Kai_Engel_-_03_-_Brooks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kai_Engel_-_03_-_Brooks.mp3"; sourceTree = "<group>"; };
+		C7B7237821E2DDBE00C6F65D /* Slow electronic song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Slow electronic song.mp3"; sourceTree = "<group>"; };
+		C7B7238321E2DDC400C6F65D /* GameObjectScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObjectScene.swift; sourceTree = "<group>"; };
+		C7B7238521E2DDCB00C6F65D /* FireBallShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = FireBallShader.metal; sourceTree = "<group>"; };
+		C7B7238921E2DDD400C6F65D /* VertexShaderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexShaderData.h; sourceTree = "<group>"; };
+		C7B7238C21E2DDDB00C6F65D /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7B7239121E2E02C00C6F65D /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7B7238D21E2DDDB00C6F65D /* AppCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +85,7 @@
 		C71DB2D321E291730004ADD2 = {
 			isa = PBXGroup;
 			children = (
+				C7B7238C21E2DDDB00C6F65D /* AppCore.framework */,
 				C71DB2DE21E291730004ADD2 /* FireBall */,
 				C71DB2DD21E291730004ADD2 /* Products */,
 			);
@@ -55,6 +103,12 @@
 			isa = PBXGroup;
 			children = (
 				C71DB2DF21E291730004ADD2 /* AppDelegate.swift */,
+				C7B7239021E2E01A00C6F65D /* Resources */,
+				C7B7236D21E2DCD500C6F65D /* ShaderFunctions */,
+				C7B7236C21E2DCCE00C6F65D /* Shaders */,
+				C7B7236B21E2DCBD00C6F65D /* Scenes */,
+				C7B7236E21E2DD9100C6F65D /* Sounds */,
+				C7B7236921E2D96500C6F65D /* SoundController.swift */,
 				C71DB2E121E291730004ADD2 /* ViewController.swift */,
 				C71DB2E321E291730004ADD2 /* Main.storyboard */,
 				C71DB2E621E291750004ADD2 /* Assets.xcassets */,
@@ -62,6 +116,55 @@
 				C71DB2EB21E291750004ADD2 /* Info.plist */,
 			);
 			path = FireBall;
+			sourceTree = "<group>";
+		};
+		C7B7236B21E2DCBD00C6F65D /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C7B7238321E2DDC400C6F65D /* GameObjectScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C7B7236C21E2DCCE00C6F65D /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C7B7238521E2DDCB00C6F65D /* FireBallShader.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		C7B7236D21E2DCD500C6F65D /* ShaderFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				C7B7238921E2DDD400C6F65D /* VertexShaderData.h */,
+			);
+			path = ShaderFunctions;
+			sourceTree = "<group>";
+		};
+		C7B7236E21E2DD9100C6F65D /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C7B7236F21E2DDBD00C6F65D /* bulletstorm.mp3 */,
+				C7B7237321E2DDBD00C6F65D /* Gem.mp3 */,
+				C7B7237721E2DDBE00C6F65D /* Kai_Engel_-_03_-_Brooks.mp3 */,
+				C7B7237021E2DDBD00C6F65D /* Kai_Engel_-_03_-_Realness.mp3 */,
+				C7B7237121E2DDBD00C6F65D /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 */,
+				C7B7237621E2DDBE00C6F65D /* Marcel_Pequel_-_06_-_Six.mp3 */,
+				C7B7237221E2DDBD00C6F65D /* Quest Complete.mp3 */,
+				C7B7237821E2DDBE00C6F65D /* Slow electronic song.mp3 */,
+				C7B7237421E2DDBD00C6F65D /* Success_Effect_1.mp3 */,
+				C7B7237521E2DDBE00C6F65D /* Success_Effect_2.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		C7B7239021E2E01A00C6F65D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C7B7239121E2E02C00C6F65D /* explosion.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +177,7 @@
 				C71DB2D821E291730004ADD2 /* Sources */,
 				C71DB2D921E291730004ADD2 /* Frameworks */,
 				C71DB2DA21E291730004ADD2 /* Resources */,
+				C7B7238F21E2DDDB00C6F65D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,8 +227,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C71DB2EA21E291750004ADD2 /* LaunchScreen.storyboard in Resources */,
+				C7B7237E21E2DDBE00C6F65D /* Success_Effect_1.mp3 in Resources */,
+				C7B7237F21E2DDBE00C6F65D /* Success_Effect_2.mp3 in Resources */,
 				C71DB2E721E291750004ADD2 /* Assets.xcassets in Resources */,
+				C7B7237921E2DDBE00C6F65D /* bulletstorm.mp3 in Resources */,
+				C7B7239221E2E02C00C6F65D /* explosion.png in Resources */,
+				C7B7238121E2DDBE00C6F65D /* Kai_Engel_-_03_-_Brooks.mp3 in Resources */,
+				C7B7237A21E2DDBE00C6F65D /* Kai_Engel_-_03_-_Realness.mp3 in Resources */,
 				C71DB2E521E291730004ADD2 /* Main.storyboard in Resources */,
+				C7B7237B21E2DDBE00C6F65D /* Kai_Engel_-_08_-_Oecumene_Sleeps.mp3 in Resources */,
+				C7B7237D21E2DDBE00C6F65D /* Gem.mp3 in Resources */,
+				C7B7237C21E2DDBE00C6F65D /* Quest Complete.mp3 in Resources */,
+				C7B7238221E2DDBE00C6F65D /* Slow electronic song.mp3 in Resources */,
+				C7B7238021E2DDBE00C6F65D /* Marcel_Pequel_-_06_-_Six.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +251,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C71DB2E221E291730004ADD2 /* ViewController.swift in Sources */,
+				C7B7236A21E2D96500C6F65D /* SoundController.swift in Sources */,
 				C71DB2E021E291730004ADD2 /* AppDelegate.swift in Sources */,
+				C7B7238621E2DDCC00C6F65D /* FireBallShader.metal in Sources */,
+				C7B7238421E2DDC400C6F65D /* GameObjectScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +401,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FDAK5XPRG7;
 				INFOPLIST_FILE = FireBall/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +420,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FDAK5XPRG7;
 				INFOPLIST_FILE = FireBall/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

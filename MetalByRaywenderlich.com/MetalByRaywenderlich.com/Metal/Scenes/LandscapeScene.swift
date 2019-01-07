@@ -1,7 +1,8 @@
 
 import MetalKit
+import AppCore
 
-class LandscapeScene: Scene {
+public class LandscapeScene: Scene {
 
     var sun: Sphere!
     var ground: Plane!
@@ -10,11 +11,11 @@ class LandscapeScene: Scene {
 
     var cameraRotation: Float = 0
 
-    override init(mtkView: MTKView, camera: Camera) {
+    override public init(mtkView: MTKView, camera: Camera) {
         super.init(mtkView: mtkView, camera: camera)
     }
 
-    override func setup (view: MTKView) {
+    override public func setup (view: MTKView) {
         super.setup(view: view)
         name = "Landscape scene"
 
@@ -83,7 +84,7 @@ class LandscapeScene: Scene {
         camera.set(position: float3(0, 10, -20), viewpoint: float3(0,0,0), up: float3(0,1,0))
     }
 
-    override func update(deltaTime: Float) {
+    override public func update(deltaTime: Float) {
         super.update(deltaTime: deltaTime)
 
         cameraRotation += deltaTime * 20

@@ -8,8 +8,9 @@
 
 
 import Foundation
-import Metal
+import simd
 import AppCore
+import Metal
 
 class WWDCCamera
 {

@@ -8,20 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		C71DB33A21E2980B0004ADD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DB33921E2980B0004ADD2 /* AppDelegate.swift */; };
-		C71DB33C21E2980B0004ADD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DB33B21E2980B0004ADD2 /* ViewController.swift */; };
 		C71DB33F21E2980B0004ADD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71DB33D21E2980B0004ADD2 /* Main.storyboard */; };
 		C71DB34121E2980B0004ADD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C71DB34021E2980B0004ADD2 /* Assets.xcassets */; };
 		C71DB34421E2980B0004ADD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71DB34221E2980B0004ADD2 /* LaunchScreen.storyboard */; };
+		C71DB37421E29CCB0004ADD2 /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C71DB37321E29CCB0004ADD2 /* AppCore.framework */; };
+		C71DB37521E29CCB0004ADD2 /* AppCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C71DB37321E29CCB0004ADD2 /* AppCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C7B7233421E2BDF900C6F65D /* Shading.metal in Sources */ = {isa = PBXBuildFile; fileRef = C71DB34D21E2985D0004ADD2 /* Shading.metal */; };
+		C7B7233621E2C30E00C6F65D /* Visualize.metal in Sources */ = {isa = PBXBuildFile; fileRef = C71DB34F21E2985D0004ADD2 /* Visualize.metal */; };
+		C7B7233721E2C31100C6F65D /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DB34B21E2985D0004ADD2 /* MetalView.swift */; };
+		C7B7233821E2C31300C6F65D /* RenderableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DB34C21E2985D0004ADD2 /* RenderableObject.swift */; };
+		C7B7233921E2C31500C6F65D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DB34E21E2985D0004ADD2 /* Utils.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C71DB37621E29CCC0004ADD2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C71DB37521E29CCB0004ADD2 /* AppCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C71DB33621E2980B0004ADD2 /* ObjectsAndShadowMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectsAndShadowMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71DB33921E2980B0004ADD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C71DB33B21E2980B0004ADD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C71DB33E21E2980B0004ADD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C71DB34021E2980B0004ADD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C71DB34321E2980B0004ADD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C71DB34521E2980B0004ADD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C71DB34B21E2985D0004ADD2 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		C71DB34C21E2985D0004ADD2 /* RenderableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderableObject.swift; sourceTree = "<group>"; };
+		C71DB34D21E2985D0004ADD2 /* Shading.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shading.metal; sourceTree = "<group>"; };
+		C71DB34E21E2985D0004ADD2 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		C71DB34F21E2985D0004ADD2 /* Visualize.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Visualize.metal; sourceTree = "<group>"; };
+		C71DB35121E29AC80004ADD2 /* VertexShaderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexShaderData.h; sourceTree = "<group>"; };
+		C71DB37321E29CCB0004ADD2 /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71DB37421E29CCB0004ADD2 /* AppCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +65,7 @@
 		C71DB32D21E2980A0004ADD2 = {
 			isa = PBXGroup;
 			children = (
+				C71DB37321E29CCB0004ADD2 /* AppCore.framework */,
 				C71DB33821E2980B0004ADD2 /* ObjectsAndShadowMap */,
 				C71DB33721E2980B0004ADD2 /* Products */,
 			);
@@ -54,14 +82,35 @@
 		C71DB33821E2980B0004ADD2 /* ObjectsAndShadowMap */ = {
 			isa = PBXGroup;
 			children = (
+				C7B7233321E2B8C200C6F65D /* ShaderFunctions */,
+				C71DB35021E2985D0004ADD2 /* WWDC2016ObjectsAndShadowMap */,
 				C71DB33921E2980B0004ADD2 /* AppDelegate.swift */,
-				C71DB33B21E2980B0004ADD2 /* ViewController.swift */,
 				C71DB33D21E2980B0004ADD2 /* Main.storyboard */,
 				C71DB34021E2980B0004ADD2 /* Assets.xcassets */,
 				C71DB34221E2980B0004ADD2 /* LaunchScreen.storyboard */,
 				C71DB34521E2980B0004ADD2 /* Info.plist */,
 			);
 			path = ObjectsAndShadowMap;
+			sourceTree = "<group>";
+		};
+		C71DB35021E2985D0004ADD2 /* WWDC2016ObjectsAndShadowMap */ = {
+			isa = PBXGroup;
+			children = (
+				C71DB34B21E2985D0004ADD2 /* MetalView.swift */,
+				C71DB34C21E2985D0004ADD2 /* RenderableObject.swift */,
+				C71DB34E21E2985D0004ADD2 /* Utils.swift */,
+			);
+			path = WWDC2016ObjectsAndShadowMap;
+			sourceTree = "<group>";
+		};
+		C7B7233321E2B8C200C6F65D /* ShaderFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				C71DB35121E29AC80004ADD2 /* VertexShaderData.h */,
+				C71DB34D21E2985D0004ADD2 /* Shading.metal */,
+				C71DB34F21E2985D0004ADD2 /* Visualize.metal */,
+			);
+			path = ShaderFunctions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +123,7 @@
 				C71DB33221E2980B0004ADD2 /* Sources */,
 				C71DB33321E2980B0004ADD2 /* Frameworks */,
 				C71DB33421E2980B0004ADD2 /* Resources */,
+				C71DB37621E29CCC0004ADD2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,8 +185,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71DB33C21E2980B0004ADD2 /* ViewController.swift in Sources */,
+				C7B7233821E2C31300C6F65D /* RenderableObject.swift in Sources */,
+				C7B7233721E2C31100C6F65D /* MetalView.swift in Sources */,
+				C7B7233421E2BDF900C6F65D /* Shading.metal in Sources */,
 				C71DB33A21E2980B0004ADD2 /* AppDelegate.swift in Sources */,
+				C7B7233621E2C30E00C6F65D /* Visualize.metal in Sources */,
+				C7B7233921E2C31500C6F65D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +337,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FDAK5XPRG7;
 				INFOPLIST_FILE = ObjectsAndShadowMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,6 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FDAK5XPRG7;
 				INFOPLIST_FILE = ObjectsAndShadowMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ObjectsAndShadowMap/ObjectsAndShadowMap.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Shapes/Shapes.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/GeorgeQuentin/Dev/MetalExamples/MetalPerformanceShaders/PerformanceShaders.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FireBall/FireBall.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:BreakOut/BreakOut.xcodeproj">
    </FileRef>
    <FileRef

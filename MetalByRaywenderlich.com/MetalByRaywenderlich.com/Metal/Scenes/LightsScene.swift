@@ -3,7 +3,7 @@
 import MetalKit
 import AppCore
 
-class LightsScene: Scene {
+public class LightsScene: Scene {
 
     var cubesPosition: [float3] = [
         float3(-1.0, -4.0, -1.0),
@@ -30,12 +30,12 @@ class LightsScene: Scene {
     var rightCameraDisplacement: Float = 0
     let fishCount = 12
     
-    override init(mtkView: MTKView, camera: Camera) {
+    override public init(mtkView: MTKView, camera: Camera) {
         super.init(mtkView: mtkView, camera: camera)
 
     }
 
-    override func setup(view: MTKView) {
+    override public func setup(view: MTKView) {
         super.setup(view: view)
         name = "Lights scene"
 
@@ -103,7 +103,7 @@ class LightsScene: Scene {
         camera.set(position: float3(0, 0,-5), viewpoint: float3(0,0,1), up: float3(0,1,0))
     }
 
-    override func update(deltaTime: Float) {
+    override public func update(deltaTime: Float) {
         super.update(deltaTime: deltaTime)
         camera.updateRotation(angle: leftCameraAngle, displacement: leftCameraDisplacement)
         camera.updateMovement(deltaTime: deltaTime, angle: rightCameraAngle, displacement: rightCameraDisplacement)
@@ -194,12 +194,12 @@ class LightsScene: Scene {
         
     }
 
-    override func touchesBegan(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         previousTouchLocation = touch.location(in: view)
     }
 
-    override func touchesMoved(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesMoved(_ view: UIView, touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: view)
         //let delta = CGPoint(x: previousTouchLocation.x - touchLocation.x,
@@ -211,7 +211,7 @@ class LightsScene: Scene {
         previousTouchLocation = touchLocation
     }
 
-    override func onSlider(_ type: SliderType, phase: UITouchPhase, value: Float) {
+    override public func onSlider(_ type: SliderType, phase: UITouchPhase, value: Float) {
         switch type {
         case .slider_x0: // 0 - 1
             break

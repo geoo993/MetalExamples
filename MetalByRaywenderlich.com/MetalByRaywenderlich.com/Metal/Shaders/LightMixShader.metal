@@ -27,7 +27,7 @@
 // The Metal Standard Library contains many types and functions for doing vertex and matrix math,
 // which is most of what you’ll be doing in the shaders.
 #include <metal_stdlib>
-#include "Main/Shader.h"
+#include "../ShaderFunctions/VertexShaderData.h"
 using namespace metal;
 
 // http://metalbyexample.com/modern-metal-2/

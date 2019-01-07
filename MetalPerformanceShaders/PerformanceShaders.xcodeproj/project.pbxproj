@@ -20,6 +20,7 @@
 		C7B7235F21E2CD3B00C6F65D /* ComputeShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7B7235E21E2CD3B00C6F65D /* ComputeShaders.metal */; };
 		C7B7236121E2CD8F00C6F65D /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B7236021E2CD8F00C6F65D /* AppCore.framework */; };
 		C7B7236221E2CD8F00C6F65D /* AppCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C7B7236021E2CD8F00C6F65D /* AppCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C7B7236521E2CF3600C6F65D /* RenderShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7B7236421E2CF3600C6F65D /* RenderShaders.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,7 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C71DB2FA21E293B10004ADD2 /* MetalPerformanceShaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalPerformanceShaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C71DB2FA21E293B10004ADD2 /* PerformanceShaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceShaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71DB2FD21E293B10004ADD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C71DB30221E293B10004ADD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C71DB30421E293B20004ADD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		C7B7235021E2CBDB00C6F65D /* MBEViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBEViewController.swift; sourceTree = "<group>"; };
 		C7B7235E21E2CD3B00C6F65D /* ComputeShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = ComputeShaders.metal; sourceTree = "<group>"; };
 		C7B7236021E2CD8F00C6F65D /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7B7236421E2CF3600C6F65D /* RenderShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = RenderShaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				C7B7236021E2CD8F00C6F65D /* AppCore.framework */,
-				C71DB2FC21E293B10004ADD2 /* MetalPerformanceShaders */,
+				C71DB2FC21E293B10004ADD2 /* PerformanceShaders */,
 				C71DB2FB21E293B10004ADD2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,12 +79,12 @@
 		C71DB2FB21E293B10004ADD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C71DB2FA21E293B10004ADD2 /* MetalPerformanceShaders.app */,
+				C71DB2FA21E293B10004ADD2 /* PerformanceShaders.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C71DB2FC21E293B10004ADD2 /* MetalPerformanceShaders */ = {
+		C71DB2FC21E293B10004ADD2 /* PerformanceShaders */ = {
 			isa = PBXGroup;
 			children = (
 				C7B7235D21E2CCDD00C6F65D /* ShaderFunctions */,
@@ -93,7 +95,7 @@
 				C71DB30621E293B20004ADD2 /* LaunchScreen.storyboard */,
 				C71DB30921E293B20004ADD2 /* Info.plist */,
 			);
-			path = MetalPerformanceShaders;
+			path = PerformanceShaders;
 			sourceTree = "<group>";
 		};
 		C7B7234F21E2CB6500C6F65D /* PerformanceShaders */ = {
@@ -112,6 +114,7 @@
 		C7B7235D21E2CCDD00C6F65D /* ShaderFunctions */ = {
 			isa = PBXGroup;
 			children = (
+				C7B7236421E2CF3600C6F65D /* RenderShaders.metal */,
 				C7B7235E21E2CD3B00C6F65D /* ComputeShaders.metal */,
 			);
 			path = ShaderFunctions;
@@ -120,9 +123,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C71DB2F921E293B10004ADD2 /* MetalPerformanceShaders */ = {
+		C71DB2F921E293B10004ADD2 /* PerformanceShaders */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C71DB30C21E293B20004ADD2 /* Build configuration list for PBXNativeTarget "MetalPerformanceShaders" */;
+			buildConfigurationList = C71DB30C21E293B20004ADD2 /* Build configuration list for PBXNativeTarget "PerformanceShaders" */;
 			buildPhases = (
 				C71DB2F621E293B10004ADD2 /* Sources */,
 				C71DB2F721E293B10004ADD2 /* Frameworks */,
@@ -133,9 +136,9 @@
 			);
 			dependencies = (
 			);
-			name = MetalPerformanceShaders;
+			name = PerformanceShaders;
 			productName = MetalPerformanceShaders;
-			productReference = C71DB2FA21E293B10004ADD2 /* MetalPerformanceShaders.app */;
+			productReference = C71DB2FA21E293B10004ADD2 /* PerformanceShaders.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -153,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C71DB2F521E293B10004ADD2 /* Build configuration list for PBXProject "MetalPerformanceShaders" */;
+			buildConfigurationList = C71DB2F521E293B10004ADD2 /* Build configuration list for PBXProject "PerformanceShaders" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -166,7 +169,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C71DB2F921E293B10004ADD2 /* MetalPerformanceShaders */,
+				C71DB2F921E293B10004ADD2 /* PerformanceShaders */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +197,7 @@
 				C7B7235A21E2CBE900C6F65D /* MBEImageSaturation.swift in Sources */,
 				C71DB2FE21E293B10004ADD2 /* AppDelegate.swift in Sources */,
 				C7B7235F21E2CD3B00C6F65D /* ComputeShaders.metal in Sources */,
+				C7B7236521E2CF3600C6F65D /* RenderShaders.metal in Sources */,
 				C7B7235B21E2CBE900C6F65D /* MBEImageUtilities.swift in Sources */,
 				C7B7235721E2CBE900C6F65D /* MBEViewController.swift in Sources */,
 				C7B7235921E2CBE900C6F65D /* MBERegionUtilities.swift in Sources */,
@@ -344,12 +348,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FDAK5XPRG7;
-				INFOPLIST_FILE = MetalPerformanceShaders/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PerformanceShaders/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.MetalPerformanceShaders";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.PerformanceShaders";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -362,12 +366,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FDAK5XPRG7;
-				INFOPLIST_FILE = MetalPerformanceShaders/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PerformanceShaders/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.MetalPerformanceShaders";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.PerformanceShaders";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -377,7 +381,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C71DB2F521E293B10004ADD2 /* Build configuration list for PBXProject "MetalPerformanceShaders" */ = {
+		C71DB2F521E293B10004ADD2 /* Build configuration list for PBXProject "PerformanceShaders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C71DB30A21E293B20004ADD2 /* Debug */,
@@ -386,7 +390,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C71DB30C21E293B20004ADD2 /* Build configuration list for PBXNativeTarget "MetalPerformanceShaders" */ = {
+		C71DB30C21E293B20004ADD2 /* Build configuration list for PBXNativeTarget "PerformanceShaders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C71DB30D21E293B20004ADD2 /* Debug */,
