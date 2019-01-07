@@ -18,12 +18,12 @@ public extension UITextView {
    
     public func clearTextView(with color: UIColor){
         let attribute = self.attributedText.mutableCopy() as! NSMutableAttributedString
-        let fullrange = self.fullNSRange()
-        attribute.addAttributes([NSAttributedStringKey.foregroundColor: color], range: fullrange)
+        let fullrange = self.fullNSRange
+        attribute.addAttributes([NSAttributedString.Key.foregroundColor: color], range: fullrange)
         self.attributedText = attribute
     }
     
-    public func allNSRanges() -> [NSRange]
+    public var allNSRanges: [NSRange]
     {
         let textRange = self.text.startIndex..<self.text.endIndex
         var ranges = [NSRange]()
@@ -35,7 +35,7 @@ public extension UITextView {
         return ranges
     }
     
-    public func fullNSRange() -> NSRange
+    public var fullNSRange: NSRange
     {
         let textRange = self.text.startIndex..<self.text.endIndex
         return NSRange(textRange, in: self.text)
@@ -53,12 +53,12 @@ public extension UITextView {
     }
     
     public func rectForRange(range: Range<Int>) -> CGRect? {
-        return self.rect(range: range)
+        return self.rect(for: range)
     }
    
-    public func rect(countableRange: CountableRange<Int>) -> CGRect? {
-        guard let start   = self.position(from: self.beginningOfDocument, offset: countableRange.lowerBound)
-            , let end     = self.position(from: start, offset: countableRange.count)
+    public func rect(for range: CountableRange<Int>) -> CGRect? {
+        guard let start   = self.position(from: self.beginningOfDocument, offset: range.lowerBound)
+            , let end     = self.position(from: start, offset: range.count) 
             , let textRange = self.textRange(from: start, to: end) 
             else { 
                 return nil }
@@ -68,19 +68,19 @@ public extension UITextView {
         return rect//.offsetBy(dx: -offset.x, dy: -offset.y)
     }
     
-    public func rect(range: Range<Int>) -> CGRect? {
- 
-        guard 
-            let start   = self.position(from: self.beginningOfDocument, offset: range.lowerBound),
-            let end     = self.position(from: self.beginningOfDocument, offset: range.upperBound), 
-            let textRange = self.textRange(from: start, to: end) 
-            else { 
-                return nil }
-        let rect = self.firstRect(for: textRange)
-        // TODO: Consider contentOffset for removal. (UITextView subviews don't need it.)
-        //let offset = self.contentOffset
-        return rect//.offsetBy(dx: -offset.x, dy: -offset.y)
-    }
+    // TODO: SWIFT4-2 Verify commenting the following `Invalid redeclaration of 'rect(fromRange:)'` is correct.
+    //    public func rect(fromRange range: Range<Int>) -> CGRect? {
+    //        guard
+    //            let start = self.position(from: self.beginningOfDocument, offset: range.lowerBound),
+    //            let end = self.position(from: self.beginningOfDocument, offset: range.upperBound),
+    //            let textRange = self.textRange(from: start, to: end)
+    //        else {
+    //            return nil }
+    //        let rect = firstRect(for: textRange)
+    //
+    //        // let offset = self.contentOffset
+    //        return rect // .offsetBy(dx: -offset.x, dy: -offset.y)
+    //    }
     
     public func numberOfLines() -> Int {
         let layoutManager = self.layoutManager

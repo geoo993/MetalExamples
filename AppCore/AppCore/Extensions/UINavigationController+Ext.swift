@@ -1,5 +1,6 @@
 
 import Foundation
+import UIKit
 
 //@IBDesignable 
 public extension UINavigationController {
@@ -64,8 +65,23 @@ public extension UINavigationController {
     }
     
     
-    func setRootViewController (_ vc : UIViewController){
-        viewControllers = [vc]
+    public func setRootViewController (_ vc : UIViewController) {
+        popToRootViewController(animated: false)
+        setViewControllers([vc], animated: true)
+    }
+    
+    public func push(viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
+        pushViewController(viewController, animated: animated)
+        CATransaction.commit()
+    }
+    
+    public func pop(animated: Bool, completion: (() -> Void)?) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
+        popViewController(animated: animated)
+        CATransaction.commit()
     }
     
     public func popNavigationStack<T : UIViewController>(to target: T.Type, animated: Bool = true) {
@@ -88,14 +104,19 @@ public extension UINavigationController {
         }
     }
     
-    func unwindBack(to viewController: Swift.AnyClass, animated: Bool = false) {
-        
-        for element in self.viewControllers as Array {
-            if element.isKind(of: viewController) {
-                self.popToViewController(element, animated: animated)
-                break
+    private func callCompletion(animated: Bool, completion: @escaping () -> Void) {
+        if animated, let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: nil) { _ in
+                completion()
             }
+        } else {
+            completion()
         }
+    }
+    
+    func popTo(viewController: UIViewController, animated: Bool, completion: @escaping () -> Void) {
+        self.popToViewController(viewController, animated: animated)
+        self.callCompletion(animated: animated, completion: completion)
     }
     
     // Pop to specific view controller
@@ -108,15 +129,74 @@ public extension UINavigationController {
         }
     }
     
-    func pushOrPop( to viewController: UIViewController){
+    func unwindBack(to viewController: Swift.AnyClass, animated: Bool = false) {
         
-        if self.viewControllers.contains(viewController) {
-            let fullType = type(of: viewController)
-            print("view controller \(fullType), is in the navigation stack. \(self.viewControllers)")
-            //self.unwindBack(to: fullType, animated: true)
-            self.pop(to: fullType, animated: true)
-        }else {
-            self.pushViewController(viewController, animated: true)
+        for element in self.viewControllers as Array {
+            if element.isKind(of: viewController) {
+                self.popToViewController(element, animated: animated)
+                break
+            }
         }
+    }
+    
+    
+    public func remove<T: UIViewController>(type target: T.Type, animated: Bool = true ) {
+        
+        for tempVC: UIViewController in self.viewControllers
+        {
+            if tempVC.isKind(of: T.classForCoder()) {
+                tempVC.removeFromParent()
+            }
+        }
+    }
+    
+    public func removeAllBut<T: UIViewController>(type target: T.Type, animated: Bool = true ) {
+        
+        for tempVC: UIViewController in self.viewControllers
+        {
+            if tempVC.isKind(of: T.classForCoder()) == false {
+                tempVC.removeFromParent()
+            }
+        }
+    }
+    
+    /*
+     These are the types that are available:
+     
+     kCATransitionFade
+     kCATransitionMoveIn
+     kCATransitionPush
+     kCATransitionReveal
+     @"cameraIris"
+     @"cameraIrisHollowOpen"
+     @"cameraIrisHollowClose"
+     @"cube"
+     @"alignedCube"
+     @"flip"
+     @"alignedFlip"
+     @"oglFlip"
+     @"rotate"
+     @"pageCurl"
+     @"pageUnCurl"
+     @"rippleEffect"
+     @"suckEffect"
+     
+     Subtypes that are available are:
+     kCATransitionFromRight
+     kCATransitionFromLeft
+     kCATransitionFromTop
+     kCATransitionFromBottom
+ 
+ 
+ */
+    // TODO: SWIFT4-2 Consider using CATransitionType in parameter list
+    public func addTransition(transitionType type: CATransitionType = CATransitionType.fade,
+                              subtype: String = CATransitionType.reveal.rawValue,
+                              duration: CFTimeInterval = 0.3) {
+        let transition = CATransition()
+        transition.duration = duration
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = type
+        self.view.layer.add(transition, forKey: nil)
     }
 }

@@ -22,6 +22,22 @@ private class UIViewAnimationDelegate: NSObject, CAAnimationDelegate {
     }
 }
 
+public protocol ViewCopyable {
+    func copyView<Self: UIView>() -> Self
+}
+
+extension ViewCopyable where Self: UIView {
+    /// Copy a subclass of UIView using NSKeyedArchiver.
+    public func copyView<T: UIView>() -> T {
+        let view = (self as? T)!
+        let archived = NSKeyedArchiver.archivedData(withRootObject: view)
+        let copy = NSKeyedUnarchiver.unarchiveObject(with: archived) as? T
+        return copy!
+    }
+}
+
+extension UIView: ViewCopyable {}
+
 public extension UIView {
     
     public func addConstraints(with format: String, views: UIView...) {
@@ -32,7 +48,7 @@ public extension UIView {
             viewsDictionary[key] = view
         }
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
     }
     
     public func addCenterConstraints(with view: UIView) {
@@ -188,7 +204,7 @@ public extension UIView {
     }
     
     
-    public func blurNewView(newChild: UIView, effect: UIBlurEffectStyle){
+    public func blurNewView(newChild: UIView, effect: UIBlurEffect.Style){
         let parent = self
         
         // Blur Effect
@@ -313,7 +329,7 @@ public extension UIView {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = color.cgColor
         shapeLayer.lineWidth = lineWidth
-        shapeLayer.lineJoin = kCALineJoinRound
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
         shapeLayer.lineDashPattern = [6,3]
         shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 5).cgPath
         
@@ -335,7 +351,7 @@ public extension UIView {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = color.cgColor
         shapeLayer.lineWidth = lineWidth
-        shapeLayer.lineJoin = kCALineJoinRound
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
         shapeLayer.lineDashPattern = [4, 4]
         
         let path = CGMutablePath()
@@ -347,12 +363,12 @@ public extension UIView {
     }
     
     public func fadeIn(_ duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
-        UIView.animate(withDuration: duration, delay: delay, options: UIViewAnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.alpha = 1.0
         }, completion: completion)  }
     
     public func fadeOut(_ duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
-        UIView.animate(withDuration: duration, delay: delay, options: UIViewAnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.alpha = 0.0
         }, completion: completion)
     }
@@ -481,7 +497,7 @@ public extension UIView {
             let animation = CABasicAnimation(keyPath: "opacity")
             animation.fromValue = visible ? 0.0 : 1.0
             animation.toValue = visible ? 1.0 : 0.0
-            animation.fillMode = kCAFillModeForwards
+            animation.fillMode = CAMediaTimingFillMode.forwards
             animation.isRemovedOnCompletion = false
             animation.delegate = delegate
             
@@ -527,7 +543,7 @@ public extension UIView {
             // Do the animation
             UIView.animate(withDuration: 0.5,
                            delay: 0.0,
-                           options: UIViewAnimationOptions.curveEaseOut,
+                           options: UIView.AnimationOptions.curveEaseOut,
                            animations: { [weak self] () -> Void in
                             // Start animation block
                             if (hidden == true) {
@@ -549,5 +565,93 @@ public extension UIView {
         
     }
     
+    /// The top coordinate of the UIView.
+    public var top: CGFloat {
+        get {
+            return frame.top
+        }
+        set(value) {
+            var frame = self.frame
+            frame.top = value
+            self.frame = frame
+        }
+    }
+    /// The left coordinate of the UIView.
+    public var left: CGFloat {
+        get {
+            return frame.left
+        }
+        set(value) {
+            var frame = self.frame
+            frame.left = value
+            self.frame = frame
+        }
+    }
+    /// The bottom coordinate of the UIView.
+    public var bottom: CGFloat {
+        get {
+            return frame.bottom
+        }
+        set(value) {
+            var frame = self.frame
+            frame.bottom = value
+            self.frame = frame
+        }
+    }
+    /// The right coordinate of the UIView.
+    public var right: CGFloat {
+        get {
+            return frame.right
+        }
+        set(value) {
+            var frame = self.frame
+            frame.right = value
+            self.frame = frame
+        }
+    }
+    // The width of the UIView.
+    public var width: CGFloat {
+        get {
+            return frame.width
+        }
+        set(value) {
+            var frame = self.frame
+            frame.size.width = value
+            self.frame = frame
+        }
+    }
+    // The height of the UIView.
+    public var height: CGFloat {
+        get {
+            return frame.height
+        }
+        set(value) {
+            var frame = self.frame
+            frame.size.height = value
+            self.frame = frame
+        }
+    }
+    /// The horizontal center coordinate of the UIView.
+    public var centerX: CGFloat {
+        get {
+            return frame.centerX
+        }
+        set(value) {
+            var frame = self.frame
+            frame.centerX = value
+            self.frame = frame
+        }
+    }
+    /// The vertical center coordinate of the UIView.
+    public var centerY: CGFloat {
+        get {
+            return frame.centerY
+        }
+        set(value) {
+            var frame = self.frame
+            frame.centerY = value
+            self.frame = frame
+        }
+    }
     
 }

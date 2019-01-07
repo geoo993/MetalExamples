@@ -1,11 +1,11 @@
 import Foundation
 
 public extension CGPoint {
-
+    
     public static func point(_ x: CGFloat, _ y: CGFloat) -> CGPoint {
         return CGPoint(x: x, y: y)
     }
-
+    
     public func distance(from rect: CGRect) -> CGFloat {
         let dx = max(rect.minX - x, x - rect.maxX, 0)
         let dy = max(rect.minY - y, y - rect.maxY, 0)
@@ -18,7 +18,7 @@ public extension CGPoint {
         return sqrt(dx+dy)
     }
     
-    public func RotatePointAboutOrigin( angle: CGFloat) -> CGPoint
+    public func rotatePointAboutOrigin( angle: CGFloat) -> CGPoint
     {
         // https://stackoverflow.com/questions/1595285/what-is-the-best-way-to-rotate-a-cgpoint-on-a-grid
         let s : CGFloat = CGFloat(sinf(Float(angle)))
@@ -324,28 +324,4 @@ public func /= (left: inout CGPoint, right: CGVector) {
  */
 public func lerp(start: CGPoint, end: CGPoint, t: CGFloat) -> CGPoint {
     return start + (end - start) * t
-}
-
-public func + (lhs: CGPoint, rhs: CGSize) -> CGPoint {
-    return CGPoint(x: lhs.x + rhs.width, y: lhs.y + rhs.height)
-}
-
-public func - (lhs: CGPoint, rhs: CGSize) -> CGPoint {
-    return CGPoint(x: lhs.x - rhs.width, y: lhs.y - rhs.height)
-}
-
-public func - (lhs: CGPoint, rhs: CGPoint) -> CGVector {
-    return CGVector(dx: lhs.x - rhs.x, dy: lhs.y - rhs.y)
-}
-
-public func + (lhs: CGSize, rhs: CGSize) -> CGSize {
-    return CGSize(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
-}
-
-public func * (lhs: CGSize, rhs: CGFloat) -> CGSize {
-    return CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
-}
-
-public func / (lhs: CGSize, rhs: CGFloat) -> CGSize {
-    return CGSize(width: lhs.width / rhs, height: lhs.height / rhs)
 }

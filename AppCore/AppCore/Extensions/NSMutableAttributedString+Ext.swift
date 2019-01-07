@@ -10,7 +10,7 @@ public extension NSMutableAttributedString {
     
     public func apply (with word: String, range: NSRange, last: NSRange) -> NSMutableAttributedString {
         if range.location != NSNotFound {
-            self.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
+            self.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range)
             let start = last.location + last.length
             let end = self.string.count - start
             let stringRange = NSRange(location: start, length: end)

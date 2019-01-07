@@ -189,67 +189,66 @@ public  extension UIImage {
     public func resizeByByte(maxByte: Int) {
         
         var compressQuality: CGFloat = 1
-        var imageByte = UIImageJPEGRepresentation(self, 1)?.count
+        var imageByte = jpegData(compressionQuality: 1.0)?.count
         
         while imageByte! > maxByte {
             
-            imageByte = UIImageJPEGRepresentation(self, compressQuality)?.count
+            imageByte = jpegData(compressionQuality: compressQuality)?.count
             compressQuality -= 0.1
         }
     }
     
-    public var uncompressedPNGData: Data?      { return UIImagePNGRepresentation(self)        }
-    public var highestQualityJPEGNSData: Data? { return UIImageJPEGRepresentation(self, 1.0)  }
-    public var highQualityJPEGNSData: Data?    { return UIImageJPEGRepresentation(self, 0.75) }
-    public var mediumQualityJPEGNSData: Data?  { return UIImageJPEGRepresentation(self, 0.5)  }
-    public var lowQualityJPEGNSData: Data?     { return UIImageJPEGRepresentation(self, 0.25) }
-    public var lowestQualityJPEGNSData:Data?   { return UIImageJPEGRepresentation(self, 0.01)  }
-
+    public var uncompressedPNGData: Data?      { return self.pngData()        }
+    public var highestQualityJPEGNSData: Data? { return jpegData(compressionQuality: 1.0) }
+    public var highQualityJPEGNSData: Data?    { return jpegData(compressionQuality: 0.75) }
+    public var mediumQualityJPEGNSData: Data?  { return jpegData(compressionQuality: 0.5)  }
+    public var lowQualityJPEGNSData: Data?     { return jpegData(compressionQuality: 0.25) }
+    public var lowestQualityJPEGNSData:Data?   { return jpegData(compressionQuality: 0.01)  }
+    
     func getPixelColor(pos: CGPoint) -> UIColor {
         // https://stackoverflow.com/questions/39548344/getting-pixel-color-from-an-image-using-cgpoint-in-swift-3
         // https://gist.github.com/akirahrkw/ce3c52ae79f3b5de5a01
         // https://gist.github.com/jokester/948616a1b881451796d6
         if let pixelData = self.cgImage?.dataProvider?.data {
             let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-
+            
             let pixelInfo: Int = ((Int(self.size.width) * Int(pos.y)) + Int(pos.x)) * 4
-
+            
             let r = CGFloat(data[pixelInfo+0]) / CGFloat(255.0)
             let g = CGFloat(data[pixelInfo+1]) / CGFloat(255.0)
             let b = CGFloat(data[pixelInfo+2]) / CGFloat(255.0)
             let a = CGFloat(data[pixelInfo+3]) / CGFloat(255.0)
-
+            
             return UIColor(red: b, green: g, blue: r, alpha: a)
         } else {
             //IF something is wrong I returned WHITE, but change as needed
             return UIColor.white
         }
-
+        
         // usage
         // let colorAtPixel : UIColor = (theView.image?.getPixelColor(pos: CGPoint(x: 2, y: 2)))!
     }
-
+    
     func getPixelColor(atLocation location: CGPoint, withFrameSize size: CGSize) -> UIColor {
         let x: CGFloat = (self.size.width) * location.x / size.width
         let y: CGFloat = (self.size.height) * location.y / size.height
-
+        
         let pixelPoint: CGPoint = CGPoint(x: x, y: y)
-
+        
         let pixelData = self.cgImage!.dataProvider!.data
         let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-
+        
         let pixelIndex: Int = ((Int(self.size.width) * Int(pixelPoint.y)) + Int(pixelPoint.x)) * 4
-
+        
         let r = CGFloat(data[pixelIndex]) / CGFloat(255.0)
         let g = CGFloat(data[pixelIndex+1]) / CGFloat(255.0)
         let b = CGFloat(data[pixelIndex+2]) / CGFloat(255.0)
         let a = CGFloat(data[pixelIndex+3]) / CGFloat(255.0)
-
+        
         return UIColor(red: r, green: g, blue: b, alpha: a)
-
+        
         // usage
         // let color = yourImageView.image!.getPixelColor(atLocation: location, withFrameSize: yourImageView.frame.size)
-
+        
     }
-
 }

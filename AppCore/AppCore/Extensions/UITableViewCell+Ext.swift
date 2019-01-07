@@ -29,7 +29,17 @@ public extension UITableViewCell
     
     public func removeSeparator(width: CGFloat)
     {
-        self.separatorInset = UIEdgeInsetsMake(0.0, width, 0.0, 0.0)
+        self.separatorInset = UIEdgeInsets(top: 0.0, left: width, bottom: 0.0, right: 0.0)
+    }
+    
+    public func customSeperatorLine(withColor color: UIColor, separatorHeight: CGFloat){
+        let screenSize = UIScreen.main.bounds
+        let additionalSeparator = UIView.init(frame: CGRect(x: 0,
+                                                            y: self.frame.size.height - separatorHeight,
+                                                            width: screenSize.width,
+                                                            height: separatorHeight))
+        additionalSeparator.backgroundColor = color
+        self.addSubview(additionalSeparator)
     }
     
 }

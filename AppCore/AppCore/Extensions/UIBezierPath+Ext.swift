@@ -227,8 +227,8 @@ public extension UIBezierPath {
         return pathLength
     }
     
-    public func magnitude() -> CGFloat {
-        let subpathCount: Int = countSubpaths()
+    public var magnitude: CGFloat {
+        let subpathCount: Int = countSubpaths
         var subpaths = [BezierSubpath](repeating: BezierSubpath(), count: subpathCount)
         subpaths = extractSubpaths(subpaths)
         var length: CGFloat = 0.0
@@ -249,7 +249,7 @@ public extension UIBezierPath {
             percentage = 1.0
         }
         
-        let subpathCount: Int = countSubpaths()
+        let subpathCount: Int = countSubpaths
         var subpaths = [BezierSubpath](repeating: BezierSubpath(), count: subpathCount)
         subpaths = extractSubpaths(subpaths)
         var length: CGFloat = 0.0
@@ -278,18 +278,21 @@ public extension UIBezierPath {
         }
     }
 
-    public func forEachPathElement( body: @escaping @convention(block) (CGPathElement) -> Void) {
+    func forEachPathElement(body: @convention(block) (CGPathElement) -> Void) {
         typealias Body = @convention(block) (CGPathElement) -> Void
-        let callback: @convention(c) (UnsafeMutableRawPointer, UnsafePointer<CGPathElement>) -> Void = { (info, element) in
-            let body = unsafeBitCast(info, to: Body.self)
-            body(element.pointee)
+        let callback: @convention(c) (UnsafeMutableRawPointer, UnsafePointer<CGPathElement>)
+            -> Void = { info, element in
+                let body = unsafeBitCast(info, to: Body.self)
+                body(element.pointee)
         }
-        //print("path element memory: ", MemoryLayout.size(ofValue: body))
-        let unsafeBody = unsafeBitCast(body, to: UnsafeMutableRawPointer.self)
-        self.cgPath.apply(info: unsafeBody, function: unsafeBitCast(callback, to: CGPathApplierFunction.self))
+        // print("path element memory: ", MemoryLayout.size(ofValue: body))
+        let safeBody = withoutActuallyEscaping(body) { escapableBody in
+            unsafeBitCast(escapableBody, to: UnsafeMutableRawPointer.self)
+        }
+        cgPath.apply(info: safeBody, function: unsafeBitCast(callback, to: CGPathApplierFunction.self))
     }
     
-    public func countSubpaths() -> Int {
+    public var countSubpaths: Int {
         var count: Int = 0
         
         forEachPathElement { element in
@@ -324,18 +327,18 @@ public extension UIBezierPath {
                 endPoint = points[0]
             case .addLineToPoint:
                 endPoint = points[0]
-                subLength = self.linearLineLength(fromPoint: currentPoint, toPoint: endPoint)
+                subLength = linearLineLength(fromPoint: currentPoint, toPoint: endPoint)
             case .addQuadCurveToPoint:
                 endPoint = points[1]
                 let controlPoint = points[0]
-                subLength = self.quadCurveLength(fromPoint: currentPoint, toPoint: endPoint,
+                subLength = quadCurveLength(fromPoint: currentPoint, toPoint: endPoint,
                                                          controlPoint: controlPoint)
                 subpath.controlPoint1 = controlPoint
             case .addCurveToPoint:
                 endPoint = points[2]
                 let controlPoint1 = points[0]
                 let controlPoint2 = points[1]
-                subLength = self.cubicCurveLength(fromPoint: currentPoint, toPoint: endPoint,
+                subLength = cubicCurveLength(fromPoint: currentPoint, toPoint: endPoint,
                                                           controlPoint1: controlPoint1,
                                                           controlPoint2: controlPoint2)
                 subpath.controlPoint1 = controlPoint1
@@ -360,8 +363,8 @@ public extension UIBezierPath {
         return subpaths
     }
 
-    public func extractSubpaths() -> [BezierSubpath] {
-        let subpathCount: Int = countSubpaths()
+    public var extractSubpaths: [BezierSubpath] {
+        let subpathCount: Int = countSubpaths
         let subpaths = [BezierSubpath](repeating: BezierSubpath(), count: subpathCount)
         return extractSubpaths(subpaths)
     }
@@ -380,7 +383,6 @@ public extension UIBezierPath {
         }
         return p
     }
-
 
     /// Rotate path anticlockwise around an anchor point defaulting to the center
     public func rotate(inRadians radians: CGFloat, aroundAnchor anchor: CGPoint = CGPoint(x: 0.5, y: 0.5)) {
