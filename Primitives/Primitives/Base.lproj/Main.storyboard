@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G94-Iu-MTm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Metal View Controller-->
+        <scene sceneID="kWk-Wu-EsG">
+            <objects>
+                <viewController storyboardIdentifier="MetalViewController" id="G94-Iu-MTm" customClass="MetalViewController" customModule="Primitives" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BI1-9q-odq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yuo-Lb-iwp" customClass="MTKView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eJQ-xl-vdz">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6D-IM-flm">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nef-V7-E2q">
+                                                        <rect key="frame" x="-2" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="nef-V7-E2q" firstAttribute="centerY" secondItem="w6D-IM-flm" secondAttribute="centerY" id="GnK-ao-tXB"/>
+                                                    <constraint firstItem="nef-V7-E2q" firstAttribute="centerX" secondItem="w6D-IM-flm" secondAttribute="centerX" id="J8a-Hd-aIh"/>
+                                                    <constraint firstItem="nef-V7-E2q" firstAttribute="width" secondItem="w6D-IM-flm" secondAttribute="width" id="cPu-wA-G9u"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2E5-Sx-9gH">
+                                                <rect key="frame" x="0.0" y="33.5" width="375" height="33"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="aoh-cZ-IR7">
+                                                        <rect key="frame" x="-2" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="aoh-cZ-IR7" firstAttribute="centerY" secondItem="2E5-Sx-9gH" secondAttribute="centerY" id="1DR-ER-9V4"/>
+                                                    <constraint firstItem="aoh-cZ-IR7" firstAttribute="width" secondItem="2E5-Sx-9gH" secondAttribute="width" id="7zs-ce-EqH"/>
+                                                    <constraint firstItem="aoh-cZ-IR7" firstAttribute="centerX" secondItem="2E5-Sx-9gH" secondAttribute="centerX" id="cMv-WM-XX0"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHT-zj-ZDU">
+                                                <rect key="frame" x="0.0" y="66.5" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="eCL-jq-8DK">
+                                                        <rect key="frame" x="-2" y="2" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="eCL-jq-8DK" firstAttribute="centerX" secondItem="cHT-zj-ZDU" secondAttribute="centerX" id="FB5-kB-sQ7"/>
+                                                    <constraint firstItem="eCL-jq-8DK" firstAttribute="width" secondItem="cHT-zj-ZDU" secondAttribute="width" id="MLb-FH-FBF"/>
+                                                    <constraint firstItem="eCL-jq-8DK" firstAttribute="centerY" secondItem="cHT-zj-ZDU" secondAttribute="centerY" id="Pw7-3L-FEj"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5FW-PT-BZg">
+                                                <rect key="frame" x="0.0" y="100" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="1uv-IB-YEQ">
+                                                        <rect key="frame" x="-2" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="1uv-IB-YEQ" firstAttribute="centerX" secondItem="5FW-PT-BZg" secondAttribute="centerX" id="Iab-dZ-qQf"/>
+                                                    <constraint firstItem="1uv-IB-YEQ" firstAttribute="centerY" secondItem="5FW-PT-BZg" secondAttribute="centerY" id="ZIb-my-1bq"/>
+                                                    <constraint firstItem="1uv-IB-YEQ" firstAttribute="width" secondItem="5FW-PT-BZg" secondAttribute="width" id="q4N-BL-AJv"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrR-gM-Ln9">
+                                                <rect key="frame" x="0.0" y="133.5" width="375" height="33.5"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="OwI-v2-ltM">
+                                                        <rect key="frame" x="-2" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="OwI-v2-ltM" firstAttribute="centerY" secondItem="xrR-gM-Ln9" secondAttribute="centerY" id="A9c-26-eBy"/>
+                                                    <constraint firstItem="OwI-v2-ltM" firstAttribute="centerX" secondItem="xrR-gM-Ln9" secondAttribute="centerX" id="OKk-LJ-XZb"/>
+                                                    <constraint firstItem="OwI-v2-ltM" firstAttribute="width" secondItem="xrR-gM-Ln9" secondAttribute="width" id="udG-79-TaE"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLY-7F-JPD">
+                                                <rect key="frame" x="0.0" y="167" width="375" height="33"/>
+                                                <subviews>
+                                                    <slider opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="RDH-dU-uGj">
+                                                        <rect key="frame" x="-2" y="1.5" width="379" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </slider>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="RDH-dU-uGj" firstAttribute="centerX" secondItem="MLY-7F-JPD" secondAttribute="centerX" id="8Kb-1C-WRM"/>
+                                                    <constraint firstItem="RDH-dU-uGj" firstAttribute="width" secondItem="MLY-7F-JPD" secondAttribute="width" id="9ea-rb-6Ni"/>
+                                                    <constraint firstItem="RDH-dU-uGj" firstAttribute="centerY" secondItem="MLY-7F-JPD" secondAttribute="centerY" id="LZ8-ux-ytc"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYr-rV-tZX">
+                                                <rect key="frame" x="0.0" y="200" width="375" height="367"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDI-2x-zeK">
+                                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKL-MK-kB4" customClass="JoyStickView" customModule="AppCore">
+                                                        <rect key="frame" x="10" y="0.0" width="80" height="80"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="NDK-eC-Z7N"/>
+                                                            <constraint firstAttribute="height" constant="80" id="xpS-3o-5Q3"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="JoyStickBase"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="handleImage" value="JoyStickHandle"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="handleTintColor">
+                                                                <color key="value" red="0.97647058819999999" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="baseAlpha">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="movable" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-nG-Yqd" customClass="JoyStickView" customModule="AppCore">
+                                                        <rect key="frame" x="275" y="0.0" width="80" height="80"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="80" id="ftn-eT-JWb"/>
+                                                            <constraint firstAttribute="width" constant="80" id="mB2-lC-zBi"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="baseAlpha">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="handleTintColor">
+                                                                <color key="value" red="0.16862745100000001" green="0.96078431369999995" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="JoyStickBase"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="handleImage" value="JoyStickHandle"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="movable" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="fKL-MK-kB4" secondAttribute="bottom" constant="20" id="K7M-rZ-4Uf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="iN0-nG-Yqd" secondAttribute="bottom" constant="20" id="Wwu-x3-83W"/>
+                                                    <constraint firstItem="fKL-MK-kB4" firstAttribute="leading" secondItem="EDI-2x-zeK" secondAttribute="leading" constant="10" id="f3o-Kh-gGd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iN0-nG-Yqd" secondAttribute="trailing" constant="20" id="lQF-Eo-bfa"/>
+                                                    <constraint firstAttribute="height" constant="100" id="puv-BY-iwj"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="5FW-PT-BZg" firstAttribute="height" secondItem="eJQ-xl-vdz" secondAttribute="height" multiplier="0.05" id="1aF-6E-nRB"/>
+                                            <constraint firstItem="xrR-gM-Ln9" firstAttribute="height" secondItem="eJQ-xl-vdz" secondAttribute="height" multiplier="0.05" id="8z9-Il-e8q"/>
+                                            <constraint firstItem="2E5-Sx-9gH" firstAttribute="height" secondItem="eJQ-xl-vdz" secondAttribute="height" multiplier="0.05" id="QL0-ax-0mk"/>
+                                            <constraint firstItem="cHT-zj-ZDU" firstAttribute="height" secondItem="eJQ-xl-vdz" secondAttribute="height" multiplier="0.05" id="TAC-Ve-Zmr"/>
+                                            <constraint firstItem="w6D-IM-flm" firstAttribute="height" secondItem="eJQ-xl-vdz" secondAttribute="height" multiplier="0.05" id="fSI-7B-CgN"/>
+                                            <constraint firstItem="MLY-7F-JPD" firstAttribute="height" secondItem="eJQ-xl-vdz" secondAttribute="height" multiplier="0.05" id="ron-ml-DzF"/>
+                                        </constraints>
+                                        <variation key="widthClass=compact" axis="vertical"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="eJQ-xl-vdz" firstAttribute="width" secondItem="Yuo-Lb-iwp" secondAttribute="width" id="2aE-83-QGX"/>
+                                    <constraint firstItem="eJQ-xl-vdz" firstAttribute="centerY" secondItem="Yuo-Lb-iwp" secondAttribute="centerY" id="HHw-hm-MvA"/>
+                                    <constraint firstItem="eJQ-xl-vdz" firstAttribute="height" secondItem="Yuo-Lb-iwp" secondAttribute="height" id="Q5S-MY-EXw"/>
+                                    <constraint firstItem="eJQ-xl-vdz" firstAttribute="centerX" secondItem="Yuo-Lb-iwp" secondAttribute="centerX" id="ecz-zS-orp"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Yuo-Lb-iwp" firstAttribute="centerY" secondItem="BI1-9q-odq" secondAttribute="centerY" id="Tj1-cc-cvB"/>
+                            <constraint firstItem="Yuo-Lb-iwp" firstAttribute="centerX" secondItem="fX5-5t-GW6" secondAttribute="centerX" id="Uz9-fK-grf"/>
+                            <constraint firstItem="Yuo-Lb-iwp" firstAttribute="height" secondItem="BI1-9q-odq" secondAttribute="height" id="boX-y2-M2M"/>
+                            <constraint firstItem="Yuo-Lb-iwp" firstAttribute="width" secondItem="BI1-9q-odq" secondAttribute="width" id="yth-hb-iln"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fX5-5t-GW6"/>
+                    </view>
+                    <connections>
+                        <outlet property="leftJoyStick" destination="fKL-MK-kB4" id="qz6-oc-S28"/>
+                        <outlet property="metalKitView" destination="Yuo-Lb-iwp" id="nS8-yg-uRx"/>
+                        <outlet property="rightJoyStick" destination="iN0-nG-Yqd" id="TdC-pZ-Uez"/>
+                        <outlet property="slider0" destination="nef-V7-E2q" id="r7s-kp-a63"/>
+                        <outlet property="slider1" destination="aoh-cZ-IR7" id="xau-Em-h68"/>
+                        <outlet property="slider2" destination="eCL-jq-8DK" id="blK-GE-i6B"/>
+                        <outlet property="slider3" destination="1uv-IB-YEQ" id="SFC-Rn-vlA"/>
+                        <outlet property="slider4" destination="OwI-v2-ltM" id="XNu-kD-DoF"/>
+                        <outlet property="slider5" destination="RDH-dU-uGj" id="kYl-X5-vQk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZhL-Nh-Y6l" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="127"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="JoyStickBase" width="100" height="100"/>
+        <image name="JoyStickHandle" width="100" height="100"/>
+    </resources>
+</document>

@@ -292,6 +292,10 @@ public extension UIColor {
                        alpha: 1.0)
     }
     
+    public var toFloat4: float4 {
+        return float4(Float(self.redValue), Float(self.greenValue), Float(self.blueValue), Float(self.alphaValue))
+    }
+    
     public var inverse: UIColor {
         return UIColor(red: 1.0 - self.redValue,
                        green: 1.0 - self.greenValue,

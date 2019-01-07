@@ -24,7 +24,7 @@ public class Instance: Node {
     public var pipelineState: MTLRenderPipelineState!
     public var samplerState: MTLSamplerState!
     public var depthStencilState: MTLDepthStencilState!
-    public var vertexFunctionName: VertexFunction = .vertex_instance_shader
+    public var vertexFunctionName: VertexFunction
     public var fragmentFunctionName: FragmentFunction
 
     public var vertexDescriptor: MTLVertexDescriptor
@@ -33,7 +33,7 @@ public class Instance: Node {
     public var drawType: MTLPrimitiveType = .triangle
 
     //Mark: - initialiser
-    public init(mtkView: MTKView, modelName: String, instances: Int, vertexShader: VertexFunction = .vertex_shader, fragmentShader: FragmentFunction) {
+    public init(mtkView: MTKView, modelName: String, instances: Int, vertexShader: VertexFunction = .vertex_instance_shader, fragmentShader: FragmentFunction) {
         self.model = Model(mtkView: mtkView, modelName: modelName, fragmentShader: fragmentShader)
         self.vertexFunctionName = vertexShader
         self.fragmentFunctionName = model.fragmentFunctionName

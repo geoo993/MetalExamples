@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C7C4ED9421E3D4C600ADD4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4ED9321E3D4C600ADD4E3 /* AppDelegate.swift */; };
+		C7C4ED9621E3D4C600ADD4E3 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4ED9521E3D4C600ADD4E3 /* MetalViewController.swift */; };
+		C7C4ED9921E3D4C600ADD4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C4ED9721E3D4C600ADD4E3 /* Main.storyboard */; };
+		C7C4ED9B21E3D4C700ADD4E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C4ED9A21E3D4C700ADD4E3 /* Assets.xcassets */; };
+		C7C4ED9E21E3D4C700ADD4E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C4ED9C21E3D4C700ADD4E3 /* LaunchScreen.storyboard */; };
+		C7C4EE9821E3EF2B00ADD4E3 /* bunny.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE9621E3EF2A00ADD4E3 /* bunny.obj */; };
+		C7C4EE9921E3EF2B00ADD4E3 /* bunny.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE9721E3EF2A00ADD4E3 /* bunny.mtl */; };
+		C7C4EE9B21E3EF3200ADD4E3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE9A21E3EF3200ADD4E3 /* teapot.obj */; };
+		C7C4EEA021E3F03700ADD4E3 /* VertexShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EE9D21E3F03600ADD4E3 /* VertexShader.metal */; };
+		C7C4EEA121E3F03700ADD4E3 /* ToonShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EE9E21E3F03700ADD4E3 /* ToonShader.metal */; };
+		C7C4EEA221E3F03700ADD4E3 /* FragmentShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EE9F21E3F03700ADD4E3 /* FragmentShader.metal */; };
+		C7C4EEA521E3F04700ADD4E3 /* ToonScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EEA421E3F04700ADD4E3 /* ToonScene.swift */; };
+		C7C4EEA721E3F12100ADD4E3 /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C4EEA621E3F12100ADD4E3 /* AppCore.framework */; };
+		C7C4EEA821E3F12100ADD4E3 /* AppCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C7C4EEA621E3F12100ADD4E3 /* AppCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C7C4EEA921E3F12100ADD4E3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C7C4EEA821E3F12100ADD4E3 /* AppCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C7C4ED9021E3D4C600ADD4E3 /* ToonShading.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToonShading.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7C4ED9321E3D4C600ADD4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C7C4ED9521E3D4C600ADD4E3 /* MetalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
+		C7C4ED9821E3D4C600ADD4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C7C4ED9A21E3D4C700ADD4E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C7C4ED9D21E3D4C700ADD4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C7C4ED9F21E3D4C700ADD4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7C4EE9621E3EF2A00ADD4E3 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
+		C7C4EE9721E3EF2A00ADD4E3 /* bunny.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.mtl; sourceTree = "<group>"; };
+		C7C4EE9A21E3EF3200ADD4E3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
+		C7C4EE9D21E3F03600ADD4E3 /* VertexShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = VertexShader.metal; sourceTree = "<group>"; };
+		C7C4EE9E21E3F03700ADD4E3 /* ToonShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = ToonShader.metal; sourceTree = "<group>"; };
+		C7C4EE9F21E3F03700ADD4E3 /* FragmentShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = FragmentShader.metal; sourceTree = "<group>"; };
+		C7C4EEA321E3F03D00ADD4E3 /* VertexShaderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexShaderData.h; sourceTree = "<group>"; };
+		C7C4EEA421E3F04700ADD4E3 /* ToonScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToonScene.swift; sourceTree = "<group>"; };
+		C7C4EEA621E3F12100ADD4E3 /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C7C4ED8D21E3D4C600ADD4E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7C4EEA721E3F12100ADD4E3 /* AppCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C7C4ED8721E3D4C600ADD4E3 = {
+			isa = PBXGroup;
+			children = (
+				C7C4EEA621E3F12100ADD4E3 /* AppCore.framework */,
+				C7C4ED9221E3D4C600ADD4E3 /* ToonShading */,
+				C7C4ED9121E3D4C600ADD4E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C7C4ED9121E3D4C600ADD4E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4ED9021E3D4C600ADD4E3 /* ToonShading.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C7C4ED9221E3D4C600ADD4E3 /* ToonShading */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE8D21E3EEB500ADD4E3 /* Resources */,
+				C7C4EE8C21E3EEB000ADD4E3 /* Scenes */,
+				C7C4EE8B21E3EEA700ADD4E3 /* ShaderFunctions */,
+				C7C4EE8A21E3EE9E00ADD4E3 /* Shaders */,
+				C7C4ED9321E3D4C600ADD4E3 /* AppDelegate.swift */,
+				C7C4ED9521E3D4C600ADD4E3 /* MetalViewController.swift */,
+				C7C4ED9721E3D4C600ADD4E3 /* Main.storyboard */,
+				C7C4ED9A21E3D4C700ADD4E3 /* Assets.xcassets */,
+				C7C4ED9C21E3D4C700ADD4E3 /* LaunchScreen.storyboard */,
+				C7C4ED9F21E3D4C700ADD4E3 /* Info.plist */,
+			);
+			path = ToonShading;
+			sourceTree = "<group>";
+		};
+		C7C4EE8A21E3EE9E00ADD4E3 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE9F21E3F03700ADD4E3 /* FragmentShader.metal */,
+				C7C4EE9E21E3F03700ADD4E3 /* ToonShader.metal */,
+				C7C4EE9D21E3F03600ADD4E3 /* VertexShader.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		C7C4EE8B21E3EEA700ADD4E3 /* ShaderFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EEA321E3F03D00ADD4E3 /* VertexShaderData.h */,
+			);
+			path = ShaderFunctions;
+			sourceTree = "<group>";
+		};
+		C7C4EE8C21E3EEB000ADD4E3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EEA421E3F04700ADD4E3 /* ToonScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C7C4EE8D21E3EEB500ADD4E3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE9521E3EEEC00ADD4E3 /* Bunny */,
+				C7C4EE9421E3EEE100ADD4E3 /* Teapot */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C7C4EE9421E3EEE100ADD4E3 /* Teapot */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE9A21E3EF3200ADD4E3 /* teapot.obj */,
+			);
+			path = Teapot;
+			sourceTree = "<group>";
+		};
+		C7C4EE9521E3EEEC00ADD4E3 /* Bunny */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE9721E3EF2A00ADD4E3 /* bunny.mtl */,
+				C7C4EE9621E3EF2A00ADD4E3 /* bunny.obj */,
+			);
+			path = Bunny;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C7C4ED8F21E3D4C600ADD4E3 /* ToonShading */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7C4EDA221E3D4C700ADD4E3 /* Build configuration list for PBXNativeTarget "ToonShading" */;
+			buildPhases = (
+				C7C4ED8C21E3D4C600ADD4E3 /* Sources */,
+				C7C4ED8D21E3D4C600ADD4E3 /* Frameworks */,
+				C7C4ED8E21E3D4C600ADD4E3 /* Resources */,
+				C7C4EEA921E3F12100ADD4E3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ToonShading;
+			productName = ToonShading;
+			productReference = C7C4ED9021E3D4C600ADD4E3 /* ToonShading.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C7C4ED8821E3D4C600ADD4E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "GEORGE QUENTIN";
+				TargetAttributes = {
+					C7C4ED8F21E3D4C600ADD4E3 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = C7C4ED8B21E3D4C600ADD4E3 /* Build configuration list for PBXProject "ToonShading" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C7C4ED8721E3D4C600ADD4E3;
+			productRefGroup = C7C4ED9121E3D4C600ADD4E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C7C4ED8F21E3D4C600ADD4E3 /* ToonShading */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C7C4ED8E21E3D4C600ADD4E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7C4ED9E21E3D4C700ADD4E3 /* LaunchScreen.storyboard in Resources */,
+				C7C4EE9921E3EF2B00ADD4E3 /* bunny.mtl in Resources */,
+				C7C4EE9B21E3EF3200ADD4E3 /* teapot.obj in Resources */,
+				C7C4ED9B21E3D4C700ADD4E3 /* Assets.xcassets in Resources */,
+				C7C4EE9821E3EF2B00ADD4E3 /* bunny.obj in Resources */,
+				C7C4ED9921E3D4C600ADD4E3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C7C4ED8C21E3D4C600ADD4E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7C4EEA521E3F04700ADD4E3 /* ToonScene.swift in Sources */,
+				C7C4EEA121E3F03700ADD4E3 /* ToonShader.metal in Sources */,
+				C7C4ED9621E3D4C600ADD4E3 /* MetalViewController.swift in Sources */,
+				C7C4EEA221E3F03700ADD4E3 /* FragmentShader.metal in Sources */,
+				C7C4ED9421E3D4C600ADD4E3 /* AppDelegate.swift in Sources */,
+				C7C4EEA021E3F03700ADD4E3 /* VertexShader.metal in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C7C4ED9721E3D4C600ADD4E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7C4ED9821E3D4C600ADD4E3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C7C4ED9C21E3D4C700ADD4E3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7C4ED9D21E3D4C700ADD4E3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C7C4EDA021E3D4C700ADD4E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C7C4EDA121E3D4C700ADD4E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C7C4EDA321E3D4C700ADD4E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BM7962EZPA;
+				INFOPLIST_FILE = ToonShading/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.ToonShading";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C7C4EDA421E3D4C700ADD4E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BM7962EZPA;
+				INFOPLIST_FILE = ToonShading/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.ToonShading";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C7C4ED8B21E3D4C600ADD4E3 /* Build configuration list for PBXProject "ToonShading" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7C4EDA021E3D4C700ADD4E3 /* Debug */,
+				C7C4EDA121E3D4C700ADD4E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7C4EDA221E3D4C700ADD4E3 /* Build configuration list for PBXNativeTarget "ToonShading" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7C4EDA321E3D4C700ADD4E3 /* Debug */,
+				C7C4EDA421E3D4C700ADD4E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C7C4ED8821E3D4C600ADD4E3 /* Project object */;
+}

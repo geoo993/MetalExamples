@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C7C4ED7621E3D45C00ADD4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4ED7521E3D45C00ADD4E3 /* AppDelegate.swift */; };
+		C7C4ED7821E3D45C00ADD4E3 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4ED7721E3D45C00ADD4E3 /* MetalViewController.swift */; };
+		C7C4ED7B21E3D45C00ADD4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C4ED7921E3D45C00ADD4E3 /* Main.storyboard */; };
+		C7C4ED7D21E3D45D00ADD4E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C4ED7C21E3D45D00ADD4E3 /* Assets.xcassets */; };
+		C7C4ED8021E3D45D00ADD4E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C4ED7E21E3D45D00ADD4E3 /* LaunchScreen.storyboard */; };
+		C7C4EE0821E3E7BE00ADD4E3 /* container.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE0621E3E7BE00ADD4E3 /* container.png */; };
+		C7C4EE0921E3E7BE00ADD4E3 /* container_specular.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE0721E3E7BE00ADD4E3 /* container_specular.png */; };
+		C7C4EE0D21E3E7C600ADD4E3 /* bob_baseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE0A21E3E7C500ADD4E3 /* bob_baseColor.png */; };
+		C7C4EE0E21E3E7C600ADD4E3 /* tiles_baseColor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE0B21E3E7C500ADD4E3 /* tiles_baseColor.jpg */; };
+		C7C4EE0F21E3E7C600ADD4E3 /* blub_baseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE0C21E3E7C500ADD4E3 /* blub_baseColor.png */; };
+		C7C4EE1521E3E8A600ADD4E3 /* mushroom.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE1321E3E8A600ADD4E3 /* mushroom.obj */; };
+		C7C4EE1621E3E8A600ADD4E3 /* mushroom.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE1421E3E8A600ADD4E3 /* mushroom.png */; };
+		C7C4EE1821E3E8AD00ADD4E3 /* bob.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE1721E3E8AD00ADD4E3 /* bob.obj */; };
+		C7C4EE1A21E3E8B300ADD4E3 /* blub.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE1921E3E8B300ADD4E3 /* blub.obj */; };
+		C7C4EE1C21E3E8BC00ADD4E3 /* LightsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EE1B21E3E8BC00ADD4E3 /* LightsScene.swift */; };
+		C7C4EE2021E3E8C300ADD4E3 /* VertexShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EE1D21E3E8C300ADD4E3 /* VertexShader.metal */; };
+		C7C4EE2121E3E8C300ADD4E3 /* FragmentShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EE1E21E3E8C300ADD4E3 /* FragmentShader.metal */; };
+		C7C4EE2421E3E8CB00ADD4E3 /* LightsShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EE2221E3E8CB00ADD4E3 /* LightsShader.metal */; };
+		C7C4EE2521E3E8CB00ADD4E3 /* LightMixShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C7C4EE2321E3E8CB00ADD4E3 /* LightMixShader.metal */; };
+		C7C4EE2721E3EB5F00ADD4E3 /* AppCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7C4EE2621E3EB5F00ADD4E3 /* AppCore.framework */; };
+		C7C4EE2821E3EB5F00ADD4E3 /* AppCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C7C4EE2621E3EB5F00ADD4E3 /* AppCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C7C4EE3921E3ED3D00ADD4E3 /* wood.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE3321E3ED3C00ADD4E3 /* wood.png */; };
+		C7C4EE3A21E3ED3D00ADD4E3 /* woodenBoxDiffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE3421E3ED3C00ADD4E3 /* woodenBoxDiffuse.png */; };
+		C7C4EE3B21E3ED3D00ADD4E3 /* woodenBoxSpecular.png in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE3521E3ED3C00ADD4E3 /* woodenBoxSpecular.png */; };
+		C7C4EE3C21E3ED3D00ADD4E3 /* woodenBox.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE3621E3ED3C00ADD4E3 /* woodenBox.jpg */; };
+		C7C4EE3D21E3ED3D00ADD4E3 /* woodenBoxNormal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE3721E3ED3C00ADD4E3 /* woodenBoxNormal.jpg */; };
+		C7C4EE3E21E3ED3D00ADD4E3 /* wood.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE3821E3ED3C00ADD4E3 /* wood.jpg */; };
+		C7C4EE9021E3EECD00ADD4E3 /* bunny.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE8E21E3EECD00ADD4E3 /* bunny.obj */; };
+		C7C4EE9121E3EECD00ADD4E3 /* bunny.mtl in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE8F21E3EECD00ADD4E3 /* bunny.mtl */; };
+		C7C4EE9321E3EED500ADD4E3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = C7C4EE9221E3EED500ADD4E3 /* teapot.obj */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C7C4EE2921E3EB5F00ADD4E3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C7C4EE2821E3EB5F00ADD4E3 /* AppCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C7C4ED7221E3D45C00ADD4E3 /* LightingIllumination.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightingIllumination.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7C4ED7521E3D45C00ADD4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C7C4ED7721E3D45C00ADD4E3 /* MetalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
+		C7C4ED7A21E3D45C00ADD4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C7C4ED7C21E3D45D00ADD4E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C7C4ED7F21E3D45D00ADD4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C7C4ED8121E3D45D00ADD4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7C4EE0621E3E7BE00ADD4E3 /* container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container.png; sourceTree = "<group>"; };
+		C7C4EE0721E3E7BE00ADD4E3 /* container_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container_specular.png; sourceTree = "<group>"; };
+		C7C4EE0A21E3E7C500ADD4E3 /* bob_baseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bob_baseColor.png; sourceTree = "<group>"; };
+		C7C4EE0B21E3E7C500ADD4E3 /* tiles_baseColor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tiles_baseColor.jpg; sourceTree = "<group>"; };
+		C7C4EE0C21E3E7C500ADD4E3 /* blub_baseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blub_baseColor.png; sourceTree = "<group>"; };
+		C7C4EE1321E3E8A600ADD4E3 /* mushroom.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mushroom.obj; sourceTree = "<group>"; };
+		C7C4EE1421E3E8A600ADD4E3 /* mushroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mushroom.png; sourceTree = "<group>"; };
+		C7C4EE1721E3E8AD00ADD4E3 /* bob.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bob.obj; sourceTree = "<group>"; };
+		C7C4EE1921E3E8B300ADD4E3 /* blub.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = blub.obj; sourceTree = "<group>"; };
+		C7C4EE1B21E3E8BC00ADD4E3 /* LightsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightsScene.swift; sourceTree = "<group>"; };
+		C7C4EE1D21E3E8C300ADD4E3 /* VertexShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = VertexShader.metal; sourceTree = "<group>"; };
+		C7C4EE1E21E3E8C300ADD4E3 /* FragmentShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = FragmentShader.metal; sourceTree = "<group>"; };
+		C7C4EE1F21E3E8C300ADD4E3 /* VertexShaderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexShaderData.h; sourceTree = "<group>"; };
+		C7C4EE2221E3E8CB00ADD4E3 /* LightsShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = LightsShader.metal; sourceTree = "<group>"; };
+		C7C4EE2321E3E8CB00ADD4E3 /* LightMixShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = LightMixShader.metal; sourceTree = "<group>"; };
+		C7C4EE2621E3EB5F00ADD4E3 /* AppCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7C4EE3321E3ED3C00ADD4E3 /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
+		C7C4EE3421E3ED3C00ADD4E3 /* woodenBoxDiffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodenBoxDiffuse.png; sourceTree = "<group>"; };
+		C7C4EE3521E3ED3C00ADD4E3 /* woodenBoxSpecular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodenBoxSpecular.png; sourceTree = "<group>"; };
+		C7C4EE3621E3ED3C00ADD4E3 /* woodenBox.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woodenBox.jpg; sourceTree = "<group>"; };
+		C7C4EE3721E3ED3C00ADD4E3 /* woodenBoxNormal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woodenBoxNormal.jpg; sourceTree = "<group>"; };
+		C7C4EE3821E3ED3C00ADD4E3 /* wood.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wood.jpg; sourceTree = "<group>"; };
+		C7C4EE8E21E3EECD00ADD4E3 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
+		C7C4EE8F21E3EECD00ADD4E3 /* bunny.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.mtl; sourceTree = "<group>"; };
+		C7C4EE9221E3EED500ADD4E3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C7C4ED6F21E3D45C00ADD4E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7C4EE2721E3EB5F00ADD4E3 /* AppCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C7C4ED6921E3D45C00ADD4E3 = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE2621E3EB5F00ADD4E3 /* AppCore.framework */,
+				C7C4ED7421E3D45C00ADD4E3 /* LightingIllumination */,
+				C7C4ED7321E3D45C00ADD4E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C7C4ED7321E3D45C00ADD4E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4ED7221E3D45C00ADD4E3 /* LightingIllumination.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C7C4ED7421E3D45C00ADD4E3 /* LightingIllumination */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE0121E3E70400ADD4E3 /* Resources */,
+				C7C4EE0021E3E6FD00ADD4E3 /* Scenes */,
+				C7C4EDFF21E3E6F100ADD4E3 /* ShaderFunctions */,
+				C7C4EDFE21E3E6E500ADD4E3 /* Shaders */,
+				C7C4ED7521E3D45C00ADD4E3 /* AppDelegate.swift */,
+				C7C4ED7721E3D45C00ADD4E3 /* MetalViewController.swift */,
+				C7C4ED7921E3D45C00ADD4E3 /* Main.storyboard */,
+				C7C4ED7C21E3D45D00ADD4E3 /* Assets.xcassets */,
+				C7C4ED7E21E3D45D00ADD4E3 /* LaunchScreen.storyboard */,
+				C7C4ED8121E3D45D00ADD4E3 /* Info.plist */,
+			);
+			path = LightingIllumination;
+			sourceTree = "<group>";
+		};
+		C7C4EDFE21E3E6E500ADD4E3 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE2321E3E8CB00ADD4E3 /* LightMixShader.metal */,
+				C7C4EE2221E3E8CB00ADD4E3 /* LightsShader.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		C7C4EDFF21E3E6F100ADD4E3 /* ShaderFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE1E21E3E8C300ADD4E3 /* FragmentShader.metal */,
+				C7C4EE1D21E3E8C300ADD4E3 /* VertexShader.metal */,
+				C7C4EE1F21E3E8C300ADD4E3 /* VertexShaderData.h */,
+			);
+			path = ShaderFunctions;
+			sourceTree = "<group>";
+		};
+		C7C4EE0021E3E6FD00ADD4E3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE1B21E3E8BC00ADD4E3 /* LightsScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C7C4EE0121E3E70400ADD4E3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE0321E3E71000ADD4E3 /* Images */,
+				C7C4EE0221E3E70A00ADD4E3 /* Models */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C7C4EE0221E3E70A00ADD4E3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE4521E3ED9D00ADD4E3 /* Teapot */,
+				C7C4EE4421E3ED9700ADD4E3 /* Bunny */,
+				C7C4EE1221E3E84D00ADD4E3 /* Blub */,
+				C7C4EE1121E3E83D00ADD4E3 /* Bob */,
+				C7C4EE1021E3E83400ADD4E3 /* mushroom */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C7C4EE0321E3E71000ADD4E3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE3221E3ED1300ADD4E3 /* woodenBox */,
+				C7C4EE0521E3E72500ADD4E3 /* bob */,
+				C7C4EE0421E3E72000ADD4E3 /* crate */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		C7C4EE0421E3E72000ADD4E3 /* crate */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE0721E3E7BE00ADD4E3 /* container_specular.png */,
+				C7C4EE0621E3E7BE00ADD4E3 /* container.png */,
+			);
+			path = crate;
+			sourceTree = "<group>";
+		};
+		C7C4EE0521E3E72500ADD4E3 /* bob */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE0C21E3E7C500ADD4E3 /* blub_baseColor.png */,
+				C7C4EE0A21E3E7C500ADD4E3 /* bob_baseColor.png */,
+				C7C4EE0B21E3E7C500ADD4E3 /* tiles_baseColor.jpg */,
+			);
+			path = bob;
+			sourceTree = "<group>";
+		};
+		C7C4EE1021E3E83400ADD4E3 /* mushroom */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE1321E3E8A600ADD4E3 /* mushroom.obj */,
+				C7C4EE1421E3E8A600ADD4E3 /* mushroom.png */,
+			);
+			path = mushroom;
+			sourceTree = "<group>";
+		};
+		C7C4EE1121E3E83D00ADD4E3 /* Bob */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE1721E3E8AD00ADD4E3 /* bob.obj */,
+			);
+			path = Bob;
+			sourceTree = "<group>";
+		};
+		C7C4EE1221E3E84D00ADD4E3 /* Blub */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE1921E3E8B300ADD4E3 /* blub.obj */,
+			);
+			path = Blub;
+			sourceTree = "<group>";
+		};
+		C7C4EE3221E3ED1300ADD4E3 /* woodenBox */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE3821E3ED3C00ADD4E3 /* wood.jpg */,
+				C7C4EE3321E3ED3C00ADD4E3 /* wood.png */,
+				C7C4EE3621E3ED3C00ADD4E3 /* woodenBox.jpg */,
+				C7C4EE3421E3ED3C00ADD4E3 /* woodenBoxDiffuse.png */,
+				C7C4EE3721E3ED3C00ADD4E3 /* woodenBoxNormal.jpg */,
+				C7C4EE3521E3ED3C00ADD4E3 /* woodenBoxSpecular.png */,
+			);
+			path = woodenBox;
+			sourceTree = "<group>";
+		};
+		C7C4EE4421E3ED9700ADD4E3 /* Bunny */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE8F21E3EECD00ADD4E3 /* bunny.mtl */,
+				C7C4EE8E21E3EECD00ADD4E3 /* bunny.obj */,
+			);
+			path = Bunny;
+			sourceTree = "<group>";
+		};
+		C7C4EE4521E3ED9D00ADD4E3 /* Teapot */ = {
+			isa = PBXGroup;
+			children = (
+				C7C4EE9221E3EED500ADD4E3 /* teapot.obj */,
+			);
+			path = Teapot;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C7C4ED7121E3D45C00ADD4E3 /* LightingIllumination */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7C4ED8421E3D45D00ADD4E3 /* Build configuration list for PBXNativeTarget "LightingIllumination" */;
+			buildPhases = (
+				C7C4ED6E21E3D45C00ADD4E3 /* Sources */,
+				C7C4ED6F21E3D45C00ADD4E3 /* Frameworks */,
+				C7C4ED7021E3D45C00ADD4E3 /* Resources */,
+				C7C4EE2921E3EB5F00ADD4E3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LightingIllumination;
+			productName = LightingIllumination;
+			productReference = C7C4ED7221E3D45C00ADD4E3 /* LightingIllumination.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C7C4ED6A21E3D45C00ADD4E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "GEORGE QUENTIN";
+				TargetAttributes = {
+					C7C4ED7121E3D45C00ADD4E3 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = C7C4ED6D21E3D45C00ADD4E3 /* Build configuration list for PBXProject "LightingIllumination" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C7C4ED6921E3D45C00ADD4E3;
+			productRefGroup = C7C4ED7321E3D45C00ADD4E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C7C4ED7121E3D45C00ADD4E3 /* LightingIllumination */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C7C4ED7021E3D45C00ADD4E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7C4ED8021E3D45D00ADD4E3 /* LaunchScreen.storyboard in Resources */,
+				C7C4EE3C21E3ED3D00ADD4E3 /* woodenBox.jpg in Resources */,
+				C7C4EE3D21E3ED3D00ADD4E3 /* woodenBoxNormal.jpg in Resources */,
+				C7C4EE1621E3E8A600ADD4E3 /* mushroom.png in Resources */,
+				C7C4EE3E21E3ED3D00ADD4E3 /* wood.jpg in Resources */,
+				C7C4EE0E21E3E7C600ADD4E3 /* tiles_baseColor.jpg in Resources */,
+				C7C4ED7D21E3D45D00ADD4E3 /* Assets.xcassets in Resources */,
+				C7C4EE3921E3ED3D00ADD4E3 /* wood.png in Resources */,
+				C7C4EE0F21E3E7C600ADD4E3 /* blub_baseColor.png in Resources */,
+				C7C4EE0D21E3E7C600ADD4E3 /* bob_baseColor.png in Resources */,
+				C7C4EE1A21E3E8B300ADD4E3 /* blub.obj in Resources */,
+				C7C4EE9321E3EED500ADD4E3 /* teapot.obj in Resources */,
+				C7C4EE3A21E3ED3D00ADD4E3 /* woodenBoxDiffuse.png in Resources */,
+				C7C4ED7B21E3D45C00ADD4E3 /* Main.storyboard in Resources */,
+				C7C4EE9021E3EECD00ADD4E3 /* bunny.obj in Resources */,
+				C7C4EE3B21E3ED3D00ADD4E3 /* woodenBoxSpecular.png in Resources */,
+				C7C4EE0921E3E7BE00ADD4E3 /* container_specular.png in Resources */,
+				C7C4EE9121E3EECD00ADD4E3 /* bunny.mtl in Resources */,
+				C7C4EE1821E3E8AD00ADD4E3 /* bob.obj in Resources */,
+				C7C4EE0821E3E7BE00ADD4E3 /* container.png in Resources */,
+				C7C4EE1521E3E8A600ADD4E3 /* mushroom.obj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C7C4ED6E21E3D45C00ADD4E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7C4EE2021E3E8C300ADD4E3 /* VertexShader.metal in Sources */,
+				C7C4EE2421E3E8CB00ADD4E3 /* LightsShader.metal in Sources */,
+				C7C4EE1C21E3E8BC00ADD4E3 /* LightsScene.swift in Sources */,
+				C7C4EE2521E3E8CB00ADD4E3 /* LightMixShader.metal in Sources */,
+				C7C4EE2121E3E8C300ADD4E3 /* FragmentShader.metal in Sources */,
+				C7C4ED7821E3D45C00ADD4E3 /* MetalViewController.swift in Sources */,
+				C7C4ED7621E3D45C00ADD4E3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C7C4ED7921E3D45C00ADD4E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7C4ED7A21E3D45C00ADD4E3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C7C4ED7E21E3D45D00ADD4E3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C7C4ED7F21E3D45D00ADD4E3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C7C4ED8221E3D45D00ADD4E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C7C4ED8321E3D45D00ADD4E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C7C4ED8521E3D45D00ADD4E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FDAK5XPRG7;
+				INFOPLIST_FILE = LightingIllumination/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.LightingIllumination";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C7C4ED8621E3D45D00ADD4E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FDAK5XPRG7;
+				INFOPLIST_FILE = LightingIllumination/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.LightingIllumination";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C7C4ED6D21E3D45C00ADD4E3 /* Build configuration list for PBXProject "LightingIllumination" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7C4ED8221E3D45D00ADD4E3 /* Debug */,
+				C7C4ED8321E3D45D00ADD4E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7C4ED8421E3D45D00ADD4E3 /* Build configuration list for PBXNativeTarget "LightingIllumination" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7C4ED8521E3D45D00ADD4E3 /* Debug */,
+				C7C4ED8621E3D45D00ADD4E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C7C4ED6A21E3D45C00ADD4E3 /* Project object */;
+}

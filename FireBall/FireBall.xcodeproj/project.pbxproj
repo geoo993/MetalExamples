@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C71DB2E021E291730004ADD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DB2DF21E291730004ADD2 /* AppDelegate.swift */; };
-		C71DB2E221E291730004ADD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DB2E121E291730004ADD2 /* ViewController.swift */; };
+		C71DB2E221E291730004ADD2 /* MetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DB2E121E291730004ADD2 /* MetalViewController.swift */; };
 		C71DB2E521E291730004ADD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71DB2E321E291730004ADD2 /* Main.storyboard */; };
 		C71DB2E721E291750004ADD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C71DB2E621E291750004ADD2 /* Assets.xcassets */; };
 		C71DB2EA21E291750004ADD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71DB2E821E291750004ADD2 /* LaunchScreen.storyboard */; };
@@ -47,7 +47,7 @@
 /* Begin PBXFileReference section */
 		C71DB2DC21E291730004ADD2 /* FireBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71DB2DF21E291730004ADD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C71DB2E121E291730004ADD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C71DB2E121E291730004ADD2 /* MetalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalViewController.swift; sourceTree = "<group>"; };
 		C71DB2E421E291730004ADD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C71DB2E621E291750004ADD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C71DB2E921E291750004ADD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 				C7B7236B21E2DCBD00C6F65D /* Scenes */,
 				C7B7236E21E2DD9100C6F65D /* Sounds */,
 				C7B7236921E2D96500C6F65D /* SoundController.swift */,
-				C71DB2E121E291730004ADD2 /* ViewController.swift */,
+				C71DB2E121E291730004ADD2 /* MetalViewController.swift */,
 				C71DB2E321E291730004ADD2 /* Main.storyboard */,
 				C71DB2E621E291750004ADD2 /* Assets.xcassets */,
 				C71DB2E821E291750004ADD2 /* LaunchScreen.storyboard */,
@@ -250,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C71DB2E221E291730004ADD2 /* ViewController.swift in Sources */,
+				C71DB2E221E291730004ADD2 /* MetalViewController.swift in Sources */,
 				C7B7236A21E2D96500C6F65D /* SoundController.swift in Sources */,
 				C71DB2E021E291730004ADD2 /* AppDelegate.swift in Sources */,
 				C7B7238621E2DDCC00C6F65D /* FireBallShader.metal in Sources */,

@@ -2,6 +2,21 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:InstanceRendering/InstanceRendering.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Landscape/Landscape.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ToonShading/ToonShading.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:LightingIllumination/LightingIllumination.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Primitives/Primitives.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ObjectsAndShadowMap/ObjectsAndShadowMap.xcodeproj">
    </FileRef>
    <FileRef
@@ -15,9 +30,6 @@
    </FileRef>
    <FileRef
       location = "group:BreakOut/BreakOut.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:MetalByRaywenderlich.com/MetalByRaywenderlich.com.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:AppCore/AppCore.xcodeproj">

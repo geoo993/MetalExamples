@@ -118,7 +118,7 @@ open class Scene: Node {
 
 public extension Scene {
 
-    open func createDirectionalLight(color: float3, direction: float3) -> DirectionalLight {
+    public func createDirectionalLight(color: float3, direction: float3) -> DirectionalLight {
         // Directional light
         var base = BaseLight()
         base.color = color
@@ -128,7 +128,7 @@ public extension Scene {
         return DirectionalLight(base: base, direction: direction)
     }
 
-    open func createPointLight(view: MTKView, name: String, color: float3, position: float3, intensity: Float)
+    public func createPointLight(view: MTKView, name: String, color: float3, position: float3, intensity: Float)
         -> (object: Primitive, light:PointLight) {
             // Point Light
             let light = Cube(mtkView: view, fragmentShader: .fragment_color)
@@ -152,7 +152,7 @@ public extension Scene {
             return (light, pointLight)
     }
 
-    open func createSpotLight(view: MTKView, color: float3, position: float3, cutoff: Float, outerCutoff: Float) -> SpotLight {
+    public func createSpotLight(view: MTKView, color: float3, position: float3, cutoff: Float, outerCutoff: Float) -> SpotLight {
 
         //Spot Light
         var spotLight = SpotLight()
