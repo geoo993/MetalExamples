@@ -41,6 +41,8 @@
 // multiplied by the size of the float.
 //
 
+// http://metalbyexample.com/modern-metal-2/
+// https://www.raywenderlich.com/719-metal-tutorial-with-swift-3-part-3-adding-texture
 import UIKit
 import MetalKit
 import AppCore
